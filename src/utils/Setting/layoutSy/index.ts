@@ -1,5 +1,3 @@
-import logo from '@/assets/logo.svg';
-
 /**
  * @module 全局配置表单模块部分
  *
