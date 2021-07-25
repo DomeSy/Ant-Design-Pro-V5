@@ -25,13 +25,13 @@ export async function getInitialState(): Promise<{
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
   const fetchUserInfo = async () => {
-    try {
-      const msg = await queryCurrentUser();
-      console.log(msg,'--')
-      return msg.data;
-    } catch (error) {
-      history.push(loginPath);
-    }
+    // try {
+    //   const msg = await queryCurrentUser();
+    //   console.log(msg,'--')
+    //   return msg.data;
+    // } catch (error) {
+    //   history.push(loginPath);
+    // }
     return undefined;
   };
 
@@ -72,16 +72,17 @@ const responseInterceptors:any = async (response: Response) => {
     return;
   }
   const data = await response.clone().json();
-  if ([10001,10008].includes(data.resultCode)) {
-    message.error(data.message);
-    localStorage.clear();
-    // setTimeout(window.location.reload(), 1000);
-    return false;
-  }
-  if (data.resultCode !== 200) {
-    message.error(data.message);
-    return;
-  }
+  // if ([10001,10008].includes(data.resultCode)) {
+  //   message.error(data.message);
+  //   localStorage.clear();
+  //   // setTimeout(window.location.reload(), 1000);
+  //   return false;
+  // }
+  // if (data.status !== 'ok') {
+  //   message.error(data.message);
+  //   return;
+  // }
+  console.log(data,'--')
   return data;
 }
 
@@ -102,13 +103,12 @@ export const request: RequestConfig = {
     throw error;
   },
   requestInterceptors: [headerInfo],
-  // responseInterceptors: [responseInterceptors],
+  responseInterceptors: [responseInterceptors],
 };
 
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState }) => {
-  console.log(initialState, '99')
   return {
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
@@ -118,7 +118,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
-      console.log(location,'--9')
       // 如果没有登录，重定向到 login
       // if (!initialState?.currentUser && location.pathname !== loginPath) {
       //   history.push(loginPath);
