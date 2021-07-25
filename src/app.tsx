@@ -25,19 +25,17 @@ export async function getInitialState(): Promise<{
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
   const fetchUserInfo = async () => {
-    // try {
-    //   const msg = await queryCurrentUser();
-    //   console.log(msg,'--')
-    //   return msg.data;
-    // } catch (error) {
-    //   history.push(loginPath);
-    // }
+    try {
+      const msg = await queryCurrentUser();
+      return msg.data;
+    } catch (error) {
+      history.push(loginPath);
+    }
     return undefined;
   };
 
   // 如果是登录页面，不执行
   if (history.location.pathname !== loginPath) {
-
     const currentUser = await fetchUserInfo();
     return {
       currentUser,
@@ -72,17 +70,15 @@ const responseInterceptors:any = async (response: Response) => {
     return;
   }
   const data = await response.clone().json();
-  // if ([10001,10008].includes(data.resultCode)) {
-  //   message.error(data.message);
-  //   localStorage.clear();
-  //   // setTimeout(window.location.reload(), 1000);
-  //   return false;
-  // }
+  if ([10001,10008].includes(data.resultCode)) {
+    message.error(data.message);
+    localStorage.clear();
+    return false;
+  }
   // if (data.status !== 'ok') {
   //   message.error(data.message);
   //   return;
   // }
-  console.log(data,'--')
   return data;
 }
 
@@ -116,12 +112,13 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     //   content: initialState?.currentUser?.name,
     // },
     footerRender: () => <Footer />,
+    //页面切换时的方法
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
-      // if (!initialState?.currentUser && location.pathname !== loginPath) {
-      //   history.push(loginPath);
-      // }
+      if (!initialState?.currentUser && location.pathname !== loginPath) {
+        history.push(loginPath);
+      }
     },
     links: isDev
       ? [

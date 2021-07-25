@@ -45,33 +45,33 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (values: API.LoginParams) => {
     setSubmitting(true);
-    const msg = await login({ ...values, type });
-    console.log(msg,'--')
-    Jump.replace('/')
-    // try {
-      // 登录
-      // const msg = await login({ ...values, type });
+    // const msg = await login({ ...values, type });
+    // console.log(msg,'--')
+    // Jump.replace('/')
+    try {
+      const msg = await login({ ...values, type });
 
-      // if (msg.status === 'ok') {
-      //   const defaultLoginSuccessMessage = '登录成功！!';
-      //   message.success(defaultLoginSuccessMessage);
-      //   await fetchUserInfo();
-      //   /** 此方法会跳转到 redirect 参数所在的位置 */
+      if (msg.status === 'ok') {
+        const defaultLoginSuccessMessage = '登录成功！!';
+        message.success(defaultLoginSuccessMessage);
+        await fetchUserInfo();
+        /** 此方法会跳转到 redirect 参数所在的位置 */
 
-      //   if (!history) return;
-      //   const { query } = history.location;
-      //   const { redirect } = query as {
-      //     redirect: string;
-      //   };
-      //   history.push(redirect || '/');
-      //   return;
-      // } // 如果失败去设置用户错误信息
+        if (!history) return;
+        const { query } = history.location;
+        const { redirect } = query as {
+          redirect: string;
+        };
+        console.log(redirect,'--')
+        history.push(redirect || '/');
+        return;
+      } // 如果失败去设置用户错误信息
 
-      // setUserLoginState(msg);
-    // } catch (error) {
-    //   const defaultLoginFailureMessage = '登录失败，请重试！';
-    //   message.error(defaultLoginFailureMessage);
-    // }
+      setUserLoginState(msg);
+    } catch (error) {
+      const defaultLoginFailureMessage = '登录失败，请重试！';
+      message.error(defaultLoginFailureMessage);
+    }
 
     setSubmitting(false);
   };
