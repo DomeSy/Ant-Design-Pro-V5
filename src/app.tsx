@@ -40,9 +40,11 @@ export async function getInitialState(): Promise<{
     return {
       currentUser,
       settings: {},
+      fetchUserInfo
     };
   }
   return {
+    fetchUserInfo,
     settings: {},
   };
 }
