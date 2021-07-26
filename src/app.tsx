@@ -7,6 +7,7 @@ import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
+import initData from '@/utils/initData';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -26,26 +27,23 @@ export async function getInitialState(): Promise<{
 }> {
   const fetchUserInfo = async () => {
     try {
-      const msg = await queryCurrentUser();
-      return msg.data;
+      const msg = await initData();
+      return { ...msg };
     } catch (error) {
       history.push(loginPath);
     }
-    return undefined;
+    return false;
   };
 
   // 如果是登录页面，不执行
   if (history.location.pathname !== loginPath) {
-    const currentUser = await fetchUserInfo();
+    const currentUser:any = await fetchUserInfo();
+    if(!currentUser) return {}
     return {
-      currentUser,
-      settings: {},
-      fetchUserInfo
-    };
+      ...currentUser
+    }
   }
   return {
-    fetchUserInfo,
-    settings: {},
   };
 }
 
@@ -84,8 +82,6 @@ const responseInterceptors:any = async (response: Response) => {
   return data;
 }
 
-
-
 /**
  * @module 请求模块
  */
@@ -118,9 +114,9 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
-      if (!initialState?.currentUser && location.pathname !== loginPath) {
-        history.push(loginPath);
-      }
+      // if (!initialState?.currentUser && location.pathname !== loginPath) {
+      //   history.push(loginPath);
+      // }
     },
     links: isDev
       ? [

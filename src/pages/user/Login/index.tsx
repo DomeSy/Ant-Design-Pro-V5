@@ -14,6 +14,7 @@ import Footer from '@/components/Footer';
 import { login } from '@/services/ant-design-pro/api';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import styles from './index.less';
+import initData from '@/utils/initData';
 import { Jump } from '@/utils'
 
 const LoginMessage: React.FC<{
@@ -36,18 +37,14 @@ const Login: React.FC = () => {
   const { initialState, setInitialState } = useModel('@@initialState');
 
   const fetchUserInfo = async () => {
-    const userInfo = await initialState?.fetchUserInfo?.();
-
-    if (userInfo) {
-      await setInitialState((s:any) => ({ ...s, currentUser: userInfo }));
+    const init = await initData();
+    if (init) {
+      await setInitialState((s:any) => ({ ...s, ...init }));
     }
   };
 
   const handleSubmit = async (values: API.LoginParams) => {
     setSubmitting(true);
-    // const msg = await login({ ...values, type });
-    // console.log(msg,'--')
-    // Jump.replace('/')
     try {
       const msg = await login({ ...values, type });
 

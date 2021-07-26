@@ -1,6 +1,8 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Alert, Typography } from 'antd';
+import { useModel } from 'umi';
+
 import styles from './Welcome.less';
 
 const CodePreview: React.FC = ({ children }) => (
@@ -12,6 +14,10 @@ const CodePreview: React.FC = ({ children }) => (
 );
 
 export default (): React.ReactNode => {
+  const { initialState, setInitialState } = useModel('@@initialState');
+  useEffect(()=> {
+    console.log(initialState,'--')
+  },[])
   return (
     <PageContainer>
       <Card>
