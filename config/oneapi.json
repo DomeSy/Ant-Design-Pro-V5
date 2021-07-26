@@ -387,6 +387,7 @@
         }
       },
       "LoginResult": {
+        "token": "string",
         "type": "object",
         "properties": {
           "status": {

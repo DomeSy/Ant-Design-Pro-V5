@@ -124,6 +124,7 @@ export default {
       res.send({
         status: 'ok',
         type,
+        token: 'Bearer Domesy-Ant-Design-Pro',
         currentAuthority: 'admin',
       });
       access = 'admin';

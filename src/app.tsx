@@ -5,9 +5,10 @@ import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
 import { history, Link } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
-import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
+import { storageSy } from '@/utils/Setting'
 import initData from '@/utils/initData';
+import { Jump } from '@/utils';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -26,11 +27,13 @@ export async function getInitialState(): Promise<{
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
   const fetchUserInfo = async () => {
+    const token = localStorage.getItem(storageSy.token);
+    if(!token) Jump.go(loginPath);
     try {
       const msg = await initData();
       return { ...msg };
     } catch (error) {
-      history.push(loginPath);
+      Jump.go(loginPath);
     }
     return false;
   };
@@ -113,10 +116,11 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     //页面切换时的方法
     onPageChange: () => {
       const { location } = history;
+      const token = localStorage.getItem(storageSy.token);
       // 如果没有登录，重定向到 login
-      // if (!initialState?.currentUser && location.pathname !== loginPath) {
-      //   history.push(loginPath);
-      // }
+      if (!token && location.pathname !== loginPath) {
+        Jump.go(loginPath)
+      }
     },
     links: isDev
       ? [

@@ -15,6 +15,7 @@ import { login } from '@/services/ant-design-pro/api';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import styles from './index.less';
 import initData from '@/utils/initData';
+import { storageSy } from '@/utils/Setting'
 import { Jump } from '@/utils'
 
 const LoginMessage: React.FC<{
@@ -46,11 +47,12 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: API.LoginParams) => {
     setSubmitting(true);
     try {
-      const msg = await login({ ...values, type });
+      const result = await login({ ...values, type });
 
-      if (msg.status === 'ok') {
+      if (result.status === 'ok') {
         const defaultLoginSuccessMessage = '登录成功！!';
         message.success(defaultLoginSuccessMessage);
+        if(result.token) localStorage.setItem(storageSy.token, result.token)
         await fetchUserInfo();
         /** 此方法会跳转到 redirect 参数所在的位置 */
 
@@ -62,7 +64,7 @@ const Login: React.FC = () => {
         history.push(redirect || '/');
         return;
       }
-      setUserLoginState(msg);
+      setUserLoginState(result);
     } catch (error) {
       const defaultLoginFailureMessage = '登录失败，请重试！';
       message.error(defaultLoginFailureMessage);

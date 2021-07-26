@@ -1,4 +1,4 @@
-import { layoutSy, pageLayoutSy, tableSy, fromSy, maskSy } from '../Setting'
+import { layoutSy, pageLayoutSy, storageSy, tableSy, fromSy, maskSy } from '../Setting'
 import { currentUser as queryCurrentUser } from '@/services/ant-design-pro/api';
 
 /**
@@ -12,7 +12,8 @@ const initData = async () => {
     pageLayoutSy,
     tableSy,
     fromSy,
-    maskSy
+    maskSy,
+    storageSy,
   }
 }
 
