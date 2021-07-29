@@ -4,17 +4,15 @@ const Settings: LayoutSettings & {
   pwa?: boolean;
   logo?: string;
 } = {
-  navTheme: 'light',
-  // 拂晓蓝
-  primaryColor: '#1890ff',
-  layout: 'mix',
-  contentWidth: 'Fluid',
-  fixedHeader: false,
-  fixSiderbar: true,
+  navTheme: 'dark', // 主题颜色
+  primaryColor: '#1890ff', //颜色
+  layout: 'side', // 菜单模式 side：右侧导航，top：顶部导航
+  contentWidth: 'Fluid', // 内容模式 Fluid：自适应，Fixed：定宽 1200px
+  fixedHeader: false, // 是否固定头部
+  fixSiderbar: true, // 是否固定导航
   colorWeak: false,
   title: 'Domesy',
   pwa: false,
-  logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
   iconfontUrl: '',
 };
 
