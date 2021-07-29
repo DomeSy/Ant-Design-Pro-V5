@@ -6,16 +6,20 @@ import { getMenuData } from '@/services/ant-design-pro/domesy'
 import allIcons from '@@/plugin-antd-icon/icons';
 
 
+
 /**
  * @module 初始化方法
  */
 const initData = async () => {
   const currentUser = await queryCurrentUser()
+
+  // 动态路由：menuData接收的为路由的函数，为false时，不启动动态路由
   const menuData: MenuDataItem[] = await getMenuData()
 
   return {
     currentUser: currentUser.data,
-    menuData: formatter(menuData),
+    // menuData: formatter(menuData), // 示例，动态路由
+    menuData: false,
     domesy:{
       layoutSy,
       pageLayoutSy,

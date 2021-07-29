@@ -19,7 +19,7 @@ const layoutSy: LayoutProps = {
   waterMark: false,
   rightContent: false,
   collapsed: false,
-  HeaderClick: false
+  HeaderClick: false,
 };
 
 export default layoutSy;

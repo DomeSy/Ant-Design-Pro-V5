@@ -1,10 +1,10 @@
-import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
+import type { Settings as LayoutSettings, MenuDataItem } from '@ant-design/pro-layout';
 import { PageContainer, ProBreadcrumb, PageLoading } from '@ant-design/pro-layout';
 import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
 import { history, Link } from 'umi';
+import routes from '../config/routes';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
-import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import { storageSy, layoutSy } from '@/utils/Setting'
 import initData from '@/utils/initData';
 import { Jump } from '@/utils';
@@ -38,6 +38,15 @@ export async function getInitialState(): Promise<any> {
   if (history.location.pathname !== loginPath) {
     const currentUser:any = await fetchUserInfo();
     if(!currentUser) return {}
+    if(history.location.pathname === '/'){
+      let home:string = ''
+      if(currentUser.menuData && currentUser.menuData.length !== 0){
+        home = currentUser.menuData[0].path
+      }else{
+        home = routes[0].path || ''
+      }
+      Jump.go(home)
+    }
     return {
       ...currentUser
     }
@@ -59,11 +68,27 @@ export const request: RequestConfig = {
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState }) => {
+
   return {
     logo: layoutSy.logo,
-    // menuDataRender: (menuData) => initialState.menuData || menuData,
+    menuDataRender: (menuData) => {
+      if(initialState.menuData){
+        return initialState.menuData
+      }else{
+        menuData = menuData
+        return menuData
+      }
+    },
     rightContentRender:  () => <RightContent />,
-    onMenuHeaderClick: (e) => typeof layoutSy.HeaderClick === 'boolean' ? Jump.go('/') : layoutSy.HeaderClick(e),
+    onMenuHeaderClick: (e) => {
+      let home:string = ''
+      if(initialState.menuData && initialState.menuData.length !== 0){
+        home = initialState.menuData[0].path
+      }else{
+        home = routes[0].path || ''
+      }
+      return typeof layoutSy.HeaderClick === 'boolean' ? Jump.go(home) : layoutSy.HeaderClick(e)
+    },
     disableContentMargin: false,
     collapsed: layoutSy.collapsed,
     headerContentRender: typeof layoutSy.rightContent === 'boolean' ? undefined : layoutSy.rightContent === 'breadcrumb' ? () => <ProBreadcrumb /> : layoutSy.rightContent,

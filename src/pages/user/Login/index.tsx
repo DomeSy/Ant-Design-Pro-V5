@@ -15,6 +15,7 @@ import { login } from '@/services/ant-design-pro/api';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import styles from './index.less';
 import initData from '@/utils/initData';
+import routes from '../../../../config/routes';
 import { storageSy } from '@/utils/Setting'
 import { Jump } from '@/utils'
 
@@ -42,6 +43,7 @@ const Login: React.FC = () => {
     if (init) {
       await setInitialState((s:any) => ({ ...s, ...init }));
     }
+    return init
   };
 
   const handleSubmit = async (values: API.LoginParams) => {
@@ -55,7 +57,7 @@ const Login: React.FC = () => {
         if(result.token) localStorage.setItem(storageSy.token, result.token)
         // 这里可缓存其他用户信息
         // localStorage.setItem(storageSy.info, JSON.stringify(result))
-        await fetchUserInfo();
+        const init = await fetchUserInfo();
         /** 此方法会跳转到 redirect 参数所在的位置 */
 
         if (!history) return;
@@ -63,7 +65,18 @@ const Login: React.FC = () => {
         const { redirect } = query as {
           redirect: string;
         };
-        history.push(redirect || '/');
+
+        let home:string = ''
+        if(redirect){
+          home = redirect
+        } else {
+          if(init.menuData && Array.isArray(init.menuData) && init.menuData.length !== 0){
+            home = init.menuData[0].path
+          }else{
+            home = routes[0].path || ''
+          }
+        }
+        Jump.go(home)
         return;
       }
       setUserLoginState(result);

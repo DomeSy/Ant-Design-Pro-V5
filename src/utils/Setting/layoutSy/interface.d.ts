@@ -1,4 +1,4 @@
-
+// 水印
 export interface WaterMarkProps {
   /** 类名 */
   className?: string;
