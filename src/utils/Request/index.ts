@@ -1,10 +1,11 @@
 import { notification, message } from 'antd';
 import { ResponseError } from 'umi-request';
+import { storageSy } from '@/utils/Setting'
 
+/**请求拦截 */
 export const requestInterceptors: any = (url: string, options: RequestInit) => {
-  if (localStorage.getItem('token')) {
-    const token = `Bearer ` + localStorage.getItem('token');
-    // options.headers.Authorization = `Bearer ` + localStorage.getItem('token');
+  if (storageSy.token) {
+    const token = `Bearer ` + localStorage.getItem(storageSy.token);
     options.headers = {
       ...options.headers,
       "Authorization": token,

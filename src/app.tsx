@@ -1,16 +1,14 @@
 import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
-import { PageContainer, ProBreadcrumb } from '@ant-design/pro-layout';
-import { PageLoading } from '@ant-design/pro-layout';
+import { PageContainer, ProBreadcrumb, PageLoading } from '@ant-design/pro-layout';
 import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
 import { history, Link } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
-import { storageSy } from '@/utils/Setting'
+import { storageSy, layoutSy } from '@/utils/Setting'
 import initData from '@/utils/initData';
 import { Jump } from '@/utils';
 import { requestInterceptors, responseInterceptors, errorHandler } from '@/utils/Request'
-import { layoutSy } from '@/utils/Setting'
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -23,11 +21,7 @@ export const initialStateConfig = {
 /**
  * @module 初始设置状态，通过此方法可进行调用
  */
-export async function getInitialState(): Promise<{
-  settings?: Partial<LayoutSettings>;
-  currentUser?: API.CurrentUser;
-  fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
-}> {
+export async function getInitialState(): Promise<any> {
   const fetchUserInfo = async () => {
     const token = localStorage.getItem(storageSy.token);
     if(!token) Jump.go(loginPath);
@@ -53,7 +47,6 @@ export async function getInitialState(): Promise<{
 }
 
 
-
 /**
  * @module 请求模块
  */
@@ -68,8 +61,11 @@ export const request: RequestConfig = {
 export const layout: RunTimeLayoutConfig = ({ initialState }) => {
   return {
     logo: layoutSy.logo,
+    // menuDataRender: (menuData) => initialState.menuData || menuData,
     rightContentRender:  () => <RightContent />,
+    onMenuHeaderClick: (e) => typeof layoutSy.HeaderClick === 'boolean' ? Jump.go('/') : layoutSy.HeaderClick(e),
     disableContentMargin: false,
+    collapsed: layoutSy.collapsed,
     headerContentRender: typeof layoutSy.rightContent === 'boolean' ? undefined : layoutSy.rightContent === 'breadcrumb' ? () => <ProBreadcrumb /> : layoutSy.rightContent,
     waterMarkProps: typeof layoutSy.waterMark === 'boolean' ? undefined : typeof layoutSy.waterMark === 'string' ? { content: layoutSy.waterMark } : layoutSy.waterMark,
     footerRender: layoutSy.footer ? () => <Footer /> : undefined,

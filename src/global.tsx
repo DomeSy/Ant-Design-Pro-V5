@@ -53,7 +53,7 @@ if (pwa) {
           reloadSW();
         }}
       >
-        {'刷新'}
+        {'刷新'}.
       </Button>
     );
     notification.open({

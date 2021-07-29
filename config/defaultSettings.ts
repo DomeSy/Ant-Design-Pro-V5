@@ -2,7 +2,6 @@ import { Settings as LayoutSettings } from '@ant-design/pro-layout';
 
 const Settings: LayoutSettings & {
   pwa?: boolean;
-  logo?: string;
 } = {
   navTheme: 'dark', // 主题颜色
   primaryColor: '#1890ff', //颜色
