@@ -1,11 +1,17 @@
 /**
+import { storageSy } from '@/utils/Setting';
  * @module 配置存储信息
  *
  */
 
-const common = 'share-'
+interface storageProps {
+  token: string,
+  info: string,
+}
 
-const storageSy = {
+const common = 'Domesy-'
+
+const storageSy: storageProps = {
   token: common + 'token',
   info: common + 'info'
 }

@@ -53,6 +53,8 @@ const Login: React.FC = () => {
         const defaultLoginSuccessMessage = '登录成功！!';
         message.success(defaultLoginSuccessMessage);
         if(result.token) localStorage.setItem(storageSy.token, result.token)
+        // 这里可缓存其他用户信息
+        // localStorage.setItem(storageSy.info, JSON.stringify(result))
         await fetchUserInfo();
         /** 此方法会跳转到 redirect 参数所在的位置 */
 

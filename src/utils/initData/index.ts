@@ -8,12 +8,14 @@ const initData = async () => {
   const currentUser = await queryCurrentUser()
   return {
     currentUser: currentUser.data,
-    layoutSy,
-    pageLayoutSy,
-    tableSy,
-    fromSy,
-    maskSy,
-    storageSy,
+    domesy:{
+      layoutSy,
+      pageLayoutSy,
+      tableSy,
+      fromSy,
+      maskSy,
+      storageSy,
+    }
   }
 }
 
