@@ -5,8 +5,6 @@ import { currentUser as queryCurrentUser } from '@/services/ant-design-pro/api';
 import { getMenuData } from '@/services/ant-design-pro/domesy'
 import allIcons from '@@/plugin-antd-icon/icons';
 
-
-
 /**
  * @module 初始化方法
  */

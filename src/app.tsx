@@ -1,4 +1,3 @@
-import type { Settings as LayoutSettings, MenuDataItem } from '@ant-design/pro-layout';
 import { PageContainer, ProBreadcrumb, PageLoading } from '@ant-design/pro-layout';
 import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
 import { history, Link } from 'umi';
@@ -71,14 +70,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
 
   return {
     logo: layoutSy.logo,
-    menuDataRender: (menuData) => {
-      if(initialState.menuData){
-        return initialState.menuData
-      }else{
-        menuData = menuData
-        return menuData
-      }
-    },
+    menuDataRender: (menuData) => initialState.menuData || menuData,
     rightContentRender:  () => <RightContent />,
     onMenuHeaderClick: (e) => {
       let home:string = ''
