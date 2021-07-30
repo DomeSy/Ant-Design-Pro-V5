@@ -18,5 +18,5 @@ export default [
       { path: '/user', routes: [{ name: '登录', path: '/user/login', component: './user/Login' }] },
     ],
   },
-  { component: './404' },
+  { component: './_404' },
 ];
