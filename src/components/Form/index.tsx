@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, memo } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { message } from 'antd';
 import moment from 'moment';
 import type { FormInstance } from 'antd';
