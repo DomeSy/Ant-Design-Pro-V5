@@ -10,6 +10,7 @@ interface LayoutProps {
   way: 'horizontal' | 'vertical'; //配置文本的展现模式， 分别为 水平和垂直
   formItemLayout: formLayoutProps; //表单的布局设置
   formItemTailLayout: formLayoutProps; //表单的布局设置
+  width: number | string; // 统一宽度
 }
 
 interface FormListProps {
@@ -54,6 +55,7 @@ const fromSy: FromProps = {
   resetText: '重置',
   layout: {
     way: 'horizontal',
+    width: '40%',
     formItemLayout,
     formItemTailLayout,
   },

@@ -1,4 +1,5 @@
-import { ButtonProps } from 'antd';
+import { ButtonProps, SpaceProps } from 'antd';
+
 import { ProFormProps } from '@ant-design/pro-form';
 import { ConfigProps } from 'antd/lib/notification';
 
@@ -26,6 +27,31 @@ interface ButtonRenderProps {
     | undefined;
 }
 
+// ProForm.Group
+interface GroupProps {
+  title?: React.ReactNode;
+  label?: React.ReactNode;
+  tooltip?: LabelTooltipType | string;
+  extra?: React.ReactNode;
+  /** 组件之前的间隔 */
+  size?: SpaceProps['size'];
+  style?: React.CSSProperties;
+  titleStyle?: React.CSSProperties;
+  titleRender?: (title: React.ReactNode, props: GroupProps) => React.ReactNode;
+  /** 子项的对齐方式 */
+  align?: SpaceProps['align'];
+  /** 子项的排列方式 */
+  direction?: SpaceProps['direction'];
+  labelLayout?: 'inline' | 'twoLine';
+  /** 是否折叠 * */
+  collapsed?: boolean;
+  /** 是否可折叠 * */
+  collapsible?: boolean;
+  /** 默认的折叠状态 */
+  defaultCollapsed?: boolean;
+  /** 折叠修改的事件 */
+  onCollapse?: (collapsed: boolean) => void;
+}
 interface colProps {
   flex?: FlexType;
   span?: ColSpanType;
@@ -41,7 +67,6 @@ interface colProps {
   xxl?: ColSpanType | ColSize;
   prefixCls?: string;
 }
-
 export interface formLayoutProps {
   labelCol: colProps;
   wrapperCol: colProps;
@@ -74,7 +99,9 @@ interface layoutProps {
   formTailLayout?: formLayoutProps;
 }
 
-export interface formProps {
+
+
+export interface formProps extends GroupProps {
   type?:
     | 'input'
     | 'password'
@@ -89,8 +116,9 @@ export interface formProps {
     | 'slider'
     | 'digit'
     | 'field'
-    | 'dependency';
-  name: string | Array<string>;
+    | 'dependency'
+    | 'group';
+  name?: string | Array<string>;
   label?: string;
   tooltip?: string;
   readonly?: boolean;
@@ -136,6 +164,7 @@ export interface formProps {
   captchaText?: (timing: boolean, count: number) => void;
   fieldRender?: React.ReactNode | Function;
   itemRender?: (getArray: Object) => void;
+  children?: formProps[]
 }
 
 interface ConfigProps {
@@ -149,8 +178,10 @@ interface Props extends ProFormProps {
   buttonConfig?: ButtonRenderProps;
   initValues?: Object<any>;
   layout?: layoutProps;
-  method?: 'none';
+  method?: 'none' | 'mask';
   _config?: ConfigProps;
 }
 
 export default Props;
+
+

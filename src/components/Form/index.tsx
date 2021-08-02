@@ -231,9 +231,11 @@ const Form: React.FC<Props> = ({
           ? item.width
           : layout.close
           ? undefined
+          : method === 'mask'
+          ? '100%'
           : _config?.width
           ? _config.width
-          : '100%';
+          : fromSy.layout.width;
     }
 
     return {
@@ -473,7 +475,7 @@ const Form: React.FC<Props> = ({
             if (buttonConfig?.onReset) buttonConfig.onReset();
           },
           render: (props, dom) => {
-            if (method === 'none') return;
+            if (method === 'none' || method === 'mask') return;
             if (buttonConfig?.render) {
               return buttonConfig.render(props, dom);
             }
@@ -530,7 +532,7 @@ const Form: React.FC<Props> = ({
       >
         {formList.map((item, index) => (
           <div key={index}>
-            {item.type === 'dependency' ? (
+            {item.type === 'dependency' && item.name ? (
               <ProFormDependency name={typeof item.name === 'string' ? [...item.name] : item.name}>
                 {(data) => {
                   if (item.itemRender) {
@@ -554,12 +556,30 @@ const Form: React.FC<Props> = ({
                   );
                 }}
               </ProFormDependency>
-            ) : (
+            ) :
+            item.type === 'group' ?
+            <ProForm.Group {...item}>
+              {
+                item.children && Array.isArray(item.children) && item.children.length !== 0 ? <>
+                  {
+                    item.children.map((ele, eleIndex) =>
+                      <div key={`group-${eleIndex}`}>
+                        {formListRender(ele)}
+                      </div>
+                    )
+                  }
+                </>:
+                <div style={{ textAlign: 'center', fontSize: 16, color: '#ff4d4f' }}>
+                  请在children中操作
+                </div>
+              }
+            </ProForm.Group>
+            :
+            (
               formListRender(item)
             )}
           </div>
         ))}
-        {/* {formListRender(formList)} */}
       </ProForm>
     </>
   );

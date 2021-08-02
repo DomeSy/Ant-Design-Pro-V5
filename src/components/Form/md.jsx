@@ -15,6 +15,7 @@
  *
  * @method string
  * @none 没有底部按钮
+ * @mask 弹框模式，抽屉模式，宽度变为100%，并且没有按钮
  *
  * @_config
  * @param width 在布局的基础集中设置宽度
@@ -53,6 +54,7 @@
  * @param slider 滑动输入条
  * @param field 自定义输入
  * @param digit 步进器
+ * @param group ProForm.Group（暂未书写更多）
  *
  * @field的私有参数 自定义的field，并不是所有使用自定义的组件都需要fieldValue，绑定到onFinsh上，如果绑定的Ant Design的组件是不需要进行fieldValue绑定的，如 Cascader 组件，就可以不绑定fieldValue一样能够获取到。只有需要特殊处理的组件才需要绑定，如我封装的Upload组件
  * @param fieldValue 输入的值，必填，最后绑定在onFinsh上, 绑定在自定义组件上，也可以通过ref设置
