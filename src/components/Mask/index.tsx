@@ -1,20 +1,19 @@
-import { Modal, ModalProps, Drawer, Button } from 'antd';
-import { Method } from '@/utils';
-import { Props, FromProps, RenderWay } from './interface';
+
+import Mask from './Mask';
 import MaskFrom from './MaskFrom';
 
+
 /**
- * @module Mask // 为简化开发将Modal和Drawer,并设置不同的场景以满足开发需要
- * @author Domesy
- *
- * @module Mask.Form 与表单进行结合
- *
+ * @module 模块
  */
+type MaskType = typeof Mask;
+type MaskFromType = typeof MaskFrom;
 
-const Mask: React.FC<Props> & RenderWay = ({}) => {
-  return <div></div>;
-};
+export interface RenderWay extends MaskType {
+  Form: MaskFromType;
+}
 
-Mask.Form = MaskFrom;
+const Index = Mask as RenderWay
+Index.Form = MaskFrom;
 
-export default Mask;
+export default Index;

@@ -1,13 +1,19 @@
 import { ModalProps, message } from 'antd';
 import type { FormInstance } from 'antd';
 
-interface CommonProps extends ModalProps {}
+interface CommonProps extends ModalProps {
 
-export interface Props extends CommonProps {
-  // children: '11';
 }
 
-export interface FromProps extends CommonProps, React.FC {
+export interface Props extends CommonProps {
+
+}
+
+export interface MaskProps {
+  maskTitle?: staring
+}
+
+export interface FromProps extends CommonProps {
   formRef?: { current?: FormInstance };
   onCancel?: (e: any) => void;
   onSubmit?: () => void;
@@ -18,7 +24,6 @@ export interface FromProps extends CommonProps, React.FC {
   resetText?: string;
   submitText?: string;
   message?: string;
-  children?: any;
 }
 
 export interface RenderWay {
