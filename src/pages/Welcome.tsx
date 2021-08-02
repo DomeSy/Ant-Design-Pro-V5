@@ -110,6 +110,26 @@ const Welcome: React.FC<any> = (props) => {
           getRef={(ref) => setRef(ref)}
           request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
           tableList={columns}
+          _config={{
+            create: {
+              formList: [
+                {
+                  name: 'test1',
+                  label: 'MaskFrom1'
+                },
+                {
+                  name: 'test2',
+                  label: 'MaskFrom3'
+                },
+              ],
+              maskFrom: {
+                onEdit:(values: any) => {
+                  return values;
+                },
+                onRequest: queryRule
+              }
+            }
+          }}
         />
       </Card>
     </PageLayout>

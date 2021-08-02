@@ -2,18 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import ProTable from '@ant-design/pro-table';
 import type { FormInstance } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, message, Input, Drawer } from 'antd';
-import type { ProColumns, ActionType } from '@ant-design/pro-table';
-import Props, {
-  TableListProps,
-  SearchConfigProps,
-  PaginationConfigProps,
-  RuleProps,
-} from './interface.d';
-import type { tableListProps } from './interface.d';
+import { Button, message } from 'antd';
+import type { ActionType } from '@ant-design/pro-table';
 import { tableSy } from '@/utils/Setting';
 import { paginationConfig, searchConfig } from './components'
-
+import Props, { TableListProps, RuleProps } from './interface.d';
+import type { tableListProps } from './interface.d';
+import { Mask, Form } from '@/components';
+import { Jump } from '@/utils'
 import moment from 'moment';
 
 /**
@@ -34,8 +30,10 @@ const Table: React.FC<Props> = ({
 }) => {
   const actionRef = useRef<ActionType>();
   const FromRef = useRef<FormInstance>();
+  const [maskFormRef, setMaskFormRef] = useState<any>(false);
 
   const [list, setList] = useState<tableListProps[] | undefined>(undefined);
+  const [maskVisible, setMaskVisible] = useState<boolean>(false);
 
   useEffect(() => {
     if (getRef) getRef(actionRef);
@@ -293,41 +291,77 @@ const Table: React.FC<Props> = ({
   };
 
   return (
-    <ProTable<TableListProps>
-      {...props}
-      actionRef={actionRef}
-      formRef={FromRef}
-      options={
-        props.options === false || tableSy.options === false
-          ? false
-          : {
-              density: tableSy.options.density,
-              fullScreen: tableSy.options.fullScreen,
-              setting: tableSy.options.setting,
-              reload: tableSy.options.reload,
-              ...props.options,
+    <>
+      <ProTable<TableListProps>
+        {...props}
+        actionRef={actionRef}
+        formRef={FromRef}
+        options={
+          props.options === false || tableSy.options === false
+            ? false
+            : {
+                density: tableSy.options.density,
+                fullScreen: tableSy.options.fullScreen,
+                setting: tableSy.options.setting,
+                reload: tableSy.options.reload,
+                ...props.options,
+              }
+        }
+        rowKey={props.rowKey ? props.rowKey : tableSy.rowKey}
+        form={{
+          ignoreRules: false,
+          ...props.form,
+        }}
+        toolBarRender={() => [ _config?.create ?
+          <Button
+            type="primary"
+            onClick={() => {
+              const { create } = _config
+              if(typeof create === 'boolean') return
+              if(create?.go){
+                Jump.go(create.go, create.payload)
+                return
+              }
+              setMaskVisible(true)
+            }}
+            {..._config?.create?.button}
+          >
+            <PlusOutlined /> 新建
+          </Button> : <> </>,
+        ]}
+        columns={list}
+        search={searchConfig(search)}
+        pagination={paginationConfig(pagination)}
+      />
+      {
+        _config?.create && typeof _config.create === 'object' && maskVisible  &&
+        <Mask.Form
+          title={'新增'}
+          {..._config.create?.maskFrom}
+          visible={maskVisible}
+          formRef={maskFormRef}
+          onCancel={() => setMaskVisible(false)}
+          onSubmit={async () => {
+            if(_config.create && typeof _config.create.maskFrom !== 'boolean' && _config.create?.maskFrom && _config.create.maskFrom?.onSubmit){
+              await _config.create?.maskFrom.onSubmit()
             }
-      }
-      rowKey={props.rowKey ? props.rowKey : tableSy.rowKey}
-      form={{
-        ignoreRules: false,
-        ...props.form,
-      }}
-      toolBarRender={() => [
-        <Button
-          type="primary"
-          key="primary"
-          onClick={() => {
-            // handleModalVisible(true);
+            actionRef?.current?.reload()
+            setMaskVisible(false)
           }}
+          message="新增成功"
         >
-          <PlusOutlined /> 新建
-        </Button>,
-      ]}
-      columns={list}
-      search={searchConfig(search)}
-      pagination={paginationConfig(pagination)}
-    />
+          <Form
+            {..._config.create?.from}
+            method="mask"
+            formList={_config.create?.formList || []}
+            getRef={(fromRef: any) => {
+              setMaskFormRef(fromRef);
+            }}
+          >
+          </Form>
+        </Mask.Form>
+      }
+    </>
   );
 };
 

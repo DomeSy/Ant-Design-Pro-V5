@@ -99,8 +99,6 @@ interface layoutProps {
   formTailLayout?: formLayoutProps;
 }
 
-
-
 export interface formProps extends GroupProps {
   type?:
     | 'input'

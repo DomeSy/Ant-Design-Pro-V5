@@ -10,6 +10,14 @@
  * @param _config 额外配置(在原有的配置上加入其它属性，来帮助开发)
  * @param rowKey rowKey对应列表中的key,这个值其实就是列表的key，没有会报错，通常来说，后端返回列表的时候会有一个类似于key，id这样唯一的值做以区分，那么这个 rowKey 就是接口返回的key，id，因为通常而言这个key是一样的所以可以统一设置
  *
+ * @_config 额外配置
+ * @param create 新建按钮，可跳转新的页面，也可以自动生成表单，与Mask组件和Form组件结合，为false是不显示，否则为对象
+ *
+ * @create 下的参数
+ * @param go 跳转页面的路径
+ * @param payload 跳转页面所需的参数
+ * @param button 对应Button的相关属性
+ *
  * @tableList 下的参数（独有参数不一定，一个参数在不同的type下有可能有不同的意思)
  * @param type 用于判断类型 有 date 日期
  * @param method type下的分类  dateTimeRange 日期时间秒

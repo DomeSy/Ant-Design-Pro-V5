@@ -1,3 +1,5 @@
+import { fromPairs } from 'lodash';
+
 export { default as HeaderDropdown } from './HeaderDropdown';
 export { default as HeaderSearch } from './HeaderSearch';
 export { default as NoticeIcon } from './NoticeIcon';
@@ -10,4 +12,6 @@ export { default as Mask } from './Mask';
 export { default as Test } from './Test/index';
 
 export type { tableListProps } from './Table/interface.d';
+export type { default as FromPropsSy } from './Form/interface.d'
 export type { formProps, formLayoutProps } from './Form/interface.d';
+export type { MaskFromProps } from './Mask/interface.d'

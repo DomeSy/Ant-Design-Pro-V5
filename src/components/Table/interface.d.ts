@@ -2,8 +2,10 @@ import { ProTableProps } from '@ant-design/pro-table';
 import type { ParamsType } from '@ant-design/pro-provider';
 import type { BaseQueryFilterProps } from '@ant-design/pro-form';
 import { TablePaginationConfig } from './data.d';
+import { ButtonProps } from 'antd';
 import { TableProps } from '@/utils/Setting/tableSy';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
+import type { MaskFromProps, formProps, FromPropsSy } from '@/components'
 import { extend } from 'umi-request';
 export interface TableListProps {
   type: string;
@@ -71,8 +73,16 @@ export type tableListProps = ProColumns<TableListProps> & {
   config?: ConfigProps;
 };
 
+interface createProps {
+  button?: ButtonProps;
+  go?: string,
+  payload?: Object;
+  maskFrom?: MaskFromProps;
+  from?: FromPropsSy;
+  formList?: formProps[];
+}
 interface TableConfigProps {
-
+  create?: false | createProps
 }
 
 interface Props extends ProTableProps<TableListProps, ParamsType> {
