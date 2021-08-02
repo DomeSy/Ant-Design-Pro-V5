@@ -13,7 +13,7 @@ export interface MaskProps {
   maskTitle?: staring
 }
 
-export interface FromProps extends CommonProps {
+export interface MaskFromProps extends CommonProps {
   formRef?: { current?: FormInstance };
   onCancel?: (e: any) => void;
   onSubmit?: () => void;
@@ -27,5 +27,5 @@ export interface FromProps extends CommonProps {
 }
 
 export interface RenderWay {
-  Form?: React.FC<FromProps> | any;
+  Form?: React.FC<MaskFromProps> | any;
 }

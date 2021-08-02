@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Modal, Button, message } from 'antd';
-import { FromProps } from './interface';
+import { MaskFromProps } from './interface';
 import { maskSy } from '@/utils/Setting';
 
 /**
@@ -17,7 +17,7 @@ import { maskSy } from '@/utils/Setting';
  * @param submitText  提交时的默认文字 默认 提交
  * @param message 提交成功的提示语 默认 提交成功
  */
-const MaskFrom: React.FC<FromProps> = ({
+const MaskFrom: React.FC<MaskFromProps> = ({
   children,
   formRef,
   onReset,
@@ -57,6 +57,10 @@ const MaskFrom: React.FC<FromProps> = ({
             const fieldsValue = await formRef?.current?.validateFields();
             setLoading(true);
             const params = onEdit ? await onEdit(fieldsValue) : fieldsValue;
+            if(!onRequest){
+              message.error('请在onRequest，写入对应的接口')
+              return
+            }
             const res = await onRequest(params);
             setLoading(false);
             if (typeof res !== 'boolean') {
