@@ -71,12 +71,17 @@ export type tableListProps = ProColumns<TableListProps> & {
   config?: ConfigProps;
 };
 
+interface TableConfigProps {
+
+}
+
 interface Props extends ProTableProps<TableListProps, ParamsType> {
   getFromRef?: (ref: any) => void;
   getRef?: (ref: Object<ActionType>) => void;
   tableList?: tableListProps[];
   search?: false | SearchConfigProps;
   pagination?: false | PaginationConfigProps;
+  _config?: TableConfigProps
 }
 
 export default Props;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProTable from '@ant-design/pro-table';
 import type { FormInstance } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { Button, message, Input, Drawer } from 'antd';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import Props, {
   TableListProps,
@@ -10,6 +12,7 @@ import Props, {
 } from './interface.d';
 import type { tableListProps } from './interface.d';
 import { tableSy } from '@/utils/Setting';
+import { paginationConfig, searchConfig } from './components'
 
 import moment from 'moment';
 
@@ -26,6 +29,7 @@ const Table: React.FC<Props> = ({
   tableList,
   pagination,
   search,
+  _config,
   ...props
 }) => {
   const actionRef = useRef<ActionType>();
@@ -288,55 +292,6 @@ const Table: React.FC<Props> = ({
     };
   };
 
-  // 搜索栏配置
-  const searchConfig = (search?: false | SearchConfigProps) => {
-    if ((typeof search === 'undefined' && tableSy.search.hidden) || typeof search === 'boolean')
-      return false;
-
-    return {
-      searchText: search?.searchText || tableSy.search.searchText,
-      resetText: search?.resetText || tableSy.search.resetText,
-
-      collapsed: search?.cancelShow
-        ? false
-        : search?.show
-        ? !search.show
-        : tableSy.search.cancelShow
-        ? !tableSy.search.cancelShow
-        : !tableSy.search.show,
-      collapseRender: search?.cancelShow
-        ? () => <></>
-        : tableSy.search.cancelShow
-        ? () => <></>
-        : undefined,
-      labelWidth: search?.labelWidth ? search.labelWidth : 100,
-      span: search?.span ? search.span : tableSy.search.span ? tableSy.search.span : undefined,
-      layout: search?.layout ? search.layout : tableSy.search.vertical ? 'vertical' : undefined,
-      // optionRender: (searchConfig:any, props:any, dom:any) => {
-      //   return [...dom.reverse()]
-      // },
-      ...search,
-    };
-  };
-
-  // 分页配置
-  const paginationConfig = (pagination?: false | PaginationConfigProps) => {
-    if (
-      (typeof pagination === 'undefined' && tableSy.pagination.hidden) ||
-      typeof pagination === 'boolean'
-    )
-      return false;
-
-    return {
-      showQuickJumper: pagination?.showQuickJumper
-        ? pagination.showQuickJumper
-        : tableSy.pagination.jump,
-      pageSize: pagination?.pageSize ? pagination.pageSize : tableSy.pagination.pageSize,
-      size: pagination?.size ? pagination.size : tableSy.pagination.size,
-      ...pagination,
-    };
-  };
-
   return (
     <ProTable<TableListProps>
       {...props}
@@ -358,6 +313,17 @@ const Table: React.FC<Props> = ({
         ignoreRules: false,
         ...props.form,
       }}
+      toolBarRender={() => [
+        <Button
+          type="primary"
+          key="primary"
+          onClick={() => {
+            // handleModalVisible(true);
+          }}
+        >
+          <PlusOutlined /> 新建
+        </Button>,
+      ]}
       columns={list}
       search={searchConfig(search)}
       pagination={paginationConfig(pagination)}

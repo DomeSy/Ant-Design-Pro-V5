@@ -3,6 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
 import { Button, OssUpLoad, Form, PageLayout, Table } from '@/components';
 import type { formProps, tableListProps } from '@/components'
+
 import { queryRule } from './service'
 const { Option } = Select;
 
