@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
 import { Button, OssUpLoad, Form, PageLayout, Table } from '@/components';
-import type { formProps } from '@/components'
+import type { formProps, tableListProps } from '@/components'
+import { queryRule } from './service'
 const { Option } = Select;
 
 const waitTime = (time: number = 100) => {
@@ -18,21 +19,72 @@ const Welcome: React.FC<any> = (props) => {
   const [file, setFile] = useState<any>('');
   const [ref, setRef] = useState<any>(false);
 
-  // input 加入required失效
-  const list: formProps[] = [
+  const columns: tableListProps[] = [
     {
-      // label: '',
-      type: 'group',
-      children: [
+      title: '规则名称',
+      dataIndex: 'name',
+      tip: '规则名称是唯一的 key',
+      render: (dom, entity) => {
+        return <a>{dom}</a>;
+      },
+    },
+    {
+      title: '描述',
+      dataIndex: 'desc',
+      valueType: 'textarea',
+      rules: [
         {
-          label: 'group1',
-          name: 'group1'
+          max: 3,
         },
-        {
-          label: 'group2',
-          name: 'group2'
-        }
-      ]
+      ],
+    },
+    {
+      title: '服务调用次数',
+      dataIndex: 'callNo',
+      sorter: true,
+      hideInForm: true,
+      renderText: (val: string) => `${val} 万`,
+    },
+    {
+      title: '状态',
+      dataIndex: 'status',
+      hideInForm: true,
+      valueEnum: {
+        0: { text: '关闭', status: 'Default' },
+        1: { text: '运行中', status: 'Processing' },
+        2: { text: '已上线', status: 'Success' },
+        3: { text: '异常', status: 'Error' },
+      },
+    },
+    {
+      title: '时间',
+      dataIndex: 'updatedAt',
+      sorter: true,
+      hideInForm: true,
+      type: 'date',
+      method: 'dateTimeRange',
+      required: true,
+      hideInSearch: true,
+    },
+    {
+      title: '操作',
+      dataIndex: 'option',
+      valueType: 'option',
+      render: (_, record) => {
+        return (
+          <div>
+            <a
+              onClick={() => {
+                // handleUpdateModalVisible(true);
+                // setStepFormValues(record);
+              }}
+            >
+              配置
+            </a>
+            <a href="">订阅警报</a>
+          </div>
+        );
+      },
     },
   ];
   const tab = [
@@ -54,19 +106,11 @@ const Welcome: React.FC<any> = (props) => {
       }
     >
       <Card>
-        <Button onClick={() => {
-          console.log('12')
-        }}> 跳转11</Button>
-        <Form
-          onFinish={(values: any) => {
-            message.success('打开控制台观看');
-            console.log(values, '---');
-          }}
-          formList={list}
-          getRef={(fromRef: any) => {
-            setRef(fromRef);
-          }}
-        />
+      <Table
+        getRef={(ref) => setRef(ref)}
+        request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
+        tableList={columns}
+      />
       </Card>
     </PageLayout>
   );

@@ -174,7 +174,8 @@
  *
  */
 
-// const list: any = [
+// import type { formProps } from '@/components'
+// const list: formProps[] = [
 //   {
 //     name: 'input',
 //     label: '普通输入框',
