@@ -1,9 +1,6 @@
 import type { ModalProps } from 'antd';
 import type { FormInstance } from 'antd';
 
-import type Mask from './index1';
-import type MaskFrom from './MaskFrom';
-
 // ======== Props ========
 
 /** 公共 Props */
@@ -12,8 +9,8 @@ interface CommonProps extends ModalProps {
 }
 /** Mask Props */
 export interface MaskProps extends CommonProps {
+  /** Mask title 不同的属性 */
   maskTitle?: string;
-  // children: '11';
 }
 /** Mask From Props */
 export interface MaskFromProps extends CommonProps {
@@ -28,11 +25,6 @@ export interface MaskFromProps extends CommonProps {
   submitText?: string;
   message?: string;
   children?: any;
-}
-
-// ======== Type ========
-type MaskType = typeof Mask;
-type MaskFromType = typeof MaskFrom;
-export interface RenderWay extends MaskType {
-  Form: MaskFromType;
+  /** Mask from title 不同的属性 */
+  maskFromTitle?: string;
 }

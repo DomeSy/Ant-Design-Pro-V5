@@ -1,7 +1,6 @@
 import { Modal, ModalProps, Drawer, Button } from 'antd';
 import { Method } from '@/utils';
 import { Props, FromProps, RenderWay } from './interface';
-import { useEffect } from 'react';
 import MaskFrom from './MaskFrom';
 
 /**

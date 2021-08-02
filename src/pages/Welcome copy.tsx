@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
-import { Button, OssUpLoad, Form, PageLayout, Table, Test } from '@/components';
+import { Button, OssUpLoad, Form, PageLayout, Table } from '@/components';
 import type { formProps, tableListProps } from '@/components'
+
 import { queryRule } from './service'
 const { Option } = Select;
 
@@ -106,13 +107,11 @@ const Welcome: React.FC<any> = (props) => {
       }
     >
       <Card>
-        {/* <Table
-          getRef={(ref) => setRef(ref)}
-          request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
-          tableList={columns}
-        /> */}
-        <Test maskTitle="Hello"></Test>
-        <Test.Form maskTitle="Word"></Test.Form>
+      <Table
+        getRef={(ref) => setRef(ref)}
+        request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
+        tableList={columns}
+      />
       </Card>
     </PageLayout>
   );

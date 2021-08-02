@@ -7,7 +7,7 @@ export { default as Form } from './Form';
 export { default as PageLayout } from './PageLayout';
 export { default as Table } from './Table';
 export { default as Mask } from './Mask';
-export { default as Test } from './Test/index1';
+export { default as Test } from './Test/index';
 
 export type { tableListProps } from './Table/interface.d';
 export type { formProps, formLayoutProps } from './Form/interface.d';

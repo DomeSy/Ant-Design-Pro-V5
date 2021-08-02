@@ -1,7 +1,16 @@
-import type { RenderWay } from './interface';
+import Mask from './Mask'
 import MaskFrom from './MaskFrom';
-import Mask from './index1';
-const App = Mask as RenderWay;
+
+// ======== Type ========
+type MaskType = typeof Mask;
+type MaskFromType = typeof MaskFrom;
+export interface RenderWay extends MaskType {
+  Form: MaskFromType;
+}
+
+const App = Mask as RenderWay
 App.Form = MaskFrom;
 
 export default App;
+
+
