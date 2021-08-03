@@ -326,7 +326,7 @@ const Table: React.FC<Props> = ({
             }}
             {..._config?.create?.button}
           >
-            <PlusOutlined /> 新建
+            <PlusOutlined /> {_config?.create?.text || '新建'}
           </Button> : <> </>,
         ]}
         columns={list}
@@ -336,7 +336,8 @@ const Table: React.FC<Props> = ({
       {
         _config?.create && typeof _config.create === 'object' && maskVisible  &&
         <Mask.Form
-          title={'新增'}
+          title={'新建'}
+          message={"新建成功"}
           {..._config.create?.maskFrom}
           visible={maskVisible}
           formRef={maskFormRef}
@@ -348,7 +349,6 @@ const Table: React.FC<Props> = ({
             actionRef?.current?.reload()
             setMaskVisible(false)
           }}
-          message="新增成功"
         >
           <Form
             {..._config.create?.from}

@@ -16,6 +16,11 @@
  * @create 下的参数
  * @param go 跳转页面的路径
  * @param payload 跳转页面所需的参数
+ * @param text 新建按钮的文字， 默认 新建
+ * @param title 对应Button的相关属性
+ * @param maskFrom 对应 Mask.From组件的全部属性，具体的请参照对应的文档
+ * @param from 对应 From组件的全部属性，具体的请参照对应的文档
+ * @param formList 对应from表单的list属性
  * @param button 对应Button的相关属性
  *
  * @tableList 下的参数（独有参数不一定，一个参数在不同的type下有可能有不同的意思)

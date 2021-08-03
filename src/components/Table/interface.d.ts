@@ -74,6 +74,7 @@ export type tableListProps = ProColumns<TableListProps> & {
 };
 
 interface createProps {
+  text?: string;
   button?: ButtonProps;
   go?: string,
   payload?: Object;
