@@ -9,7 +9,7 @@ import { maskSy } from '@/utils/Setting';
  * 这里在表单提交上提供两种方法，第一种通过onSubmit直接返回方法自行操作，第二种是直接通过传递接口自动传递
  * @param formRef 表单的ref
  * @param onSubmit 提交完成后的操作，但如果使用，绑定的提交不会拥有loading效果，也就是没有防抖功能
- * @param onEdit 如果存在则改变传递接口的参数，接收表单的值，返回表单的对象
+ * @param onEdit 如果存在则改变传递接口的参数，接收表单的值，返回表单的对象，注意如果返回的不是对象，则不会进行下步操作，只有返回对象才会走接口，（原因是有些数据需要Edit返回）
  * @param onRequest 请求接口的函数
  * @param onCancel  取消时的回调函数
  * @param cancelText  取消时的默认文字 默认 取消
@@ -57,6 +57,7 @@ const MaskFrom: React.FC<MaskFromProps> = ({
             const fieldsValue = await formRef?.current?.validateFields();
             setLoading(true);
             const params = onEdit ? await onEdit(fieldsValue) : fieldsValue;
+            if(typeof params !== 'object') return
             if(!onRequest){
               message.error('请在onRequest，写入对应的接口')
               return

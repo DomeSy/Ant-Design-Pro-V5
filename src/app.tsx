@@ -23,7 +23,10 @@ export const initialStateConfig = {
 export async function getInitialState(): Promise<any> {
   const fetchUserInfo = async () => {
     const token = localStorage.getItem(storageSy.token);
-    if(!token) Jump.go(loginPath);
+    if(!token) {
+      Jump.go(loginPath);
+      return
+    };
     try {
       const msg = await initData();
       return { ...msg };

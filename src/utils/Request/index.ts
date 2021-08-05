@@ -4,6 +4,7 @@ import { storageSy } from '@/utils/Setting'
 
 /**请求拦截 */
 export const requestInterceptors: any = (url: string, options: RequestInit) => {
+  console.log('111')
   if (storageSy.token) {
     const token = `Bearer ` + localStorage.getItem(storageSy.token);
     options.headers = {
@@ -17,6 +18,8 @@ export const requestInterceptors: any = (url: string, options: RequestInit) => {
 
 // 响应拦截
 export const responseInterceptors:any = async (response: Response) => {
+  console.log('222')
+
   if (!response) {
     notification.error({
       description: '您的网络发生异常，无法连接服务器',

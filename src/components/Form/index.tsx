@@ -179,7 +179,7 @@ const Form: React.FC<Props> = ({
             ? layout.formTailLayout.wrapperCol
             : fromSy.layout.formItemTailLayout.wrapperCol,
         };
-    return layout.close ? {} : formLayout;
+    return layout.close || layout.way === 'vertical' ? {} : formLayout;
   };
 
   /**

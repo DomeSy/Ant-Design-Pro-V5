@@ -9,9 +9,9 @@ export { default as Form } from './Form';
 export { default as PageLayout } from './PageLayout';
 export { default as Table } from './Table';
 export { default as Mask } from './Mask';
-export { default as Test } from './Test/index';
+export { default as Three } from './Three';
 
 export type { tableListProps } from './Table/interface.d';
-export type { default as FromPropsSy } from './Form/interface.d'
+export type { default as FormPropsSy } from './Form/interface.d'
 export type { formProps, formLayoutProps } from './Form/interface.d';
 export type { MaskFromProps } from './Mask/interface.d'

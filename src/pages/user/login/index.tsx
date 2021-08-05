@@ -16,7 +16,7 @@ import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import styles from './index.less';
 import initData from '@/utils/initData';
 import routes from '../../../../config/routes';
-import { storageSy } from '@/utils/Setting'
+import { storageSy, layoutSy } from '@/utils/Setting'
 import { Jump } from '@/utils'
 
 const LoginMessage: React.FC<{
@@ -250,7 +250,7 @@ const Login: React.FC = () => {
           </Space>
         </div>
       </div>
-      <Footer />
+      { layoutSy.footer && <Footer /> }
     </div>
   );
 };

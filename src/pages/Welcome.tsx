@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
-import { Button, OssUpLoad, Form, PageLayout, Table, Test, Mask } from '@/components';
+import { Button, OssUpLoad, Form, PageLayout, Three, Table, Mask } from '@/components';
 import type { formProps, tableListProps } from '@/components'
 import { queryRule } from './service'
 const { Option } = Select;
@@ -19,72 +19,42 @@ const Welcome: React.FC<any> = (props) => {
   const [file, setFile] = useState<any>('');
   const [ref, setRef] = useState<any>(false);
 
-  const columns: tableListProps[] = [
+  const list: formProps[] = [
     {
-      title: '规则名称',
-      dataIndex: 'name',
-      tip: '规则名称是唯一的 key',
-      render: (dom, entity) => {
-        return <a>{dom}</a>;
-      },
+      name: 'field3',
+      label: '自定义规则',
+      type: 'field',
+      fieldValue: file,
+      tooltip: `rules: [{ required: true, message: '欢迎使用自定义组件' }]`,
+      fieldRender: (
+        <Three />
+      ),
     },
     {
-      title: '描述',
-      dataIndex: 'desc',
-      valueType: 'textarea',
-      rules: [
-        {
-          max: 3,
-        },
+      name: 'select1',
+      label: '选择options',
+      tooltip: 'onFinish的值是enum的属性名',
+      options: [
+        { label: '全部1', value: 'all', children: {
+          label: '全部2', value: 'al1l',
+        }},
+        { label: '未解决', value: 'open' },
+        { label: '已解决', value: 'closed' },
+        { label: '解决中', value: 'processing' },
       ],
+      type: 'select',
     },
     {
-      title: '服务调用次数',
-      dataIndex: 'callNo',
-      sorter: true,
-      hideInForm: true,
-      renderText: (val: string) => `${val} 万`,
+      name: 'field31',
+      label: '自定义规则',
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      hideInForm: true,
-      valueEnum: {
-        0: { text: '关闭', status: 'Default' },
-        1: { text: '运行中', status: 'Processing' },
-        2: { text: '已上线', status: 'Success' },
-        3: { text: '异常', status: 'Error' },
-      },
+      name: 'field31',
+      label: '自定义规则',
     },
     {
-      title: '时间',
-      dataIndex: 'updatedAt',
-      sorter: true,
-      hideInForm: true,
-      type: 'date',
-      method: 'dateTimeRange',
-      required: true,
-      hideInSearch: true,
-    },
-    {
-      title: '操作',
-      dataIndex: 'option',
-      valueType: 'option',
-      render: (_, record) => {
-        return (
-          <div>
-            <a
-              onClick={() => {
-                // handleUpdateModalVisible(true);
-                // setStepFormValues(record);
-              }}
-            >
-              配置
-            </a>
-            <a href="">订阅警报</a>
-          </div>
-        );
-      },
+      name: 'field31',
+      label: '自定义规则',
     },
   ];
   const tab = [
@@ -100,35 +70,16 @@ const Welcome: React.FC<any> = (props) => {
   return (
     <PageLayout
       tab={tab}
-      _config={
-        {
-        }
-      }
     >
       <Card>
-        <Table
-          getRef={(ref) => setRef(ref)}
-          request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
-          tableList={columns}
-          _config={{
-            create: {
-              formList: [
-                {
-                  name: 'test1',
-                  label: 'MaskFrom1'
-                },
-                {
-                  name: 'test2',
-                  label: 'MaskFrom3'
-                },
-              ],
-              maskFrom: {
-                onEdit:(values: any) => {
-                  return values;
-                },
-                onRequest: queryRule
-              }
-            }
+        <Form
+          onFinish={(values: any) => {
+            message.success('打开控制台观看');
+            console.log(values, '---');
+          }}
+          formList={list}
+          getRef={(fromRef: any) => {
+            setRef(fromRef);
           }}
         />
       </Card>

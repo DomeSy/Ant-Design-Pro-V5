@@ -21,7 +21,7 @@ import moment from 'moment';
 
 const Table: React.FC<Props> = ({
   getRef,
-  getFromRef,
+  getFormRef,
   tableList,
   pagination,
   search,
@@ -29,7 +29,7 @@ const Table: React.FC<Props> = ({
   ...props
 }) => {
   const actionRef = useRef<ActionType>();
-  const FromRef = useRef<FormInstance>();
+  const FormRef = useRef<FormInstance>();
   const [maskFormRef, setMaskFormRef] = useState<any>(false);
 
   const [list, setList] = useState<tableListProps[] | undefined>(undefined);
@@ -37,7 +37,7 @@ const Table: React.FC<Props> = ({
 
   useEffect(() => {
     if (getRef) getRef(actionRef);
-    if (getFromRef) getFromRef(FromRef);
+    if (getFormRef) getFormRef(FormRef);
     setList(props?.columns ? props.columns : tableListConfig(tableList));
   }, [tableList, props.columns]);
 
@@ -271,13 +271,13 @@ const Table: React.FC<Props> = ({
               onOpenChange: (open: any) => {
                 let data: any = {};
                 if (open) {
-                  time = FromRef.current?.getFieldsValue()[String(item?.dataIndex)];
+                  time = FormRef.current?.getFieldsValue()[String(item?.dataIndex)];
                   if (item.dataIndex) data[String(item.dataIndex)] = null;
-                  FromRef.current?.setFieldsValue({ ...data });
+                  FormRef.current?.setFieldsValue({ ...data });
                 } else {
                   if (!dateRangeValue || !dateRangeValue[0] || !dateRangeValue[1]) {
                     if (item.dataIndex) data[String(item.dataIndex)] = time;
-                    FromRef.current?.setFieldsValue({ ...data });
+                    FormRef.current?.setFieldsValue({ ...data });
                   }
                 }
                 dateRangeValue = null;
@@ -295,7 +295,7 @@ const Table: React.FC<Props> = ({
       <ProTable<TableListProps>
         {...props}
         actionRef={actionRef}
-        formRef={FromRef}
+        formRef={FormRef}
         options={
           props.options === false || tableSy.options === false
             ? false
@@ -351,11 +351,11 @@ const Table: React.FC<Props> = ({
           }}
         >
           <Form
-            {..._config.create?.from}
+            {..._config.create?.form}
             method="mask"
             formList={_config.create?.formList || []}
-            getRef={(fromRef: any) => {
-              setMaskFormRef(fromRef);
+            getRef={(formRef: any) => {
+              setMaskFormRef(formRef);
             }}
           >
           </Form>
