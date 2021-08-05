@@ -58,43 +58,6 @@ const Welcome: React.FC<any> = (props) => {
     },
   ];
 
-  // const treeData = [
-  //   {
-  //     title: 'Node1',
-  //     value: '0-0',
-  //     key: '0-0',
-  //     childrens: [
-  //       {
-  //         title: 'Child Node1',
-  //         value: '0-0-0',
-  //         key: '0-0-0',
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: 'Node2',
-  //     value: '0-1',
-  //     key: '0-1',
-  //     childrens: [
-  //       {
-  //         title: 'Child Node3',
-  //         value: '0-1-0',
-  //         key: '0-1-0',
-  //       },
-  //       {
-  //         title: 'Child Node4',
-  //         value: '0-1-1',
-  //         key: '0-1-1',
-  //       },
-  //       {
-  //         title: 'Child Node5',
-  //         value: '0-1-2',
-  //         key: '0-1-2',
-  //       },
-  //     ],
-  //   },
-  // ];
-
   const list: formProps[] = [
     {
       name: 'field3',
@@ -113,7 +76,7 @@ const Welcome: React.FC<any> = (props) => {
           }}
           defaultValue={['0-0']}
           getValues={(values) => console.log(values)}
-        ></Three.Select>
+        />
       ),
     },
   ];
