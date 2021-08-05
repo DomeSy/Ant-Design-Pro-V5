@@ -34,6 +34,7 @@ import { fromSy } from '@/utils/Setting';
  * 3. 日期问题， 没有限制日期时分秒等操作，没并且method应设置两个字段，分别是前几天几月可设置，没有设置选择时间段时的限制
  *
  * // 日期的预设的范围， 日期的选择范围
+ * ??自定义问题
  */
 
 /**
@@ -332,11 +333,15 @@ const Form: React.FC<Props> = ({
 
   // 自定义渲染
   const fieldRender = (item: any) => {
-    if (item.fieldValue !== undefined && item.name) {
-      let payload: any = {};
-      payload[item.name] = item.fieldValue;
-      formRef?.current?.setFieldsValue(payload);
-    }
+
+    // useEffect(()=>{
+      if (item.fieldValue !== undefined && item.name) {
+        let payload: any = {};
+        payload[item.name] = item.fieldValue;
+        // formRef?.current?.setFieldsValue(payload);
+      }
+    // },[])
+
     return (
       <ProFormField
         {...commonProps(item, item.type)}

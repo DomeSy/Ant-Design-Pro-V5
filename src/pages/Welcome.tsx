@@ -4,6 +4,8 @@ import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
 import { Button, OssUpLoad, Form, PageLayout, Three, Table, Mask } from '@/components';
 import type { formProps, tableListProps } from '@/components'
 import { queryRule } from './service'
+import MultiCascader from "antd-multi-cascader";
+import "antd-multi-cascader/dist/index.css";
 const { Option } = Select;
 
 const waitTime = (time: number = 100) => {
@@ -19,6 +21,80 @@ const Welcome: React.FC<any> = (props) => {
   const [file, setFile] = useState<any>('');
   const [ref, setRef] = useState<any>(false);
 
+  const treeData = [
+    {
+      name: 'Node1',
+      values: '0-0',
+      ars: '0-0',
+      childrens: [
+        {
+          name: 'Child Node1',
+          values: '0-0-0',
+          ars: '0-0-0',
+        },
+      ],
+    },
+    {
+      name: 'Node2',
+      values: '0-1',
+      ars: '0-1',
+      childrens: [
+        {
+          name: 'Child Node3',
+          values: '0-1-0',
+          ars: '0-1-0',
+        },
+        {
+          name: 'Child Node4',
+          values: '0-1-1',
+          ars: '0-1-1',
+        },
+        {
+          name: 'Child Node5',
+          values: '0-1-2',
+          ars: '0-1-2',
+        },
+      ],
+    },
+  ];
+
+  // const treeData = [
+  //   {
+  //     title: 'Node1',
+  //     value: '0-0',
+  //     key: '0-0',
+  //     childrens: [
+  //       {
+  //         title: 'Child Node1',
+  //         value: '0-0-0',
+  //         key: '0-0-0',
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: 'Node2',
+  //     value: '0-1',
+  //     key: '0-1',
+  //     childrens: [
+  //       {
+  //         title: 'Child Node3',
+  //         value: '0-1-0',
+  //         key: '0-1-0',
+  //       },
+  //       {
+  //         title: 'Child Node4',
+  //         value: '0-1-1',
+  //         key: '0-1-1',
+  //       },
+  //       {
+  //         title: 'Child Node5',
+  //         value: '0-1-2',
+  //         key: '0-1-2',
+  //       },
+  //     ],
+  //   },
+  // ];
+
   const list: formProps[] = [
     {
       name: 'field3',
@@ -27,34 +103,18 @@ const Welcome: React.FC<any> = (props) => {
       fieldValue: file,
       tooltip: `rules: [{ required: true, message: '欢迎使用自定义组件' }]`,
       fieldRender: (
-        <Three />
+        <Three.Select
+          list={treeData}
+          _config={{
+            title: 'name',
+            value: 'values',
+            key: 'ars',
+            children: 'childrens'
+          }}
+          defaultValue={['0-0']}
+          getValues={(values) => console.log(values)}
+        ></Three.Select>
       ),
-    },
-    {
-      name: 'select1',
-      label: '选择options',
-      tooltip: 'onFinish的值是enum的属性名',
-      options: [
-        { label: '全部1', value: 'all', children: {
-          label: '全部2', value: 'al1l',
-        }},
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      type: 'select',
-    },
-    {
-      name: 'field31',
-      label: '自定义规则',
-    },
-    {
-      name: 'field31',
-      label: '自定义规则',
-    },
-    {
-      name: 'field31',
-      label: '自定义规则',
     },
   ];
   const tab = [
