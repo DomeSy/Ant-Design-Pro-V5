@@ -12,6 +12,7 @@ import { SelectProps, DataNode } from './interface.d'
  * @param allowClear 是否加入清楚元素， 默认加入
  * @param defaultValue 默认值
  * @param listHeight 默认高度，默认256
+ * @param treeNodeFilterProp 过滤，字段，默认以title搜索
  * @param _config 额外配置
  *
  * @_config 下的配置
@@ -39,14 +40,14 @@ const Select: React.FC<SelectProps> = ({
     initData()
   }, [])
 
-  const initData = async () => {
+  const initData =  () => {
     if(props.treeData){
       setData(data)
       setShow(true)
       return
     }
     if(Array.isArray(list) && list.length !== 0){
-      const res = await calcArray(list)
+      const res = calcArray(list)
       setShow(true)
       setData(res)
     }
@@ -74,6 +75,7 @@ const Select: React.FC<SelectProps> = ({
         show &&
           <TreeSelect
             treeData={data}
+            treeNodeFilterProp={props?.treeNodeFilterProp || "title"}
             defaultValue={props?.defaultValue? props.defaultValue : undefined}
             treeCheckable={props?.multiple || true}
             showCheckedStrategy={SHOW_PARENT}

@@ -154,7 +154,6 @@ export interface formProps extends GroupProps {
   tooltips?: Array<string>;
   styleNode?: React.ReactNode | Function;
   color?: string;
-  fieldValue?: string;
   range?: boolean;
   marks?: Object;
   step?: number;
@@ -169,10 +168,16 @@ export interface formProps extends GroupProps {
 interface ConfigProps {
   width?: number | 'sm' | 'md' | 'xl' | 'xs' | 'lg';
 }
+
+interface fieldValuesProps {
+  name:string,
+  value: string | number
+}
 interface Props extends ProFormProps {
   getRef?: (ref: any) => void;
   onFinish?: (value: Object) => void;
   formList?: formProps[];
+  fieldValues?: fieldValuesProps[];
   footer?: boolean;
   buttonConfig?: ButtonRenderProps;
   initValues?: Object<any>;

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { message } from 'antd';
 import moment from 'moment';
 import type { FormInstance } from 'antd';
@@ -51,14 +51,24 @@ const Form: React.FC<Props> = ({
   method,
   layout = {},
   _config = {},
+  fieldValues=[],
   ...props
 }) => {
   const formRef = useRef<FormInstance>();
 
   useEffect(() => {
     if (getRef) getRef(formRef);
-    formRef?.current?.resetFields();
-  }, [formList]);
+  }, []);
+
+  useEffect(() => {
+    if(fieldValues.length !== 0){
+      fieldValues.map((item) => {
+        let payload: any = {};
+        payload[item.name] = item.value;
+        formRef?.current?.setFieldsValue(payload);
+      })
+    }
+  }, [fieldValues])
 
   // 规则设定
   const ruleRender = (data: formProps) => {
@@ -334,19 +344,11 @@ const Form: React.FC<Props> = ({
   // 自定义渲染
   const fieldRender = (item: any) => {
 
-    // useEffect(()=>{
-      if (item.fieldValue !== undefined && item.name) {
-        let payload: any = {};
-        payload[item.name] = item.fieldValue;
-        // formRef?.current?.setFieldsValue(payload);
-      }
-    // },[])
-
     return (
       <ProFormField
         {...commonProps(item, item.type)}
         renderFormItem={() => {
-          if (!item.fieldRender) return <div></div>;
+          if (!item.fieldRender) return <div>请写入fieldRender</div>;
           return item.fieldRender;
         }}
       />
@@ -462,8 +464,7 @@ const Form: React.FC<Props> = ({
         {...props}
         formRef={formRef}
         onFinish={async (values) => {
-          // await waitTime(2000);
-          console.log(values, '--2');
+          console.log(values,'--1')
           if (onFinish) onFinish(values);
         }}
         initialValues={initValues}

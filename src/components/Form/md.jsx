@@ -9,6 +9,7 @@
  * @param method 特殊模式用于表单的一些特殊模式
  * @param initValues 初始值对象 设置默认初始值，属性名：formList的name字段 属性值：你想输入的默认字段（少部分field除外，需要在组件内自己写）
  * @param onValuesChange 用于监听表单项的值，如果你想监听到那个值，就使用此方法，但值再变化，他会返回一个对象，属性值就是当前表单的name。 用这个的好处，保持单向的数据流无论对开发者还是维护者都大有脾益
+ * @fieldValues 自定义函数的值，当使用自定义的时候，表单无法绑定对应的值，这个时候将值绑定需要用到这个数组，如果不需要，也可以自行通过ref获取， 数组， 接收 name 和 value （name需要和formList中的field的那么保持一致，也就是接口对应的值）
  * @param _config 配置相关的组件
  *
  * 尽量不要使用 value 和 onCHange 值的事件，原因是有可能导致绑定值的失败，个人认为，当碰到很麻烦的时候，直接使用ref进行赋值，可快速的解决
@@ -57,7 +58,7 @@
  * @param group ProForm.Group（暂未书写更多）
  *
  * @field的私有参数 自定义的field，并不是所有使用自定义的组件都需要fieldValue，绑定到onFinsh上，如果绑定的Ant Design的组件是不需要进行fieldValue绑定的，如 Cascader 组件，就可以不绑定fieldValue一样能够获取到。只有需要特殊处理的组件才需要绑定，如我封装的Upload组件
- * @param fieldValue 输入的值，必填，最后绑定在onFinsh上, 绑定在自定义组件上，也可以通过ref设置
+ *  //@param fieldValue 输入的值，必填，最后绑定在onFinsh上, 绑定在自定义组件上，也可以通过ref设置(有点问题)
  *
  * @input和password的私有参数
  * @param addonAfter 前缀 带个灰色的背景框

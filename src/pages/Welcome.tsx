@@ -63,7 +63,6 @@ const Welcome: React.FC<any> = (props) => {
       name: 'field3',
       label: '自定义规则',
       type: 'field',
-      fieldValue: file,
       tooltip: `rules: [{ required: true, message: '欢迎使用自定义组件' }]`,
       fieldRender: (
         <Three.Select
@@ -71,11 +70,12 @@ const Welcome: React.FC<any> = (props) => {
           _config={{
             title: 'name',
             value: 'values',
-            key: 'ars',
+            // key: 'name',
             children: 'childrens'
           }}
-          defaultValue={['0-0']}
-          getValues={(values) => console.log(values)}
+          getValues={(values) => {
+            setFile(values)
+          }}
         />
       ),
     },
@@ -101,6 +101,12 @@ const Welcome: React.FC<any> = (props) => {
             console.log(values, '---');
           }}
           formList={list}
+          fieldValues={[
+            {
+              name: 'field3',
+              value: file
+            }
+          ]}
           getRef={(fromRef: any) => {
             setRef(fromRef);
           }}
