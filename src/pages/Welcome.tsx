@@ -117,7 +117,6 @@ const Welcome: React.FC<any> = (props) => {
           getRef={(fromRef: any) => {
             setRef(fromRef);
           }}
-          footer
         />
       </Card>
     </PageLayout>

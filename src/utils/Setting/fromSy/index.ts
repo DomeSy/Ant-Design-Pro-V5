@@ -20,8 +20,15 @@ interface FormListProps {
 interface FromProps {
   submitText: string; // 提交按钮文字
   resetText: string; // 重置按钮文字
+  backText: string; // 返回按钮文字
   layout: LayoutProps; // 布局
   formList: FormListProps; //有关表单的配置
+  allButtonStyle: React.CSSProperties; //表单所有的按钮所有控制样式
+  button: {      //分别控制按钮的样式
+    submitStyle: React.CSSProperties; // 提交按钮
+    resetStyle: React.CSSProperties; // 重置按钮
+    backStyle: React.CSSProperties; // 返回按钮
+  }
 }
 
 const formItemLayout = {
@@ -53,6 +60,7 @@ export { FromProps };
 const fromSy: FromProps = {
   submitText: '提交',
   resetText: '重置',
+  backText: '返回',
   layout: {
     way: 'horizontal',
     width: '40%',
@@ -63,6 +71,13 @@ const fromSy: FromProps = {
     rule: commonSy.rulesMethod,
     precision: 2,
   },
+  allButtonStyle: {
+  },
+  button: {
+    submitStyle: {},
+    resetStyle: {},
+    backStyle: {},
+  }
 };
 
 export default fromSy;

@@ -90,7 +90,15 @@ const Form: React.FC<Props & FormCommonProps> = ({
             const buttonRender = <>
               {position === 'left' && otherRender}
               {
-                back && <Button type='default' style={{marginRight: 12}} onClick={() => Jump.back(typeof back === 'number' ? back : typeof back === 'object' ? back.jump || -1 : -1 )} {...back}>{typeof back === 'object' ? back.text || '返回' : '返回'}</Button>
+                back &&
+                  <Button
+                    type='default'
+                    style={{marginRight: 12, ...fromSy.allButtonStyle, ...fromSy.button.backStyle}}
+                    onClick={() => Jump.back(typeof back === 'number' ? back : typeof back === 'object' ? back.jump || -1 : -1 )}
+                    {...back}
+                  >
+                    {typeof back === 'object' ? back.text || fromSy.backText : fromSy.backText}
+                  </Button>
               }
               {buttonDome}
               {position === 'right' && otherRender}
@@ -129,13 +137,21 @@ const Form: React.FC<Props & FormCommonProps> = ({
           submitButtonProps: {
             style: {
               marginLeft: 12,
+              ...fromSy.allButtonStyle,
+              ...fromSy.button.submitStyle
             },
             ...buttonConfig?.submitButton,
           },
-          resetButtonProps: { ...buttonConfig?.resetButton },
+          resetButtonProps: {
+            style: {
+              ...fromSy.allButtonStyle,
+              ...fromSy.button.resetStyle
+            },
+            ...buttonConfig?.resetButton
+          },
         }}
       >
-        <FormListView formList={formList} layout={layout} method={method} _config={_config} />
+        <FormListView  formList={formList} layout={layout} method={method} _config={_config} />
       </ProForm>
     </>
   );
