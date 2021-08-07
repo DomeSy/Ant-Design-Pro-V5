@@ -5,6 +5,8 @@ import ProForm, { ProFormField } from '@ant-design/pro-form';
 import { FooterToolbar } from '@ant-design/pro-layout';
 import Props, { FormCommonProps } from './interface.d';
 import { fromSy } from '@/utils/Setting';
+import { Button } from 'antd';
+import Jump from '../../utils/Jump/index';
 
 // 输入规则不一定要必填，因为可以不填，如果填了就必须按照规定去填
 
@@ -76,21 +78,29 @@ const Form: React.FC<Props & FormCommonProps> = ({
             if (buttonConfig?.render) {
               return buttonConfig.render(props, dom);
             }
-            if (buttonConfig?.submitFlag) {
-              return dom.pop();
-            }
             const position = buttonConfig?.position || 'left';
             let otherRender: any = '';
             if (buttonConfig?.otherRender) {
               otherRender = buttonConfig.otherRender();
             }
+            const { noRest, back } = _config
+
+            const buttonDome = noRest ? dom.pop() : dom
+
+            const buttonRender = <>
+              {position === 'left' && otherRender}
+              {
+                back && <Button type='default' style={{marginRight: 12}} onClick={() => Jump.back(typeof back === 'number' ? back : typeof back === 'object' ? back.jump || -1 : -1 )} {...back}>{typeof back === 'object' ? back.text || '返回' : '返回'}</Button>
+              }
+              {buttonDome}
+              {position === 'right' && otherRender}
+            </>
+
             return (
               <>
                 {footer ? (
                   <FooterToolbar>
-                    {position === 'left' && otherRender}
-                    {dom}
-                    {position === 'right' && otherRender}
+                    {buttonRender}
                   </FooterToolbar>
                 ) : (
                   <ProFormField
@@ -108,9 +118,7 @@ const Form: React.FC<Props & FormCommonProps> = ({
                     }
                     renderFormItem={() => (
                       <>
-                        {position === 'left' && otherRender}
-                        {dom}
-                        {position === 'right' && otherRender}
+                        {buttonRender}
                       </>
                     )}
                   ></ProFormField>

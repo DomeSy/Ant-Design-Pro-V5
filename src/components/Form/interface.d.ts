@@ -12,7 +12,6 @@ interface ButtonRenderProps {
   onReset?: () => void;
   otherRender?: () => void;
   position?: 'left' | 'right';
-  submitFlag?: boolean;
   render?:
     | false
     | ((
@@ -26,8 +25,6 @@ interface ButtonRenderProps {
       ) => React.ReactNode | React.ReactNode[])
     | undefined;
 }
-
-// ProForm.Group
 interface GroupProps {
   title?: React.ReactNode;
   label?: React.ReactNode;
@@ -67,10 +64,6 @@ interface colProps {
   xxl?: ColSpanType | ColSize;
   prefixCls?: string;
 }
-export interface formLayoutProps {
-  labelCol: colProps;
-  wrapperCol: colProps;
-}
 export interface RuleProps {
   required?: boolean;
   pattern?: RegExp;
@@ -81,7 +74,6 @@ export interface RuleProps {
   len?: number;
   method?: 'tel' | 'password' | 'name' | 'card' | 'sfz' | 'emil' | 'telEmil';
 }
-
 interface DateLimitProps {
   methodAdd?: 'day' | 'month' | 'week' | 'year';
   methodSubtract?: 'day' | 'month' | 'week' | 'year';
@@ -91,7 +83,6 @@ interface DateLimitProps {
   start?: 'string';
   end?: 'string';
 }
-
 interface layoutProps {
   close?: boolean;
   way?: 'horizontal' | 'vertical';
@@ -165,15 +156,16 @@ export interface formProps extends GroupProps {
   children?: formProps[]
 }
 
+interface ConfigBackProps extends ButtonProps {
+  jump?: number;
+  text?: string
+}
+
 interface ConfigProps {
   width?: number | 'sm' | 'md' | 'xl' | 'xs' | 'lg';
+  back?: ConfigBackProps | number | boolean;
+  noRest?: boolean
 }
-
-interface fieldValuesProps {
-  name:string,
-  value: string | number
-}
-
 export interface FormCommonProps {
   formList?: formProps[];
   layout?: layoutProps;
@@ -189,10 +181,14 @@ interface Props extends ProFormProps {
   initValues?: Object<any>;
 }
 
-export interface FormListProps extends FormCommonProps {
-
-}
+export interface FormListProps extends FormCommonProps {}
 
 export default Props;
-
-
+export interface formLayoutProps {
+  labelCol: colProps;
+  wrapperCol: colProps;
+}
+interface fieldValuesProps {
+  name:string,
+  value: string | number
+}

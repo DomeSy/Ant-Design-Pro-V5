@@ -105,6 +105,9 @@ const Welcome: React.FC<any> = (props) => {
             console.log(values, '---');
           }}
           formList={list}
+          _config={{
+            back: true
+          }}
           fieldValues={[
             {
               name: 'field3',
@@ -114,6 +117,7 @@ const Welcome: React.FC<any> = (props) => {
           getRef={(fromRef: any) => {
             setRef(fromRef);
           }}
+          footer
         />
       </Card>
     </PageLayout>

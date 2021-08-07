@@ -10,6 +10,7 @@
  * @param initValues 初始值对象 设置默认初始值，属性名：formList的name字段 属性值：你想输入的默认字段（少部分field除外，需要在组件内自己写）
  * @param onValuesChange 用于监听表单项的值，如果你想监听到那个值，就使用此方法，但值再变化，他会返回一个对象，属性值就是当前表单的name。 用这个的好处，保持单向的数据流无论对开发者还是维护者都大有脾益
  * @fieldValues 自定义函数的值，当使用自定义的时候，表单无法绑定对应的值，这个时候将值绑定需要用到这个数组，如果不需要，也可以自行通过ref获取， 数组， 接收 name 和 value （name需要和formList中的field的那么保持一致，也就是接口对应的值）
+ *
  * @param _config 配置相关的组件
  *
  * 尽量不要使用 value 和 onCHange 值的事件，原因是有可能导致绑定值的失败，个人认为，当碰到很麻烦的时候，直接使用ref进行赋值，可快速的解决
@@ -20,6 +21,12 @@
  *
  * @_config
  * @param width 在布局的基础集中设置宽度
+ * @param noRest 不要重置按钮
+ * @param back 是否带返回按钮，可为对象，可为布尔，可为数字，为对象时继承按钮的所有属性，布尔：为true时，默认返回为-1，为number时可自己设置返回层数
+ *
+ * @back下的参数
+ * @param jump 跳转的级数
+ * @param text 按钮返回的字样
  *
  * @layout
  * @param close 关闭所有布局样式，自动充满当前格
