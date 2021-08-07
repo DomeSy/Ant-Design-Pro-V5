@@ -173,17 +173,24 @@ interface fieldValuesProps {
   name:string,
   value: string | number
 }
+
+export interface FormCommonProps {
+  formList?: formProps[];
+  layout?: layoutProps;
+  method?: 'none' | 'mask';
+  _config?: ConfigProps;
+}
 interface Props extends ProFormProps {
   getRef?: (ref: any) => void;
   onFinish?: (value: Object) => void;
-  formList?: formProps[];
   fieldValues?: fieldValuesProps[];
   footer?: boolean;
   buttonConfig?: ButtonRenderProps;
   initValues?: Object<any>;
-  layout?: layoutProps;
-  method?: 'none' | 'mask';
-  _config?: ConfigProps;
+}
+
+export interface FormListProps extends FormCommonProps {
+
 }
 
 export default Props;
