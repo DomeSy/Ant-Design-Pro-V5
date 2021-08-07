@@ -79,6 +79,10 @@ const Welcome: React.FC<any> = (props) => {
         />
       ),
     },
+    {
+      name: 'field31',
+      label: '自定义规则',
+    },
   ];
   const tab = [
     {

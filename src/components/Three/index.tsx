@@ -3,9 +3,6 @@ import Tree from './Tree';
 import TreeSelect from './TreeSelect';
 
 
-/**
- * @module 模块
- */
 type TreeType = typeof Tree;
 type TreeSelectType = typeof TreeSelect;
 
