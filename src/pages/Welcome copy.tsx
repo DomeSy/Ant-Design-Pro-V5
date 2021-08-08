@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
-import { Button, OssUpLoad, Form, PageLayout, Table, Test, Mask } from '@/components';
+import { Button, OssUpLoad, Form, PageLayout, Table, Mask } from '@/components';
 import type { formProps, tableListProps } from '@/components'
 import { queryRule } from './service'
 const { Option } = Select;
@@ -119,9 +119,7 @@ const Welcome: React.FC<any> = (props) => {
                 },
               ],
               form: {
-                layout:{
-                  way: 'vertical'
-                }
+
               },
               maskFrom: {
                 onEdit:(values: any) => {
