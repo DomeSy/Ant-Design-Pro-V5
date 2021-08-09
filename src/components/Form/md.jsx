@@ -62,6 +62,7 @@
  * @param slider 滑动输入条
  * @param field 自定义输入
  * @param digit 步进器
+ * @param dependency 用于获取对应的值
  * @param group ProForm.Group（暂未书写更多）
  *
  * @field的私有参数 自定义的field，并不是所有使用自定义的组件都需要fieldValue，绑定到onFinsh上，如果绑定的Ant Design的组件是不需要进行fieldValue绑定的，如 Cascader 组件，就可以不绑定fieldValue一样能够获取到。只有需要特殊处理的组件才需要绑定，如我封装的Upload组件
@@ -1297,3 +1298,64 @@
 //   ),
 // },
 // ];
+
+  // 切换
+  // const list: formProps[] = [
+  //   {
+  //     name: 'text',
+  //     label: '获取文本',
+  //     default: '文本字样',
+  //   },
+  //   {
+  //     name: 'radio',
+  //     label: '切换',
+  //     default: '形式1',
+  //     options: ['形式1', '形式2', '形式3'],
+  //     type: 'radio',
+  //   },
+  //   {
+  //     name: ['radio', 'text'],
+  //     type: 'dependency',
+  //     itemRender: (data:any) => {
+  //       if(data.radio === '形式1'){
+  //         return [
+  //           {
+  //             name: 'name1',
+  //             label: '示例1',
+  //           },
+  //           {
+  //             name: 'name2',
+  //             label: '示例2',
+  //           },
+  //         ]
+  //       }
+  //       return false
+  //     }
+  //   },
+  //   {
+  //     name: ['radio', 'text'],
+  //     type: 'dependency',
+  //     itemRender: (data:any) => {
+  //       if(data.radio === '形式2'){
+  //         return {
+  //           name: 'name3',
+  //           label: '示例3',
+  //         }
+  //       }
+  //       return false
+  //     }
+  //   },
+  //   {
+  //     name: ['radio', 'text'],
+  //     type: 'dependency',
+  //     itemRender: (data:any) => {
+  //       if(data.radio === '形式3'){
+  //         return false
+  //       }
+  //       return {
+  //         name: 'name4',
+  //         label: '示例4',
+  //       }
+  //     }
+  //   },
+  // ];

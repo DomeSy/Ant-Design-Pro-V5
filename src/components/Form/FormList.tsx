@@ -419,7 +419,7 @@ const FomList: React.FC<FormListProps> = ({ formList=[], layout = {}, method, _c
       {formList.map((item, index) => (
         <div key={index}>
           {item.type === 'dependency' && item.name ? (
-            <ProFormDependency name={typeof item.name === 'string' ? [...item.name] : item.name}>
+            <ProFormDependency name={typeof item.name === 'string' ? [item.name] : item.name}>
               {(data) => {
                 if (item.itemRender) {
                   const res: any = item.itemRender(data);
@@ -427,19 +427,20 @@ const FomList: React.FC<FormListProps> = ({ formList=[], layout = {}, method, _c
                     return (
                       <>
                         {res.map((item: any, index: number) => (
-                          <div key={index}>{formListRender(item)}</div>
+                          <div key={index + 'dependency'}>{formListRender(item)}</div>
                         ))}
                       </>
                     );
-                  } else {
-                    return message.error('请返回数组');
+                  }else if(typeof res === 'object'){
+                    const render = [res]
+                    return <>
+                      {render.map((item: any, index: number) => (
+                        <div key={index + 'dependency'}>{formListRender(item)}</div>
+                      ))}
+                    </>
                   }
                 }
-                return (
-                  <div style={{ textAlign: 'center', fontSize: 16, color: '#ff4d4f' }}>
-                    请在itemRender操作
-                  </div>
-                );
+                return <></>
               }}
             </ProFormDependency>
           ) :
