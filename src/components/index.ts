@@ -13,5 +13,5 @@ export { default as Three } from './Three';
 
 export type { tableListProps } from './Table/interface.d';
 export type { default as FormPropsSy } from './Form/interface.d'
-export type { formProps, formLayoutProps } from './Form/interface.d';
+export type { formProps, formLayoutProps, FormCommonProps } from './Form/interface.d';
 export type { MaskFromProps } from './Mask/interface.d'

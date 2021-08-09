@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ProTable from '@ant-design/pro-table';
 import type { FormInstance } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, message } from 'antd';
+import { Button } from 'antd';
 import type { ActionType } from '@ant-design/pro-table';
 import { tableSy } from '@/utils/Setting';
 import { paginationConfig, searchConfig } from './components'
@@ -353,12 +353,11 @@ const Table: React.FC<Props> = ({
           <Form
             {..._config.create?.form}
             method="mask"
-            formList={_config.create?.formList || []}
+            formList={_config.create?.formList}
             getRef={(formRef: any) => {
               setMaskFormRef(formRef);
             }}
-          >
-          </Form>
+          />
         </Mask.Form>
       }
     </>

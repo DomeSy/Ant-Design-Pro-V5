@@ -5,7 +5,7 @@ import { TablePaginationConfig } from './data.d';
 import { ButtonProps } from 'antd';
 import { TableProps } from '@/utils/Setting/tableSy';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
-import type { MaskFromProps, formProps, FormPropsSy } from '@/components'
+import type { MaskFromProps, formProps, FormPropsSy, FormCommonProps } from '@/components'
 import { extend } from 'umi-request';
 export interface TableListProps {
   type: string;
@@ -79,7 +79,7 @@ interface createProps {
   go?: string,
   payload?: Object;
   maskFrom?: MaskFromProps;
-  form?: FormPropsSy;
+  form?: FormPropsSy & FormCommonProps;
   formList?: formProps[];
 }
 interface TableConfigProps {
