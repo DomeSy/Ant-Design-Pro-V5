@@ -62,7 +62,7 @@
  * @param slider 滑动输入条
  * @param field 自定义输入
  * @param digit 步进器
- * @param dependency 用于获取对应的值
+ * @param dependency 可获取其他的值，ProFormDependency
  * @param group ProForm.Group（暂未书写更多）
  *
  * @field的私有参数 自定义的field，并不是所有使用自定义的组件都需要fieldValue，绑定到onFinsh上，如果绑定的Ant Design的组件是不需要进行fieldValue绑定的，如 Cascader 组件，就可以不绑定fieldValue一样能够获取到。只有需要特殊处理的组件才需要绑定，如我封装的Upload组件
@@ -136,6 +136,9 @@
  * @param min 布尔值 是否双向滑动
  * @param step 数字 是否双向滑动
  *
+ * @dependency下的私有参数
+ * @param name 这里的name是必填的，可以为字符串，可以为数组吗，对应的获取其他的值
+ * @param itemRender 获取对应name中的值，来做操作。注：可以返回对象或是数组，而对象和数组对应的就是formList中的值，如果返回其他则不显示
  *
  * @date的私有参数
  * @param method 包含  date 日期  time 时间  dateTime 日起+时间 dateRange 日期区间， timeRange 时间区间，dateTimeRange 日期时间区间
