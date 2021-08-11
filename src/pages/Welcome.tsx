@@ -69,7 +69,6 @@ const Welcome: React.FC<any> = (props) => {
     {
       title: '操作',
       dataIndex: 'option',
-      valueType: 'option',
       render: (_, record) => {
         return (
           <div>
@@ -85,6 +84,15 @@ const Welcome: React.FC<any> = (props) => {
           </div>
         );
       },
+    },
+    {
+      title: '操作',
+      dataIndex: 'option',
+      valueType: 'option',
+      type: 'tools',
+      tools: [{
+        method: 'edit'
+      }]
     },
   ];
   const tab = [

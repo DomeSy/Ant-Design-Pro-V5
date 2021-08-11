@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import ProTable from '@ant-design/pro-table';
 import type { FormInstance } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import type { ActionType } from '@ant-design/pro-table';
 import { tableSy } from '@/utils/Setting';
 import { paginationConfig, searchConfig } from './components'
-import Props, { TableListProps, RuleProps } from './interface.d';
+import Props, { TableListProps, RuleProps, editTools } from './interface.d';
 import type { tableListProps } from './interface.d';
 import { Mask, Form } from '@/components';
 import { Jump } from '@/utils'
@@ -49,11 +49,52 @@ const Table: React.FC<Props> = ({
       let rules: tableListProps = {};
       if (item.type === 'date') {
         rules = DateRules(item);
+      } else if(item.type === 'tools'){
+        rules = toolsRules(item)
       }
       result = [...result, { ...item, ...rulesRender(item), ...rules }];
     });
     return result;
   };
+
+  const toolsRules = (data: tableListProps) => {
+    return {
+      dataIndex: 'optionTools',
+      ...data,
+      render: (_:React.ReactNode, record:any) => {
+        if(!data.tools || !Array.isArray(data.tools)) return <>-</>
+        console.log(data.tools,'--')
+        return <>
+          {
+            data.tools.map((item, index) => (
+              <div key={index + 'optionTools'}>
+                {
+                  item.method === 'edit' ? editTool(item.edit, record) : <>你好</>
+                }
+              </div>
+            ))
+          }
+        </>
+      }
+    }
+  }
+
+  const editTool = (edit: editTools | undefined, record:any) => {
+    if(!edit) return <div style={{color: 'red'}}>请在edit中写入对应操作</div>;
+    // if(edit?.go){
+    //   Jump.go(edit.go, edit.payload)
+    //   return <a>编辑</a>
+    // }
+    return <a
+      onClick={() => {
+        if(edit?.go){
+          Jump.go(edit.go, edit.payload)
+          return <a>编辑</a>
+        }
+        return
+      }}
+    >编辑</a>
+  }
 
   /**
    * @returns 公共配置规则部分

@@ -10,17 +10,6 @@ import { extend } from 'umi-request';
 export interface TableListProps {
   type: string;
   key: number;
-  disabled?: boolean;
-  href: string;
-  avatar: string;
-  name: string;
-  owner: string;
-  desc: string;
-  callNo: number;
-  status: string;
-  updatedAt: Date;
-  createdAt: Date;
-  progress: number;
 }
 
 export interface SearchConfigProps extends BaseQueryFilterProps {
@@ -32,6 +21,13 @@ export interface SearchConfigProps extends BaseQueryFilterProps {
 
 export interface PaginationConfigProps extends TablePaginationConfig {}
 
+export interface editTools extends createProps {
+
+}
+interface ToolsProps { //工具
+  edit?: editTools
+  method?: 'edit'
+}
 interface ConfigProps {
   add?: number;
   subtract?: number;
@@ -49,7 +45,6 @@ interface ConfigProps {
         showEndType?: string;
       };
 }
-
 export interface RuleProps {
   required?: boolean;
   pattern?: RegExp;
@@ -62,7 +57,7 @@ export interface RuleProps {
 }
 
 export type tableListProps = ProColumns<TableListProps> & {
-  type?: 'date';
+  type?: 'date' | 'tools';
   method?: 'dateTimeRange' | 'dateRange';
   required?: boolean;
   message?: string;
@@ -71,7 +66,9 @@ export type tableListProps = ProColumns<TableListProps> & {
   rulesRender?: Array<any>;
   noRequired?: boolean;
   config?: ConfigProps;
+  tools?: ToolsProps[]
 };
+
 
 interface createProps {
   text?: string;

@@ -7,6 +7,7 @@
  * @param getRef 获取表格的Ref
  * @param request 请求数据 => 暂未设置
  * @param tableList 请求的列 替换原有的 columns（如果columns存在，则会替换tableList）
+ * @param tableTools 列表的额外属性，通常而言，在列表上会有操作这个属性，为简便开发而设置，目前有编辑，删除，状态三个常用属性
  * @param _config 额外配置(在原有的配置上加入其它属性，来帮助开发)
  * @param rowKey rowKey对应列表中的key,这个值其实就是列表的key，没有会报错，通常来说，后端返回列表的时候会有一个类似于key，id这样唯一的值做以区分，那么这个 rowKey 就是接口返回的key，id，因为通常而言这个key是一样的所以可以统一设置
  *
