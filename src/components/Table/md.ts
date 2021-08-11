@@ -7,7 +7,6 @@
  * @param getRef 获取表格的Ref
  * @param request 请求数据 => 暂未设置
  * @param tableList 请求的列 替换原有的 columns（如果columns存在，则会替换tableList）
- * @param tableTools 列表的额外属性，通常而言，在列表上会有操作这个属性，为简便开发而设置，目前有编辑，删除，状态三个常用属性
  * @param _config 额外配置(在原有的配置上加入其它属性，来帮助开发)
  * @param rowKey rowKey对应列表中的key,这个值其实就是列表的key，没有会报错，通常来说，后端返回列表的时候会有一个类似于key，id这样唯一的值做以区分，那么这个 rowKey 就是接口返回的key，id，因为通常而言这个key是一样的所以可以统一设置
  *
@@ -25,7 +24,7 @@
  * @param button 对应Button的相关属性
  *
  * @tableList 下的参数（独有参数不一定，一个参数在不同的type下有可能有不同的意思)
- * @param type 用于判断类型 有 date 日期
+ * @param type 用于判断类型 有 date 日期 tools 额外配置
  * @param method type下的分类  dateTimeRange 日期时间秒
  * @param readonly 是否只读
  * @param required select 唯一的规则，只有是否必填，加入必填（input，与 password, 必须没有rules这个属性，（也就是没有其他规则才能启用，否则要使用rules）
@@ -33,6 +32,16 @@
  * @param rules 数组 设置规则，disabled设置为true，规则不生效，接收一个数组，按照原本的参数传递，并在此基础上做了些方便的功能，如果想使用原本参数的形式，可适用 rulesRender
  * @param message 必填时的消息提示，默认为标题+为必填项
  * @param noRequired 在很少的情况下，不需要规则必填，但填必须按照规则去填,可以按此规则 布尔值
+ *
+ * @type为tools下的参数 接收一个数组（为简化开发，设置编辑，删除，和启用禁用三个按钮）
+ * @param method 方式的类型 edit 编辑
+ *
+ * @param method 下的参数
+ * @param edit 接收一个对象，具体用法与新建一样，不同的是，在编辑中可能需要当前这一行的信息，所以增加一些额外配置
+ *
+ * @param edit下的方法（除了_config.create的配置外）
+ * @param onBeforeStart 当我们编辑的时候，需要依赖于这行数据，调取接口等操作，最终都在列表中进行操作，所以这个函数提供返回formList数组，用于替换原有的formList这个参数，接收这行数据的信息。另外 如果返回字符串，则会提示对应的字符串信息，除此之外，都无效
+ * @param style 对应的样式
  *
  * @date下的参数
  * @param method 区分日期的方式 dateTimeRange 日期时分秒区间

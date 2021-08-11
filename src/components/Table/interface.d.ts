@@ -22,7 +22,8 @@ export interface SearchConfigProps extends BaseQueryFilterProps {
 export interface PaginationConfigProps extends TablePaginationConfig {}
 
 export interface editTools extends createProps {
-
+  style?: React.CSSProperties
+  onBeforeStart?: any
 }
 interface ToolsProps { //工具
   edit?: editTools

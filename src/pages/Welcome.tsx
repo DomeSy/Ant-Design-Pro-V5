@@ -91,7 +91,26 @@ const Welcome: React.FC<any> = (props) => {
       valueType: 'option',
       type: 'tools',
       tools: [{
-        method: 'edit'
+        method: 'edit',
+        edit: {
+          // go: '/list',   //跳转
+          // payload: {text: '1'}
+          onBeforeStart: (data:any) => {
+            const list: formProps[] = [
+              {
+                name: 'test1',
+                label: '编辑测试1'
+              },
+              {
+                name: 'test2',
+                default: data.callNo,
+                label: '服务器调用次数'
+              },
+            ]
+            return '暂未配置' // 返回对应字符串
+            return list // 返回列表
+          }
+        }
       }]
     },
   ];

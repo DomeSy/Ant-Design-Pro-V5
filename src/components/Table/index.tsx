@@ -3,12 +3,13 @@ import ProTable from '@ant-design/pro-table';
 import type { FormInstance } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, message } from 'antd';
-import type { ActionType } from '@ant-design/pro-table';
 import { tableSy } from '@/utils/Setting';
 import { paginationConfig, searchConfig } from './components'
 import Props, { TableListProps, RuleProps, editTools } from './interface.d';
-import type { tableListProps } from './interface.d';
 import { Mask, Form } from '@/components';
+import type { tableListProps } from './interface.d';
+import type { formProps } from '@/components'
+import type { ActionType } from '@ant-design/pro-table';
 import { Jump } from '@/utils'
 import moment from 'moment';
 
@@ -18,6 +19,11 @@ import moment from 'moment';
  * fieldProps： 当前属性的其他属性
  * renderFormItem： 自定义搜索框的样式
  */
+
+interface EditsProps {
+  formList: formProps[],
+  data: editTools
+}
 
 const Table: React.FC<Props> = ({
   getRef,
@@ -30,10 +36,12 @@ const Table: React.FC<Props> = ({
 }) => {
   const actionRef = useRef<ActionType>();
   const FormRef = useRef<FormInstance>();
-  const [maskFormRef, setMaskFormRef] = useState<any>(false);
 
+  const [maskFormRef, setMaskFormRef] = useState<any>(false);
   const [list, setList] = useState<tableListProps[] | undefined>(undefined);
   const [maskVisible, setMaskVisible] = useState<boolean>(false);
+  const [tool, setTool] = useState<'create' | 'edit' | boolean>(false); //用于判断一些特殊情况
+  const [editList, setEditList] = useState< EditsProps | boolean>(false); //用于判断一些特殊情况
 
   useEffect(() => {
     if (getRef) getRef(actionRef);
@@ -57,13 +65,13 @@ const Table: React.FC<Props> = ({
     return result;
   };
 
+  // 工具配置属性
   const toolsRules = (data: tableListProps) => {
     return {
       dataIndex: 'optionTools',
       ...data,
       render: (_:React.ReactNode, record:any) => {
         if(!data.tools || !Array.isArray(data.tools)) return <>-</>
-        console.log(data.tools,'--')
         return <>
           {
             data.tools.map((item, index) => (
@@ -79,21 +87,38 @@ const Table: React.FC<Props> = ({
     }
   }
 
+  // 编辑工具属性
   const editTool = (edit: editTools | undefined, record:any) => {
     if(!edit) return <div style={{color: 'red'}}>请在edit中写入对应操作</div>;
-    // if(edit?.go){
-    //   Jump.go(edit.go, edit.payload)
-    //   return <a>编辑</a>
-    // }
     return <a
-      onClick={() => {
+      onClick={async () => {
         if(edit?.go){
           Jump.go(edit.go, edit.payload)
-          return <a>编辑</a>
+          return
         }
-        return
+        let result:formProps[] = []
+        if(edit?.onBeforeStart) {
+          result = await edit.onBeforeStart(record)
+          if(typeof result === 'string') {
+            message.error(result)
+            return
+          }
+          if(!Array.isArray(result)){
+            message.error('请返回对应FormList数组，或则返回字符串！')
+            return
+          }
+        }else {
+          result = edit?.formList ? edit.formList : []
+        }
+        setEditList({
+          data: edit,
+          formList: result
+        })
+        setTool('edit')
+        setMaskVisible(true)
       }}
-    >编辑</a>
+      style={{ ...edit?.style}}
+    >{edit.text || '编辑'}</a>
   }
 
   /**
@@ -331,6 +356,36 @@ const Table: React.FC<Props> = ({
     };
   };
 
+  // 弹框渲染组件
+  const MaskRender = (mask:editTools, method: string, formList: formProps[] = []) => {
+    const title = method === 'create' ? '新建' : '编辑'
+    return <Mask.Form
+      title={title}
+      message={`${title}成功`}
+      {...mask?.maskFrom}
+      visible={maskVisible}
+      formRef={maskFormRef}
+      onCancel={() => {setMaskVisible(false);setTool(false)}}
+      onSubmit={async () => {
+        if(mask && typeof mask.maskFrom !== 'boolean' && mask?.maskFrom && mask.maskFrom?.onSubmit){
+          await mask?.maskFrom.onSubmit()
+        }
+        actionRef?.current?.reload()
+        setTool(false)
+        setMaskVisible(false)
+      }}
+    >
+      <Form
+        {...mask?.form}
+        method="mask"
+        formList={formList}
+        getRef={(formRef: any) => {
+          setMaskFormRef(formRef);
+        }}
+      />
+    </Mask.Form>
+  }
+
   return (
     <>
       <ProTable<TableListProps>
@@ -364,6 +419,7 @@ const Table: React.FC<Props> = ({
                 return
               }
               setMaskVisible(true)
+              setTool('create')
             }}
             {..._config?.create?.button}
           >
@@ -375,31 +431,10 @@ const Table: React.FC<Props> = ({
         pagination={paginationConfig(pagination)}
       />
       {
-        _config?.create && typeof _config.create === 'object' && maskVisible  &&
-        <Mask.Form
-          title={'新建'}
-          message={"新建成功"}
-          {..._config.create?.maskFrom}
-          visible={maskVisible}
-          formRef={maskFormRef}
-          onCancel={() => setMaskVisible(false)}
-          onSubmit={async () => {
-            if(_config.create && typeof _config.create.maskFrom !== 'boolean' && _config.create?.maskFrom && _config.create.maskFrom?.onSubmit){
-              await _config.create?.maskFrom.onSubmit()
-            }
-            actionRef?.current?.reload()
-            setMaskVisible(false)
-          }}
-        >
-          <Form
-            {..._config.create?.form}
-            method="mask"
-            formList={_config.create?.formList}
-            getRef={(formRef: any) => {
-              setMaskFormRef(formRef);
-            }}
-          />
-        </Mask.Form>
+        _config?.create && typeof _config.create === 'object' && maskVisible &&  tool === 'create' && MaskRender(_config.create, tool, _config.create?.formList)
+      }
+      {
+        maskVisible &&  tool === 'edit' && typeof editList !== 'boolean' && MaskRender(editList?.data, tool, editList?.formList)
       }
     </>
   );
