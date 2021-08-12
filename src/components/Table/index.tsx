@@ -79,7 +79,7 @@ const Table: React.FC<Props> = ({
                 {
                   item.method === 'edit' ? editToolsConfig(item.edit, record) :
                   item.method === 'delete' ? deleteToolsConfig(item.delete, record) :
-                  item.method === 'state' ? stateToolsConfig(item.state, record) : <div>hello</div>
+                  item.method === 'state' ? stateToolsConfig(item.state, record) : item.fieldRender ? <>{item.fieldRender(record)}</> : <div>请写入method或这在fieldRender操作</div>
                 }
                 {index + 1 !== data.tools?.length && <Divider type="vertical" />}
               </span>

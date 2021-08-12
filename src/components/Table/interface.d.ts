@@ -44,7 +44,7 @@ export interface stateTools {
   title?: string;
   onState: (values: Object<any>) => void;
   onEdit: (values: Object<any>) => void;
-  onSuccess?: (data: any, flag) => void;
+  onSuccess?: (data: any, flag:boolean) => void;
   onRequest: any;
 }
 interface ToolsProps { //工具
@@ -52,6 +52,7 @@ interface ToolsProps { //工具
   edit?: editTools;
   delete?: deleteTools;
   state?: stateTools;
+  fieldRender?: (data: any) => void;
 }
 interface ConfigProps {
   add?: number;

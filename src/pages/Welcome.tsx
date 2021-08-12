@@ -149,6 +149,11 @@ const Welcome: React.FC<any> = (props) => {
             },
             onRequest: queryRule
           }
+        },
+        {
+          fieldRender: (data:any) => {
+            return <a>自定义获取{data.key}</a>
+          }
         }
       ]
     },
