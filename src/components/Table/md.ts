@@ -34,16 +34,28 @@
  * @param noRequired 在很少的情况下，不需要规则必填，但填必须按照规则去填,可以按此规则 布尔值
  *
  * @type为tools下的参数 接收一个数组（为简化开发，设置编辑，删除，和启用禁用三个按钮）
- * @param method 方式的类型 edit 编辑 delete 删除
+ * @param method 方式的类型 edit 编辑 delete 删除 state 状态
  *
  * @param method 下的参数
  * @param edit 接收一个对象，具体用法与新建一样，不同的是，在编辑中可能需要当前这一行的信息，所以增加一些额外配置
  * @param delete 删除
+ * @param state 状态处理，启用警用
+ *
+ * @state下的参数 以启用禁用为例
+ * @param openText 启用时的文字，默认启用
+ * @param closeText 禁止时的文字，默认禁止
+ * @param title 删除提示框的提示语，默认 你确定要禁用（启用）吗
+ * @param okText 删除上提示框的确定文字，默认确定
+ * @param cancelText 删除上提示框的取消文字，默认取消
+ * @param onState 接收当列的值，返回一个布尔值， 为true则代表启用状态，按钮为禁用，反之亦然
+ * @param onEdit 编辑，编辑前的操作，返回一个对象，为 open 和 close 分别对应 启用时，和禁用的接口数据，返回的字符串给出提示，返回的对象作为onRequest的参数，否则没有任何操作
+ * @param onSuccess 成功时的操作，第一个参数，返回成功结果，第二个参数返回布尔值，为true则是禁用， 为false为启用
+ * @param onRequest 请求的接口
  *
  * @delete下的参数
  * @param text 按钮文字的字样，默认删除
  * @param okText 删除上提示框的确定文字，默认确定
- * @param cancelText 删除上提示框的取消文字，默认确定
+ * @param cancelText 删除上提示框的取消文字，默认取消
  * @param message 删除成功后的提示语句
  * @param title 删除提示框的提示语，默认 你确定要删除吗
  * @param onEdit 编辑，请求接口上的操作，返回 字符串，会提示错误，返回对象，会将返回值提供给onRequest作为请求参数，其他格式不做任何处理

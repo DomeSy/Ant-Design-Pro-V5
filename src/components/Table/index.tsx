@@ -5,7 +5,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, message, Popconfirm, Divider } from 'antd';
 import { tableSy } from '@/utils/Setting';
 import { paginationConfig, searchConfig } from './components'
-import Props, { TableListProps, RuleProps, editTools, deleteTools } from './interface.d';
+import Props, { TableListProps, RuleProps, editTools, deleteTools, stateTools } from './interface.d';
 import { Mask, Form } from '@/components';
 import type { tableListProps } from './interface.d';
 import type { formProps } from '@/components'
@@ -78,7 +78,8 @@ const Table: React.FC<Props> = ({
               <span key={index + 'optionTools'}>
                 {
                   item.method === 'edit' ? editToolsConfig(item.edit, record) :
-                  item.method === 'delete' ? deleteToolsConfig(item.delete, record) : <div>hello</div>
+                  item.method === 'delete' ? deleteToolsConfig(item.delete, record) :
+                  item.method === 'state' ? stateToolsConfig(item.state, record) : <div>hello</div>
                 }
                 {index + 1 !== data.tools?.length && <Divider type="vertical" />}
               </span>
@@ -89,7 +90,39 @@ const Table: React.FC<Props> = ({
     }
   }
 
-  // 编辑工具属性
+  // 状态工具属性
+  const stateToolsConfig = (data: stateTools | undefined, record:any) => {
+    if(!data) return <div style={{color: 'red'}}>请在state中写入对应操作</div>;
+    const state:any = data.onState(record);
+    if(typeof state !== 'boolean') {
+      message.error('onState返回布尔类型！')
+      return
+    }
+    return <Popconfirm
+    title={ data?.title ? data.title :`你确定要${state ?  data.closeText || '禁用' : data.openText || '启用'}吗？`}
+    onConfirm={async () => {
+      const param = data.onEdit(record);
+      if(typeof param !== 'object' || Array.isArray(param)) return message.error('请在onEdit中返回正确对象，包含「open和close属性」')
+      if(!param['open'] || !param['close']) return message.error('请在onEdit中返回open和close')
+      if(typeof param['open'] !== 'object' || Array.isArray(param['open']) || typeof param['close'] !== 'object' || Array.isArray(param['close'])) return message.error('请在onEdit中返回open和close为字符串或则对象')
+
+      const result = state ? await data.onRequest(param['close']) : await data.onRequest(param['open'])
+      if(result){
+        if(data.onSuccess) await data.onSuccess(result, state)
+        const msg:string = state ? `${data.closeText || '禁用'}成功` : `${data.openText || '启用'}成功`
+        message.success(msg)
+        actionRef?.current?.reload()
+      }
+    }}
+    okText={data.okText || "确定"}
+    cancelText={data.cancelText || "取消"}
+  >
+    <a>{state ? data.closeText || '禁用' : data.openText || '启用'}</a>
+    <a href="">{state}</a>
+  </Popconfirm>
+  }
+
+  // 删除工具属性
   const deleteToolsConfig = (data: deleteTools | undefined, record:any) => {
     if(!data) return <div style={{color: 'red'}}>请在delete中写入对应操作</div>;
     return <Popconfirm

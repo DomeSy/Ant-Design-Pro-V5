@@ -125,11 +125,24 @@ const Welcome: React.FC<any> = (props) => {
           }
         },
         {
+          method: 'state',
+          state: {
+            onState: (value: any) => {
+              return value.status === 1 ? true : false
+            },
+            onEdit: (value: any) => {
+              return {
+                open: { status: '0' },
+                close: { status: '1' },
+              }
+            },
+            onRequest: queryRule
+          }
+        },
+        {
           method: 'delete',
           delete: {
-            text: '删除',
             onEdit:(values: any) => {
-              // return '输入值';
               return {
                 key: values.key
               };

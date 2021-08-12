@@ -36,10 +36,22 @@ export interface deleteTools {
   onSuccess?: (data: any) => void;
   onRequest: any;
 }
+export interface stateTools {
+  openText?: string;
+  closeText?: string;
+  okText?: string;
+  cancelText?: string;
+  title?: string;
+  onState: (values: Object<any>) => void;
+  onEdit: (values: Object<any>) => void;
+  onSuccess?: (data: any, flag) => void;
+  onRequest: any;
+}
 interface ToolsProps { //工具
-  method?: 'edit' | 'delete';
+  method?: 'edit' | 'delete' | 'state';
   edit?: editTools;
   delete?: deleteTools;
+  state?: stateTools;
 }
 interface ConfigProps {
   add?: number;
