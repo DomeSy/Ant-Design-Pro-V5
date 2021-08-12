@@ -33,7 +33,7 @@ export const responseInterceptors:any = async (response: Response) => {
   }
   // if (data.status !== 'ok') {
   //   message.error(data.message);
-  //   return;
+  //   return false;
   // }
   return data;
 }

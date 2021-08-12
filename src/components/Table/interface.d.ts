@@ -2,7 +2,7 @@ import { ProTableProps } from '@ant-design/pro-table';
 import type { ParamsType } from '@ant-design/pro-provider';
 import type { BaseQueryFilterProps } from '@ant-design/pro-form';
 import { TablePaginationConfig } from './data.d';
-import { ButtonProps } from 'antd';
+import { ButtonProps, message } from 'antd';
 import { TableProps } from '@/utils/Setting/tableSy';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import type { MaskFromProps, formProps, FormPropsSy, FormCommonProps } from '@/components'
@@ -25,9 +25,21 @@ export interface editTools extends createProps {
   style?: React.CSSProperties
   onBeforeStart?: any
 }
+
+export interface deleteTools {
+  text?: string;
+  okText?: string;
+  cancelText?: string;
+  message?: string;
+  title?: string;
+  onEdit: (values: Object<any>) => void;
+  onSuccess?: (data: any) => void;
+  onRequest: any;
+}
 interface ToolsProps { //工具
-  edit?: editTools
-  method?: 'edit'
+  method?: 'edit' | 'delete';
+  edit?: editTools;
+  delete?: deleteTools;
 }
 interface ConfigProps {
   add?: number;
@@ -69,8 +81,6 @@ export type tableListProps = ProColumns<TableListProps> & {
   config?: ConfigProps;
   tools?: ToolsProps[]
 };
-
-
 interface createProps {
   text?: string;
   button?: ButtonProps;

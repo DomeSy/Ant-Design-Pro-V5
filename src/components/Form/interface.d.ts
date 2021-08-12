@@ -177,6 +177,7 @@ interface Props extends ProFormProps {
   onFinish?: (value: Object) => void;
   fieldValues?: fieldValuesProps[];
   footer?: boolean;
+  layout?: layoutProps;
   buttonConfig?: ButtonRenderProps;
   initValues?: Object<any>;
 }

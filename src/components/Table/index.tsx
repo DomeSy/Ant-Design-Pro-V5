@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import ProTable from '@ant-design/pro-table';
 import type { FormInstance } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, message } from 'antd';
+import { Button, message, Popconfirm, Divider } from 'antd';
 import { tableSy } from '@/utils/Setting';
 import { paginationConfig, searchConfig } from './components'
-import Props, { TableListProps, RuleProps, editTools } from './interface.d';
+import Props, { TableListProps, RuleProps, editTools, deleteTools } from './interface.d';
 import { Mask, Form } from '@/components';
 import type { tableListProps } from './interface.d';
 import type { formProps } from '@/components'
@@ -75,11 +75,13 @@ const Table: React.FC<Props> = ({
         return <>
           {
             data.tools.map((item, index) => (
-              <div key={index + 'optionTools'}>
+              <span key={index + 'optionTools'}>
                 {
-                  item.method === 'edit' ? editTool(item.edit, record) : <>你好</>
+                  item.method === 'edit' ? editToolsConfig(item.edit, record) :
+                  item.method === 'delete' ? deleteToolsConfig(item.delete, record) : <div>hello</div>
                 }
-              </div>
+                {index + 1 !== data.tools?.length && <Divider type="vertical" />}
+              </span>
             ))
           }
         </>
@@ -88,7 +90,30 @@ const Table: React.FC<Props> = ({
   }
 
   // 编辑工具属性
-  const editTool = (edit: editTools | undefined, record:any) => {
+  const deleteToolsConfig = (data: deleteTools | undefined, record:any) => {
+    if(!data) return <div style={{color: 'red'}}>请在delete中写入对应操作</div>;
+    return <Popconfirm
+    title={ data.title || `你确定要${data.text}么?`}
+    onConfirm={async () => {
+      const param = data.onEdit ? data.onEdit(record) : false
+      if(typeof param === 'string') return message.error(param)
+      if(typeof param !== 'object' || Array.isArray(param)) return message.error('请在onEdit中返回对象或是字符串！')
+      const res = await data.onRequest(param)
+      if(res){
+        if(data.onSuccess) await data.onSuccess(res)
+        message.success( data.message || `${data.text}成功`)
+        actionRef?.current?.reload()
+      }
+    }}
+    okText={data.okText || "确定"}
+    cancelText={data.cancelText || "取消"}
+  >
+    <a>{data.text || '删除'}</a>
+  </Popconfirm>
+  }
+
+  // 编辑工具属性
+  const editToolsConfig = (edit: editTools | undefined, record:any) => {
     if(!edit) return <div style={{color: 'red'}}>请在edit中写入对应操作</div>;
     return <a
       onClick={async () => {

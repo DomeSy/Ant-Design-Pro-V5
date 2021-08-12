@@ -34,12 +34,23 @@
  * @param noRequired 在很少的情况下，不需要规则必填，但填必须按照规则去填,可以按此规则 布尔值
  *
  * @type为tools下的参数 接收一个数组（为简化开发，设置编辑，删除，和启用禁用三个按钮）
- * @param method 方式的类型 edit 编辑
+ * @param method 方式的类型 edit 编辑 delete 删除
  *
  * @param method 下的参数
  * @param edit 接收一个对象，具体用法与新建一样，不同的是，在编辑中可能需要当前这一行的信息，所以增加一些额外配置
+ * @param delete 删除
  *
- * @param edit下的方法（除了_config.create的配置外）
+ * @delete下的参数
+ * @param text 按钮文字的字样，默认删除
+ * @param okText 删除上提示框的确定文字，默认确定
+ * @param cancelText 删除上提示框的取消文字，默认确定
+ * @param message 删除成功后的提示语句
+ * @param title 删除提示框的提示语，默认 你确定要删除吗
+ * @param onEdit 编辑，请求接口上的操作，返回 字符串，会提示错误，返回对象，会将返回值提供给onRequest作为请求参数，其他格式不做任何处理
+ * @param onSuccess 删除成功进行的操作，（同步，执行完后会刷新列表）
+ * @param onRequest 删除请求的接口
+ *
+ * @edit下的参数 （除了_config.create的配置外）
  * @param onBeforeStart 当我们编辑的时候，需要依赖于这行数据，调取接口等操作，最终都在列表中进行操作，所以这个函数提供返回formList数组，用于替换原有的formList这个参数，接收这行数据的信息。另外 如果返回字符串，则会提示对应的字符串信息，除此之外，都无效
  * @param style 对应的样式
  *
