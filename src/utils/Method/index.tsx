@@ -1,5 +1,5 @@
 import moment from 'moment';
-
+import { ExportExcel } from './tools'
 /**
  * @module 公用方法
  *
@@ -52,7 +52,7 @@ class Method {
    * @param fn 包裹的函数
    * @param await 时长，默认1000
    */
-  static Throttle(fn: Function, awit: number = 1000, immediate: boolean = true) {
+  static Throttle(fn: Function, awit: number = 1000) {
     let timer: NodeJS.Timeout | null;
     return (...args: any) => {
       if (!timer) {
@@ -144,6 +144,8 @@ class Method {
     }
     return result;
   };
+
+  static ExportExcel = ExportExcel
 }
 
 export default Method;
