@@ -10,10 +10,10 @@ import logo from '@/assets/logo.svg';
  */
 
 interface PageLayoutProps {
-  cancelTitle?: boolean;
-  cancelBreadcrumb?: boolean;
-  ghost?: boolean;
-  fixedHeader?: boolean;
+  cancelTitle: boolean;
+  cancelBreadcrumb: boolean;
+  ghost: boolean;
+  fixedHeader: boolean;
 }
 
 export type { PageLayoutProps };

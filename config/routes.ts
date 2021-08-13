@@ -4,10 +4,8 @@ export default [
     path: '/admin',
     name: '管理页',
     icon: 'crown',
-    access: 'canAdmin',
-    component: './Admin',
     routes: [
-      { path: '/admin/sub-page', name: '二级管理页', icon: 'smile', component: './Welcome' },
+      { path: '/admin/sub-page', name: '二级管理页1', icon: 'smile', component: './Welcome' },
     ],
   },
   { name: '查询表格', icon: 'table', path: '/list', component: './TableList' },

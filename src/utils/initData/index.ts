@@ -12,7 +12,7 @@ const initData = async () => {
   const currentUser = await queryCurrentUser()
 
   // 动态路由：menuData接收的为路由的函数，为false时，不启动动态路由
-  const menuData: MenuDataItem[] = await getMenuData()
+  // const menuData: MenuDataItem[] = await getMenuData()
 
   return {
     currentUser: currentUser.data,
