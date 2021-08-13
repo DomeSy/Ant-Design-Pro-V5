@@ -1,6 +1,6 @@
 import { PageContainer, ProBreadcrumb, PageLoading } from '@ant-design/pro-layout';
 import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
-import { history, Link } from 'umi';
+import { history, useModel } from 'umi';
 import routes from '../config/routes';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
@@ -57,7 +57,6 @@ export async function getInitialState(): Promise<any> {
   };
 }
 
-
 /**
  * @module 请求模块
  */
@@ -67,10 +66,10 @@ export const request: RequestConfig = {
   responseInterceptors: [responseInterceptors],
 };
 
-
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
-export const layout: RunTimeLayoutConfig = ({ initialState }) => {
+export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
 
+  console.log(initialState, '---')
   return {
     logo: layoutSy.logo,
     menuDataRender: (menuData) => initialState.menuData || menuData,
@@ -85,7 +84,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
       return typeof layoutSy.HeaderClick === 'boolean' ? Jump.go(home) : layoutSy.HeaderClick(e)
     },
     disableContentMargin: false,
-    collapsed: layoutSy.collapsed,
     headerContentRender: typeof layoutSy.rightContent === 'boolean' ? undefined : layoutSy.rightContent === 'breadcrumb' ? () => <ProBreadcrumb /> : layoutSy.rightContent,
     waterMarkProps: typeof layoutSy.waterMark === 'boolean' ? undefined : typeof layoutSy.waterMark === 'string' ? { content: layoutSy.waterMark } : layoutSy.waterMark,
     footerRender: layoutSy.footer ? () => <Footer /> : undefined,
