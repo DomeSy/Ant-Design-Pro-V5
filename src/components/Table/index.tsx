@@ -99,17 +99,19 @@ const Table: React.FC<Props> = ({
       return
     }
     return <Popconfirm
-    title={ data?.title ? data.title :`你确定要${state ?  data.closeText || '禁用' : data.openText || '启用'}吗？`}
+    title={ data?.title ? data.title :`你确定要${state ?  data.closeText || tableSy.tools.state.cancelText : data.openText || tableSy.tools.state.okText}吗？`}
     onConfirm={async () => {
       const param = data.onEdit(record);
       if(typeof param !== 'object' || Array.isArray(param)) return message.error('请在onEdit中返回正确对象，包含「open和close属性」')
+
       if(!param['open'] || !param['close']) return message.error('请在onEdit中返回open和close')
+
       if(typeof param['open'] !== 'object' || Array.isArray(param['open']) || typeof param['close'] !== 'object' || Array.isArray(param['close'])) return message.error('请在onEdit中返回open和close为字符串或则对象')
 
       const result = state ? await data.onRequest(param['close']) : await data.onRequest(param['open'])
       if(result){
         if(data.onSuccess) await data.onSuccess(result, state)
-        const msg:string = state ? `${data.closeText || '禁用'}成功` : `${data.openText || '启用'}成功`
+        const msg:string = state ? `${data.closeText || tableSy.tools.state.cancelText}成功` : `${data.openText || tableSy.tools.state.okText}成功`
         message.success(msg)
         actionRef?.current?.reload()
       }
@@ -117,7 +119,7 @@ const Table: React.FC<Props> = ({
     okText={data.okText || "确定"}
     cancelText={data.cancelText || "取消"}
   >
-    <a>{state ? data.closeText || '禁用' : data.openText || '启用'}</a>
+    <a style={{ ...tableSy.tools.commonStyle, ...tableSy.tools.state.style, ...data?.style}}>{state ? data.closeText || tableSy.tools.state.cancelText : data.openText || tableSy.tools.state.okText}</a>
     <a href="">{state}</a>
   </Popconfirm>
   }
@@ -126,7 +128,7 @@ const Table: React.FC<Props> = ({
   const deleteToolsConfig = (data: deleteTools | undefined, record:any) => {
     if(!data) return <div style={{color: 'red'}}>请在delete中写入对应操作</div>;
     return <Popconfirm
-    title={ data.title || `你确定要${data.text}么?`}
+    title={ data.title || `你确定要${data.text || tableSy.tools.edit.text}么?`}
     onConfirm={async () => {
       const param = data.onEdit ? data.onEdit(record) : false
       if(typeof param === 'string') return message.error(param)
@@ -134,14 +136,14 @@ const Table: React.FC<Props> = ({
       const res = await data.onRequest(param)
       if(res){
         if(data.onSuccess) await data.onSuccess(res)
-        message.success( data.message || `${data.text}成功`)
+        message.success( data.message || `${data.text || tableSy.tools.edit.text}成功`)
         actionRef?.current?.reload()
       }
     }}
     okText={data.okText || "确定"}
     cancelText={data.cancelText || "取消"}
   >
-    <a>{data.text || '删除'}</a>
+    <a style={{...tableSy.tools.commonStyle, ...tableSy.tools.delete.style, ...data?.style}}>{data.text || tableSy.tools.edit.text}</a>
   </Popconfirm>
   }
 
@@ -175,8 +177,8 @@ const Table: React.FC<Props> = ({
         setTool('edit')
         setMaskVisible(true)
       }}
-      style={{ ...edit?.style}}
-    >{edit.text || '编辑'}</a>
+      style={{ ...tableSy.tools.commonStyle, ...tableSy.tools.edit.style,  ...edit?.style}}
+    >{edit.text || tableSy.tools.edit.text}</a>
   }
 
   /**
@@ -416,7 +418,7 @@ const Table: React.FC<Props> = ({
 
   // 弹框渲染组件
   const MaskRender = (mask:editTools, method: string, formList: formProps[] = []) => {
-    const title = method === 'create' ? '新建' : '编辑'
+    const title = method === 'create' ? '新建' : tableSy.tools.edit.text
     return <Mask.Form
       title={title}
       message={`${title}成功`}

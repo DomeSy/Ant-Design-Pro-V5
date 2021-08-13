@@ -51,6 +51,7 @@
  * @param onEdit 编辑，编辑前的操作，返回一个对象，为 open 和 close 分别对应 启用时，和禁用的接口数据，返回的字符串给出提示，返回的对象作为onRequest的参数，否则没有任何操作
  * @param onSuccess 成功时的操作，第一个参数，返回成功结果，第二个参数返回布尔值，为true则是禁用， 为false为启用
  * @param onRequest 请求的接口
+ * @param style 对应的样式
  *
  * @delete下的参数
  * @param text 按钮文字的字样，默认删除
@@ -61,6 +62,7 @@
  * @param onEdit 编辑，请求接口上的操作，返回 字符串，会提示错误，返回对象，会将返回值提供给onRequest作为请求参数，其他格式不做任何处理
  * @param onSuccess 删除成功进行的操作，（同步，执行完后会刷新列表）
  * @param onRequest 删除请求的接口
+ * @param style 对应的样式
  *
  * @edit下的参数 （除了_config.create的配置外）
  * @param onBeforeStart 当我们编辑的时候，需要依赖于这行数据，调取接口等操作，最终都在列表中进行操作，所以这个函数提供返回formList数组，用于替换原有的formList这个参数，接收这行数据的信息。另外 如果返回字符串，则会提示对应的字符串信息，除此之外，都无效

@@ -35,6 +35,7 @@ export interface deleteTools {
   onEdit: (values: Object<any>) => void;
   onSuccess?: (data: any) => void;
   onRequest: any;
+  style?: React.CSSProperties;
 }
 export interface stateTools {
   openText?: string;
@@ -46,6 +47,7 @@ export interface stateTools {
   onEdit: (values: Object<any>) => void;
   onSuccess?: (data: any, flag:boolean) => void;
   onRequest: any;
+  style?: React.CSSProperties;
 }
 interface ToolsProps { //工具
   method?: 'edit' | 'delete' | 'state';
@@ -106,7 +108,6 @@ interface createProps {
 interface TableConfigProps {
   create?: false | createProps
 }
-
 interface Props extends ProTableProps<TableListProps, ParamsType> {
   getFormRef?: (ref: any) => void;
   getRef?: (ref: Object<ActionType>) => void;
