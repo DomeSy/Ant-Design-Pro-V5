@@ -5,3 +5,9 @@ export async function queryRule(params?: any) {
     params,
   });
 }
+
+export async function exportExcel(params: any) {
+  return request('/api/exportExcel', {
+    params,
+  });
+}

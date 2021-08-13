@@ -66,25 +66,96 @@ const Welcome: React.FC<any> = (props) => {
       required: true,
       hideInSearch: true,
     },
+    // {
+    //   title: '操作',
+    //   dataIndex: 'option',
+    //   render: (_, record) => {
+    //     return (
+    //       <div>
+    //         <a
+    //           onClick={() => {
+    //             // handleUpdateModalVisible(true);
+    //             // setStepFormValues(record);
+    //           }}
+    //         >
+    //           配置
+    //         </a>
+    //         <a href="">订阅警报</a>
+    //       </div>
+    //     );
+    //   },
+    // },
     {
       title: '操作',
       dataIndex: 'option',
       valueType: 'option',
-      render: (_, record) => {
-        return (
-          <div>
-            <a
-              onClick={() => {
-                // handleUpdateModalVisible(true);
-                // setStepFormValues(record);
-              }}
-            >
-              配置
-            </a>
-            <a href="">订阅警报</a>
-          </div>
-        );
-      },
+      type: 'tools',
+      tools: [
+        {
+          method: 'edit',
+          edit: {
+            // go: '/list',   //跳转
+            // payload: {text: '1'},
+            onBeforeStart: (data:any) => {
+              const list: formProps[] = [
+                {
+                  name: 'test1',
+                  label: '编辑测试1'
+                },
+                {
+                  name: 'test2',
+                  default: data.callNo,
+                  label: '服务器调用次数'
+                },
+              ]
+              // return '暂未配置' // 返回对应字符串
+              return list // 返回列表
+            },
+            form: {
+              layout: {
+                way: 'vertical'
+              },
+            },
+            maskFrom: {
+              onEdit:(values: any) => {
+                return {values: values.key};
+              },
+              onRequest: queryRule
+            }
+          }
+        },
+        {
+          method: 'state',
+          state: {
+            onState: (value: any) => {
+              return value.status === 1 ? true : false
+            },
+            onEdit: (value: any) => {
+              return {
+                open: { status: '0' },
+                close: { status: '1' },
+              }
+            },
+            onRequest: queryRule
+          }
+        },
+        {
+          method: 'delete',
+          delete: {
+            onEdit:(values: any) => {
+              return {
+                key: values.key
+              };
+            },
+            onRequest: queryRule
+          }
+        },
+        {
+          fieldRender: (data:any) => {
+            return <a>自定义获取{data.key}</a>
+          }
+        }
+      ]
     },
   ];
   const tab = [
@@ -101,36 +172,33 @@ const Welcome: React.FC<any> = (props) => {
     <PageLayout
       tab={tab}
     >
-      <Card>
-        <Table
-          getRef={(ref) => setRef(ref)}
-          request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
-          tableList={columns}
-          _config={{
-            create: {
-              formList: [
-                {
-                  name: 'test1',
-                  label: 'MaskFrom111asdasd1'
-                },
-                {
-                  name: 'test2',
-                  label: 'MaskFrom3'
-                },
-              ],
-              form: {
-
+      <Table
+        getRef={(ref) => setRef(ref)}
+        request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
+        tableList={columns}
+        _config={{
+          create: {
+            formList: [
+              {
+                name: 'test1',
+                label: 'MaskFrom111asdasd1'
               },
-              maskFrom: {
-                onEdit:(values: any) => {
-                  return values;
-                },
-                onRequest: queryRule
-              }
+              {
+                name: 'test2',
+                label: 'MaskFrom3'
+              },
+            ],
+            form: {
+            },
+            maskFrom: {
+              onEdit:(values: any) => {
+                return values;
+              },
+              onRequest: queryRule
             }
-          }}
-        />
-      </Card>
+          }
+        }}
+      />
     </PageLayout>
   );
 };
