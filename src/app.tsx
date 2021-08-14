@@ -68,8 +68,6 @@ export const request: RequestConfig = {
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
-
-  console.log(initialState, '---')
   return {
     logo: layoutSy.logo,
     menuDataRender: (menuData) => initialState.menuData || menuData,
@@ -96,6 +94,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         Jump.go(loginPath)
       }
     },
+
     // links: isDev
     //   ? [
     //       <Link to="/umi/plugin/openapi" target="_blank">

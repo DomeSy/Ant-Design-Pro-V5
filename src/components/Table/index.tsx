@@ -5,7 +5,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, message, Popconfirm, Divider } from 'antd';
 import { tableSy } from '@/utils/Setting';
 import { paginationConfig, searchConfig } from './components'
-import Props, { TableListProps, RuleProps, editTools, deleteTools, stateTools } from './interface.d';
+import Props, { TableListProps, RuleProps, editTools, deleteTools, stateTools, createProps } from './interface.d';
 import { Mask, Form } from '@/components';
 import type { tableListProps } from './interface.d';
 import type { formProps } from '@/components'
@@ -32,6 +32,7 @@ const Table: React.FC<Props> = ({
   pagination,
   search,
   _config,
+  toolBar,
   ...props
 }) => {
   const actionRef = useRef<ActionType>();
@@ -425,13 +426,14 @@ const Table: React.FC<Props> = ({
       {...mask?.maskFrom}
       visible={maskVisible}
       formRef={maskFormRef}
-      onCancel={() => {setMaskVisible(false);setTool(false)}}
+      onCancel={() => {setMaskVisible(false);setTool(false);setEditList(false)}}
       onSubmit={async () => {
         if(mask && typeof mask.maskFrom !== 'boolean' && mask?.maskFrom && mask.maskFrom?.onSubmit){
           await mask?.maskFrom.onSubmit()
         }
         actionRef?.current?.reload()
         setTool(false)
+        setEditList(false)
         setMaskVisible(false)
       }}
     >
@@ -444,6 +446,34 @@ const Table: React.FC<Props> = ({
         }}
       />
     </Mask.Form>
+  }
+
+  // 新建按钮
+  const toolBarCreate = (data: createProps | undefined) => {
+    if(!data || typeof data !== 'object' || Array.isArray(data)){
+      message.error('请在create中写入对应的参数')
+      return []
+    }
+    return [
+      <Button
+        type="primary"
+        onClick={() => {
+          if(data?.go){
+            Jump.go(data.go, data.payload)
+            return
+          }
+          setEditList({
+            data,
+            formList: data.formList || []
+          })
+          setMaskVisible(true)
+          setTool('create')
+        }}
+        {...data?.button}
+      >
+        <PlusOutlined /> {data?.text || '新建'}
+      </Button>
+    ]
   }
 
   return (
@@ -468,30 +498,30 @@ const Table: React.FC<Props> = ({
           ignoreRules: false,
           ...props.form,
         }}
-        toolBarRender={() => [ _config?.create ?
-          <Button
-            type="primary"
-            onClick={() => {
-              const { create } = _config
-              if(typeof create === 'boolean') return
-              if(create?.go){
-                Jump.go(create.go, create.payload)
-                return
-              }
-              setMaskVisible(true)
-              setTool('create')
-            }}
-            {..._config?.create?.button}
-          >
-            <PlusOutlined /> {_config?.create?.text || '新建'}
-          </Button> : <> </>,
-        ]}
+        toolBarRender={props?.toolBarRender ? props.toolBarRender : (action:any) => {
+          if(!Array.isArray(toolBar)) return [];
+          let result:React.ReactNode[] = [];
+          toolBar.map((item) => {
+            if(item.method === 'create') {
+              const arr = toolBarCreate(item.create);
+              result = [...result, ...arr];
+            }
+            else{
+              if(!item.fieldRender) return message.error('自定义需要在fieldRender中构建！');
+              const arr = item.fieldRender(action)
+              if(!Array.isArray(arr)) return  message.error('请返回数组，并且为React.ReactNode类型！')
+              result = [...result, ...arr];
+            }
+          })
+
+          return result
+        }}
         columns={list}
         search={searchConfig(search)}
         pagination={paginationConfig(pagination)}
       />
       {
-        _config?.create && typeof _config.create === 'object' && maskVisible &&  tool === 'create' && MaskRender(_config.create, tool, _config.create?.formList)
+        maskVisible && tool === 'create' &&  typeof editList !== 'boolean' && MaskRender(editList?.data, tool, editList?.formList)
       }
       {
         maskVisible &&  tool === 'edit' && typeof editList !== 'boolean' && MaskRender(editList?.data, tool, editList?.formList)

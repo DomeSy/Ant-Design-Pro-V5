@@ -96,7 +96,7 @@ export type tableListProps = ProColumns<TableListProps> & {
   config?: ConfigProps;
   tools?: ToolsProps[]
 };
-interface createProps {
+export interface createProps {
   text?: string;
   button?: ButtonProps;
   go?: string,
@@ -106,7 +106,12 @@ interface createProps {
   formList?: formProps[];
 }
 interface TableConfigProps {
-  create?: false | createProps
+
+}
+interface ToolBar {
+  method?: 'create';
+  create?: createProps;
+  fieldRender?: (data:any) => React.ReactNode[]
 }
 interface Props extends ProTableProps<TableListProps, ParamsType> {
   getFormRef?: (ref: any) => void;
@@ -114,7 +119,11 @@ interface Props extends ProTableProps<TableListProps, ParamsType> {
   tableList?: tableListProps[];
   search?: false | SearchConfigProps;
   pagination?: false | PaginationConfigProps;
-  _config?: TableConfigProps
+  _config?: TableConfigProps;
+  toolBar?: ToolBar[]
+  // toolBarRender?:(action) => ReactNode[];
+  // Bar?: React.ReactNode[];
 }
 
 export default Props;
+0
