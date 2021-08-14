@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProTable from '@ant-design/pro-table';
 import type { FormInstance } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
 import { Button, message, Popconfirm, Divider } from 'antd';
 import { tableSy } from '@/utils/Setting';
 import { paginationConfig, searchConfig } from './components'
@@ -419,7 +418,7 @@ const Table: React.FC<Props> = ({
 
   // 弹框渲染组件
   const MaskRender = (mask:editTools, method: string, formList: formProps[] = []) => {
-    const title = method === 'create' ? '新建' : tableSy.tools.edit.text
+    const title = method === 'create' ? tableSy.toolBar.create.text : tableSy.tools.edit.text
     return <Mask.Form
       title={title}
       message={`${title}成功`}
@@ -470,8 +469,9 @@ const Table: React.FC<Props> = ({
           setTool('create')
         }}
         {...data?.button}
+        style={{ ...tableSy.toolBar.commonStyle,...tableSy.toolBar.create.style, ...data.button?.style}}
       >
-        <PlusOutlined /> {data?.text || '新建'}
+       { data.suffix || tableSy.toolBar.create.suffix} {data?.text ||  tableSy.toolBar.create.text}
       </Button>
     ]
   }

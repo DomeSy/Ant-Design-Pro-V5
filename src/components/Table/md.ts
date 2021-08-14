@@ -27,6 +27,7 @@
  * @param from 对应 From组件的全部属性，具体的请参照对应的文档
  * @param formList 对应from表单的list属性
  * @param button 对应Button的相关属性
+ * @param suffer 前置图标，默认➕，不显示返回false即可
  *
  * @tableList 下的参数（独有参数不一定，一个参数在不同的type下有可能有不同的意思)
  * @param type 用于判断类型 有 date 日期 tools 额外配置

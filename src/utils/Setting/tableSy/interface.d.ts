@@ -1,5 +1,5 @@
 import { RuleProps } from '../commonSy';
-
+import { ButtonProps } from 'antd';
 
 interface SearchProps {
   hidden: boolean; //是否影藏搜索框, 如果这个设置为true则其余设置均无用
@@ -64,6 +64,15 @@ interface ToolsProps {
   commonStyle: React.CSSProperties //工具模块配置样式
 }
 
+interface ToolBarProps {
+  create: {
+    text: string //新建按钮文字
+    style: React.CSSProperties //单独设置样式
+    suffix: React.ReactNode // 前置图标
+  },
+  commonStyle: React.CSSProperties //统一按钮样式
+}
+
 interface TableProps {
   rowKey: string; // rowKey对应列表中的key，这里只设置string类型，可以统一设置
   search: SearchProps; // 搜索框整体配置
@@ -71,6 +80,7 @@ interface TableProps {
   options: OptionProps | false; // 工具栏的整体配置
   tableList: TableListProps; // 设置columns全局属性
   tools: ToolsProps; //操作全局配置
+  toolBar: ToolBarProps; //定义操作属性
 }
 
 export default TableProps;

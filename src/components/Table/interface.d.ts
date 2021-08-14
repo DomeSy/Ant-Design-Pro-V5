@@ -104,6 +104,7 @@ export interface createProps {
   maskFrom?: MaskFromProps;
   form?: FormPropsSy & FormCommonProps;
   formList?: formProps[];
+  suffix?: React.ReactNode
 }
 interface TableConfigProps {
 
@@ -124,4 +125,3 @@ interface Props extends ProTableProps<TableListProps, ParamsType> {
 }
 
 export default Props;
-0

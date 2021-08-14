@@ -1,5 +1,7 @@
 import commonSy from '../commonSy';
-import TableProps from './interface.d'
+import TableProps from './interface'
+import { PlusOutlined } from '@ant-design/icons';
+
 /**
  * @module 全局表单部分
  *
@@ -37,6 +39,14 @@ const tableSy: TableProps = {
     pageSize: 10,
     jump: false,
     size: 'small',
+  },
+  toolBar: {
+    create: {
+      text: '新建',
+      style: {},
+      suffix: <PlusOutlined />,
+    },
+    commonStyle: {}
   },
   rowKey: 'key',
   tools: {
