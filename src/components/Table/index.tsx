@@ -509,7 +509,7 @@ const Table: React.FC<Props> = ({
             else{
               if(!item.fieldRender) return message.error('自定义需要在fieldRender中构建！');
               const arr = item.fieldRender(action)
-              if(!Array.isArray(arr)) return  message.error('请返回数组，并且为React.ReactNode类型！')
+              if(!Array.isArray(arr)) return message.error('请返回数组，并且为React.ReactNode类型！')
               result = [...result, ...arr];
             }
           })

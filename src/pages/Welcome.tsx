@@ -176,9 +176,44 @@ const Welcome: React.FC<any> = (props) => {
         getRef={(ref) => setRef(ref)}
         request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
         tableList={columns}
-        // toolBarRender={() => {
-        //   return [<div>1111</div>, <div>11112</div>]
-        // }}
+        search={{
+          options: [
+            {
+              method: 'export',
+              export: {
+                onExportBefore: () => {
+                  const columns: tableListProps[] = [
+                    {
+                      title: '组件',
+                      dataIndex: 'name',
+                    },
+                    {
+                      title: '组件',
+                      dataIndex: 'component',
+                    },
+                    {
+                      title: '描述',
+                      dataIndex: 'desc',
+                    },
+                  ]
+                  const file =[
+                    { name: 'Form', component: '动态表单', desc: '帮助快速开发的工具'},
+                    { name: 'Table', component: '动态表格', desc: '对ProForm进行封装'},
+                    { name: 'PageLayout', component: '页面容器', desc: '对PageContainer进行封装'},
+                  ]
+                  const list = [
+                    {headers: columns, data: file, sheetName: '导出1'},
+                    {headers: columns, data: file, sheetName: '导出2'}
+                  ]
+                  return {
+                    title: '表单导出Excle',
+                    list
+                  }
+                }
+              }
+            }
+          ]
+        }}
         toolBar={[
           {
             method: 'create',

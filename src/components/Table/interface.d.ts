@@ -17,10 +17,17 @@ export interface SearchConfigProps extends BaseQueryFilterProps {
   show?: boolean;
   cancelShow?: boolean;
   layout?: 'horizontal' | 'vertical';
+  options?: SearchOptionsProps[];
 }
-
+interface SearchOptionsProps{
+  method?: 'export',
+  fieldRender?: (searchConfig:any, formProps:any) => React.ReactNode,
+  export?: {
+    text?: string;
+    onExportBefore?: (searchConfig:any, formProps:any) => void,
+  }
+}
 export interface PaginationConfigProps extends TablePaginationConfig {}
-
 export interface editTools extends createProps {
   style?: React.CSSProperties
   onBeforeStart?: any
