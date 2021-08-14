@@ -105,11 +105,30 @@
  * @param showEndType 结束时间的类型， 默认 HH:mm:ss'
  *
  * @search下的参数
+ * @param cancel 是否取消原有的查询和导出按钮，如果写入将没有查询和导出按钮(谨慎使用)
  * @param searchText 查询按钮文本，默认查询
  * @param resetText 重置按钮文本，默认重置
  * @param show 是否默认展开
  * @param cancelShow 是否默认展开并去除展开收起按钮
  * @param labelWidth 名称的宽度 默认为 100（刚好是4字加一个提示符号和冒号）
+ * @param options 自定义按钮配置
+ *
+ * @options下的参数 （返回一个数组，）
+ * @param method（在查询重置之后） 模式 export 导出 search 查询按钮 reset 重置按钮
+ * @param export 导出的相关配置
+ * @param fieldRender 自定义状态（接收两个原有optionRender参数）
+ *
+ * @export下的参数
+ * @param text 对应的文字 默认导出
+ * @param message 导出成功对应的提示
+ * @param button 按钮的相关配置
+ * @param style 对应的样式
+ * @param searchProps 查询按钮对应的按钮属性
+ * @param resetProps 重置按钮对应的按钮属性
+ * @param searchStyle 查询按钮对应的样式
+ * @param resetStyle 重置按钮对应得到样式
+ * @param onExportBefore 导出之前的方法（接收两个原有optionRender参数），返回需要满足 Method.ExportExcel的参数要求
+ * @param onExportAfter 导出之后的方法
  *
  * @pagination下的参数
  * @param showQuickJumper 是否加入跳转元素，（当数据只有一页时）

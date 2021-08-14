@@ -5,7 +5,7 @@ import { TablePaginationConfig } from './data.d';
 import { ButtonProps, message } from 'antd';
 import { TableProps } from '@/utils/Setting/tableSy';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
-import type { MaskFromProps, formProps, FormPropsSy, FormCommonProps } from '@/components'
+import type { MaskFromProps, formProps, FormPropsSy, FormCommonProps } from '@/components';
 import { extend } from 'umi-request';
 export interface TableListProps {
   type: string;
@@ -17,20 +17,29 @@ export interface SearchConfigProps extends BaseQueryFilterProps {
   show?: boolean;
   cancelShow?: boolean;
   layout?: 'horizontal' | 'vertical';
+  cancel?: boolean;
+  searchProps?: ButtonProps;
+  resetProps?: ButtonProps;
+  searchStyle?: React.CSSProperties;
+  resetStyle?: React.CSSProperties;
   options?: SearchOptionsProps[];
 }
-interface SearchOptionsProps{
-  method?: 'export',
-  fieldRender?: (searchConfig:any, formProps:any) => React.ReactNode,
+interface SearchOptionsProps {
+  method?: 'export' | 'search' | 'reset';
+  fieldRender?: (searchConfig: any, formProps: any) => React.ReactNode;
   export?: {
     text?: string;
-    onExportBefore?: (searchConfig:any, formProps:any) => void,
-  }
+    message?: string;
+    onExportBefore?: (searchConfig: any, formProps: any) => void;
+    onExportAfter?: () => void;
+    button?: ButtonProps;
+    style?: React.CSSProperties;
+  };
 }
 export interface PaginationConfigProps extends TablePaginationConfig {}
 export interface editTools extends createProps {
-  style?: React.CSSProperties
-  onBeforeStart?: any
+  style?: React.CSSProperties;
+  onBeforeStart?: any;
 }
 
 export interface deleteTools {
@@ -52,11 +61,12 @@ export interface stateTools {
   title?: string;
   onState: (values: Object<any>) => void;
   onEdit: (values: Object<any>) => void;
-  onSuccess?: (data: any, flag:boolean) => void;
+  onSuccess?: (data: any, flag: boolean) => void;
   onRequest: any;
   style?: React.CSSProperties;
 }
-interface ToolsProps { //工具
+interface ToolsProps {
+  //工具
   method?: 'edit' | 'delete' | 'state';
   edit?: editTools;
   delete?: deleteTools;
@@ -101,25 +111,23 @@ export type tableListProps = ProColumns<TableListProps> & {
   rulesRender?: Array<any>;
   noRequired?: boolean;
   config?: ConfigProps;
-  tools?: ToolsProps[]
+  tools?: ToolsProps[];
 };
 export interface createProps {
   text?: string;
   button?: ButtonProps;
-  go?: string,
+  go?: string;
   payload?: Object;
   maskFrom?: MaskFromProps;
   form?: FormPropsSy & FormCommonProps;
   formList?: formProps[];
-  suffix?: React.ReactNode
+  suffix?: React.ReactNode;
 }
-interface TableConfigProps {
-
-}
+interface TableConfigProps {}
 interface ToolBar {
   method?: 'create';
   create?: createProps;
-  fieldRender?: (data:any) => React.ReactNode[]
+  fieldRender?: (data: any) => React.ReactNode[];
 }
 interface Props extends ProTableProps<TableListProps, ParamsType> {
   getFormRef?: (ref: any) => void;
@@ -128,7 +136,7 @@ interface Props extends ProTableProps<TableListProps, ParamsType> {
   search?: false | SearchConfigProps;
   pagination?: false | PaginationConfigProps;
   _config?: TableConfigProps;
-  toolBar?: ToolBar[]
+  toolBar?: ToolBar[];
 }
 
 export default Props;
