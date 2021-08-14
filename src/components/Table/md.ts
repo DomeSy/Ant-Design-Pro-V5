@@ -9,10 +9,14 @@
  * @param tableList 请求的列 替换原有的 columns（如果columns存在，则会替换tableList）
  * @param _config 额外配置(在原有的配置上加入其它属性，来帮助开发)
  * @param rowKey rowKey对应列表中的key,这个值其实就是列表的key，没有会报错，通常来说，后端返回列表的时候会有一个类似于key，id这样唯一的值做以区分，那么这个 rowKey 就是接口返回的key，id，因为通常而言这个key是一样的所以可以统一设置
- * @param toolBarRender 替换原有的toolBarRender,改为数组格式
- *
+ * @param toolBar 替换原有的toolBarRender,改为数组格式，如果toolBarRender存在则，走toolBarRender
  * @_config 额外配置
  * @param create 新建按钮，可跳转新的页面，也可以自动生成表单，与Mask组件和Form组件结合，为false是不显示，否则为对象
+ *
+ * @param toolBar 数组的格式，接收React.ReactNode的形式。
+ * @param method 方式 creat 新建
+ * @param create 新建按钮存在的对象
+ * @param fieldRender 自定义，接收toolBarRender的参数，返回数组=>React.React.ReactNode
  *
  * @create 下的参数
  * @param go 跳转页面的路径

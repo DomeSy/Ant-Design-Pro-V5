@@ -121,8 +121,6 @@ interface Props extends ProTableProps<TableListProps, ParamsType> {
   pagination?: false | PaginationConfigProps;
   _config?: TableConfigProps;
   toolBar?: ToolBar[]
-  // toolBarRender?:(action) => ReactNode[];
-  // Bar?: React.ReactNode[];
 }
 
 export default Props;
