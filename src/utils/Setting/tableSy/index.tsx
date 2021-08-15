@@ -27,6 +27,11 @@ const tableSy: TableProps = {
     resetText: '重置',
     vertical: false,
     span: false,
+    options: {
+      export: {
+        text: '导出'
+      }
+    }
   },
   options: {
     density: true,

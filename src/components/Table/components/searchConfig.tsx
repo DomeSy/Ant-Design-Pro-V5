@@ -48,7 +48,7 @@ import { SearchConfigProps } from '../interface';
             onClick={async () => {
               if(!item.export?.onExportBefore) return  message.error('请在onExportBefore进行返回！')
               const payload:any = await item.export?.onExportBefore(searchConfig, formProps)
-              const msg = item.export.message || `${item.export.text || '导出'}成功`
+              const msg = item.export.message || `${item.export.text || tableSy.search.options.export.text}成功`
               if(typeof payload === 'string'){
                 await Method.ExportExcel(payload)
                 if(item.export.onExportAfter) await item.export.onExportAfter()
@@ -64,7 +64,7 @@ import { SearchConfigProps } from '../interface';
             }}
             style={{ ...item.export.style}}
             {...item.export.button}
-          >{item.export.text || '导出'}</Button>
+          >{item.export.text || tableSy.search.options.export.text}</Button>
         result = [...result, arr]
       }else{
         if(!item.fieldRender) return message.error('自定义需要在fieldRender中构建！');

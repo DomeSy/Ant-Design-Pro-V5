@@ -12,12 +12,6 @@ import type { ActionType } from '@ant-design/pro-table';
 import { Jump } from '@/utils'
 import moment from 'moment';
 
-/**
- * 1>columns 有几个参数
- * formItemProps: 制定规则，
- * fieldProps： 当前属性的其他属性
- * renderFormItem： 自定义搜索框的样式
- */
 
 interface EditsProps {
   formList: formProps[],

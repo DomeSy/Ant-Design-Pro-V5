@@ -1,6 +1,11 @@
 import { RuleProps } from '../commonSy';
 import { ButtonProps } from 'antd';
 
+interface SearchOptionsProps {
+  export: { //导出
+    text: string //导出的文字
+  }
+}
 interface SearchProps {
   hidden: boolean; //是否影藏搜索框, 如果这个设置为true则其余设置均无用
   show: boolean; //是否默认展开，默认 false 不展开
@@ -8,6 +13,7 @@ interface SearchProps {
   searchText: string; //查询按钮文案
   resetText: string; //重置按钮文本
   vertical: boolean; //样式是否垂直 默认水平
+  options: SearchOptionsProps; // 搜索框配置样式
   span:
     | false
     | number
