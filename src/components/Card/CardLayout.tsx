@@ -28,37 +28,7 @@ const topColResponsiveProps = {
 
 const CardLayout: React.FC<CardLayoutProps>  = (props) => {
   return <>
-         <Row
-            gutter={24}
-            style={{
-            }}
-          >
-        <Col {...topColResponsiveProps}>
-          <ProCard>
-            <div>1</div>
-          </ProCard>
-        </Col>
-        <Col {...topColResponsiveProps}>
-          <ProCard>
-            <div>2</div>
-          </ProCard>
-        </Col>
-        <Col {...topColResponsiveProps}>
-          <ProCard>
-            <div>3</div>
-          </ProCard>
-        </Col>
-        <Col {...topColResponsiveProps}>
-          <ProCard>
-            <div>4</div>
-          </ProCard>
-        </Col>
-        {/* <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-          <ProCard>
-            <div>2</div>
-          </ProCard>
-        </Col> */}
-      </Row>
+
   </>;
 };
 

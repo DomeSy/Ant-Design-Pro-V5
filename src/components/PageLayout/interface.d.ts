@@ -11,4 +11,12 @@ interface Props extends PageContainerProps {
   onChange?: (key?: React.ReactText) => void;
   _config?: ConfigProps;
 }
+
+export interface WayProps {
+  list: React.ReactNode;
+  gutter?: number;
+  rowStyle?: React.CSSProperties;
+  colStyle?: React.CSSProperties;
+}
+
 export default Props;
