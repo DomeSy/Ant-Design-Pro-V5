@@ -465,7 +465,7 @@ const Table: React.FC<Props> = ({
         {...data?.button}
         style={{ ...tableSy.toolBar.commonStyle,...tableSy.toolBar.create.style, ...data.button?.style}}
       >
-       { data.suffix || tableSy.toolBar.create.suffix} {data?.text ||  tableSy.toolBar.create.text}
+       { data.prefix  || tableSy.toolBar.create.prefix} {data?.text ||  tableSy.toolBar.create.text}
       </Button>
     ]
   }

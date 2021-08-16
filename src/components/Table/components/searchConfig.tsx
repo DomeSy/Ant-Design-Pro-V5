@@ -15,19 +15,19 @@ import { SearchConfigProps } from '../interface';
       key="submit"
       type="primary"
       htmlType="submit"
-      style={{...search?.searchStyle}}
+      style={{ ...tableSy.search.commonStyle, ...tableSy.search.searchStyle, ...search?.searchStyle}}
       {...search?.searchProps}
     >
-      {search?.searchText || tableSy.search.searchText}
+      {search?.searchPrefix || tableSy.search.searchPrefix} {search?.searchText || tableSy.search.searchText}
     </Button>
 
     const reset = <Button
         key="reset"
         htmlType='reset'
-        style={{...search?.resetStyle}}
+        style={{ ...tableSy.search.commonStyle, ...tableSy.search.resetStyle,...search?.resetStyle}}
         {...search?.resetProps}
       >
-        {search?.resetText || tableSy.search.resetText}
+       {search?.resetPrefix || tableSy.search.resetPrefix} {search?.resetText || tableSy.search.resetText}
       </Button>
 
     const dom = [ submit, reset ]
@@ -62,9 +62,9 @@ import { SearchConfigProps } from '../interface';
               if(item.export.onExportAfter) await item.export.onExportAfter()
               message.success(msg)
             }}
-            style={{ ...item.export.style}}
+            style={{ ...tableSy.search.commonStyle, ...tableSy.search.options.export.style, ...item.export.style}}
             {...item.export.button}
-          >{item.export.text || tableSy.search.options.export.text}</Button>
+          >{item.export.prefix || tableSy.search.options.export.prefix} {item.export.text || tableSy.search.options.export.text}</Button>
         result = [...result, arr]
       }else{
         if(!item.fieldRender) return message.error('自定义需要在fieldRender中构建！');

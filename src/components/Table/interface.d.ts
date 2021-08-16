@@ -20,6 +20,8 @@ export interface SearchConfigProps extends BaseQueryFilterProps {
   cancel?: boolean;
   searchProps?: ButtonProps;
   resetProps?: ButtonProps;
+  searchPrefix?: React.ReactNode;
+  resetPrefix?: React.ReactNode;
   searchStyle?: React.CSSProperties;
   resetStyle?: React.CSSProperties;
   options?: SearchOptionsProps[];
@@ -34,6 +36,7 @@ interface SearchOptionsProps {
     onExportAfter?: () => void;
     button?: ButtonProps;
     style?: React.CSSProperties;
+    prefix?: React.ReactNode;
   };
 }
 export interface PaginationConfigProps extends TablePaginationConfig {}
@@ -121,7 +124,7 @@ export interface createProps {
   maskFrom?: MaskFromProps;
   form?: FormPropsSy & FormCommonProps;
   formList?: formProps[];
-  suffix?: React.ReactNode;
+  prefix?: React.ReactNode;
 }
 interface TableConfigProps {}
 interface ToolBar {

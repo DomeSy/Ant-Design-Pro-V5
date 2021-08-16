@@ -27,9 +27,16 @@ const tableSy: TableProps = {
     resetText: '重置',
     vertical: false,
     span: false,
+    searchStyle: {},
+    resetStyle: {},
+    commonStyle: {},
+    searchPrefix: false,
+    resetPrefix: false,
     options: {
       export: {
-        text: '导出'
+        text: '导出',
+        prefix: false,
+        style: {}
       }
     }
   },
@@ -49,7 +56,7 @@ const tableSy: TableProps = {
     create: {
       text: '新建',
       style: {},
-      suffix: <PlusOutlined />,
+      prefix: <PlusOutlined />,
     },
     commonStyle: {}
   },

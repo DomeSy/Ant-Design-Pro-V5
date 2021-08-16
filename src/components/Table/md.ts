@@ -27,7 +27,7 @@
  * @param from 对应 From组件的全部属性，具体的请参照对应的文档
  * @param formList 对应from表单的list属性
  * @param button 对应Button的相关属性
- * @param suffer 前置图标，默认➕，不显示返回false即可
+ * @param prefix 前置图标，默认➕，不显示返回false即可
  *
  * @tableList 下的参数（独有参数不一定，一个参数在不同的type下有可能有不同的意思)
  * @param type 用于判断类型 有 date 日期 tools 额外配置
@@ -127,6 +127,8 @@
  * @param resetProps 重置按钮对应的按钮属性
  * @param searchStyle 查询按钮对应的样式
  * @param resetStyle 重置按钮对应得到样式
+ * @param searchPrefix 搜索按钮前置图标
+ * @param resetPrefix 重置按钮前置图标
  * @param onExportBefore 导出之前的方法（接收两个原有optionRender参数），返回需要满足 Method.ExportExcel的参数要求
  * @param onExportAfter 导出之后的方法
  *
