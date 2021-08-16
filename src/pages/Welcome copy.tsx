@@ -3,6 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
 import { Button, OssUpLoad, Form, PageLayout, Table, Mask } from '@/components';
 import type { formProps, tableListProps } from '@/components'
+import { PlusOutlined } from '@ant-design/icons';
 import { queryRule } from './service'
 const { Option } = Select;
 
@@ -176,27 +177,83 @@ const Welcome: React.FC<any> = (props) => {
         getRef={(ref) => setRef(ref)}
         request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
         tableList={columns}
-        _config={{
-          create: {
-            formList: [
-              {
-                name: 'test1',
-                label: 'MaskFrom111asdasd1'
-              },
-              {
-                name: 'test2',
-                label: 'MaskFrom3'
-              },
-            ],
-            form: {
+        rowKey="key"
+        search={{
+          options: [
+            {
+              method: 'export',
+              export: {
+                onExportBefore: () => {
+                  const columns: tableListProps[] = [
+                    {
+                      title: '组件',
+                      dataIndex: 'name',
+                    },
+                    {
+                      title: '组件',
+                      dataIndex: 'component',
+                    },
+                    {
+                      title: '描述',
+                      dataIndex: 'desc',
+                    },
+                  ]
+                  const file =[
+                    { name: 'Form', component: '动态表单', desc: '帮助快速开发的工具'},
+                    { name: 'Table', component: '动态表格', desc: '对ProForm进行封装'},
+                    { name: 'PageLayout', component: '页面容器', desc: '对PageContainer进行封装'},
+                  ]
+                  const list = [
+                    {headers: columns, data: file, sheetName: '导出1'},
+                    {headers: columns, data: file, sheetName: '导出2'}
+                  ]
+                  return {
+                    title: '表单导出Excle',
+                    list
+                  }
+                }
+              }
             },
-            maskFrom: {
-              onEdit:(values: any) => {
-                return values;
+            {
+              method: 'button',
+              button: {
+                prefix: <PlusOutlined />,
+                text: '测试Button'
+              }
+            }
+          ]
+        }}
+        toolBar={[
+          {
+            method: 'create',
+            create: {
+              formList: [
+                {
+                  name: 'test1',
+                  label: 'MaskFrom111asdasd1'
+                },
+                {
+                  name: 'test2',
+                  label: 'MaskFrom3'
+                },
+              ],
+              form: {
               },
-              onRequest: queryRule
+              maskFrom: {
+                onEdit:(values: any) => {
+                  return values;
+                },
+                onRequest: queryRule
+              }
+            }
+          },
+          {
+            fieldRender: (action:any) => {
+              return [<Button>测试</Button>]
             }
           }
+        ]}
+        _config={{
         }}
       />
     </PageLayout>
