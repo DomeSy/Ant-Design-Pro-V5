@@ -27,7 +27,7 @@ export interface SearchConfigProps extends BaseQueryFilterProps {
   options?: SearchOptionsProps[];
 }
 interface SearchOptionsProps {
-  method?: 'export' | 'search' | 'reset';
+  method?: 'export' | 'search' | 'reset' | 'button';
   fieldRender?: (searchConfig: any, formProps: any) => React.ReactNode;
   export?: {
     text?: string;
@@ -38,13 +38,20 @@ interface SearchOptionsProps {
     style?: React.CSSProperties;
     prefix?: React.ReactNode;
   };
+  button?: {
+    type?: "link" | "text" | "ghost" | "primary" | "default" | "dashed";
+    onClick?: () => void;
+    text: string,
+    style?: React.CSSProperties,
+    prefix?: React.ReactNode;
+    props?: ButtonProps
+  }
 }
 export interface PaginationConfigProps extends TablePaginationConfig {}
 export interface editTools extends createProps {
   style?: React.CSSProperties;
   onBeforeStart?: any;
 }
-
 export interface deleteTools {
   text?: string;
   okText?: string;

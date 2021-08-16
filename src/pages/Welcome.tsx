@@ -3,6 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
 import { Button, OssUpLoad, Form, PageLayout, Table, Mask } from '@/components';
 import type { formProps, tableListProps } from '@/components'
+import { PlusOutlined } from '@ant-design/icons';
 import { queryRule } from './service'
 const { Option } = Select;
 
@@ -210,6 +211,13 @@ const Welcome: React.FC<any> = (props) => {
                     list
                   }
                 }
+              }
+            },
+            {
+              method: 'button',
+              button: {
+                prefix: <PlusOutlined />,
+                text: '测试Button'
               }
             }
           ]

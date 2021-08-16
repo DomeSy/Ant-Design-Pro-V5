@@ -113,8 +113,8 @@
  * @param labelWidth 名称的宽度 默认为 100（刚好是4字加一个提示符号和冒号）
  * @param options 自定义按钮配置
  *
- * @options下的参数 （返回一个数组，）
- * @param method（在查询重置之后） 模式 export 导出 search 查询按钮 reset 重置按钮
+ * @options下的参数 （返回一个数组）
+ * @param method（在查询重置之后） 模式 export 导出 search 查询按钮 reset 重置按钮 button 自定义按钮
  * @param export 导出的相关配置
  * @param fieldRender 自定义状态（接收两个原有optionRender参数）
  *
@@ -131,6 +131,14 @@
  * @param resetPrefix 重置按钮前置图标
  * @param onExportBefore 导出之前的方法（接收两个原有optionRender参数），返回需要满足 Method.ExportExcel的参数要求
  * @param onExportAfter 导出之后的方法
+ *
+ * @button下的参数 自定义按钮，如果是其他按钮，可以用这个，方便统一样式处理
+ * @param text 按钮的文字
+ * @param prefix 按钮的前置图标
+ * @param style 按钮的样式
+ * @param type 对应按钮的type
+ * @param onClick 对应按钮的点击事件
+ * @param props 对应AntD的按钮样式
  *
  * @pagination下的参数
  * @param showQuickJumper 是否加入跳转元素，（当数据只有一页时）

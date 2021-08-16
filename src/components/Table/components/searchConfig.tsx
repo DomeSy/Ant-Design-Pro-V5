@@ -2,6 +2,7 @@ import { tableSy } from '@/utils/Setting';
 import { Button, message } from 'antd';
 import { Method } from '@/utils';
 import { SearchConfigProps } from '../interface';
+
 /**
  * @module 分页模块配置
  */
@@ -65,6 +66,17 @@ import { SearchConfigProps } from '../interface';
             style={{ ...tableSy.search.commonStyle, ...tableSy.search.options.export.style, ...item.export.style}}
             {...item.export.button}
           >{item.export.prefix || tableSy.search.options.export.prefix} {item.export.text || tableSy.search.options.export.text}</Button>
+        result = [...result, arr]
+      }else if(item.method === 'button'){
+        if(!item.button) return message.error('请在button中写对应的参数！')
+        const arr = <Button
+          type={item.button.type}
+          onClick={item.button.onClick}
+          {...item.button.props}
+          style={{ ...tableSy.search.commonStyle, ...item.button.style}}
+        >
+          {item.button.prefix} {item.button.text || '自定义按钮'}
+        </Button>
         result = [...result, arr]
       }else{
         if(!item.fieldRender) return message.error('自定义需要在fieldRender中构建！');
