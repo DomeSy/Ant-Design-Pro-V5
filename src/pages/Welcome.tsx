@@ -177,6 +177,7 @@ const Welcome: React.FC<any> = (props) => {
         getRef={(ref) => setRef(ref)}
         request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
         tableList={columns}
+        rowKey="key"
         search={{
           options: [
             {
@@ -253,7 +254,6 @@ const Welcome: React.FC<any> = (props) => {
           }
         ]}
         _config={{
-
         }}
       />
     </PageLayout>

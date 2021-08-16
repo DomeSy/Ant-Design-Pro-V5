@@ -37,7 +37,7 @@ import { SearchConfigProps } from '../interface';
     let result: React.ReactNode[] = []
     if(!search.cancel) result = [...dom]
 
-    search.options.map((item) => {
+    search.options.map((item, index) => {
       if(item.method === 'search'){
         result = [...result, submit]
       } else if(item.method === 'reset') {
@@ -45,7 +45,7 @@ import { SearchConfigProps } from '../interface';
       } else if(item.method === 'export'){
         if(!item.export) return message.error('请在export中写对应的参数！')
         const arr = <Button
-            key="out"
+            key={'out' + index}
             onClick={async () => {
               if(!item.export?.onExportBefore) return  message.error('请在onExportBefore进行返回！')
               const payload:any = await item.export?.onExportBefore(searchConfig, formProps)
@@ -70,6 +70,7 @@ import { SearchConfigProps } from '../interface';
       }else if(item.method === 'button'){
         if(!item.button) return message.error('请在button中写对应的参数！')
         const arr = <Button
+          key={'optionButton' + index}
           type={item.button.type}
           onClick={item.button.onClick}
           {...item.button.props}
