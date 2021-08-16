@@ -14,8 +14,9 @@
  * @param create 新建按钮，可跳转新的页面，也可以自动生成表单，与Mask组件和Form组件结合，为false是不显示，否则为对象
  *
  * @param toolBar 数组的格式，接收React.ReactNode的形式。
- * @param method 方式 creat 新建
+ * @param method 方式 creat 新建 button 自定义按钮
  * @param create 新建按钮存在的对象
+ * @param button 新建按钮存在的对象
  * @param fieldRender 自定义，接收toolBarRender的参数，返回数组=>React.React.ReactNode
  *
  * @create 下的参数
@@ -28,6 +29,14 @@
  * @param formList 对应from表单的list属性
  * @param button 对应Button的相关属性
  * @param prefix 前置图标，默认➕，不显示返回false即可
+ *
+ * @button下的参数 自定义按钮，如果是其他按钮，可以用这个，方便统一样式处理
+ * @param text 按钮的文字
+ * @param prefix 按钮的前置图标
+ * @param style 按钮的样式
+ * @param type 对应按钮的type
+ * @param onClick 对应按钮的点击事件
+ * @param props 对应AntD的按钮样式
  *
  * @tableList 下的参数（独有参数不一定，一个参数在不同的type下有可能有不同的意思)
  * @param type 用于判断类型 有 date 日期 tools 额外配置

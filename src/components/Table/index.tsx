@@ -499,8 +499,18 @@ const Table: React.FC<Props> = ({
             if(item.method === 'create') {
               const arr = toolBarCreate(item.create);
               result = [...result, ...arr];
-            }
-            else{
+            } else if(item.method === 'button'){
+              if(!item.button) return message.error('请在button中写对应的参数！')
+              const arr = <Button
+                type={item.button.type}
+                onClick={item.button.onClick}
+                {...item.button.props}
+                style={{ ...tableSy.search.commonStyle, ...item.button.style}}
+              >
+                {item.button.prefix} {item.button.text || '自定义按钮'}
+              </Button>
+              result = [...result, arr]
+            }else{
               if(!item.fieldRender) return message.error('自定义需要在fieldRender中构建！');
               const arr = item.fieldRender(action)
               if(!Array.isArray(arr)) return message.error('请返回数组，并且为React.ReactNode类型！')

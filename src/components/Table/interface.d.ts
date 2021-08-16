@@ -26,6 +26,15 @@ export interface SearchConfigProps extends BaseQueryFilterProps {
   resetStyle?: React.CSSProperties;
   options?: SearchOptionsProps[];
 }
+
+interface optionButtonProps {
+  type?: "link" | "text" | "ghost" | "primary" | "default" | "dashed";
+  onClick?: () => void;
+  text: string,
+  style?: React.CSSProperties,
+  prefix?: React.ReactNode;
+  props?: ButtonProps
+}
 interface SearchOptionsProps {
   method?: 'export' | 'search' | 'reset' | 'button';
   fieldRender?: (searchConfig: any, formProps: any) => React.ReactNode;
@@ -38,14 +47,7 @@ interface SearchOptionsProps {
     style?: React.CSSProperties;
     prefix?: React.ReactNode;
   };
-  button?: {
-    type?: "link" | "text" | "ghost" | "primary" | "default" | "dashed";
-    onClick?: () => void;
-    text: string,
-    style?: React.CSSProperties,
-    prefix?: React.ReactNode;
-    props?: ButtonProps
-  }
+  button?: optionButtonProps
 }
 export interface PaginationConfigProps extends TablePaginationConfig {}
 export interface editTools extends createProps {
@@ -135,8 +137,9 @@ export interface createProps {
 }
 interface TableConfigProps {}
 interface ToolBar {
-  method?: 'create';
+  method?: 'create' | 'button';
   create?: createProps;
+  button?: optionButtonProps;
   fieldRender?: (data: any) => React.ReactNode[];
 }
 interface Props extends ProTableProps<TableListProps, ParamsType> {
