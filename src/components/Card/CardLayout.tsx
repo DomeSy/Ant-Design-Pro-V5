@@ -1,34 +1,59 @@
-import type { CardLayoutProps } from './interface';
+import type { CardLayoutProps, CardLayoutListProps } from './interface';
 import ProCard from '@ant-design/pro-card';
-import { Col, Row, message, Modal, Button } from 'antd';
+
+import { PageLayout } from '@/components'
+import { useState, useEffect } from 'react';
 
 /**
- * @module Mask // 为简化开发将Modal和Drawer
+ * @module CardLayOut
+ *
+ * 通过卡片来实现响应式布局
  *
  */
 
-const topColResponsiveProps = {
-  xs: 24,
-  sm: 24,
-  md: 24,
-  lg: 24,
-  xl: 12,
-  style: { marginBottom: 24 },
-};
+const CardLayout: React.FC<CardLayoutProps>  = ({list, gutter, rowStyle, colStyle, ...props}) => {
 
-// xl={12} lg={24} md={24} sm={24} xs={24}
-// const topColResponsiveProps = {
-//   xs: 24,
-//   sm: 12,
-//   md: 12,
-//   lg: 12,
-//   xl: 6,
-//   style: { marginBottom: 24 },
-// };
+  const [cardList, setList] = useState<React.ReactNode[]>([])
 
-const CardLayout: React.FC<CardLayoutProps>  = (props) => {
+  useEffect(() => {
+    initCardList()
+  }, [])
+
+  const initCardList = () => {
+    let result:React.ReactNode[] = []
+    list.map((item, index) => {
+      console.log(typeof item)
+      if(item.render){
+        const { render, ...otherProps} = item;
+        const arr = cardRender({children: render, ...otherProps})
+        result = [...result, arr]
+      } else {
+        const arr = cardRender({children: item});
+        result = [...result, arr]
+      }
+    })
+    setList(result)
+  }
+
+  const cardRender = ({children, ...otherProps}:CardLayoutListProps) => {
+    return <ProCard
+    headerBordered
+    hoverable
+    {...otherProps}
+  >
+    {children}
+  </ProCard>
+  }
+
   return <>
-
+    {
+      Array.isArray(list) && (list.length === 2 || list.length === 4)  ?
+        <>
+          {cardList.length !== 0 && <PageLayout.Way gutter={gutter} rowStyle={rowStyle} colStyle={colStyle} list={cardList} />}
+        </>
+      :
+      <div style={{color: 'red'}}>list必须为数组，并且元素个数2个或4个</div>
+      }
   </>;
 };
 

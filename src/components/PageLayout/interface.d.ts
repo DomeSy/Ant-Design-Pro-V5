@@ -13,7 +13,7 @@ interface Props extends PageContainerProps {
 }
 
 export interface WayProps {
-  list: React.ReactNode;
+  list: React.ReactNode[];
   gutter?: number;
   rowStyle?: React.CSSProperties;
   colStyle?: React.CSSProperties;

@@ -8,7 +8,7 @@ import { WayProps } from './interface.d';
  * @param list 数据， 接收React.ReactNode，并且个数为2或者4个
  * @param gutter 对应Row中的gutter
  * @param rowStyle Row的样式
- * @param colStyle Col的样式
+ * @param colStyle Col
  */
 
 const topColFour = {
