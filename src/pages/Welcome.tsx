@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
-import {  Select, message, Col, Dropdown, Menu, Row } from 'antd';
+import { Select, message, Col, Dropdown, Menu, Row } from 'antd';
 import { Button, OssUpLoad, Form, PageLayout, Table, Card } from '@/components';
 import { layout } from '../app';
 const { Option } = Select;
@@ -20,10 +20,33 @@ const Welcome: React.FC<any> = (props) => {
     <PageLayout>
       <Card.Layout
         list={[
-          <div>1</div>,
-          <div>2</div>,
-          <div>3</div>,
-          <div>4</div>,
+          {
+            render: <div>1</div>,
+          },
+          {
+            render: <div>21</div>,
+          },
+          {
+            render: <div>31</div>,
+          },
+          {
+            render: <div>4</div>,
+          },
+          {
+            render: <div>5</div>,
+          },
+          {
+            render: <div>6</div>,
+          },
+          {
+            render: <div>7</div>,
+          },
+          {
+            render: <div>8</div>,
+          },
+          {
+            render: <div>19</div>,
+          },
         ]}
       />
       {/* <Card title="pp" >
@@ -33,4 +56,4 @@ const Welcome: React.FC<any> = (props) => {
   );
 };
 
-export default Welcome
+export default Welcome;

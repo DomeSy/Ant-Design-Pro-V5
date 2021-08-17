@@ -5,7 +5,7 @@ export default [
     name: '管理页',
     icon: 'crown',
     routes: [
-      { path: '/admin/sub-page', name: '二级管理页1', icon: 'smile', component: './Welcome' },
+      { path: '/admin/sub-page', name: '二级管理页', icon: 'smile', component: './Hook/Introduce' },
     ],
   },
   { name: '查询表格', icon: 'table', path: '/list', component: './TableList' },

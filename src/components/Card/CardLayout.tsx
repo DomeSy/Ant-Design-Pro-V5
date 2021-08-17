@@ -1,7 +1,7 @@
 import type { CardLayoutProps, CardLayoutListProps } from './interface';
 import ProCard from '@ant-design/pro-card';
 
-import { PageLayout } from '@/components'
+import { PageLayout } from '@/components';
 import { useState, useEffect } from 'react';
 
 /**
@@ -11,50 +11,47 @@ import { useState, useEffect } from 'react';
  *
  */
 
-const CardLayout: React.FC<CardLayoutProps>  = ({list, gutter, rowStyle, colStyle, ...props}) => {
-
-  const [cardList, setList] = useState<React.ReactNode[]>([])
-
-  useEffect(() => {
-    initCardList()
-  }, [])
-
-  const initCardList = () => {
-    let result:React.ReactNode[] = []
-    list.map((item, index) => {
-      console.log(typeof item)
-      if(item.render){
-        const { render, ...otherProps} = item;
-        const arr = cardRender({children: render, ...otherProps})
-        result = [...result, arr]
-      } else {
-        const arr = cardRender({children: item});
-        result = [...result, arr]
-      }
-    })
-    setList(result)
-  }
-
-  const cardRender = ({children, ...otherProps}:CardLayoutListProps) => {
-    return <ProCard
-    headerBordered
-    hoverable
-    {...otherProps}
-  >
-    {children}
-  </ProCard>
-  }
-
-  return <>
-    {
-      Array.isArray(list) && (list.length === 2 || list.length === 4)  ?
-        <>
-          {cardList.length !== 0 && <PageLayout.Way gutter={gutter} rowStyle={rowStyle} colStyle={colStyle} list={cardList} />}
-        </>
-      :
-      <div style={{color: 'red'}}>list必须为数组，并且元素个数2个或4个</div>
-      }
-  </>;
+const colSpanFour = {
+  xs: 24,
+  sm: 12,
+  md: 6,
+  lg: 6,
+  xl: 3,
 };
 
-export default CardLayout
+// const colSpanFour = {
+//   xs: 24,
+//   sm: 12,
+//   md: 12,
+//   lg: 12,
+//   xl: 6,
+// };
+
+const colSpanTwo = {
+  xs: 24,
+  sm: 24,
+  md: 24,
+  lg: 24,
+  xl: 12,
+};
+
+const CardLayout: React.FC<CardLayoutProps> = ({ list = [], ...props }) => {
+  useEffect(() => {
+    console.log('list', list);
+  }, [list]);
+
+  return (
+    <ProCard gutter={[24, 24]} ghost {...props} wrap>
+      {list.map((item, index) => {
+        const { render, ...propsList } = item;
+        return (
+          <ProCard key={'WrapProCard' + index} {...propsList} colSpan={colSpanFour}>
+            {render}
+          </ProCard>
+        );
+      })}
+    </ProCard>
+  );
+};
+
+export default CardLayout;
