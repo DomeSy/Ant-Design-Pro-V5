@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Select, message, Col, Dropdown, Menu, Row } from 'antd';
 import { Button, OssUpLoad, Form, PageLayout, Table, Card } from '@/components';
-import { layout } from '../app';
+
 const { Option } = Select;
 
 const waitTime = (time: number = 100) => {
@@ -24,10 +24,10 @@ const Welcome: React.FC<any> = (props) => {
             render: <div>1</div>,
           },
           {
-            render: <div>21</div>,
+            render: <div>2</div>,
           },
           {
-            render: <div>31</div>,
+            render: <div>3</div>,
           },
           {
             render: <div>4</div>,
@@ -45,7 +45,7 @@ const Welcome: React.FC<any> = (props) => {
             render: <div>8</div>,
           },
           {
-            render: <div>19</div>,
+            render: <div>17</div>,
           },
         ]}
       />
