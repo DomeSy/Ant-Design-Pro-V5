@@ -1,31 +1,43 @@
-import type { CardLayoutProps, CardLayoutListProps } from './interface';
 import ProCard from '@ant-design/pro-card';
+import { CardSy } from '@/utils/Setting';
+import type { CardLayoutProps } from './interface';
 
-import { PageLayout } from '@/components';
-import { useState, useEffect } from 'react';
 
 /**
- * @module CardLayOut
+ * @module CardLayOut 卡片布局
  *
- * 通过卡片来实现响应式布局
+ * @param list  数据的列表，可以是对象也可以是节点，如果是对象，则必须加入render，在render中做为内容，并且可以配置ProCard其他属性，
+ * @param type 一行显示的数量， 目前有 2 3 4 6 8，会更具页面的大小自动换行，默认为2
  *
  */
 
-const colSpanFour = {
-  xs: 24,
-  sm: 12,
-  md: 6,
-  lg: 6,
-  xl: 3,
+const CardLayout: React.FC<CardLayoutProps> = ({ list = [], type = 2, _config={}, ...props }) => {
+
+  const colSpan = type === 8 ? colSpanEight : type === 3 ? colSpanThree : type === 4 ? colSpanFour : type === 6 ? colSpanSix : colSpanTwo
+
+
+  return (
+    <ProCard gutter={[24, 24]} ghost {...props} wrap>
+      {list.map((item, index) => {
+        const { render, ...propsList } = item;
+        return (
+          <ProCard
+            key={'WrapProCard' + index}
+            {...CardSy.Layout}
+            {..._config}
+            {...propsList}
+            colSpan={colSpan}
+          >
+            {item.render ? item.render : item}
+          </ProCard>
+        );
+      })}
+    </ProCard>
+  );
 };
 
-// const colSpanFour = {
-//   xs: 24,
-//   sm: 12,
-//   md: 12,
-//   lg: 12,
-//   xl: 6,
-// };
+export default CardLayout;
+
 
 const colSpanTwo = {
   xs: 24,
@@ -35,23 +47,34 @@ const colSpanTwo = {
   xl: 12,
 };
 
-const CardLayout: React.FC<CardLayoutProps> = ({ list = [], ...props }) => {
-  useEffect(() => {
-    console.log('list', list);
-  }, [list]);
-
-  return (
-    <ProCard gutter={[24, 24]} ghost {...props} wrap>
-      {list.map((item, index) => {
-        const { render, ...propsList } = item;
-        return (
-          <ProCard key={'WrapProCard' + index} {...propsList} colSpan={colSpanFour}>
-            {render}
-          </ProCard>
-        );
-      })}
-    </ProCard>
-  );
+const colSpanThree = {
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 8,
 };
 
-export default CardLayout;
+const colSpanFour = {
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 6,
+};
+
+const colSpanSix = {
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 12,
+  xl: 4,
+};
+
+const colSpanEight = {
+  xs: 24,
+  sm: 12,
+  md: 6,
+  lg: 6,
+  xl: 3,
+};

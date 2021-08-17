@@ -1,13 +1,13 @@
 import { ModalProps, message } from 'antd';
 import { ProCardProps } from '@ant-design/pro-card';
-import type { FormInstance } from 'antd';
-import type { WayProps } from '@/components/PageLayout/interface.d'
 
 interface CardLayoutListProps extends ProCardProps{
-  render?: ReactNode
+  render?: ReactNode;
 }
-export interface CardLayoutProps extends WayProps {
-  list: CardLayoutListProps[]
+export interface CardLayoutProps {
+  list: CardLayoutListProps[];
+  type?: 2 | 3 | 4 | 6 | 8;
+  _config?: ProCardProps
 }
 
 export default interface CardProps extends ProCardProps {
