@@ -8,6 +8,7 @@ import type { CardLayoutProps } from './interface';
  *
  * @param list  数据的列表，可以是对象也可以是节点，如果是对象，则必须加入render，在render中做为内容，并且可以配置ProCard其他属性，
  * @param type 一行显示的数量， 目前有 2 3 4 6 8，会更具页面的大小自动换行，默认为2
+ * @param 其他的ProCard布局
  *
  */
 
