@@ -1,7 +1,7 @@
 import ProCard from '@ant-design/pro-card';
 import { CardSy } from '@/utils/Setting';
 import type { CardLayoutProps } from './interface';
-
+import './index'
 
 /**
  * @module CardLayOut 卡片布局
@@ -9,7 +9,8 @@ import type { CardLayoutProps } from './interface';
  * @param list  数据的列表，可以是对象也可以是节点，如果是对象，则必须加入render，在render中做为内容，并且可以配置ProCard其他属性，
  * @param type 一行显示的数量， 目前有 2 3 4 6 8，会更具页面的大小自动换行，默认为2
  * @param 其他的ProCard布局
- *
+ * @param _config 通知设置子组件的属性
+ * @param height 设置统一高度
  */
 
 const CardLayout: React.FC<CardLayoutProps> = ({ list = [], type = 2, _config={}, ...props }) => {
@@ -23,6 +24,7 @@ const CardLayout: React.FC<CardLayoutProps> = ({ list = [], type = 2, _config={}
         const { render, ...propsList } = item;
         return (
           <ProCard
+            className="CardLayoutChildrenSy"
             key={'WrapProCard' + index}
             {...CardSy.Layout}
             {..._config}

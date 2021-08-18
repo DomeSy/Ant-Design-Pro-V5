@@ -15,7 +15,7 @@ const initData = async () => {
   // const menuData: MenuDataItem[] = await getMenuData()
 
   return {
-    currentUser: currentUser.data,
+    currentUser: currentUser,
     // menuData: formatter(menuData), // 示例，动态路由
     menuData: false,
     domesy:{

@@ -38,6 +38,7 @@ class Jump {
   };
 
   static get = () => {
+    console.log(history)
     return history.location.state;
   };
 

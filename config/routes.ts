@@ -7,6 +7,7 @@ export default [
     routes: [
       { path: '/Hook', redirect: '/hook/introduce'},
       { path: '/hook/introduce', name: '介绍', component: './Hook/Introduce' },
+      { path: '/hook/useMemo', name: 'useMemo', component: './Hook/UseMemo'},
     ],
   },
   { name: '查询表格', icon: 'table', path: '/list', component: './TableList' },
