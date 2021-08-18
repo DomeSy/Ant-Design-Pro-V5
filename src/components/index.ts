@@ -16,3 +16,4 @@ export type { tableListProps } from './Table/interface.d';
 export type { default as FormPropsSy } from './Form/interface.d'
 export type { formProps, formLayoutProps, FormCommonProps } from './Form/interface.d';
 export type { MaskFromProps } from './Mask/interface.d'
+export type { CardLayoutProps, CardLayoutListProps } from './Card/interface.d'

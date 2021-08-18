@@ -2,10 +2,10 @@ export default [
   { path: '/welcome', name: '欢迎', icon: 'smile', component: './Welcome' },
   {
     path: '/hook',
-    name: 'hook',
+    name: 'Hook',
     icon: 'crown',
     routes: [
-      { path: '/hook', redirect: '/hook/introduce'},
+      { path: '/Hook', redirect: '/hook/introduce'},
       { path: '/hook/introduce', name: '介绍', component: './Hook/Introduce' },
     ],
   },

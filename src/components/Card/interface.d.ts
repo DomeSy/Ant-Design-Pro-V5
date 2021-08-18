@@ -1,7 +1,7 @@
 import { ModalProps, message } from 'antd';
 import { ProCardProps } from '@ant-design/pro-card';
 
-interface CardLayoutListProps extends ProCardProps{
+export interface CardLayoutListProps extends ProCardProps{
   render?: ReactNode;
 }
 export interface CardLayoutProps {

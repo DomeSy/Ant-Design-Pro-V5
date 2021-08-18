@@ -17,7 +17,6 @@ export const requestInterceptors: any = (url: string, options: RequestInit) => {
 
 // 响应拦截
 export const responseInterceptors:any = async (response: Response) => {
-
   if (!response) {
     notification.error({
       description: '您的网络发生异常，无法连接服务器',
@@ -35,7 +34,7 @@ export const responseInterceptors:any = async (response: Response) => {
   //   message.error(data.message);
   //   return false;
   // }
-  return data;
+  return data.data ? data.data : data;
 }
 
 const codeMessage = {
