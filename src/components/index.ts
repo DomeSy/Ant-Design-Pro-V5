@@ -1,4 +1,3 @@
-import { fromPairs } from 'lodash';
 
 export { default as HeaderDropdown } from './HeaderDropdown';
 export { default as HeaderSearch } from './HeaderSearch';
