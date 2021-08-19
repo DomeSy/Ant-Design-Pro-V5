@@ -8,6 +8,7 @@ import { storageSy, layoutSy } from '@/utils/Setting'
 import initData from '@/utils/initData';
 import { Jump } from '@/utils';
 import { requestInterceptors, responseInterceptors, errorHandler } from '@/utils/Request'
+import { LiveSetting } from '@/commonPages'
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -94,7 +95,12 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         Jump.go(loginPath)
       }
     },
+    childrenRender: (dom) => {
 
+      return <>{dom}
+        <LiveSetting />
+      </>
+    },
     // links: isDev
     //   ? [
     //       <Link to="/umi/plugin/openapi" target="_blank">

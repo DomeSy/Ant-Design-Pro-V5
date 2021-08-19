@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { PageLayout, Card, Anchor } from '@/components';
-import type { CardLayoutListProps } from '@/components'
+import type { CardLayoutListProps, AnchorLinkProps } from '@/components'
 import ProCard from '@ant-design/pro-card';
 import { Jump } from '@/utils';
 
 
-const listTest = [
+const listTest:AnchorLinkProps[] = [
   {
     title: '测试1',
     href: 'test1',
