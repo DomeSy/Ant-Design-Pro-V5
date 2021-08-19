@@ -1,31 +1,48 @@
-import { ModalProps, message } from 'antd';
 import type { FormInstance } from 'antd';
 
-interface CommonProps extends ModalProps {
-
+export interface TypographyProps {
+  title?: string;
+  editable?: boolean | EditConfig;
+  copyable?: boolean | CopyConfig;
+  type?: "secondary" | "success" | "warning" | "danger";
+  disabled?: boolean;
+  ellipsis?: boolean | EllipsisConfig;
+  code?: boolean;
+  mark?: boolean;
+  underline?: boolean;
+  delete?: boolean;
+  strong?: boolean;
+  keyboard?: boolean;
+  italic?: boolean;
 }
 
-export interface Props extends CommonProps {
-
+interface EditConfig {
+  editing?: boolean;
+  icon?: React.ReactNode;
+  tooltip?: boolean | React.ReactNode;
+  onStart?: () => void;
+  onChange?: (value: string) => void;
+  onCancel?: () => void;
+  onEnd?: () => void;
+  maxLength?: number;
+  autoSize?: boolean | {
+    minRows?: number;
+    maxRows?: number;
+  };
 }
 
-export interface MaskProps {
-  maskTitle?: staring
+interface CopyConfig {
+  text?: string;
+  onCopy?: () => void;
+  icon?: React.ReactNode;
+  tooltips?: boolean | React.ReactNode;
 }
-
-export interface MaskFromProps extends CommonProps {
-  formRef?: { current?: FormInstance };
-  onCancel?: (e: any) => void;
-  onSubmit?: () => void;
-  onEdit?: (values: Object<any>) => void;
-  onReset?: () => void;
-  onRequest?: any;
-  cancelText?: string;
-  resetText?: string;
-  submitText?: string;
-  message?: string;
-}
-
-export interface RenderWay {
-  Form?: React.FC<MaskFromProps> | any;
+interface EllipsisConfig {
+  rows?: number;
+  expandable?: boolean;
+  suffix?: string;
+  symbol?: React.ReactNode;
+  onExpand?: React.MouseEventHandler<HTMLElement>;
+  onEllipsis?: (ellipsis: boolean) => void;
+  tooltip?: React.ReactNode;
 }

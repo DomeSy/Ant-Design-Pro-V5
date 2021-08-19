@@ -1,12 +1,13 @@
-import type { MaskProps } from './interface';
+import { Typography } from 'antd';
+import type { TypographyProps } from './interface';
 
 /**
  * @module Typography // 为简化开发将Modal和Drawer
  *
  */
 
-const Typography: React.FC<MaskProps>  = (props: MaskProps) => {
-  return <div>Mask</div>;
+const TypographyView: React.FC<TypographyProps>  = ({ children }) => {
+  return <Typography.Title type='secondary'>{children}</Typography.Title>;
 };
 
-export default Typography
+export default TypographyView

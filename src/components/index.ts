@@ -11,6 +11,7 @@ export { default as Mask } from './Mask';
 export { default as Three } from './Three';
 export { default as Card } from './Card';
 export { default as Anchor } from './Anchor';
+export { default as Typography } from './Typography';
 
 export type { tableListProps } from './Table/interface.d';
 export type { default as FormPropsSy } from './Form/interface.d'

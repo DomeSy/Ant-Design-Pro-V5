@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Select, message, Col, Dropdown, Menu, Row } from 'antd';
-import { Button, OssUpLoad, Form, PageLayout, Table, Card } from '@/components';
+import { Button, OssUpLoad, Form, PageLayout, Table, Typography, Card } from '@/components';
 
 const { Option } = Select;
 
@@ -18,40 +18,9 @@ const Welcome: React.FC<any> = (props) => {
 
   return (
     <PageLayout>
-      <Card.Layout
-        list={[
-          {
-            render: <div>1</div>,
-          },
-          {
-            render: <div>2</div>,
-          },
-          {
-            render: <div>3</div>,
-          },
-          {
-            render: <div>4</div>,
-          },
-          {
-            render: <div>5</div>,
-          },
-          {
-            render: <div>61</div>,
-          },
-          {
-            render: <div>7</div>,
-          },
-          {
-            render: <div>8</div>,
-          },
-          {
-            render: <div>9</div>,
-          },
-        ]}
-      />
-      {/* <Card title="pp" >
-        Children
-      </Card> */}
+      <Card>
+        <Typography >文本标题</Typography>
+      </Card>
     </PageLayout>
   );
 };

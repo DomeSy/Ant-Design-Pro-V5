@@ -10,6 +10,8 @@ const Settings: LayoutSettings & {
   fixedHeader: false, // 是否固定头部
   fixSiderbar: true, // 是否固定导航
   colorWeak: false,
+  // headerRender: false, // 是否拥有头部
+  // menuRender: false, // 是否拥有菜单
   title: 'Domesy',
   pwa: false,
   iconfontUrl: '',
