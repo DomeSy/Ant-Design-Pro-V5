@@ -19,7 +19,7 @@ const Welcome: React.FC<any> = (props) => {
   return (
     <PageLayout>
       <Card>
-        <Typography >文本标题</Typography>
+        <Typography.List>文本标题</Typography.List>
       </Card>
     </PageLayout>
   );

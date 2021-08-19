@@ -1,5 +1,8 @@
 import type { FormInstance } from 'antd';
 
+export interface ListProps{
+
+}
 export interface TypographyProps {
   title?: string;
   editable?: boolean | EditConfig;

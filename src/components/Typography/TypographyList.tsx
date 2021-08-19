@@ -1,22 +1,14 @@
 import { useState } from 'react';
 import { Modal, Button, message } from 'antd';
-import { MaskFromProps } from './interface';
+import { ListProps } from './interface';
+import { Typography } from 'antd';
 import { maskSy } from '@/utils/Setting';
 
-const TypographyList: React.FC<MaskFromProps> = ({
-  children,
-  formRef,
-  onReset,
-  onCancel,
-  onSubmit,
-  onEdit,
-  onRequest,
-  ...props
-}) => {
+const TypographyList: React.FC<ListProps> = ({ children}) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   return (
-    <div>1</div>
+    <Typography.Text mark={true}>{children}</Typography.Text>
   );
 };
 
