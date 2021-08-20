@@ -65,16 +65,9 @@ const Welcome: React.FC<any> = (props) => {
       type: 'field',
       tooltip: `rules: [{ required: true, message: '欢迎使用自定义组件' }]`,
       fieldRender: (
-        <Three.Select
-          list={treeData}
-          _config={{
-            title: 'name',
-            value: 'values',
-            // key: 'name',
-            children: 'childrens'
-          }}
-          getValues={(values) => {
-            setFile(values)
+        <OssUpLoad
+          getFiles={(file: Array<any>) => {
+            setFile(file);
           }}
         />
       ),

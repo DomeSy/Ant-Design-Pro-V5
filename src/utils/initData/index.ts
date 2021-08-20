@@ -1,5 +1,5 @@
 import React from 'react';
-import { layoutSy, pageLayoutSy, storageSy, tableSy, fromSy, maskSy, CardSy } from '../Setting'
+import { layoutSy, pageLayoutSy, storageSy, tableSy, fromSy, maskSy, CardSy, OssUpLoadSy } from '../Setting'
 import type { MenuDataItem } from '@ant-design/pro-layout';
 import { currentUser as queryCurrentUser } from '@/services/ant-design-pro/api';
 import { getMenuData } from '@/services/ant-design-pro/domesy'
@@ -26,6 +26,7 @@ const initData = async () => {
       maskSy,
       CardSy,
       storageSy,
+      OssUpLoadSy,
     }
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Upload, message, Modal, Button } from 'antd';
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import { OssUpLoadSy } from '@/utils/Setting'
 import { useState } from 'react';
 import ImgCrop from 'antd-img-crop';
 import Props from './interface.d';
@@ -55,17 +56,17 @@ import './index.less';
 
 let aliOSS = require('ali-oss');
 let client = new aliOSS({
-  region: 'oss-cn-shanghai',
-  accessKeyId: 'LTAI4GK4W6BVkYDcHdAQzAW9',
-  accessKeySecret: 'otIM3G2WhGxdfbpxBDBB9NtMj2yVQ3',
-  bucket: 'bmx-system',
+  region: OssUpLoadSy.OSS.region,
+  accessKeyId: OssUpLoadSy.OSS.accessKeyId,
+  accessKeySecret: OssUpLoadSy.OSS.accessKeySecret,
+  bucket: OssUpLoadSy.OSS.bucket,
 });
 
 const OssUpLoad: React.FC<Props> = ({
   amount = 1,
-  OSS = false,
+  OSS = OssUpLoadSy.open,
   rules = {},
-  listType = 'picture-card',
+  listType = OssUpLoadSy.listType,
   onRemove,
   children,
   getFiles,
