@@ -42,7 +42,7 @@ const Form: React.FC<Props & FormCommonProps> = ({
     if (getRef) getRef(formRef);
   }, []);
 
-  useMemo(() => {
+  useEffect(() => {
     if(fieldValues.length !== 0){
       fieldValues.map((item) => {
         let payload: any = {};

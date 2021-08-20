@@ -29,7 +29,25 @@ const DetailSetting: React.FC<Props> = () => {
   >
     <ProCard gutter={8} style={{margin: 0}}>
         <div style={{width: '100%'}}>
-          <DetailContent />
+          <DetailContent
+            list={
+              [
+                {
+                  type: 'title',
+                  render: '标题1',
+                  title: '标题'
+                },
+                {
+                  list: [
+                    '我们是一行代码',
+                    {
+                      text: ',我们很强'
+                    }
+                  ]
+                }
+              ]
+            }
+          />
         </div>
         <ProCard
           style={size.width < 765 ? {display: 'none'} : undefined}
