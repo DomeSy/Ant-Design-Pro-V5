@@ -75,6 +75,7 @@ export interface stateTools {
   onEdit: (values: Object<any>) => void;
   onSuccess?: (data: any, flag: boolean) => void;
   onRequest: any;
+  onRequestClose?: any;
   style?: React.CSSProperties;
 }
 interface ToolsProps {

@@ -102,7 +102,7 @@ const Table: React.FC<Props> = ({
 
       if(typeof param['open'] !== 'object' || Array.isArray(param['open']) || typeof param['close'] !== 'object' || Array.isArray(param['close'])) return message.error('请在onEdit中返回open和close为字符串或则对象')
 
-      const result = state ? await data.onRequest(param['close']) : await data.onRequest(param['open'])
+      const result = state ? data?.onRequestClose ? await data.onRequestClose(param['close']) : await data.onRequest(param['close']) : await data.onRequest(param['open'])
       if(result){
         if(data.onSuccess) await data.onSuccess(result, state)
         const msg:string = state ? `${data.closeText || tableSy.tools.state.cancelText}成功` : `${data.openText || tableSy.tools.state.okText}成功`
@@ -137,7 +137,7 @@ const Table: React.FC<Props> = ({
     okText={data.okText || "确定"}
     cancelText={data.cancelText || "取消"}
   >
-    <a style={{...tableSy.tools.commonStyle, ...tableSy.tools.delete.style, ...data?.style}}>{data.text || tableSy.tools.edit.text}</a>
+    <a style={{...tableSy.tools.commonStyle, ...tableSy.tools.delete.style, ...data?.style}}>{data.text || tableSy.tools.delete.text}</a>
   </Popconfirm>
   }
 
@@ -147,7 +147,12 @@ const Table: React.FC<Props> = ({
     return <a
       onClick={async () => {
         if(edit?.go){
-          Jump.go(edit.go, edit.payload)
+          const payload = edit?.onBeforeStart ? await edit.onBeforeStart(record) : edit.payload;
+          if(typeof payload === 'string') {
+            message.error(payload)
+            return
+          }
+          Jump.go(edit.go, payload)
           return
         }
         let result:formProps[] = []

@@ -66,6 +66,7 @@
  * @param onEdit 编辑，编辑前的操作，返回一个对象，为 open 和 close 分别对应 启用时，和禁用的接口数据，返回的字符串给出提示，返回的对象作为onRequest的参数，否则没有任何操作
  * @param onSuccess 成功时的操作，第一个参数，返回成功结果，第二个参数返回布尔值，为true则是禁用， 为false为启用
  * @param onRequest 请求的接口
+ * @param onRequestClose 禁用的接口，防止警用和启用不是同一个接口，如果没有，则走onRequest的方法
  * @param style 对应的样式
  *
  * @delete下的参数
