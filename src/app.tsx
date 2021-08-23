@@ -95,12 +95,14 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         Jump.go(loginPath)
       }
     },
-    childrenRender: (dom) => (
-      <>
-        {dom}
-        <LiveSetting />
-      </>
-    ),
+    childrenRender: (dom) => {
+      return (
+        <>
+          {dom}
+          {dom.props?.location?.pathname !== '/user/login' && <LiveSetting />}
+        </>
+      )
+    },
     // links: isDev
     //   ? [
     //       <Link to="/umi/plugin/openapi" target="_blank">
