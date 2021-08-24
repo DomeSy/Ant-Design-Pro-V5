@@ -6,7 +6,7 @@ import { SearchConfigProps } from '../interface';
 /**
  * @module 分页模块配置
  */
- const searchConfig = (search?: false | SearchConfigProps) => {
+ const searchConfig = (search?: false | SearchConfigProps, FormRef?: any, actionRef?:any) => {
   if ((typeof search === 'undefined' && tableSy.search.hidden) || typeof search === 'boolean')
     return false;
 
@@ -26,6 +26,9 @@ import { SearchConfigProps } from '../interface';
         key="reset"
         htmlType='reset'
         style={{ ...tableSy.search.commonStyle, ...tableSy.search.resetStyle,...search?.resetStyle}}
+        onClick={() => {
+          actionRef?.current?.reload()
+        }}
         {...search?.resetProps}
       >
        {search?.resetPrefix || tableSy.search.resetPrefix} {search?.resetText || tableSy.search.resetText}
@@ -105,7 +108,7 @@ import { SearchConfigProps } from '../interface';
     labelWidth: search?.labelWidth ? search.labelWidth : 100,
     span: search?.span ? search.span : tableSy.search.span ? tableSy.search.span : undefined,
     layout: search?.layout ? search.layout : tableSy.search.vertical ? 'vertical' : undefined,
-    optionRender: optionConfig,
+    // optionRender: optionConfig,
     ...search,
   };
 };

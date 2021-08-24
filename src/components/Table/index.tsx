@@ -12,7 +12,6 @@ import type { ActionType } from '@ant-design/pro-table';
 import { Jump } from '@/utils'
 import moment from 'moment';
 
-
 interface EditsProps {
   formList: formProps[],
   data: editTools
@@ -538,7 +537,7 @@ const Table: React.FC<Props> = ({
           return result
         }}
         columns={list}
-        search={searchConfig(search)}
+        search={searchConfig(search, FormRef, actionRef)}
         pagination={paginationConfig(pagination)}
       />
       {
