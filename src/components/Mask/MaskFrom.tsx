@@ -55,13 +55,14 @@ const MaskFrom: React.FC<MaskFromProps> = ({
           loading={loading}
           onClick={async (e) => {
             const fieldsValue = await formRef?.current?.validateFields();
-            setLoading(true);
             const params = onEdit ? await onEdit(fieldsValue) : fieldsValue;
-            if(typeof params !== 'object') return
+            if(typeof params === 'string') return message.error(params)
+            if(typeof params !== 'object' || Array.isArray(params)) return message.error('请在onEdit中返回对象或则字符串！')
             if(!onRequest){
               message.error('请在onRequest，写入对应的接口')
               return
             }
+            setLoading(true);
             const res = await onRequest(params);
             setLoading(false);
             if (typeof res !== 'boolean') {
