@@ -53,6 +53,7 @@ export interface PaginationConfigProps extends TablePaginationConfig {}
 export interface editTools extends createProps {
   style?: React.CSSProperties;
   onBeforeStart?: any;
+  onEdit?: (values: Object<any>, record: Object<any>) => void;
 }
 export interface deleteTools {
   text?: string;

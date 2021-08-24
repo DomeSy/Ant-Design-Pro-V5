@@ -36,6 +36,7 @@ const Table: React.FC<Props> = ({
   const [maskVisible, setMaskVisible] = useState<boolean>(false);
   const [tool, setTool] = useState<'create' | 'edit' | boolean>(false); //用于判断一些特殊情况
   const [editList, setEditList] = useState< EditsProps | boolean>(false); //用于判断一些特殊情况
+  const [recordDetail, setRecordDetail] = useState<Object>({}); //编辑时带出一整行的数据
 
   useEffect(() => {
     if (getRef) getRef(actionRef);
@@ -148,10 +149,8 @@ const Table: React.FC<Props> = ({
       onClick={async () => {
         if(edit?.go){
           const payload = edit?.onBeforeStart ? await edit.onBeforeStart(record) : edit.payload;
-          if(typeof payload === 'string') {
-            message.error(payload)
-            return
-          }
+          if(typeof payload === 'string') return message.error(payload)
+          if(typeof payload !== 'object' || Array.isArray(payload)) return message.error('请onBeforeStart中返回一个对象或者是字符串')
           Jump.go(edit.go, payload)
           return
         }
@@ -173,6 +172,7 @@ const Table: React.FC<Props> = ({
           data: edit,
           formList: result
         })
+        setRecordDetail(record)
         setTool('edit')
         setMaskVisible(true)
       }}
@@ -422,9 +422,21 @@ const Table: React.FC<Props> = ({
       title={title}
       message={`${title}成功`}
       {...mask?.maskFrom}
+      onEdit={(value) => {
+        if(mask.onEdit) {
+          const payload:any = mask.onEdit(value, recordDetail)
+          return payload
+        }
+        return value
+      }}
       visible={maskVisible}
       formRef={maskFormRef}
-      onCancel={() => {setMaskVisible(false);setTool(false);setEditList(false)}}
+      onCancel={() => {
+        setMaskVisible(false);
+        setTool(false);
+        setEditList(false);
+        setRecordDetail({})
+      }}
       onSubmit={async () => {
         if(mask && typeof mask.maskFrom !== 'boolean' && mask?.maskFrom && mask.maskFrom?.onSubmit){
           await mask?.maskFrom.onSubmit()

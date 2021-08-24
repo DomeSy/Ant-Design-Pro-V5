@@ -82,6 +82,7 @@
  *
  * @edit下的参数 （除了_config.create的配置外）
  * @param onBeforeStart 当我们编辑的时候，需要依赖于这行数据，调取接口等操作，最终都在列表中进行操作，所以这个函数提供返回formList数组，用于替换原有的formList这个参数，接收这行数据的信息。另外 如果返回字符串，则会提示对应的字符串信息，除此之外，都无效
+ * @param onEdit 此处的onEdit实际上就是 Mask.Form 中的onEdit，只不过在此基础上增加了第二个参数，当前行掉的信息，跟onBeforeStart一样，在编辑的时候，有可能需要此行的信息，（注：maskForm 中的onEdit不在有用）
  * @param style 对应的样式
  *
  * @date下的参数

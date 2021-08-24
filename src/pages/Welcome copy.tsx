@@ -52,7 +52,7 @@ const Welcome: React.FC<any> = (props) => {
       hideInForm: true,
       valueEnum: {
         0: { text: '关闭', status: 'Default' },
-        1: { text: '运行中', status: 'Processing' },
+        1: { text: '运行中', status: 'Processing'},
         2: { text: '已上线', status: 'Success' },
         3: { text: '异常', status: 'Error' },
       },
@@ -118,11 +118,14 @@ const Welcome: React.FC<any> = (props) => {
               },
             },
             maskFrom: {
-              onEdit:(values: any) => {
-                return {values: values.key};
-              },
               onRequest: queryRule
-            }
+            },
+            onEdit: (values: any, record: any) => {
+              return {
+                ...values,
+                key: record.key
+              };
+            },
           }
         },
         {
