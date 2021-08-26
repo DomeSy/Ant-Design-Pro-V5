@@ -12,6 +12,8 @@ import type { ActionType } from '@ant-design/pro-table';
 import { Jump } from '@/utils'
 import moment from 'moment';
 
+// 表格批量操作
+
 interface EditsProps {
   formList: formProps[],
   data: editTools
@@ -130,7 +132,7 @@ const Table: React.FC<Props> = ({
       const res = await data.onRequest(param)
       if(res){
         if(data.onSuccess) await data.onSuccess(res)
-        message.success( data.message || `${data.text || tableSy.tools.edit.text}成功`)
+        message.success( data.message || `${data.text || tableSy.tools.delete.text}成功`)
         actionRef?.current?.reload()
       }
     }}

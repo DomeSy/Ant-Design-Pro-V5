@@ -34,7 +34,6 @@ import './index.less';
  * @param size 文件的类型大小 单位为M
  * @param sizeMsg 文件大小不符合的提示语
  *
- *
  * @_config
  * @param noCheck 检验是否同一张图片 （当相同名字和文件大小一致时，才会校验不通过），默认false
  * @param radio 单选照片，默认多选(当图片为一张时默认单选)
