@@ -248,6 +248,12 @@ const Table: React.FC<Props> = ({
             ? tableSy.tableList.rule.reSfz
             : item.method === 'emil'
             ? tableSy.tableList.rule.reEmil
+            : item.method === 'number'
+            ? tableSy.tableList.rule.reNumber
+            : item.method === 'numberFloat'
+            ? tableSy.tableList.rule.reNumberFloat
+            : item.method === 'numberZero'
+            ? tableSy.tableList.rule.reNumberZero
             : tableSy.tableList.rule.reTelEmil;
         const message =
           item.method === 'tel'
@@ -262,6 +268,12 @@ const Table: React.FC<Props> = ({
             ? '身份证'
             : item.method === 'emil'
             ? '邮箱'
+            : item.method === 'number'
+            ? '正整数'
+            : item.method === 'numberZero'
+            ? '非0正整数'
+            : item.method === 'numberFloat'
+            ? '数字或小数点后两位'
             : '邮箱活电话号码';
         const result = {
           pattern: pattern,

@@ -22,3 +22,12 @@ export const reTelEmil = /^(?:1[3-9]\d{9}|[a-zA-Z\d._-]*\@[a-zA-Z\d.-]{1,10}\.[a
 
 // 验证邮箱
 export const reEmil = /^[a-zA-Z\d._-]*\@[a-zA-Z\d.-]{1,10}\.[a-zA-Z\d]{1,20}$/;
+
+// 数字
+export const reNumber = /^\d{n}$/
+
+// 非0正整数
+export const reNumberZero = /^\+?[1-9][0-9]*$/
+
+// 数字和浮点数(后2位, 大于0)
+export const reNumberFloat = /^(([0-9]|([1-9][0-9]{0,9}))((\.[0-9]{1,2})?))$/;

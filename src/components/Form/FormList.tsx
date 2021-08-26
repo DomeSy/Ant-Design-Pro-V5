@@ -85,6 +85,12 @@ const FomList: React.FC<FormListProps> = ({ formList=[], layout = {}, method, _c
             ? fromSy.formList.rule.reSfz
             : item.method === 'emil'
             ? fromSy.formList.rule.reEmil
+            : item.method === 'number'
+            ? fromSy.formList.rule.reNumber
+            : item.method === 'numberFloat'
+            ? fromSy.formList.rule.reNumberFloat
+            : item.method === 'numberZero'
+            ? fromSy.formList.rule.reNumberZero
             : fromSy.formList.rule.reTelEmil;
         const message =
           item.method === 'tel'
@@ -99,6 +105,12 @@ const FomList: React.FC<FormListProps> = ({ formList=[], layout = {}, method, _c
             ? '身份证'
             : item.method === 'emil'
             ? '邮箱'
+            : item.method === 'number'
+            ? '正整数'
+            : item.method === 'numberZero'
+            ? '非0正整数'
+            : item.method === 'numberFloat'
+            ? '数字或小数点后两位'
             : '邮箱活电话号码';
         const result = {
           pattern: pattern,

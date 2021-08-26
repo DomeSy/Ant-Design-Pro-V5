@@ -97,7 +97,7 @@
  * @param min 限定最少几个字符，可与max配合使用
  * @param max 限定最多几个字符，可与min配合使用
  * @param len 只限定几个字符能输入
- * @param method 简化开发设定常用的的值 具体有 'tel'：电话 'password'：密码 'name'：姓名 'card'：银行卡号 'sfz'：身份证 'emil'：邮箱 'telEmil'：电话+邮箱;
+ * @param method 简化开发设定常用的的值 具体有 'tel'：电话 'password'：密码 'name'：姓名 'card'：银行卡号 'sfz'：身份证 'emil'：邮箱 'telEmil'：电话+邮箱 'number': 数字 ‘numberZero': 非零数字 'numberFloat': 数字加浮点数（后两位）;
  *
  * @date下的config字段
  * @param add 当前日期的后几天，包含当天

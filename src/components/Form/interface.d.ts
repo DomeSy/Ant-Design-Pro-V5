@@ -72,7 +72,7 @@ export interface RuleProps {
   min?: number;
   max?: number;
   len?: number;
-  method?: 'tel' | 'password' | 'name' | 'card' | 'sfz' | 'emil' | 'telEmil';
+  method?: 'tel' | 'password' | 'name' | 'card' | 'sfz' | 'emil' | 'telEmil' | 'number' | 'numberZero' | 'numberFloat';
 }
 interface DateLimitProps {
   methodAdd?: 'day' | 'month' | 'week' | 'year';

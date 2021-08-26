@@ -7,7 +7,6 @@ import type CardProps from './interface';
  * @author Domesy
  *
  */
-
 const Card: React.FC<CardProps>  = ({ children, ...props}) => {
 
   return (
