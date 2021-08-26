@@ -310,7 +310,6 @@ const FomList: React.FC<FormListProps> = ({ formList=[], layout = {}, method, _c
 
   // 自定义渲染
   const fieldRender = (item: any) => {
-
     return (
       <ProFormField
         {...commonProps(item, item.type)}
@@ -318,7 +317,8 @@ const FomList: React.FC<FormListProps> = ({ formList=[], layout = {}, method, _c
           if (!item.fieldRender) return <div>请写入fieldRender</div>;
           return item.fieldRender;
         }}
-      />
+      >
+      </ProFormField>
     );
   };
 

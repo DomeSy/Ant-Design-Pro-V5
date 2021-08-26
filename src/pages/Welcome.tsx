@@ -17,7 +17,9 @@ const waitTime = (time: number = 100) => {
 };
 
 const Welcome: React.FC<any> = (props) => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // setFile('http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg')
+  }, []);
   const [file, setFile] = useState<any>('');
   const [ref, setRef] = useState<any>(false);
 
@@ -63,12 +65,12 @@ const Welcome: React.FC<any> = (props) => {
       name: 'field3',
       label: '自定义规则',
       type: 'field',
-      default: 'http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg',
       tooltip: `rules: [{ required: true, message: '欢迎使用自定义组件' }]`,
+      required: true,
       fieldRender: (
         <OssUpLoad
-          initFile={
-          [{ uid: 1, name: 'logo', url: 'http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg' }]}
+          // initFile={
+          // [{ uid: 1, name: 'logo', url: 'http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg' }]}
           getFiles={(file: Array<any>) => {
             console.log(file,'--')
             setFile(file[0]);
