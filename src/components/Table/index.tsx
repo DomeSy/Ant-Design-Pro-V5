@@ -32,12 +32,12 @@ const Table: React.FC<Props> = ({
   const actionRef = useRef<ActionType>();
   const FormRef = useRef<FormInstance>();
 
-  const [maskFormRef, setMaskFormRef] = useState<any>(false);
   const [list, setList] = useState<tableListProps[] | undefined>(undefined);
   const [maskVisible, setMaskVisible] = useState<boolean>(false);
   const [tool, setTool] = useState<'create' | 'edit' | boolean>(false); //用于判断一些特殊情况
   const [editList, setEditList] = useState< EditsProps | boolean>(false); //用于判断一些特殊情况
   const [recordDetail, setRecordDetail] = useState<Object>({}); //编辑时带出一整行的数据
+  const [fieldValues, setFieldValues] = useState<Array<any>>([]); //编辑时带出一整行的数据
 
   useEffect(() => {
     if (getRef) getRef(actionRef);
@@ -157,6 +157,15 @@ const Table: React.FC<Props> = ({
         }
         let result:formProps[] = []
         if(edit?.onBeforeStart) {
+          // 处理自定义组件的回显问题
+          if(edit?.onBeforeFiled){
+            const filed = edit.onBeforeFiled(record);
+            if(!Array.isArray(filed)){
+              message.error('需要在onBeforeFiled返回数组，格式与Form的fieldValues一样！')
+              return
+            }
+            setFieldValues(filed)
+          }
           result = await edit.onBeforeStart(record)
           if(typeof result === 'string') {
             message.error(result)
@@ -429,8 +438,9 @@ const Table: React.FC<Props> = ({
   };
 
   // 弹框渲染组件
-  const MaskRender = (mask:editTools, method: string, formList: formProps[] = []) => {
+  const MaskRender = (mask: editTools, method: string, formList: formProps[] = []) => {
     const title = method === 'create' ? tableSy.toolBar.create.text : tableSy.tools.edit.text
+    console.log(fieldValues, '008')
     return <Mask.Form
       title={title}
       message={`${title}成功`}
@@ -443,12 +453,17 @@ const Table: React.FC<Props> = ({
         return value
       }}
       visible={maskVisible}
-      formRef={maskFormRef}
+      formList={formList}
+      form={{
+        ...mask?.form,
+        fieldValues: fieldValues.length !== 0 ? fieldValues : mask?.form?.fieldValues
+      }}
       onCancel={() => {
         setMaskVisible(false);
         setTool(false);
         setEditList(false);
         setRecordDetail({})
+        setFieldValues([])
       }}
       onSubmit={async () => {
         if(mask && typeof mask.maskFrom !== 'boolean' && mask?.maskFrom && mask.maskFrom?.onSubmit){
@@ -458,17 +473,9 @@ const Table: React.FC<Props> = ({
         setTool(false)
         setEditList(false)
         setMaskVisible(false)
+        setFieldValues([])
       }}
-    >
-      <Form
-        {...mask?.form}
-        method="mask"
-        formList={formList}
-        getRef={(formRef: any) => {
-          setMaskFormRef(formRef);
-        }}
-      />
-    </Mask.Form>
+    />
   }
 
   // 新建按钮

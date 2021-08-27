@@ -104,7 +104,6 @@ const TableList: React.FC = () => {
    * */
 
   useEffect(() => {
-    console.log(Jump.get(),'---')
   },[])
 
   const columns: ProColumns<API.RuleListItem>[] = [

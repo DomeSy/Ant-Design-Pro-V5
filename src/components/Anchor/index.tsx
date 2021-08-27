@@ -11,7 +11,6 @@ import Props,{ AnchorLinkProps } from './interface.d'
 const AnchorView: React.FC<Props> = ({list = [], ...props}) => {
 
   useEffect(() => {
-    console.log(list,'--')
   }, [])
 
   const renderLink = (item: AnchorLinkProps, index:number) => {

@@ -3,7 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
 import { Button, OssUpLoad, Form, PageLayout, Three, Table, Mask } from '@/components';
 import type { formProps, tableListProps } from '@/components'
-import { queryRule } from './service'
+import { queryRule } from './services'
 import MultiCascader from "antd-multi-cascader";
 import "antd-multi-cascader/dist/index.css";
 const { Option } = Select;
@@ -17,64 +17,26 @@ const waitTime = (time: number = 100) => {
 };
 
 const Welcome: React.FC<any> = (props) => {
-  useEffect(() => {}, []);
+  const [maskFormRef, setMaskFormRef] = useState<any>(false);
+  const [maskVisible, setMaskVisible] = useState<boolean>(false);
+  useEffect(() => {
+    setFile('http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg')
+  }, []);
   const [file, setFile] = useState<any>('');
   const [ref, setRef] = useState<any>(false);
-
-  const treeData = [
-    {
-      name: 'Node1',
-      values: '0-0',
-      ars: '0-0',
-      childrens: [
-        {
-          name: 'Child Node1',
-          values: '0-0-0',
-          ars: '0-0-0',
-        },
-      ],
-    },
-    {
-      name: 'Node2',
-      values: '0-1',
-      ars: '0-1',
-      childrens: [
-        {
-          name: 'Child Node3',
-          values: '0-1-0',
-          ars: '0-1-0',
-        },
-        {
-          name: 'Child Node4',
-          values: '0-1-1',
-          ars: '0-1-1',
-        },
-        {
-          name: 'Child Node5',
-          values: '0-1-2',
-          ars: '0-1-2',
-        },
-      ],
-    },
-  ];
 
   const list: formProps[] = [
     {
       name: 'field3',
-      label: '自定义规则',
+      label: '自定义',
       type: 'field',
-      tooltip: `rules: [{ required: true, message: '欢迎使用自定义组件' }]`,
+      required: true,
       fieldRender: (
-        <Three.Select
-          list={treeData}
-          _config={{
-            title: 'name',
-            value: 'values',
-            // key: 'name',
-            children: 'childrens'
-          }}
-          getValues={(values) => {
-            setFile(values)
+        <OssUpLoad
+          initFile={
+          [{ uid: 1, name: 'logo', url: 'http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg' }]}
+          getFiles={(file: Array<any>) => {
+            setFile(file[0]);
           }}
         />
       ),
@@ -99,10 +61,12 @@ const Welcome: React.FC<any> = (props) => {
       tab={tab}
     >
       <Card>
+        <Button onClick={() => {
+          setMaskVisible(true)
+        }}>测试</Button>
         <Form
           onFinish={(values: any) => {
             message.success('打开控制台观看');
-            console.log(values, '---');
           }}
           formList={list}
           _config={{
@@ -119,6 +83,28 @@ const Welcome: React.FC<any> = (props) => {
           }}
         />
       </Card>
+      <Mask.Form
+        title="批量编辑"
+        message={"编辑成功"}
+        visible={maskVisible}
+        onRequest={queryRule}
+        formList={list}
+        form={
+          {
+            fieldValues: [
+              {
+                name: 'field3',
+                value: file
+              }
+            ]
+          }
+        }
+        onCancel={() => setMaskVisible(false)}
+        onSubmit={() => setMaskVisible(false)}
+        onEdit={(value) => {
+          return value
+        }}
+      />
     </PageLayout>
   );
 };

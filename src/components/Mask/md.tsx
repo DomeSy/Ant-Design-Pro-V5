@@ -5,7 +5,7 @@ import { Button, OssUpLoad, Form, PageLayout, Table, Mask } from '@/components';
 import type { formProps, tableListProps } from '@/components'
 import { PlusOutlined } from '@ant-design/icons';
 const { Option } = Select;
-// import { queryRule, queryRule1 } from './services'
+import { queryRule, queryRule1 } from './services'
 
 
 const Welcome: React.FC<any> = (props) => {

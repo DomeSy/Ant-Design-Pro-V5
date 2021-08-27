@@ -189,7 +189,7 @@ export interface formLayoutProps {
   labelCol: colProps;
   wrapperCol: colProps;
 }
-interface fieldValuesProps {
+export interface fieldValuesProps {
   name:string,
   value: string | number
 }

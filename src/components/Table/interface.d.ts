@@ -52,6 +52,7 @@ interface SearchOptionsProps {
 export interface PaginationConfigProps extends TablePaginationConfig {}
 export interface editTools extends createProps {
   style?: React.CSSProperties;
+  onBeforeFiled?: any;
   onBeforeStart?: any;
   onEdit?: (values: Object<any>, record: Object<any>) => void;
 }

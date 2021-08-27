@@ -1,5 +1,6 @@
 import { ModalProps, message } from 'antd';
 import type { FormInstance } from 'antd';
+import type { formProps, FormPropsSy, FormCommonProps } from '@/components';
 
 interface CommonProps extends ModalProps {
 
@@ -14,7 +15,8 @@ export interface MaskProps {
 }
 
 export interface MaskFromProps extends CommonProps {
-  formRef?: { current?: FormInstance };
+  form?: FormPropsSy & FormCommonProps;
+  formList?: formProps[];
   onCancel?: (e: any) => void;
   onSubmit?: () => void;
   onEdit?: (values: Object<any>) => void;
