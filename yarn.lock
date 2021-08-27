@@ -3140,6 +3140,17 @@
     "@umijs/runtime" "3.5.13"
     react-router-config "5.1.1"
 
+"@umijs/renderer-react@^3.2.9":
+  version "3.5.17"
+  resolved "https://registry.nlark.com/@umijs/renderer-react/download/@umijs/renderer-react-3.5.17.tgz?cache=0&sync_timestamp=1628659725038&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40umijs%2Frenderer-react%2Fdownload%2F%40umijs%2Frenderer-react-3.5.17.tgz#2330a63c6566db4359ec2ea2a3ad66a829500bd9"
+  integrity sha1-IzCmPGVm20NZ7C6io61mqClQC9k=
+  dependencies:
+    "@types/react" "^16.9.43"
+    "@types/react-dom" "^16.9.8"
+    "@types/react-router-config" "^5.0.2"
+    "@umijs/runtime" "3.5.17"
+    react-router-config "5.1.1"
+
 "@umijs/route-utils@^1.0.35", "@umijs/route-utils@^1.0.36", "@umijs/route-utils@^1.0.7":
   version "1.0.37"
   resolved "https://registry.npm.taobao.org/@umijs/route-utils/download/@umijs/route-utils-1.0.37.tgz?cache=0&sync_timestamp=1617893666722&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40umijs%2Froute-utils%2Fdownload%2F%40umijs%2Froute-utils-1.0.37.tgz#1ceb516980d4754ce2d5959878fe72259091a990"
@@ -3154,6 +3165,18 @@
   version "3.5.13"
   resolved "https://registry.nlark.com/@umijs/runtime/download/@umijs/runtime-3.5.13.tgz#fd37279cad39e0f953bd982d3bb3ffb221b701e3"
   integrity sha1-/TcnnK054PlTvZgtO7P/siG3AeM=
+  dependencies:
+    "@types/react-router" "5.1.12"
+    "@types/react-router-dom" "5.1.7"
+    history-with-query "4.10.4"
+    react-router "5.2.0"
+    react-router-dom "5.2.0"
+    use-subscription "1.5.1"
+
+"@umijs/runtime@3.5.17":
+  version "3.5.17"
+  resolved "https://registry.nlark.com/@umijs/runtime/download/@umijs/runtime-3.5.17.tgz?cache=0&sync_timestamp=1628659724275&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40umijs%2Fruntime%2Fdownload%2F%40umijs%2Fruntime-3.5.17.tgz#90be6f257029a525f34472eaf68162dc140d75f9"
+  integrity sha1-kL5vJXAppSXzRHLq9oFi3BQNdfk=
   dependencies:
     "@types/react-router" "5.1.12"
     "@types/react-router-dom" "5.1.7"
@@ -5250,6 +5273,14 @@ create-react-class@^15.5.1, create-react-class@^15.6.0:
   dependencies:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
+
+create-react-context@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npm.taobao.org/create-react-context/download/create-react-context-0.3.0.tgz#546dede9dc422def0d3fc2fe03afe0bc0f4f7d8c"
+  integrity sha1-VG3t6dxCLe8NP8L+A6/gvA9PfYw=
+  dependencies:
+    gud "^1.0.0"
+    warning "^4.0.3"
 
 crequire@1.8.1:
   version "1.8.1"
@@ -7745,6 +7776,11 @@ growly@^1.3.0:
   resolved "https://registry.npm.taobao.org/growly/download/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
   integrity sha1-8QdIy+dq+WS3yWyTxrzCivEgwIE=
 
+gud@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/gud/download/gud-1.0.0.tgz#a489581b17e6a70beca9abe3ae57de7a499852c0"
+  integrity sha1-pIlYGxfmpwvsqavjrlfeekmYUsA=
+
 gzip-size@5.1.1:
   version "5.1.1"
   resolved "https://registry.npm.taobao.org/gzip-size/download/gzip-size-5.1.1.tgz#cb9bee692f87c0612b232840a873904e4c135274"
@@ -9685,6 +9721,14 @@ jstoxml@^0.2.3:
   version "0.2.4"
   resolved "https://registry.nlark.com/jstoxml/download/jstoxml-0.2.4.tgz?cache=0&sync_timestamp=1626924274105&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fjstoxml%2Fdownload%2Fjstoxml-0.2.4.tgz#ff3fb67856883a032953c7ce8ce7486210f48447"
   integrity sha1-/z+2eFaIOgMpU8fOjOdIYhD0hEc=
+
+jsx-ast-utils@^2.2.1:
+  version "2.4.1"
+  resolved "https://registry.nlark.com/jsx-ast-utils/download/jsx-ast-utils-2.4.1.tgz#1114a4c1209481db06c690c2b4f488cc665f657e"
+  integrity sha1-ERSkwSCUgdsGxpDCtPSIzGZfZX4=
+  dependencies:
+    array-includes "^3.1.1"
+    object.assign "^4.1.0"
 
 "jsx-ast-utils@^2.4.1 || ^3.0.0", jsx-ast-utils@^3.1.0:
   version "3.2.0"
@@ -13225,6 +13269,17 @@ rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-activation@^0.9.4:
+  version "0.9.4"
+  resolved "https://registry.nlark.com/react-activation/download/react-activation-0.9.4.tgz#e2438922829f50cbb8ed04f565f2f4e88f597ae9"
+  integrity sha1-4kOJIoKfUMu47QT1ZfL06I9Zeuk=
+  dependencies:
+    create-react-context "^0.3.0"
+    hoist-non-react-statics "^3.3.0"
+    jsx-ast-utils "^2.2.1"
+    react-node-key "^0.3.0"
+    szfe-tools "^0.0.0-beta.7"
+
 react-attr-converter@^0.3.1:
   version "0.3.1"
   resolved "https://registry.npm.taobao.org/react-attr-converter/download/react-attr-converter-0.3.1.tgz#4a2abf6d907b7ddae4d862dfec80e489ce41ad6e"
@@ -13438,6 +13493,14 @@ react-native-swipeout@^2.2.2:
     prop-types "^15.5.10"
     react-tween-state "^0.1.5"
 
+react-node-key@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.nlark.com/react-node-key/download/react-node-key-0.3.0.tgz#7e194ff4a2af1a888d30f2bc331423247f5877ef"
+  integrity sha1-fhlP9KKvGoiNMPK8MxQjJH9Yd+8=
+  dependencies:
+    jsx-ast-utils "^2.2.1"
+    szfe-tools "^0.0.0-beta.7"
+
 react-redux@=4.4.10:
   version "4.4.10"
   resolved "https://registry.nlark.com/react-redux/download/react-redux-4.4.10.tgz#ad57bd1db00c2d0aa7db992b360ce63dd0b80ec5"
@@ -13467,7 +13530,7 @@ react-refresh@0.10.0:
   resolved "https://registry.nlark.com/react-refresh/download/react-refresh-0.10.0.tgz?cache=0&sync_timestamp=1627057142368&other_urls=https%3A%2F%2Fregistry.nlark.com%2Freact-refresh%2Fdownload%2Freact-refresh-0.10.0.tgz#2f536c9660c0b9b1d500684d9e52a65e7404f7e3"
   integrity sha1-L1NslmDAubHVAGhNnlKmXnQE9+M=
 
-react-router-config@5.1.1:
+react-router-config@5.1.1, react-router-config@^5.1.1:
   version "5.1.1"
   resolved "https://registry.npm.taobao.org/react-router-config/download/react-router-config-5.1.1.tgz#0f4263d1a80c6b2dc7b9c1902c9526478194a988"
   integrity sha1-D0Jj0agMay3HucGQLJUmR4GUqYg=
@@ -15697,6 +15760,13 @@ symbol-tree@^3.2.2, symbol-tree@^3.2.4:
   resolved "https://registry.npm.taobao.org/symbol-tree/download/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha1-QwY30ki6d+B4iDlR+5qg7tfGP6I=
 
+szfe-tools@^0.0.0-beta.7:
+  version "0.0.0-beta.7"
+  resolved "https://registry.npm.taobao.org/szfe-tools/download/szfe-tools-0.0.0-beta.7.tgz#580bacbc3d4e353c6ac00ab337b037aa53d14e96"
+  integrity sha1-WAusvD1ONTxqwAqzN7A3qlPRTpY=
+  dependencies:
+    "@babel/runtime" "^7.10.2"
+
 table@^5.0.0:
   version "5.4.6"
   resolved "https://registry.nlark.com/table/download/table-5.4.6.tgz#1292d19500ce3f86053b05f0e8e7e4a3bb21079e"
@@ -16223,6 +16293,15 @@ umi-plugin-antd-icon-config@^2.0.0:
   integrity sha1-Q0eE0pwgpNTtfbgZ1IqVYZGJ3sw=
   dependencies:
     "@ant-design/icons" "^4.0.0"
+
+umi-plugin-keep-alive@^0.0.1-beta.29:
+  version "0.0.1-beta.29"
+  resolved "https://registry.nlark.com/umi-plugin-keep-alive/download/umi-plugin-keep-alive-0.0.1-beta.29.tgz#556f611a409d23bb535d0da23d4847f76c85db5d"
+  integrity sha1-VW9hGkCdI7tTXQ2iPUhH92yF210=
+  dependencies:
+    "@umijs/renderer-react" "^3.2.9"
+    react-activation "^0.9.4"
+    react-router-config "^5.1.1"
 
 umi-plugin-pro-block@^2.0.1:
   version "2.0.3"

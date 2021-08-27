@@ -1,5 +1,5 @@
 export default [
-  { path: '/welcome', name: '欢迎', icon: 'smile', component: './Welcome' },
+  { path: '/welcome',exact: true, name: '欢迎', icon: 'smile', component: './Welcome' },
   {
     path: '/hook',
     name: 'Hook',

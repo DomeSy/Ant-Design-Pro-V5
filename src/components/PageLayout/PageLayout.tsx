@@ -1,14 +1,16 @@
 import { PageContainer } from '@ant-design/pro-layout';
 import { pageLayoutSy } from '@/utils/Setting';
+import { KeepAlive as Keep } from 'umi';
 import Props from './interface.d';
 
 /**
  * @module PageLayout 页容器
  * @author Domesy
  *
- * @tab 标签切换栏,支持原有的tabList
- * @onChange 切换标签触发的函数
- * @_config 全局配置
+ * @param KeepAlive 是否开启页面缓存配置
+ * @param tab 标签切换栏,支持原有的tabList
+ * @param onChange 切换标签触发的函数
+ * @param _config 全局配置
  *
  * @tab下的参数
  * @param tab 列表的的名称
@@ -26,6 +28,7 @@ const PageLayout: React.FC<Props> = ({
   title,
   header,
   tab,
+  keepAlive,
   _config,
   ...props
 }) => {
@@ -55,7 +58,9 @@ const PageLayout: React.FC<Props> = ({
         ...header,
       }}
     >
-      {children}
+      {
+        keepAlive ? <Keep>{children}</Keep> : {children}
+      }
     </PageContainer>
   );
 };

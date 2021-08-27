@@ -181,105 +181,106 @@ const Welcome: React.FC<any> = (props) => {
   return (
     <PageLayout
       tab={tab}
+      keepAlive
     >
-      <Table
-        getRef={(ref) => setRef(ref)}
-        request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
-        tableList={columns}
-        rowKey="key"
-        search={{
-          options: [
-            {
-              method: 'export',
-              export: {
-                onExportBefore: () => {
-                  const columns: tableListProps[] = [
-                    {
-                      title: '组件',
-                      dataIndex: 'name',
-                    },
-                    {
-                      title: '组件',
-                      dataIndex: 'component',
-                    },
-                    {
-                      title: '描述',
-                      dataIndex: 'desc',
-                    },
-                  ]
-                  const file =[
-                    { name: 'Form', component: '动态表单', desc: '帮助快速开发的工具'},
-                    { name: 'Table', component: '动态表格', desc: '对ProForm进行封装'},
-                    { name: 'PageLayout', component: '页面容器', desc: '对PageContainer进行封装'},
-                  ]
-                  const list = [
-                    {headers: columns, data: file, sheetName: '导出1'},
-                    {headers: columns, data: file, sheetName: '导出2'}
-                  ]
-                  return {
-                    title: '表单导出Excle',
-                    list
+        <Table
+          getRef={(ref) => setRef(ref)}
+          request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
+          tableList={columns}
+          rowKey="key"
+          search={{
+            options: [
+              {
+                method: 'export',
+                export: {
+                  onExportBefore: () => {
+                    const columns: tableListProps[] = [
+                      {
+                        title: '组件',
+                        dataIndex: 'name',
+                      },
+                      {
+                        title: '组件',
+                        dataIndex: 'component',
+                      },
+                      {
+                        title: '描述',
+                        dataIndex: 'desc',
+                      },
+                    ]
+                    const file =[
+                      { name: 'Form', component: '动态表单', desc: '帮助快速开发的工具'},
+                      { name: 'Table', component: '动态表格', desc: '对ProForm进行封装'},
+                      { name: 'PageLayout', component: '页面容器', desc: '对PageContainer进行封装'},
+                    ]
+                    const list = [
+                      {headers: columns, data: file, sheetName: '导出1'},
+                      {headers: columns, data: file, sheetName: '导出2'}
+                    ]
+                    return {
+                      title: '表单导出Excle',
+                      list
+                    }
                   }
+                }
+              },
+              {
+                method: 'button',
+                button: {
+                  prefix: <PlusOutlined />,
+                  text: '测试Button'
+                }
+              }
+            ]
+          }}
+          toolBar={[
+            {
+              method: 'create',
+              create: {
+                formList: [
+                  {
+                    name: 'field3',
+                    label: '自定义',
+                    type: 'field',
+                    required: true,
+                    fieldRender: (
+                      <OssUpLoad
+                        initFile={
+                        [{ uid: 1, name: 'logo', url: 'http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg' }]}
+                        getFiles={(file: Array<any>) => {
+                          setFile(file[0]);
+                        }}
+                      />
+                    ),
+                  },
+                  {
+                    name: 'test1',
+                    label: 'MaskFrom111asdasd1'
+                  },
+                  {
+                    name: 'test2',
+                    label: 'MaskFrom3'
+                  },
+                ],
+                form: {
+                },
+                maskFrom: {
+                  onEdit:(values: any) => {
+                    return values;
+                  },
+                  onRequest: queryRule
                 }
               }
             },
             {
-              method: 'button',
-              button: {
-                prefix: <PlusOutlined />,
-                text: '测试Button'
+              fieldRender: (action:any) => {
+                return [<Button>测试</Button>]
               }
             }
-          ]
-        }}
-        toolBar={[
-          {
-            method: 'create',
-            create: {
-              formList: [
-                {
-                  name: 'field3',
-                  label: '自定义',
-                  type: 'field',
-                  required: true,
-                  fieldRender: (
-                    <OssUpLoad
-                      initFile={
-                      [{ uid: 1, name: 'logo', url: 'http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg' }]}
-                      getFiles={(file: Array<any>) => {
-                        setFile(file[0]);
-                      }}
-                    />
-                  ),
-                },
-                {
-                  name: 'test1',
-                  label: 'MaskFrom111asdasd1'
-                },
-                {
-                  name: 'test2',
-                  label: 'MaskFrom3'
-                },
-              ],
-              form: {
-              },
-              maskFrom: {
-                onEdit:(values: any) => {
-                  return values;
-                },
-                onRequest: queryRule
-              }
-            }
-          },
-          {
-            fieldRender: (action:any) => {
-              return [<Button>测试</Button>]
-            }
-          }
-        ]}
-        _config={{
-        }}
-      />
+          ]}
+          _config={{
+          }}
+        />
     </PageLayout>
   );
 };

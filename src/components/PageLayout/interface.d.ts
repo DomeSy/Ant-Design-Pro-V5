@@ -9,6 +9,7 @@ interface ConfigProps {
 interface Props extends PageContainerProps {
   tab?: (TabPaneProps & { key?: React.ReactText })[];
   onChange?: (key?: React.ReactText) => void;
+  keepAlive?: boolean;
   _config?: ConfigProps;
 }
 
