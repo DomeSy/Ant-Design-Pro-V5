@@ -59,7 +59,7 @@ const PageLayout: React.FC<Props> = ({
       }}
     >
       {
-        keepAlive ? <Keep>{children}</Keep> : {children}
+        keepAlive ? <Keep>{children}</Keep> : <>{children}</>
       }
     </PageContainer>
   );
