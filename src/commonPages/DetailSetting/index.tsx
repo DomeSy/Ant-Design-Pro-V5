@@ -34,16 +34,33 @@ const DetailSetting: React.FC<Props> = () => {
               [
                 {
                   type: 'title',
-                  render: '标题1',
-                  title: '标题'
+                  render: '一级标题',
+                  tooltip: '提示语',
+                  main: true
                 },
                 {
-                  list: [
-                    '我们是一行代码',
-                    {
-                      text: ',我们很强'
-                    }
-                  ]
+                  type: 'title',
+                  render: '二级标题',
+                  tooltip: '提示语'
+                },
+                {
+                  render: '这是一段描述的话语，可能会引起你描述的关注点，请期待，我们可已完成',
+                },
+                {
+                  render: '这是一个超链接',
+                  href: 'https://www.baidu.com/',
+                  tooltip: 'href: https://www.baidu.com/, blank: true',
+                  blank: true
+                },
+                {
+                  render: '这是一段描述的话语，可能会引起你的关注点，请期待，我们可已完成',
+                  red: true,
+                  tooltip: 'red: true,'
+                },
+                {
+                  render: '这是一段描述的话语，可能会引起你的关注点，请期待，我们可已完成',
+                  strong: true,
+                  tooltip: 'strong: true,'
                 }
               ]
             }

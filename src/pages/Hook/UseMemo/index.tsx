@@ -52,8 +52,6 @@ const UseMemo: React.FC<any> = (props) => {
     //     <div id='test3' style={{height: 500}}>1</div>
     //   </ProCard>
 
-
-
     // </PageLayout>
     <DetailSetting />
   );
