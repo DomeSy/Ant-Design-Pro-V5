@@ -46,6 +46,7 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
           item.type === 'ellipsis' ?
           <Typography.Paragraph
             ellipsis={{
+              // expandable: true,
               rows: 3,
               ...item.ellipsis
             }}
