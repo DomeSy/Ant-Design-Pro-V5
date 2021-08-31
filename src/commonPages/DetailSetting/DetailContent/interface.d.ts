@@ -4,8 +4,18 @@ import { TypographyProps } from 'antd';
 interface ListProps {
   text?:string
 }
+
+interface EllipsisProps {
+  rows?: number;
+  expandable?: boolean;
+  suffix?: string;
+  symbol?: React.ReactNode;
+  onExpand?: React.MouseEventHandler<HTMLElement>;
+  onEllipsis?: (ellipsis: boolean) => void;
+  tooltip?: React.ReactNode;
+}
 export interface DetailListProps {
-  type?: 'title' | 'content', // 一级标题 二级标题 内容, 默认为content
+  type?: 'title' | 'content' | 'divider' | 'list' | 'prv' | 'ellipsis', // 标题 内容 分割线, 内容块, 可省略 默认为content
   main?: boolean; //是否是主要的
   id?: string, // 唯一索引，对应获取的id值
   render?: React.ReactNode, // 渲染的值
@@ -16,6 +26,11 @@ export interface DetailListProps {
   blank?: boolean; //是否打开新的页面
   red?: boolean; //是否全部标红
   strong?: boolean; //是否加粗
+  way?: "center" | "left" | "right"; // 方式
+  list?: DetailListProps[]; //列表数据
+  style?: React.CSSProperties, //集中样式
+  code?: boolean; //code框
+  ellipsis?: EllipsisProps //可省略
 }
 
 export default interface Props {
