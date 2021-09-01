@@ -16,9 +16,15 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
   const tooltipRender = (item: DetailListProps, suffix?: React.ReactNode) => {
     return <Typography.Text >
       <Tooltip title={item.tooltip}>
-        <Typography.Text style={{marginLeft: 8}} >
+        {
+          item.tooltipHref ?
+          <Typography.Link href={item.tooltipHref} target={item.tooltipBlank ? '_blank' : '_self'}>
+            { item.suffix ? item.suffix : suffix ? suffix : <QuestionCircleOutlined /> }
+          </Typography.Link> :
+          <Typography.Text style={{marginLeft: 8}} >
           { item.suffix ? item.suffix : suffix ? suffix : <QuestionCircleOutlined /> }
         </Typography.Text>
+        }
       </Tooltip>
     </Typography.Text>
   }

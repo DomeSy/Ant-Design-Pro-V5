@@ -23,7 +23,9 @@ export interface DetailListProps {
   suffix?: React.ReactNode, // 提示的上方的字，默认为一个感叹号
   tooltip?: string; // 提示语
   href?: string; // 是否启动超链接,如果有则进行跳转
+  tooltipHref?: string; // 提示语，是否启动超链接,如果有则进行跳转
   blank?: boolean; //是否打开新的页面
+  tooltipBlank?: boolean; //提示语，是否打开新的页面
   red?: boolean; //是否全部标红
   strong?: boolean; //是否加粗
   way?: "center" | "left" | "right"; // 方式

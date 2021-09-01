@@ -76,6 +76,12 @@ const DetailSetting: React.FC<Props> = () => {
                   tooltip: 'strong: true,'
                 },
                 {
+                  render: '分割提示按钮跳转',
+                  type: 'divider',
+                  tooltip: 'strong: true,',
+                  tooltipHref: 'https://www.baidu.com/'
+                },
+                {
                   render: '字体变红',
                   red: true,
                   tooltip: 'way: right,',
