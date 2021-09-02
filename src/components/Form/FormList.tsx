@@ -328,6 +328,8 @@ const FomList: React.FC<FormListProps> = ({ formList=[], layout = {}, method, _c
         fieldRender(item)
       ) : item.type === 'select' ? (
         <ProFormSelect
+          showSearch={item.search ? true : false}
+          mode={item?.multiple ? 'multiple' : undefined}
           {...commonProps(item, item.type)}
           fieldProps={{
             optionItemRender: (ele: any) => {

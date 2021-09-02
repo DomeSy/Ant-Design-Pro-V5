@@ -488,6 +488,7 @@ const Table: React.FC<Props> = ({
       <Button
         type="primary"
         onClick={() => {
+          if(data.onBefore) data.onBefore()
           if(data?.go){
             Jump.go(data.go, data.payload)
             return

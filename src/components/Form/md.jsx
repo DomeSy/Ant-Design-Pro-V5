@@ -88,6 +88,8 @@
  * @select的私有参数
  * @param mode 选择的模式：'singe' 单选（默认） 'multiple' 'tags' 多选
  * @param message 必填时的消息 默认
+ * @param multiple 是否多选
+ * @param search 是否搜索查询
  * @param enum 对象， 对应选择框的值，展示属性值，值为属性名
  * @param options 数组 包含label和value，展示label，值为value 并且等级高于enum
  * @param request 函数，返回对象为一个数组，包含label和value，展示label，值为value，并且等级高于enum和options
@@ -824,27 +826,27 @@
 // {
 //   name: 'select6',
 //   label: '多选',
-//   mode: 'tags',
-//   tooltip: 'mode: tags',
+//   tooltip: 'multiple: true,',
 //   options: [
 //     { label: '全部1', value: 'all' },
 //     { label: '未解决', value: 'open' },
 //     { label: '已解决', value: 'closed' },
 //     { label: '解决中', value: 'processing' },
 //   ],
+//   multiple: true,
 //   type: 'select',
 // },
 // {
 //   name: 'select7',
 //   label: '搜索',
-//   tooltip: 'showSearch: true',
-//   showSearch: true,
+//   tooltip: 'multiple: true,',
 //   options: [
 //     { label: '全部1', value: 'all' },
 //     { label: '未解决', value: 'open' },
 //     { label: '已解决', value: 'closed' },
 //     { label: '解决中', value: 'processing' },
 //   ],
+//   search: true,
 //   type: 'select',
 // },
 // {

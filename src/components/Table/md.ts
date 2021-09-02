@@ -29,6 +29,7 @@
  * @param formList 对应from表单的list属性
  * @param button 对应Button的相关属性
  * @param prefix 前置图标，默认➕，不显示返回false即可
+ * @param onBefore 跳转之前执行其他的方式
  *
  * @button下的参数 自定义按钮，如果是其他按钮，可以用这个，方便统一样式处理
  * @param text 按钮的文字

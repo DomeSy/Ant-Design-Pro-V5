@@ -149,6 +149,8 @@ export interface formProps extends GroupProps {
   marks?: Object;
   step?: number;
   precision?: number;
+  multiple?: boolean;
+  search?: boolean;
   getCaptcha?: (phone: any) => void;
   captchaText?: (timing: boolean, count: number) => void;
   fieldRender?: React.ReactNode | Function;
