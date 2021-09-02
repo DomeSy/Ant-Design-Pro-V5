@@ -5,6 +5,7 @@ import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/ico
 import { Typography, Divider } from 'antd'
 import DetailContent from './DetailContent'
 import Code from './Code'
+import ShowCodeProps from './ShowCode'
 interface Props {
 
 }
@@ -19,7 +20,6 @@ const DetailSetting: React.FC<Props> = () => {
   useEffect(() => {
     window.addEventListener('resize', onResize);
     setLoading(false)
-
   }, [])
 
   // 监听屏幕尺寸
@@ -34,13 +34,9 @@ const DetailSetting: React.FC<Props> = () => {
     loading={loading}
   >
     <ProCard gutter={8} style={{margin: 0}}>
-      <ProCard
-        bordered
-      >
-        <div>代码展示区域</div>
-        <Divider dashed />
-        <div>neir</div>
-      </ProCard>
+      <ShowCodeProps>
+        年后
+      </ShowCodeProps>
       <ProCard
         style={size.width < 765 ? {display: 'none'} : undefined}
         layout="center"
@@ -66,7 +62,9 @@ const DetailSetting: React.FC<Props> = () => {
           }
         ]} />
       </ProCard>
+
     </ProCard>
+
     <Code>
         {`
           <ProCard gutter={9} style={{margin: 0}}>

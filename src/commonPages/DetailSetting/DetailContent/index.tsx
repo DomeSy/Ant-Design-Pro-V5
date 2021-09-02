@@ -18,7 +18,7 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
       <Tooltip title={item.tooltip}>
         {
           item.tooltipHref ?
-          <Typography.Link href={item.tooltipHref} target={item.tooltipBlank ? '_blank' : '_self'}>
+          <Typography.Link style={{marginLeft: 8}} href={item.tooltipHref} target={item.tooltipBlank ? '_blank' : '_self'}>
             { item.suffix ? item.suffix : suffix ? suffix : <QuestionCircleOutlined /> }
           </Typography.Link> :
           <Typography.Text style={{marginLeft: 8}} >
@@ -51,20 +51,21 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
         {
           item.type === 'ellipsis' ?
           <Typography.Paragraph
+            style={{...item.style}}
             ellipsis={{
               // expandable: true,
-              rows: 3,
+              rows: 2,
               ...item.ellipsis
             }}
           >
             { contentRender(item) }
           </Typography.Paragraph> :
           item.type === 'prv' ?
-          <Typography.Paragraph >
+          <Typography.Paragraph style={{...item.style}}>
             <pre>{item.render}</pre>
           </Typography.Paragraph> :
           item.type === 'title' ?
-            <Typography.Title id={item.id} level={item.main ? 2 : 3} style={{display: 'flex',justifyContent: 'flex-start', alignItems: 'center'}}>
+            <Typography.Title id={item.id} level={item.main ? 2 : 3} style={{display: 'flex',justifyContent: 'flex-start', alignItems: 'center'}} >
               {
                 item.render
               }
@@ -80,12 +81,12 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
               </Typography.Text>
             </Typography.Title>
           : item.type === 'divider' ?
-          <Divider orientation={item.way || 'left'}>
+          <Divider orientation={item.way || 'left'} style={{...item.style}}>
             { contentRender(item) }
             { item.tooltip && tooltipRender(item, <EditOutlined />) }
           </Divider>
           : item.type === 'list' ?
-          <Typography.Paragraph>
+          <Typography.Paragraph style={{...item.style}}>
             <ul>
             {
               Array.isArray(item.list) && item.list.map((ele, eleIndex) => (
@@ -98,7 +99,7 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
             </ul>
           </Typography.Paragraph>
            :
-          <Typography.Paragraph>
+          <Typography.Paragraph style={{...item.style}}>
             { contentRender(item) }
             { item.tooltip && tooltipRender(item) }
           </Typography.Paragraph>
