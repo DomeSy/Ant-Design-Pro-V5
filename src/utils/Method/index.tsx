@@ -145,6 +145,30 @@ class Method {
     return result;
   };
 
+  /**
+   * @module 树形数组
+   *
+   * @param arrList 数组集合
+   * @param id 子id
+   * @param fid 父id
+   * @param children 将子id放入fid的名字，默认children
+   */
+   static ArrayTree = (allList: Array<any>, id: string, fid: string, children:string = 'children') => {
+    let deepList = JSON.parse(JSON.stringify(allList));
+    let filterArr:any = []
+    const tree = deepList.map( (parent:any) => {
+      let item = deepList.filter( (child:any) => parent[id] == child[fid]);
+      if (item.length > 0) {
+        parent[children] = item;
+        filterArr = [...filterArr, ...item];
+      }
+      return parent;
+    });
+
+    const result:any = Method.ArrayTree(tree, filterArr, id)
+    return result;
+  }
+
   static ExportExcel = ExportExcel
 }
 

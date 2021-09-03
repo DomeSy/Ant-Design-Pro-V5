@@ -1,4 +1,7 @@
 import React from 'react';
+import { Divider } from 'antd';
+import { Typography } from 'antd';
+import { CopyOutlined } from '@ant-design/icons';
 import { SendOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import DetailContent from '../DetailContent'
 
@@ -38,6 +41,12 @@ const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
          }
        ]}
       />
+      <Divider style={{margin: 0}} />
+      <div style={{ display: 'flex',marginTop: 12, justifyContent: 'center', alignContent: 'center'}}>
+        {/* <CopyOutlined /> */}
+        <Typography.Paragraph copyable={{text: '111'}} />
+        <span>{`<  >`}</span>
+      </div>
     </div>
   )
 }

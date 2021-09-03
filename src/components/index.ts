@@ -8,7 +8,6 @@ export { default as Form } from './Form';
 export { default as PageLayout } from './PageLayout';
 export { default as Table } from './Table';
 export { default as Mask } from './Mask';
-export { default as Three } from './Three';
 export { default as Card } from './Card';
 export { default as Anchor } from './Anchor';
 export { default as Typography } from './Typography';

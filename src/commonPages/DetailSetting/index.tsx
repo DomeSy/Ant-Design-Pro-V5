@@ -5,7 +5,7 @@ import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/ico
 import { Typography, Divider } from 'antd'
 import DetailContent from './DetailContent'
 import Code from './Code'
-import ShowCodeProps from './ShowCode'
+import ShowCode from './ShowCode'
 interface Props {
 
 }
@@ -34,9 +34,9 @@ const DetailSetting: React.FC<Props> = () => {
     loading={loading}
   >
     <ProCard gutter={8} style={{margin: 0}}>
-      <ShowCodeProps>
+      <ShowCode>
         年后
-      </ShowCodeProps>
+      </ShowCode>
       <ProCard
         style={size.width < 765 ? {display: 'none'} : undefined}
         layout="center"
