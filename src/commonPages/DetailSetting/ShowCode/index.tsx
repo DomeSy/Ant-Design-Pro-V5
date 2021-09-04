@@ -1,23 +1,33 @@
-import React from 'react';
-import { Divider } from 'antd';
-import { Typography } from 'antd';
+
+import React, { useState, useRef, useEffect } from 'react';
+import { Typography, Tooltip, Divider } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
 import { SendOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import DetailContent from '../DetailContent'
+import Code from '../Code'
 
 interface ShowCodeProps {
-  title?: string,
-  content?: React.ReactNode,
-  titleTooltip?: string,
-  titleTooltipHref?: string,
-  contentTooltip?: string,
-  contentTooltipHref?: string,
+  title?: string, // 标题
+  content?: React.ReactNode, // 内容
+  titleTooltip?: string, // 标题提示
+  titleTooltipHref?: string, // 标题链接
+  contentTooltip?: string, //内容提示
+  contentTooltipHref?: string, //内容链接
+  code?: string //代码
 }
 
 const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
 
+  const [codeShow, setCodeShow] = useState<boolean>(false)
+  const cardRef = useRef<any>();
+
+  useEffect(() => {
+    console.log(cardRef.current.clientWidth)
+  }, [])
+
   return (
     <div
+      ref={cardRef}
       style={{ width: '100%', borderRadius: 2, border: '1px solid #f0f0f0'}}
     >
       <div style={{padding: '24px 24px 0 24px'}}>
@@ -41,12 +51,27 @@ const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
          }
        ]}
       />
-      <Divider style={{margin: 0}} />
-      <div style={{ display: 'flex',marginTop: 12, justifyContent: 'center', alignContent: 'center'}}>
-        {/* <CopyOutlined /> */}
-        <Typography.Paragraph copyable={{text: '111'}} />
-        <span>{`<  >`}</span>
-      </div>
+      {
+        props.code && <>
+        <Divider style={{margin: 0}} />
+          <div style={{ display: 'flex',marginTop: 12, justifyContent: 'center', alignContent: 'center'}}>
+            <Typography.Paragraph  copyable={{text: '111', tooltips: '复制代码' }}  />
+            <Tooltip title={codeShow ? '收起代码' : '展开代码'}>
+              {
+                codeShow ? <img src="https://gw.alipayobjects.com/zos/antfincdn/4zAaozCvUH/unexpand.svg" onClick={() => setCodeShow(false)} style={{width: 21, height: 21, marginLeft: 20, opacity: 0.3, cursor: 'pointer'}} /> :
+                <img onClick={() => setCodeShow(true)} src="https://gw.alipayobjects.com/zos/antfincdn/Z5c7kzvi30/expand.svg" style={{width: 21, height: 21, marginLeft: 20, opacity: 0.3, cursor: 'pointer'}} />
+              }
+            </Tooltip>
+            </div>
+            <Divider style={{margin: 0}} />
+            {
+              codeShow &&
+              <Code width={cardRef.current.clientWidth}>
+                  {props.code}
+              </Code>
+            }
+        </>
+      }
     </div>
   )
 }
