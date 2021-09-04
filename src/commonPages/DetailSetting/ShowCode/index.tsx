@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Typography, Tooltip, Divider } from 'antd';
+import { Typography, Tooltip, Divider, Button } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
 import { SendOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import DetailContent from '../DetailContent'
@@ -28,7 +28,7 @@ const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
   return (
     <div
       ref={cardRef}
-      style={{ width: '100%', borderRadius: 2, border: '1px solid #f0f0f0'}}
+      style={{ width: '100%', borderRadius: 2, border: '1px solid #f0f0f0', marginBottom: 24}}
     >
       <div style={{padding: '24px 24px 0 24px'}}>
         {children}
@@ -54,7 +54,7 @@ const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
       {
         props.code && <>
         <Divider style={{margin: 0}} />
-          <div style={{ display: 'flex',marginTop: 12, justifyContent: 'center', alignContent: 'center'}}>
+          <div style={{ display: 'flex',marginTop: 12, justifyContent: 'flex-end', alignContent: 'center'}}>
             <Typography.Paragraph  copyable={{text: '111', tooltips: '复制代码' }}  />
             <Tooltip title={codeShow ? '收起代码' : '展开代码'}>
               {

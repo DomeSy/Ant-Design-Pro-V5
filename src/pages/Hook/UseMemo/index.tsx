@@ -32,27 +32,6 @@ const UseMemo: React.FC<any> = (props) => {
 
   }, []);
   return (
-    // <PageLayout
-    //   loading={loading}
-    // >
-    //   <ProCard>
-    //     {/* <Anchor targetOffset={targetOffset}>
-    //       <Link href="#test" title="Basic demo" />
-    //       <Link href="#test1" title="Static demo" />
-    //       <Link href="#API" title="API">
-    //         <Link href="#test2" title="Anchor Props" />
-    //         <Link href="#test3" title="Link Props" />
-    //       </Link>
-    //     </Anchor> */}
-    //     <Anchor list={listTest}/>
-    //     <div id='test' style={{height: 500}}>1</div>
-    //     <div id='test1' style={{height: 500}}>1</div>
-    //     <div id='API' style={{height: 100}}>Api</div>
-    //     <div id='test2' style={{height: 500}}>测试</div>
-    //     <div id='test3' style={{height: 500}}>1</div>
-    //   </ProCard>
-
-    // </PageLayout>
     <DetailSetting />
   );
 };

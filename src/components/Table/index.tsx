@@ -440,11 +440,9 @@ const Table: React.FC<Props> = ({
   // 弹框渲染组件
   const MaskRender = (mask: editTools, method: string, formList: formProps[] = []) => {
     const title = method === 'create' ? tableSy.toolBar.create.text : tableSy.tools.edit.text
-    console.log(fieldValues, '008')
     return <Mask.Form
       title={title}
       message={`${title}成功`}
-      {...mask?.maskFrom}
       onEdit={(value) => {
         if(mask.onEdit) {
           const payload:any = mask.onEdit(value, recordDetail)
@@ -452,6 +450,7 @@ const Table: React.FC<Props> = ({
         }
         return value
       }}
+      {...mask?.maskFrom}
       visible={maskVisible}
       formList={formList}
       form={{
@@ -487,15 +486,23 @@ const Table: React.FC<Props> = ({
     return [
       <Button
         type="primary"
-        onClick={() => {
+        onClick={async () => {
           if(data.onBefore) data.onBefore()
           if(data?.go){
             Jump.go(data.go, data.payload)
             return
           }
+          let formList:any = []
+          if(data.formList) {
+            formList = data.formList
+          } else if(data.onBeforeFormList){
+            const resList = await data.onBeforeFormList()
+            if(!Array.isArray(resList)) return
+            formList = resList
+          }
           setEditList({
             data,
-            formList: data.formList || []
+            formList
           })
           setMaskVisible(true)
           setTool('create')

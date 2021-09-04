@@ -53,7 +53,6 @@ const PageLayout: React.FC<Props> = ({
         if (onChange) onChange(tab);
       }}
       header={{
-        // title: undefined,
         ...headerRender(),
         ...header,
       }}

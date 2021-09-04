@@ -137,7 +137,8 @@ export interface createProps {
   form?: FormPropsSy & FormCommonProps;
   formList?: formProps[];
   prefix?: React.ReactNode;
-  onBefore?: () => void
+  onBeforeFormList?: any
+  onBefore?: () => void;
 }
 interface TableConfigProps {}
 interface ToolBar {
