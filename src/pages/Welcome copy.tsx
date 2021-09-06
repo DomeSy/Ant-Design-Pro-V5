@@ -4,7 +4,7 @@ import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
 import { Button, OssUpLoad, Form, PageLayout, Table, Mask } from '@/components';
 import type { formProps, tableListProps } from '@/components'
 import { PlusOutlined } from '@ant-design/icons';
-import { queryRule } from './service'
+import { queryRule } from './services'
 const { Option } = Select;
 
 const waitTime = (time: number = 100) => {

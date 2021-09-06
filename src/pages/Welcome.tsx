@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
-import { Button, OssUpLoad, Form, PageLayout, Three, Table, Mask } from '@/components';
+import { Button, OssUpLoad, Form, PageLayout, Table, Mask } from '@/components';
 import type { formProps, tableListProps } from '@/components'
 import { queryRule } from './services'
 import MultiCascader from "antd-multi-cascader";
@@ -42,30 +42,8 @@ const Welcome: React.FC<any> = (props) => {
       ),
     },
     {
-      name: 'select6',
-      label: '多选',
-      tooltip: 'multiple: true,',
-      options: [
-        { label: '全部1', value: 'all' },
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      multiple: true,
-      type: 'select',
-    },
-    {
-      name: 'select7',
-      label: '搜索',
-      tooltip: 'multiple: true,',
-      options: [
-        { label: '全部1', value: 'all' },
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      search: true,
-      type: 'select',
+      name: 'field31',
+      label: '自定义规则',
     },
   ];
   const tab = [
@@ -89,7 +67,6 @@ const Welcome: React.FC<any> = (props) => {
         <Form
           onFinish={(values: any) => {
             message.success('打开控制台观看');
-            console.log(values,)
           }}
           formList={list}
           _config={{
