@@ -158,7 +158,7 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
             style={{...item.style}}
             ellipsis={{
               // expandable: true,
-              rows: 2,
+              rows: 5,
               ...item.ellipsis
             }}
           >

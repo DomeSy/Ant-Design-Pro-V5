@@ -7,7 +7,8 @@ export interface CardLayoutListProps extends ProCardProps{
 export interface CardLayoutProps {
   list: CardLayoutListProps[];
   type?: 2 | 3 | 4 | 6 | 8;
-  _config?: ProCardProps
+  _config?: ProCardProps;
+  style?: React.CSSProperties
 }
 
 export default interface CardProps extends ProCardProps {

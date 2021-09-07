@@ -11,17 +11,34 @@ const Hook: React.FC<any> = ({children, ...props}) => {
   const [detail, setDetail] = useState<any>({})
 
   useEffect(() => {
-    console.log(children, '000')
   }, []);
+
+  const tab = [
+    {
+      tab: 'useState',
+      key: 'useState',
+    },
+    {
+      tab: 'useMemo',
+      key: 'useMemo',
+    },
+  ];
 
   if(children.props.location.pathname === '/hook/introduce') return children
 
   return (
     <PageLayout
       // loading={loading}
+      tab={tab}
       content={
-        <div>{detail?.content}</div>
+        <div>Domesy</div>
       }
+      onChange={(key) => {
+        const { url } = props.match
+        if(url !== '/'){
+          Jump.go(`${url}/${key}`)
+        }
+      }}
     >
       {children}
     </PageLayout>

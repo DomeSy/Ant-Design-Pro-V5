@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageLayout, Card } from '@/components';
+import DetailContent from '@/commonPages/DetailSetting/DetailContent'
 import type { CardLayoutListProps } from '@/components'
 import { SendOutlined } from '@ant-design/icons';
 import { queryList } from './services'
@@ -19,7 +20,13 @@ const Introduce: React.FC<any> = (props) => {
         cardInfo.map((item:any) => {
           list = [...list, {
             title: item.title,
-            render: <div>{item.content}</div>,
+            render: <DetailContent  list={[
+              {
+                type: 'ellipsis',
+                render: item.content,
+                style: {margin: 0}
+              }
+            ]} />,
             extra: <a><SendOutlined /></a>,
             onClick: () => {
               Jump.go(`/hook/${item.title}`)
@@ -36,11 +43,9 @@ const Introduce: React.FC<any> = (props) => {
   return (
     <PageLayout
       loading={loading}
-      content={
-        <div>{detail?.content}</div>
-      }
+      content={detail?.content}
     >
-      <Card.Layout list={list} type={4}/>
+      <Card.Layout list={list} type={4} _config={{style: { minHeight: 215, } }} />
     </PageLayout>
   );
 };

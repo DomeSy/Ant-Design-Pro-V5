@@ -8,6 +8,7 @@ export default [
     routes: [
       { path: '/Hook', redirect: '/hook/introduce'},
       { path: '/hook/introduce', name: '介绍', component: './Hook/Introduce' },
+      { path: '/hook/useState', name: 'useState', component: './Hook/UseState'},
       { path: '/hook/useMemo', name: 'useMemo', component: './Hook/UseMemo'},
     ],
   },
