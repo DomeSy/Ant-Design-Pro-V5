@@ -21,12 +21,41 @@ const testList = [
   }
 ]
 
+
+/**
+ * key
+ * name：参数
+ * desc：描述
+ * status： 类型
+ * default：默认值
+ * global: 是否可全局配置
+ * mark：特需的备注
+ */
+
+//  <DetailContent
+//  list={[
+//    {
+//      type: 'table',
+//      tableList: [
+//        {
+//          name: '名称',
+//          desc: <span>'我是一段话'<span>nihao1</span></span>,
+//          status: 'React.ReactNode',
+//          default: '1',
+//          global: true,
+//          href: 'https://www.baidu.com/',
+//          tooltip: '提示语',
+//          mark: '我是特殊的备注'
+//        }
+//      ]
+//    }
+//  ]}
+// />
+
 const DetailContent: React.FC<Props> = ({ list = [] }) => {
 
 
-  useEffect(() => {
-
-  }, [])
+  useEffect(() => {}, [])
 
   const columns: tableListProps[] = [
     {
@@ -98,24 +127,6 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
     )
   }
 
-  const queryTable = ({}:any) => {
-
-    return {
-      data: []
-    }
-  }
-
-
-/**
- * key
- * name：参数
- * desc：描述
- * status： 类型
- * default：默认值
- * global: 是否可全局配置
- * mark：特需的备注
- */
-
   const getSource = (list: Array<any> ) => {
     let res:any = []
     list.map((item, index) => {
@@ -163,6 +174,15 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
                 item.render
               }
               <Typography.Text >
+                {
+                 item.href && <Typography.Title style={{marginTop: 8,marginLeft: 10}} level={5}>
+                    <Typography.Link href={item.href} target={'_blank'}>
+                      <Tooltip title={`其余参数与${item.tooltip || ''}所对应`}>
+                        <SendOutlined />
+                      </Tooltip>
+                    </Typography.Link>
+                  </Typography.Title>
+                }
                 {
                   item.tooltip &&
                   <Tooltip title={item.tooltip}>

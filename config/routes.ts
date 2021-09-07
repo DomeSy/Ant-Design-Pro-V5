@@ -4,6 +4,7 @@ export default [
     path: '/hook',
     name: 'Hook',
     icon: 'crown',
+    component: './Hook',
     routes: [
       { path: '/Hook', redirect: '/hook/introduce'},
       { path: '/hook/introduce', name: '介绍', component: './Hook/Introduce' },

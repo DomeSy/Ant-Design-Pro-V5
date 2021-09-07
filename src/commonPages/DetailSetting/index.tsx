@@ -12,6 +12,8 @@ import ShowCode from './ShowCode'
 interface ListProps {
   title?: string;
   tooltip?: string;
+  id?: string;
+  href?: string
 }
 
 
@@ -23,21 +25,28 @@ interface CodeListProps extends ListProps {
 }
 
 interface Props {
-  anchorList?: Array<any>;
-  use?: ListProps;
-  useList?: DetailListProps[];
-  code?: CodeListProps;
+  layout?: boolean; //关于头部的layout
+  anchorList?: Array<any>; // 图钉
+  use?: ListProps; // 使用场景，标题和提示
+  useList?: DetailListProps[]; //其余的List
+  code?: CodeListProps; // 代码模板， showCode Code的参数
+  api?: ListProps;
+  apiList?: DetailListProps[]; //Api的list
+  explain?: ListProps; //心得体会
+  explainList?: DetailListProps[]; //心得体会的list
 }
 
 /**
  * 需要
  *  使用场景
  *  代码演示
+ *
  *  Api（三级）
  *  心得体会
  */
 
-const DetailSetting: React.FC<Props> = ({use, useList=[], code, anchorList}) => {
+const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, api, apiList=[], explain, explainList=[], anchorList}) => {
+
 
   const [size, setSize] = useState<{width: number, height: number}>({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight}) // 屏幕尺寸
   const [loading, setLoading] = useState<boolean>(true)
@@ -52,14 +61,10 @@ const DetailSetting: React.FC<Props> = ({use, useList=[], code, anchorList}) => 
     setSize({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight })
   },[])
 
-  return <PageLayout
-    loading={loading}
-    content="useMenont"
-  >
-    <ProCard gutter={8} style={{margin: 0}} >
-      <div style={{width: '100%'}}>
+  const detailRender = <ProCard gutter={8} style={{margin: 0}} >
+    <div style={{width: '100%'}}>
         {
-          <DetailContent
+          use && <DetailContent
             list={[
               {
                 type: 'title',
@@ -90,25 +95,34 @@ const DetailSetting: React.FC<Props> = ({use, useList=[], code, anchorList}) => 
             }
           </>
         }
-        <DetailContent
-          list={[
-            {
-              type: 'table',
-              tableList: [
-                {
-                  name: '名称',
-                  desc: <span>'我是一段话'<span>nihao1</span></span>,
-                  status: 'React.ReactNode',
-                  default: '1',
-                  global: true,
-                  href: 'https://www.baidu.com/',
-                  tooltip: '提示语',
-                  mark: '我是特殊的备注'
-                }
-              ]
-            }
-          ]}
-        />
+        {
+          api && Array.isArray(apiList) && apiList.length !== 0 &&  <>
+            <DetailContent
+              list={[{
+                type: 'title',
+                render: api.title || 'Api',
+                id: api.id || 'Api',
+                href: api.href? api.href : undefined,
+                tooltip: api.title? api.title : undefined
+              }]}
+            />
+            <DetailContent
+              list={apiList}
+            />
+          </>
+        }
+        {
+        explain && <DetailContent
+            list={[
+              {
+                type: 'title',
+                render: explain?.title ? explain.title : '心得体会',
+                tooltip: explain?.tooltip ? explain.tooltip : undefined,
+              },
+              ...explainList
+            ]}
+          />
+        }
       </div>
       {
         anchorList && Array.isArray(anchorList) && anchorList.length !== 0 &&
@@ -127,6 +141,14 @@ const DetailSetting: React.FC<Props> = ({use, useList=[], code, anchorList}) => 
         </ProCard>
       }
     </ProCard>
+
+  if(!layout) return detailRender
+
+  return <PageLayout
+    loading={loading}
+    {...layout}
+  >
+    {detailRender}
   </PageLayout>
 };
 
