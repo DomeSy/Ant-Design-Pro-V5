@@ -4,10 +4,29 @@ import ProCard from '@ant-design/pro-card'
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons'
 import { Typography, Divider } from 'antd'
 import DetailContent from './DetailContent'
+import type { DetailListProps} from './DetailContent/interface.d'
+import type { ShowCodeProps } from './ShowCode'
 import Code from './Code'
 import ShowCode from './ShowCode'
-interface Props {
 
+interface ListProps {
+  title?: string;
+  tooltip?: string;
+}
+
+
+interface ShowCodeDetailProps extends ShowCodeProps{
+  component: React.ReactNode
+}
+interface CodeListProps extends ListProps {
+  showCode?: ShowCodeDetailProps[]
+}
+
+interface Props {
+  anchorList?: Array<any>;
+  use?: ListProps;
+  useList?: DetailListProps[];
+  code?: CodeListProps;
 }
 
 /**
@@ -18,146 +37,95 @@ interface Props {
  *  心得体会
  */
 
-const DetailSetting: React.FC<Props> = () => {
+const DetailSetting: React.FC<Props> = ({use, useList=[], code, anchorList}) => {
 
   const [size, setSize] = useState<{width: number, height: number}>({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight}) // 屏幕尺寸
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    window.addEventListener('resize', onResize);
     setLoading(false)
+    window.addEventListener('resize', onResize);
   }, [])
 
   // 监听屏幕尺寸
   const onResize = useCallback(()=>{
     setSize({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight })
   },[])
-  const gridStyle = {
-    width: '25%',
-    textAlign: 'center',
-  };
+
   return <PageLayout
     loading={loading}
     content="useMenont"
   >
     <ProCard gutter={8} style={{margin: 0}} >
       <div style={{width: '100%'}}>
+        {
+          <DetailContent
+            list={[
+              {
+                type: 'title',
+                render: use?.title ? use.title : '使用场景',
+                tooltip: use?.tooltip ? use.tooltip : undefined,
+              },
+              ...useList
+            ]}
+          />
+        }
+        {
+          code && Array.isArray(code.showCode) && code.showCode.length !== 0 && <>
+            <DetailContent
+              list={[
+                {
+                  type: 'title',
+                  render: code?.title ? code.title : '代码演示',
+                  tooltip: code?.tooltip ? code.tooltip : undefined,
+                },
+              ]}
+            />
+            {
+              code.showCode.map((item, index) => (
+                <ShowCode key={index} {...item}>
+                  {item.component}
+                </ShowCode>
+              ))
+            }
+          </>
+        }
         <DetailContent
-            list={
-              [
+          list={[
+            {
+              type: 'table',
+              tableList: [
                 {
-                  type: 'title',
-                  render: '一级标题',
-                  tooltip: '提示语',
-                  main: true
-                },
-                {
-                  type: 'title',
-                  render: '二级标题',
-                  tooltip: '提示语'
-                },
-                {
-                  render: '这是一段描述的话语，可能会引起你描述的关注点，请期待，我们可已完成',
-                },
-                {
-                  render: '这是一个超链接',
+                  name: '名称',
+                  desc: <span>'我是一段话'<span>nihao1</span></span>,
+                  status: 'React.ReactNode',
+                  default: '1',
+                  global: true,
                   href: 'https://www.baidu.com/',
-                  blank: true
-                },
-                {
-                  render: '字体变红',
-                  red: true,
-                },
-                {
-                  render: 'code框',
-                  code: true,
-                },
-                {
-                  render: '字体变粗',
-                  strong: true,
-                },
-                {
-                  render: `我们是多行数据
-第一行数据
-第二行数据`,
-                  type: "prv"
-                },
-                {
-                  render: '分割线',
-                  type: 'divider',
-                  tooltip: 'strong: true,'
-                },
-                {
-                  render: '分割提示按钮跳转',
-                  type: 'divider',
-                  tooltip: 'strong: true,',
-                  tooltipHref: 'https://www.baidu.com/'
-                },
-                {
-                  render: '字体变红',
-                  red: true,
-                  tooltip: 'way: right,',
-                  way: 'right',
-                  type: 'divider',
-                },
-                {
-                  type: 'list',
-                  list: [
-                    {
-                      render: '这是一个超链接',
-                      href: 'https://www.baidu.com/',
-                      tooltip: 'href: https://www.baidu.com/, blank: true',
-                      blank: true
-                    },
-                    {
-                      render: '字体变红',
-                      red: true,
-                      tooltip: 'red: true,'
-                    },
-                    {
-                      render: '字体变粗',
-                      strong: true,
-                      tooltip: 'strong: true,'
-                    }
-                  ]
-                },
-                {
-                  type: 'ellipsis',
-                  red: true,
-                  render: '当一首歌产生了海底，我们可以找到圣卡罗阿萨德哈solid加红爱山东11，当一首歌产生了海底，我们可以找到圣卡罗阿萨德哈solid加红爱山东11，当一首歌产生了海底，我们可以找到圣卡罗阿萨德哈solid加红爱山东11，当一首歌产生了海底，我们可以找到圣卡罗阿萨德哈solid加红爱山东11，当一首歌产生了海底，我们可以找到圣卡罗阿萨德哈solid加红爱山东11，当一首歌产生了海底，我们可以找到圣卡罗阿萨德哈solid加红爱山东11，当一首歌产生了海底，我们可以找到圣卡罗阿萨德哈solid加红爱山东11，当一首歌产生了海底，我们可以找到圣卡罗阿萨德哈solid加红爱山东11，当一首歌产生了海底，我们可以找到圣卡罗阿萨德哈solid加红爱山东11，'
-                },
+                  tooltip: '提示语',
+                  mark: '我是特殊的备注'
+                }
               ]
             }
-          />
-        <ShowCode>
-          年后
-        </ShowCode>
+          ]}
+        />
       </div>
-      <ProCard
-        style={size.width < 765 ? {display: 'none'} : undefined}
-        layout="center"
-        colSpan={{
-          xs: '10%',
-          sm: '10%',
-          md: '15%',
-          lg: '20%',
-          xl: '25%',
-        }}
-      >
-        <Anchor list={[{
-          title: '测试1',
-          href: 'test1',
-          },
-          {
-            title: '测试2',
-            href: 'test2',
-            children: [{
-              title: '测试3',
-              href: 'test3',
-            }]
-          }
-        ]} />
-      </ProCard>
+      {
+        anchorList && Array.isArray(anchorList) && anchorList.length !== 0 &&
+        <ProCard
+          style={size.width < 765 ? {display: 'none'} : undefined}
+          layout="center"
+          colSpan={{
+            xs: '10%',
+            sm: '10%',
+            md: '15%',
+            lg: '20%',
+            xl: '25%',
+          }}
+        >
+          <Anchor list={anchorList} />
+        </ProCard>
+      }
     </ProCard>
   </PageLayout>
 };

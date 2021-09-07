@@ -1,10 +1,25 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Typography, Tooltip, Divider } from 'antd';
-import { PageLayout, Card, Anchor } from '@/components';
-import ProCard from '@ant-design/pro-card';
-import { InfoCircleOutlined, QuestionCircleOutlined, EditOutlined } from '@ant-design/icons';
+import { Table } from '@/components';
+import type { formProps, tableListProps } from '@/components'
+import { InfoCircleOutlined, QuestionCircleOutlined, EditOutlined, SendOutlined } from '@ant-design/icons';
+import { Link } from 'umi';
 import type { DetailListProps } from './interface.d'
 import Props from './interface'
+
+const testList = [
+  {
+    key: 0,
+    name: '名称',
+    desc: <span>'我是一段话'<span>nihao1</span></span>,
+    status: 'React.ReactNode',
+    default: '1',
+    global: true,
+    href: 'https://www.baidu.com/',
+    tooltip: '提示语',
+    mark: '我是特殊的备注'
+  }
+]
 
 const DetailContent: React.FC<Props> = ({ list = [] }) => {
 
@@ -12,6 +27,44 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
   useEffect(() => {
 
   }, [])
+
+  const columns: tableListProps[] = [
+    {
+      title: '参数',
+      dataIndex: 'name',
+      tip: '红色可为全局配置',
+      width: '15%',
+      render: (_, dom:any) => {
+        if(dom.global) return <span style={{color: '#f81d22'}}>{dom.name}</span>
+        return <span>{dom.name}</span>;
+      },
+    },
+    {
+      title: '描述',
+      width: '60%',
+      render: (_, dom:any) => {
+        return <span>
+          {dom.desc}
+          {dom.mark ? <span style={{color: '#f81d22'}}>({dom.mark})</span> : undefined}
+          {
+            dom.href &&
+            <Link to={dom.href || '/'} style={{marginLeft: 6}}><Tooltip title={dom.tooltip || '去这里'}><SendOutlined /></Tooltip></Link>
+          }
+        </span>;
+      },
+    },
+    {
+      title: '类型',
+      width: '15%',
+      dataIndex: 'status',
+      renderText: (val: string) => <span style={{color: '#c41d7f'}}>{val}</span>,
+    },
+    {
+      title: '默认值',
+      width: '10%',
+      dataIndex: 'default',
+    },
+  ];
 
   const tooltipRender = (item: DetailListProps, suffix?: React.ReactNode) => {
     return <Typography.Text >
@@ -45,10 +98,50 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
     )
   }
 
+  const queryTable = ({}:any) => {
+
+    return {
+      data: []
+    }
+  }
+
+
+/**
+ * key
+ * name：参数
+ * desc：描述
+ * status： 类型
+ * default：默认值
+ * global: 是否可全局配置
+ * mark：特需的备注
+ */
+
+  const getSource = (list: Array<any> ) => {
+    let res:any = []
+    list.map((item, index) => {
+      res = [...res, {
+        key: index,
+        type: 'text',
+        ...item,
+      }]
+    })
+    return res
+  }
+
   return <>
     {
       list.map((item, index) => <div key={index}>
         {
+          item.type === 'table' && Array.isArray(item.tableList)?
+          <Table
+            dataSource={getSource(item.tableList)}
+            search={false}
+            pagination={false}
+            tableList={columns}
+            rowKey={'name'}
+            options={false}
+          />
+          :
           item.type === 'ellipsis' ?
           <Typography.Paragraph
             style={{...item.style}}
@@ -65,7 +158,7 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
             <pre>{item.render}</pre>
           </Typography.Paragraph> :
           item.type === 'title' ?
-            <Typography.Title id={item.id} level={item.main ? 2 : 3} style={{display: 'flex',justifyContent: 'flex-start', alignItems: 'center'}} >
+            <Typography.Title id={item.id} level={item.main ? 2 : item.effect === 4 ? 4 : item.effect === 5 ? 5 : 3} style={{display: 'flex',justifyContent: 'flex-start', alignItems: 'center'}} >
               {
                 item.render
               }

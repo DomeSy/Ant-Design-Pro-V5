@@ -517,7 +517,7 @@ const Table: React.FC<Props> = ({
 
   return (
     <>
-      <ProTable<TableListProps>
+      <ProTable<any>
         {...props}
         actionRef={actionRef}
         formRef={FormRef}

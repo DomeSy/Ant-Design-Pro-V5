@@ -6,7 +6,7 @@ import { SendOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import DetailContent from '../DetailContent'
 import Code from '../Code'
 
-interface ShowCodeProps {
+export interface ShowCodeProps {
   title?: string, // 标题
   content?: React.ReactNode, // 内容
   titleTooltip?: string, // 标题提示
