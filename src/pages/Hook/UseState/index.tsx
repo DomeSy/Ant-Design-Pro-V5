@@ -31,6 +31,8 @@ const Index: React.FC<any> = (props) => {
       </div>
     );
   };
+
+  export default Mock;
               `
             }
           ]
