@@ -23,6 +23,26 @@ export const useState:Props = {
   }
 }
 
+export const useEffect:Props = {
+  use: {
+    title: '简单介绍'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: '副作用（Side Effect）是指 function 做了和本身运算返回值无关的事，如请求数据、修改全局变量，打印、数据获取、设置订阅以及手动更改 React 组件中的 DOM 都属于副作用操作都算是副作用'
+        },
+        {
+          render: '整合原有的生命周期方法，通过第二个参数来接收',
+          tooltip: '以数组的形式，只要数组里的方法改变就会执行'
+        }
+      ]
+    }
+  ]
+}
+
 export const useMemo:Props = {
   use: {
     title: '简单介绍'
@@ -52,5 +72,4 @@ export const useMemo:Props = {
     ]
   }
 }
-
 

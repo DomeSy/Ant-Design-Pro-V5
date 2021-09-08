@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { useState, useMemo } from './hookMock'
+import { useState, useEffect, useMemo } from './hookMock'
 
 export default {
   'GET /api/hook/queryList': async (req: Request, res: Response) => {
@@ -28,7 +28,11 @@ export default {
     } else if (detail === 'useMemo') {
       res.send( resData(useMemo) )
       return
+    } else if (detail === 'useEffect') {
+      res.send( resData(useEffect) )
+      return
     }
+
     res.send({
       code: 400,
       message: '请输入参数'

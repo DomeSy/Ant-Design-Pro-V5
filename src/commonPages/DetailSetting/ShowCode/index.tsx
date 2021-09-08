@@ -55,7 +55,7 @@ const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
         props.code && <>
         <Divider style={{margin: 0}} />
           <div style={{ display: 'flex',marginTop: 12, justifyContent: 'center', alignContent: 'center'}}>
-            <Typography.Paragraph  copyable={{text: '111', tooltips: '复制代码' }}  />
+            <Typography.Paragraph  copyable={{text: props.code, tooltips: '复制代码' }}  />
             <Tooltip title={codeShow ? '收起代码' : '展开代码'}>
               {
                 codeShow ? <img src="https://gw.alipayobjects.com/zos/antfincdn/4zAaozCvUH/unexpand.svg" onClick={() => setCodeShow(false)} style={{width: 21, height: 21, marginLeft: 20, opacity: 0.3, cursor: 'pointer'}} /> :
