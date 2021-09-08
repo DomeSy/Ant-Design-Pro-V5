@@ -4,7 +4,7 @@ import { queryDetail } from './services'
 import Mock from './mock'
 import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
 
-const UseState: React.FC<any> = (props) => {
+const Index: React.FC<any> = (props) => {
 
   const [detail, setDetail] = useState<DetailSettingListProps>({})
 
@@ -37,17 +37,11 @@ const UseState: React.FC<any> = (props) => {
         },
       })
     })
-    setDetail({
-
-
-    })
-
   }, []);
 
   return (
-
     <DetailSetting {...detail} />
   );
 };
 
-export default UseState;
+export default Index;
