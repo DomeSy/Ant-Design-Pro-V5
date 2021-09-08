@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { useState, useEffect, useMemo } from './hookMock'
+import { useState, useEffect, useMemo, useContext } from './hookMock'
 
 export default {
   'GET /api/hook/queryList': async (req: Request, res: Response) => {
@@ -30,6 +30,9 @@ export default {
       return
     } else if (detail === 'useEffect') {
       res.send( resData(useEffect) )
+      return
+    } else if (detail === 'useContext') {
+      res.send( resData(useContext) )
       return
     }
 

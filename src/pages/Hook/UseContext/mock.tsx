@@ -1,20 +1,36 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import { Button } from 'antd';
+
+const CountContext = createContext(-1)
 
 const Mock: React.FC<any> = () => {
   const [count, setCount ] = useState<number>(0)
 
-  const add = useMemo(() => {
-    return count + 1
-  }, [count])
-
   return (
-    <div style={{display: 'flex', justifyContent: 'space-between', paddingRight: 50}}>
+    <div>
       <Button type='primary' onClick={() => setCount(count + 1)}>加1</Button>
-      <div>count: {count}</div>
-      <div>次数： {add}</div>
+      <CountContext.Provider value={count}>
+        <Test1 />
+      </CountContext.Provider>
     </div>
   );
 };
+
+const Test1: React.FC<any> = () => {
+  const count = useContext(CountContext)
+
+  return <div style={{marginTop: 20}}>
+    子组件获取到的count: {count}
+    <Test2 />
+  </div>
+}
+
+const Test2: React.FC<any> = () => {
+  const count = useContext(CountContext)
+
+  return <div style={{marginTop: 20}}>
+    孙组件获取到的count: {count}
+  </div>
+}
 
 export default Mock;

@@ -43,6 +43,45 @@ export const useEffect:Props = {
   ]
 }
 
+export const useContext:Props = {
+  use: {
+    title: '简单介绍'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: 'useContext 实现跨层级传递，实现数据共享'
+        },
+        {
+          render: '作用就是怼他包含的组件树提供全局共享的数据的一种技术'
+        },
+        {
+          render: '需要createContext的帮助，通过 CountContext.Provider 包裹的组件，才能通过 useContext 获取对应的值'
+        }
+      ]
+    }
+  ],
+  attention: {
+    children: [
+      {
+        render: '在使用时,都需要 createContext， 需要通过 CountContext.Provider 包裹，在通过 useContext（CountContext）来获取对应的value',
+        red: true
+      },
+      {
+        render: 'useContext 和 redux 的作用是完全不同的，redux 是统一管理状态的作用，而 useContext 是解决传值的问题， 有本质区别',
+        red: true
+      },
+      {
+        render: 'useContext 与 useReducer 配合使用，可实现类似 redux 的作用',
+        red: true
+      },
+    ]
+  }
+}
+
+
 export const useMemo:Props = {
   use: {
     title: '简单介绍'
