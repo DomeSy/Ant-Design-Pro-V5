@@ -23,8 +23,40 @@ const Hook: React.FC<any> = ({children, ...props}) => {
       key: 'useState',
     },
     {
+      tab: 'useEffect',
+      key: 'useEffect',
+    },
+    {
+      tab: 'useContext',
+      key: 'useContext',
+    },
+    {
+      tab: 'useReducer',
+      key: 'useReducer',
+    },
+    {
       tab: 'useMemo',
       key: 'useMemo',
+    },
+    {
+      tab: 'useCallback',
+      key: 'useCallback',
+    },
+    {
+      tab: 'useRef',
+      key: 'useRef',
+    },
+    {
+      tab: 'useImperativeHandle',
+      key: 'useImperativeHandle',
+    },
+    {
+      tab: 'useModel',
+      key: 'useModel',
+    },
+    {
+      tab: 'useRequest',
+      key: 'useRequest',
     },
   ];
 
