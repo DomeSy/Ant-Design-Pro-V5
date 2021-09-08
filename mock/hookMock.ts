@@ -138,3 +138,27 @@ export const useMemo:Props = {
   }
 }
 
+export const useCallback:Props = {
+  use: {},
+  useList: [
+    {
+      render: '通常在将一个组件中的函数,传递给子元素进行回调使用时，使用useCallback对函数进行处理'
+    }
+  ],
+  attention: {
+    children: [
+      {
+        render: 'useCallback 本身不会启到任何优化作用',
+        red: true
+      },
+      {
+        render: 'useCallback 与 useMemo 使用方式类似，不同的是 useMemo 是缓存的变量，而 useCallback 是缓存的函数',
+        red: true
+      },
+      {
+        render: 'useCallback 必须要与 memo 配合才能启到优化，单独使用 useCallback 反而浪费性能，原因是useCallback包裹的函数也是需要开销的',
+        red: true
+      },
+    ]
+  }
+}

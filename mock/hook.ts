@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { useState, useEffect, useMemo, useContext, useReducer } from './hookMock'
+import { useState, useEffect, useMemo, useContext, useReducer, useCallback } from './hookMock'
 
 export default {
   'GET /api/hook/queryList': async (req: Request, res: Response) => {
@@ -36,6 +36,9 @@ export default {
       return
     } else if (detail === 'useReducer') {
       res.send( resData(useReducer) )
+      return
+    } else if (detail === 'useCallback') {
+      res.send( resData(useCallback) )
       return
     }
 

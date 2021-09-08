@@ -22,7 +22,6 @@ const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
   const cardRef = useRef<any>();
 
   useEffect(() => {
-    console.log(cardRef.current.clientWidth)
   }, [])
 
   return (
