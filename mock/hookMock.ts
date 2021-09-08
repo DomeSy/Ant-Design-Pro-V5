@@ -81,6 +81,32 @@ export const useContext:Props = {
   }
 }
 
+export const useReducer:Props = {
+  use: {
+    title: '简单介绍'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: '设置统一状态'
+        },
+        {
+          render: '接收两个参数，分别为 state action，然后返回一个状态的 count(属性值) 和 dispatch(方法)'
+        }
+      ]
+    }
+  ],
+  attention: {
+    children: [
+      {
+        render: 'useReducer 与 redux 用法极度类似，可以通过 useContext 与 useReducer 配合使用，可实现类似 redux 的作用',
+        red: true
+      }
+    ]
+  }
+}
 
 export const useMemo:Props = {
   use: {
