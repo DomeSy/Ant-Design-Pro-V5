@@ -36,7 +36,7 @@ const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
       <DetailContent
        list={[
          {
-           render: props?.title || '标题',
+           render: props?.title || '说明',
            type: 'divider',
            tooltip: props?.titleTooltip || 'gitHub',
            tooltipHref: props?.titleTooltipHref || 'https://github.com/DomeSy/Ant-Design-Pro-V5'
@@ -54,7 +54,7 @@ const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
       {
         props.code && <>
         <Divider style={{margin: 0}} />
-          <div style={{ display: 'flex',marginTop: 12, justifyContent: 'flex-end', alignContent: 'center'}}>
+          <div style={{ display: 'flex',marginTop: 12, justifyContent: 'center', alignContent: 'center'}}>
             <Typography.Paragraph  copyable={{text: '111', tooltips: '复制代码' }}  />
             <Tooltip title={codeShow ? '收起代码' : '展开代码'}>
               {

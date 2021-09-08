@@ -43,6 +43,7 @@ export default {
     // }
     res.send({
       success: true,
+      code: 200,
       data: {
         name: 'Domesy',
         avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
@@ -123,6 +124,7 @@ export default {
     if (password === 'ant.design' && username === 'admin') {
       res.send({
         status: 'ok',
+        code: 200,
         type,
         token: 'Bearer Domesy-Ant-Design-Pro',
         currentAuthority: 'admin',

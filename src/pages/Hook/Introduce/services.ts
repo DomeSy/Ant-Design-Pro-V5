@@ -1,4 +1,4 @@
-import request from 'umi-request';
+import { request } from 'umi';
 
 export async function queryList(params?: any) {
   return request('/api/hook/queryList', {

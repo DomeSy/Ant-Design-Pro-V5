@@ -16,21 +16,24 @@ interface ListProps {
   href?: string
 }
 
-
 interface ShowCodeDetailProps extends ShowCodeProps{
   component: React.ReactNode
 }
 interface CodeListProps extends ListProps {
   showCode?: ShowCodeDetailProps[]
 }
+interface attentionProps extends ListProps {
+  children?: DetailListProps[]
+}
 
-interface Props {
+export interface Props {
   layout?: boolean; //关于头部的layout
   anchorList?: Array<any>; // 图钉
   use?: ListProps; // 使用场景，标题和提示
   useList?: DetailListProps[]; //其余的List
   code?: CodeListProps; // 代码模板， showCode Code的参数
-  api?: ListProps;
+  attention?: attentionProps; // 注意事项
+  api?: ListProps; // api
   apiList?: DetailListProps[]; //Api的list
   explain?: ListProps; //心得体会
   explainList?: DetailListProps[]; //心得体会的list
@@ -40,12 +43,12 @@ interface Props {
  * 需要
  *  使用场景
  *  代码演示
- *
+ *  注意事项
  *  Api（三级）
  *  心得体会
  */
 
-const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, api, apiList=[], explain, explainList=[], anchorList}) => {
+const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, attention, api, apiList=[], explain, explainList=[], anchorList}) => {
 
 
   const [size, setSize] = useState<{width: number, height: number}>({ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight}) // 屏幕尺寸
@@ -94,6 +97,22 @@ const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, api, api
               ))
             }
           </>
+        }
+        {
+          attention && <DetailContent
+            list={[
+              {
+                type: 'title',
+                render: attention?.title ? attention.title : '注意事项',
+                tooltip: attention?.tooltip ? attention.tooltip : undefined,
+              },
+              {
+                type: 'list',
+                red: true,
+                list: attention?.children ? attention?.children : undefined
+              }
+            ]}
+          />
         }
         {
           api && Array.isArray(apiList) && apiList.length !== 0 &&  <>

@@ -30,10 +30,10 @@ export const responseInterceptors:any = async (response: Response) => {
     localStorage.clear();
     return false;
   }
-  // if (data.status !== 'ok') {
-  //   message.error(data.message);
-  //   return false;
-  // }
+  if (data.code !== 200) {
+    message.error(data.message);
+    return false;
+  }
   return data.data ? data.data : data;
 }
 

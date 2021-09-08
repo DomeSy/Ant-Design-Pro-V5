@@ -1,9 +1,11 @@
 import React from 'react';
 import { layoutSy, pageLayoutSy, storageSy, tableSy, fromSy, maskSy, CardSy, OssUpLoadSy } from '../Setting'
+import { content } from '../../../mock/data'
 import type { MenuDataItem } from '@ant-design/pro-layout';
 import { currentUser as queryCurrentUser } from '@/services/ant-design-pro/api';
 import { getMenuData } from '@/services/ant-design-pro/domesy'
 import allIcons from '@@/plugin-antd-icon/icons';
+
 
 /**
  * @module 初始化方法
@@ -16,6 +18,7 @@ const initData = async () => {
 
   return {
     currentUser: currentUser,
+    content: content,
     // menuData: formatter(menuData), // 示例，动态路由
     menuData: false,
     domesy:{

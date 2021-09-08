@@ -1,38 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import { PageLayout, Card, Anchor } from '@/components';
-import type { CardLayoutListProps, AnchorLinkProps } from '@/components'
-import ProCard from '@ant-design/pro-card';
 import { DetailSetting } from '@/commonPages'
-import { Jump } from '@/utils';
+import { queryDetail } from './services'
+import Mock from './mock'
+import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
 
-
-const listTest:AnchorLinkProps[] = [
-  {
-    title: '测试1',
-    href: 'test1',
-  },
-  {
-    title: '测试2',
-    href: 'test2',
-    children: [{
-      title: '测试3',
-      href: 'test3',
-    }]
-  }
-]
 const UseState: React.FC<any> = (props) => {
 
-  const [loading, setLoading] = useState<boolean>(true)
-  const [list, setList] = useState<CardLayoutListProps[]>([])
-  const [detail, setDetail] = useState<any>({})
+  const [detail, setDetail] = useState<DetailSettingListProps>({})
 
-  const [targetOffset, setTargetOffset] = useState<number | undefined>(undefined);
   useEffect(() => {
-    setLoading(false)
+    queryDetail({detail: 'useState'}).then((res) => {
+      setDetail({
+        ...res,
+        code:{
+          showCode: [
+            {
+              component: <Mock />,
+              content: '点击按钮加1',
+              code: `
+  import React, { useState } from 'react';
+  import { Button } from 'antd';
+
+  const Mock: React.FC<any> = () => {
+    const [count, setCount ] = useState<number>(0)
+
+    return (
+      <div style={{display: 'flex', justifyContent: 'space-between', paddingRight: 200}}>
+        <Button type='primary' onClick={() => setCount(count + 1)}>加1</Button>
+        <div>{count}</div>
+      </div>
+    );
+  };
+              `
+            }
+          ]
+        },
+      })
+    })
+    setDetail({
+
+
+    })
 
   }, []);
+
   return (
-    <DetailSetting />
+
+    <DetailSetting {...detail} />
   );
 };
 
