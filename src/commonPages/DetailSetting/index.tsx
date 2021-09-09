@@ -13,7 +13,8 @@ interface ListProps {
   title?: string;
   tooltip?: string;
   id?: string;
-  href?: string
+  href?: string;
+  hrefTooltip?: string
 }
 
 interface ShowCodeDetailProps extends ShowCodeProps{
@@ -127,6 +128,8 @@ const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, attentio
               {
                 type: 'title',
                 render: attention?.title ? attention.title : '注意事项',
+                href: attention?.href ? attention.href : undefined,
+                hrefTooltip: attention?.hrefTooltip ? attention.hrefTooltip : undefined,
                 tooltip: attention?.tooltip ? attention.tooltip : undefined,
               },
               {

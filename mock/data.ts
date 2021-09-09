@@ -19,7 +19,7 @@ export const content = {
     useCallback: '与 useMemo 方法类似，只是 useMemo 缓存的是变量， 而 useCallBack 缓存的是函数',
     useRef: 'useRef 获取当前元素的所有属性，并且返回一个可变的ref对象，并且这个对象只有current属性，可设置initialValue',
     useImperativeHandle: '可以让你在使用 ref 时自定义暴露给父组件的实例值。',
-    useModel: '',
+    useModel: 'umi3中的数据流，之前使用dva中有很多重复的劳动，也会有很多概念 effects, state, reducers等，为解决这种问题，推出的 useModel 来解决',
     useRequest: '',
   }
 }

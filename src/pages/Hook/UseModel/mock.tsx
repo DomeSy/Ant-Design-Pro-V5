@@ -1,20 +1,31 @@
-import React, { useState, useMemo } from 'react';
-import { Button } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { useModel } from 'umi';
+import { Button, message } from 'antd';
 
 const Mock: React.FC<any> = () => {
-  const [count, setCount ] = useState<number>(0)
-
-  const add = useMemo(() => {
-    return count + 1
-  }, [count])
+  const { initialState, setInitialState } = useModel('@@initialState');
 
   return (
-    <div style={{display: 'flex', justifyContent: 'space-between', paddingRight: 50}}>
-      <Button type='primary' onClick={() => setCount(count + 1)}>加1</Button>
-      <div>count: {count}</div>
-      <div>次数： {add}</div>
+    <div>
+      <div style={{marginBottom: 20}}>initialState 是指的对象</div>
+      <div style={{marginBottom: 20}}>setInitialState 是设置值的方法</div>
+      <Button onClick={() => {
+        message.success('打开控制台看看')
+        console.log(initialState)
+      }}>获取initialState值</Button>
     </div>
   );
 };
+
+export const MockModel: React.FC<any> = () => {
+  const { init, setInit, setAdd } = useModel('test.modelTest');
+
+  return <div>
+    <div style={{ marginBottom: 14 }}> count 对应的值{init.count}</div>
+    <Button style={{ marginBottom: 18 }} type='primary' onClick={() => setInit(5)} >设置count为5</Button>
+    <br />
+    <Button type='primary' onClick={() => setAdd(init.count)} >累加1</Button>
+  </div>
+}
 
 export default Mock;

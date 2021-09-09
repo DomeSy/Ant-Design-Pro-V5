@@ -45,6 +45,7 @@ export interface DetailListProps {
   code?: boolean; //code框
   ellipsis?: EllipsisProps; //可省略
   tableList?: TableListProps[]; //表格的列表属性
+  hrefTooltip?: string
 }
 
 export default interface Props {

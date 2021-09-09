@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { useState, useEffect, useMemo, useContext, useReducer, useCallback, useRef, useImperativeHandle } from './hookMock'
+import { useState, useEffect, useMemo, useContext, useReducer, useCallback, useRef, useImperativeHandle, useModel } from './hookMock'
 
 export default {
   'GET /api/hook/queryList': async (req: Request, res: Response) => {
@@ -46,10 +46,14 @@ export default {
     } else if (detail === 'useImperativeHandle') {
       res.send( resData(useImperativeHandle) )
       return
+    } else if (detail === 'useModel') {
+      res.send( resData(useModel) )
+      return
     }
 
     res.send({
       code: 400,
+      detail,
       message: '请输入参数'
     })
   },

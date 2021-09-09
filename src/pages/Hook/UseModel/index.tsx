@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DetailSetting } from '@/commonPages'
 import { queryDetail } from './services'
-import Mock from './mock'
+import Mock, { MockModel } from './mock'
 import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
 
 const Index: React.FC<any> = (props) => {
@@ -9,35 +9,90 @@ const Index: React.FC<any> = (props) => {
   const [detail, setDetail] = useState<DetailSettingListProps>({})
 
   useEffect(() => {
-    queryDetail({detail: 'useMemo'}).then((res) => {
+    queryDetail({detail: 'useModel'}).then((res) => {
       setDetail({
         ...res,
         code:{
+          wrap: true,
           showCode: [
             {
+              title: '基本使用',
               component: <Mock />,
-              content: '点击按钮加1, 次数则是通过监听 count 来对其渲染',
+              content: '获取当前的值，@@initialState 为 Ant Design ProV5 中内部封装好的',
               code: `
-  import React, { useState, useMemo } from 'react';
-  import { Button } from 'antd';
+  import React from 'react';
+  import { useModel } from 'umi';
+  import { Button, message } from 'antd';
 
   const Mock: React.FC<any> = () => {
-    const [count, setCount ] = useState<number>(0)
-
-    const add = useMemo(() => {
-      return count + 1
-    }, [count])
+    const { initialState, setInitialState } = useModel('@@initialState');
 
     return (
-      <div style={{display: 'flex', justifyContent: 'space-between', paddingRight: 50}}>
-        <Button type='primary' onClick={() => setCount(count + 1)}>加1</Button>
-        <div>count: {count}</div>
-        <div>次数： {add}</div>
-      </div>
+      <div>
+        <div style={{marginBottom: 20}}>initialState 是指的对象</div>
+        <div style={{marginBottom: 20}}>setInitialState 是设置值的方法</div>
+        <Button onClick={() => {
+          message.success('打开控制台看看')
+          console.log(initialState)
+        }}>获取initialState值</Button>
+      </div>>
     );
   };
 
   export default Mock;
+              `
+            },
+            {
+              title: '自定义Model',
+              component: <MockModel />,
+              content: '着这里暴露了一个值(init)，和两个方法: 设置初始值（setInit）累加值（setAdd）',
+              code: `
+  import React from 'react';
+  import { useModel } from 'umi';
+  import { Button } from 'antd';
+
+  const MockModel: React.FC<any> = () => {
+    const { init, setInit, setAdd } = useModel('test.modelTest');
+
+    return <div>
+      <div style={{ marginBottom: 14 }}> count 对应的值{init.count}</div>
+      <Button style={{ marginBottom: 18 }} type='primary' onClick={() => setInit(5)} >设置count为5</Button>
+      <br />
+      <Button type='primary' onClick={() => setAdd(init.count)} >累加1</Button>
+    </div>
+  }
+
+  export default MockModel;
+
+  // src/models/test/modelTest.ts 文件下
+  import { useState, useCallback } from 'react';
+
+  interface Props {
+    count?: number
+  }
+
+  const initInfoValue: Props = {
+    count: 1,
+  }
+
+  export default function modelTest() {
+
+    const [init, setInitValue] = useState(initInfoValue);
+
+    const setInit = useCallback((res:any) => {
+      setInitValue({count: res})
+    }, [init])
+
+    const setAdd= useCallback((res:any) => {
+      setInitValue({ count: res +1})
+    }, [init])
+
+    return {
+      init,
+      setAdd,
+      setInit
+    };
+  }
               `
             }
           ]

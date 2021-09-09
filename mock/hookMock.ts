@@ -211,19 +211,45 @@ export const useImperativeHandle:Props = {
     children: [
       {
         render: '第一个是传递的ref',
-        red: true
       },
       {
         render: '第二个是执行的方法（可以将暴露）',
-        red: true
       },
       {
         render: '第一个是传递的ref，第二个是执行的方法（可以将暴露）',
+      },
+    ]
+  },
+}
+
+export const useModel:Props = {
+  use: {},
+  useList: [
+    {
+      render: '当我们需要全局状态时，或页面复杂，此时将值存入对应的 models， 将会是个不错的选择'
+    }
+  ],
+  attention: {
+    title: 'useImperativeHandle的使用',
+    href: '/hook/useImperativeHandle',
+    hrefTooltip: '去看dva的使用',
+    children: [
+      {
+        render: '必须要在src下加入models文件夹',
+        red: true
+      },
+      {
+        render: '当有多个文件夹时 useModel 引入的值应当以 . 隔开，如 test.modelTest',
+        red: true
+      },
+      {
+        render: '在返回时，只需要将对应的变量和函数返回出去即可',
+        red: true
+      },
+      {
+        render: 'useModel 相对于 dva，是状态管理，而不是数据持久化',
         red: true
       },
     ]
-  }
+  },
 }
-
-
-
