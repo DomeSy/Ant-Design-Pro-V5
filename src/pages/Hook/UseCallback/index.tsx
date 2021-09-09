@@ -13,6 +13,7 @@ const Index: React.FC<any> = (props) => {
       setDetail({
         ...res,
         code:{
+          wrap: true,
           showCode: [
             {
               component: <Mock />,

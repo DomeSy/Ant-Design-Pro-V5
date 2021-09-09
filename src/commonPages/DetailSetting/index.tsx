@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback,  } from 'react'
 import { PageLayout, Anchor } from '@/components'
 import ProCard from '@ant-design/pro-card'
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons'
-import { Typography, Divider } from 'antd'
+import { Typography, Divider, Col, Row } from 'antd'
 import DetailContent from './DetailContent'
 import type { DetailListProps} from './DetailContent/interface.d'
 import type { ShowCodeProps } from './ShowCode'
@@ -20,7 +20,9 @@ interface ShowCodeDetailProps extends ShowCodeProps{
   component: React.ReactNode
 }
 interface CodeListProps extends ListProps {
-  showCode?: ShowCodeDetailProps[]
+  showCode?: ShowCodeDetailProps[]; // code的参数
+  wrap?: boolean; //是否换行
+  hidden?: boolean; //是否隐藏代码演示区域
 }
 interface attentionProps extends ListProps {
   children?: DetailListProps[]
@@ -80,21 +82,42 @@ const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, attentio
         }
         {
           code && Array.isArray(code.showCode) && code.showCode.length !== 0 && <>
-            <DetailContent
-              list={[
-                {
-                  type: 'title',
-                  render: code?.title ? code.title : '代码演示',
-                  tooltip: code?.tooltip ? code.tooltip : undefined,
-                },
-              ]}
-            />
             {
-              code.showCode.map((item, index) => (
-                <ShowCode key={index} {...item}>
-                  {item.component}
-                </ShowCode>
-              ))
+              !code.hidden && <DetailContent
+                list={[
+                  {
+                    type: 'title',
+                    render: code?.title ? code.title : '代码演示',
+                    tooltip: code?.tooltip ? code.tooltip : undefined,
+                  },
+                ]}
+              />
+            }
+            {
+              code.wrap ?
+              <Row
+                gutter={24}
+              >
+                {
+                  code.showCode.map((item, index) => (
+                    <Col key={index} xs={24} sm={24} md={24} lg={24} xl={12} >
+                      <ShowCode  {...item}>
+                        {item.component}
+                      </ShowCode>
+                    </Col>
+                  ))
+                }
+              </Row>
+              :
+              <>
+                {
+                  code.showCode.map((item, index) => (
+                    <ShowCode key={index} {...item}>
+                      {item.component}
+                    </ShowCode>
+                  ))
+                }
+              </>
             }
           </>
         }
