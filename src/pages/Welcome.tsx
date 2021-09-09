@@ -63,7 +63,7 @@ const Welcome: React.FC<any> = (props) => {
       <Card>
         <Button onClick={() => {
           setMaskVisible(true)
-        }}>测试</Button>
+        }}>测试1</Button>
         <Form
           onFinish={(values: any) => {
             message.success('打开控制台观看');

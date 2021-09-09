@@ -198,3 +198,32 @@ export const useRef:Props = {
     ]
   }
 }
+
+export const useImperativeHandle:Props = {
+  use: {},
+  useList: [
+    {
+      render: '当一个页面很复杂的时候，我们会将这个页面进行模块化，这样会分成很多个模块，有的时候我们需要在最外层的组件上控制其他组件的方法，希望最外层的点击事件，同时执行子组件的点击事件，这时就需要 useImperativeHandle 的帮助'
+    }
+  ],
+  attention: {
+    title: 'useImperativeHandle的使用',
+    children: [
+      {
+        render: '第一个是传递的ref',
+        red: true
+      },
+      {
+        render: '第二个是执行的方法（可以将暴露）',
+        red: true
+      },
+      {
+        render: '第一个是传递的ref，第二个是执行的方法（可以将暴露）',
+        red: true
+      },
+    ]
+  }
+}
+
+
+
