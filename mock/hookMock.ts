@@ -162,3 +162,39 @@ export const useCallback:Props = {
     ]
   }
 }
+
+export const useRef:Props = {
+  use: {},
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: 'useRef 类似于类组件的 this'
+        },
+        {
+          render: '可以传入初始值（initialValue），并且这个对象只有一个 current属性'
+        },
+        {
+          render: 'useRef 不会随着渲染，生命周期而改变，这点与 createRef 有着本质区别'
+        }
+      ]
+    }
+  ],
+  attention: {
+    children: [
+      {
+        render: 'useRef 不仅是管理 DOM 的 ref，并且具有this的功能，可以存放任何变量',
+        red: true
+      },
+      {
+        render: 'useRef可以很好的解决闭包带来的不方便性',
+        red: true
+      },
+      {
+        render: 'useRef 的内容发生变化时，不会通知，所以不会导致重新渲染，因为 useRef 只是个引用',
+        red: true
+      },
+    ]
+  }
+}
