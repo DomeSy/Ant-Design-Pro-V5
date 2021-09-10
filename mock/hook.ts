@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { useState, useEffect, useMemo, useContext, useReducer, useCallback, useRef, useImperativeHandle, useModel, useRequest } from './hookMock'
+import { useState, useEffect, useMemo, useContext, useReducer, useCallback, useRef, useImperativeHandle, useModel, useRequest, useRequestAnchorList } from './hookMock'
 import Mock from 'mockjs';
 
 // 延时时间
@@ -23,8 +23,40 @@ export default {
             content: content.hook.useState,
           },
           {
+            title: 'useEffect',
+            content: content.hook.useEffect,
+          },
+          {
+            title: 'useContext',
+            content: content.hook.useContext,
+          },
+          {
+            title: 'useReducer',
+            content: content.hook.useReducer,
+          },
+          {
             title: 'useMemo',
             content: content.hook.useMemo,
+          },
+          {
+            title: 'useCallback',
+            content: content.hook.useCallback,
+          },
+          {
+            title: 'useRef',
+            content: content.hook.useRef,
+          },
+          {
+            title: 'useImperativeHandle',
+            content: content.hook.useImperativeHandle,
+          },
+          {
+            title: 'useModel',
+            content: content.hook.useModel,
+          },
+          {
+            title: 'useRequest',
+            content: content.hook.useRequest,
           }
         ]
       }
@@ -60,7 +92,7 @@ export default {
       res.send( resData(useModel) )
       return
     } else if (detail === 'useRequest') {
-      res.send( resData(useRequest) )
+      res.send( resData({ list: useRequest, anchorList: useRequestAnchorList }) )
       return
     }
 

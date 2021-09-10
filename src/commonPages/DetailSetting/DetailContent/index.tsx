@@ -202,7 +202,7 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
                 {
                  item.href && <Typography.Title style={{marginTop: 8,marginLeft: 10}} level={5}>
                     <Typography.Link href={item.href} target={'_blank'}>
-                      <Tooltip title={item.hrefTooltip || `去这里`}>
+                      <Tooltip title={item.hrefTooltip}>
                         <SendOutlined />
                       </Tooltip>
                     </Typography.Link>

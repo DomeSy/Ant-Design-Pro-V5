@@ -74,6 +74,7 @@ const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, attentio
             list={[
               {
                 type: 'title',
+                id: use?.id,
                 render: use?.title ? use.title : '使用场景',
                 tooltip: use?.tooltip ? use.tooltip : undefined,
               },
@@ -88,6 +89,7 @@ const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, attentio
                 list={[
                   {
                     type: 'title',
+                    id: code.id || 'Code',
                     render: code?.title ? code.title : '代码演示',
                     tooltip: code?.tooltip ? code.tooltip : undefined,
                   },
@@ -128,9 +130,10 @@ const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, attentio
               {
                 type: 'title',
                 render: attention?.title ? attention.title : '注意事项',
+                id: attention?.id,
                 href: attention?.href ? attention.href : undefined,
-                hrefTooltip: attention?.hrefTooltip ? attention.hrefTooltip : undefined,
-                tooltip: attention?.tooltip ? attention.tooltip : undefined,
+                tooltip: attention.tooltip? attention.tooltip : undefined,
+                hrefTooltip: attention.hrefTooltip? attention.hrefTooltip : undefined
               },
               {
                 type: 'list',
@@ -148,7 +151,8 @@ const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, attentio
                 render: api.title || 'Api',
                 id: api.id || 'Api',
                 href: api.href? api.href : undefined,
-                tooltip: api.title? api.title : undefined
+                tooltip: api.tooltip? api.tooltip : undefined,
+                hrefTooltip: api.hrefTooltip? api.hrefTooltip : undefined
               }]}
             />
             <DetailContent
@@ -161,6 +165,7 @@ const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, attentio
             list={[
               {
                 type: 'title',
+                id: explain?.id,
                 render: explain?.title ? explain.title : '心得体会',
                 tooltip: explain?.tooltip ? explain.tooltip : undefined,
               },
