@@ -6,6 +6,8 @@ import { InfoCircleOutlined, QuestionCircleOutlined, EditOutlined, SendOutlined 
 import { Link } from 'umi';
 import type { DetailListProps } from './interface.d'
 import Props from './interface'
+import './index.less'
+
 
 const testList = [
   {
@@ -72,14 +74,36 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
       title: '描述',
       width: '60%',
       render: (_, dom:any) => {
-        return <span>
+
+        const render = <span>
           {dom.desc}
           {dom.mark ? <span style={{color: '#f81d22'}}>({dom.mark})</span> : undefined}
           {
             dom.href &&
             <Link to={dom.href || '/'} style={{marginLeft: 6}}><Tooltip title={dom.tooltip || '去这里'}><SendOutlined /></Tooltip></Link>
           }
-        </span>;
+        </span>
+
+        if(!Array.isArray(dom.desc)){
+          return render
+        }
+
+        return <Typography.Paragraph>
+          <ul>
+            {
+              dom.desc.map((item:any, index:number) => (
+                <li key={index}>
+                  {item?.render || item}
+                  {item?.mark ? <span style={{color: '#f81d22'}}>({item?.mark})</span> : undefined}
+                  {
+                    item?.href &&
+                    <Link to={item?.href || '/'} style={{marginLeft: 6}}><Tooltip title={item?.tooltip || '去这里'}><SendOutlined /></Tooltip></Link>
+                  }
+                </li>
+              ))
+            }
+          </ul>
+        </Typography.Paragraph>;
       },
     },
     {
@@ -139,7 +163,7 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
     return res
   }
 
-  return <>
+  return <div className='DetailContent'>
     {
       list.map((item, index) => <div key={index}>
         {
@@ -147,6 +171,7 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
           <Table
             dataSource={getSource(item.tableList)}
             search={false}
+            cardBordered={true}
             pagination={false}
             tableList={columns}
             rowKey={'name'}
@@ -219,7 +244,7 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
         }
       </div>)
     }
-  </>
+  </div>
 };
 
 export default DetailContent;

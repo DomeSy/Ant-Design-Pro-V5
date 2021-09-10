@@ -1,6 +1,16 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { useState, useEffect, useMemo, useContext, useReducer, useCallback, useRef, useImperativeHandle, useModel } from './hookMock'
+import { useState, useEffect, useMemo, useContext, useReducer, useCallback, useRef, useImperativeHandle, useModel, useRequest } from './hookMock'
+import Mock from 'mockjs';
+
+// 延时时间
+const waitTime = (time: number = 100) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true);
+    }, time);
+  });
+};
 
 export default {
   'GET /api/hook/queryList': async (req: Request, res: Response) => {
@@ -49,6 +59,9 @@ export default {
     } else if (detail === 'useModel') {
       res.send( resData(useModel) )
       return
+    } else if (detail === 'useRequest') {
+      res.send( resData(useRequest) )
+      return
     }
 
     res.send({
@@ -56,5 +69,30 @@ export default {
       detail,
       message: '请输入参数'
     })
+  },
+  'POST /api/hook/useRequest/test': async (req: Request, res: Response) => {
+    await waitTime(2000);
+    res.send(resData(
+      {
+        message: '请求成功'
+      }
+    ))
+  },
+  'GET /api/hook/useRequest/pooling': async (req: Request, res: Response) => {
+    await waitTime(1000);
+    res.send(resData(
+      {
+        name: Mock.mock('@name')
+      }
+    ))
+  },
+  'GET /api/hook/useRequest/cache': async (req: Request, res: Response) => {
+    await waitTime(1000);
+    res.send(resData(
+      {
+        data: Mock.mock('@paragraph'),
+        time: new Date().getTime()
+      }
+    ))
   },
 }

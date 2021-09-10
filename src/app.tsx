@@ -58,6 +58,8 @@ export async function getInitialState(): Promise<any> {
   };
 }
 
+
+// prefix: process.env.NODE_ENV === "production" ? config.baseurl :'api/',
 /**
  * @module 请求模块
  */

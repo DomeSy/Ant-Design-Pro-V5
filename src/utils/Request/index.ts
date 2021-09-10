@@ -4,6 +4,7 @@ import { storageSy } from '@/utils/Setting'
 
 /**请求拦截 */
 export const requestInterceptors: any = (url: string, options: RequestInit) => {
+
   if (storageSy.token) {
     const token = `Bearer ` + localStorage.getItem(storageSy.token);
     options.headers = {
@@ -34,7 +35,7 @@ export const responseInterceptors:any = async (response: Response) => {
     message.error(data.message);
     return false;
   }
-  return data.data ? data.data : data;
+  return data.data ? {...data.data, ...data} : data;
 }
 
 const codeMessage = {
@@ -59,7 +60,7 @@ const codeMessage = {
 /**
  * 异常处理程序
  */
- export const errorHandler = (error: ResponseError) => {
+export const errorHandler = (error: ResponseError) => {
   const { response } = error;
   if (response && response.status) {
     const errorText = codeMessage[response.status] || response.statusText;

@@ -253,3 +253,63 @@ export const useModel:Props = {
     ]
   },
 }
+
+export const useRequest:Props = {
+  use: {},
+  useList: [
+    {
+      render: '请求接口，可根据需求，快速配置响应的需求等'
+    },
+    {
+      type: 'title',
+      effect: 4,
+      render: '使用方式'
+    },
+    {
+      type: 'prv',
+      render: `
+import { useRequest } from 'umi';
+const { data, error, loading, run, params, cancel } = useRequest(service, payload)
+      `
+    },
+    {
+      type: 'list',
+      list: [
+        {
+          render: '主要的有 data(返回的结果), error(抛出的异常), loading(是否执行完毕), run(手动执行), params(请求的参数) cancel(取消执行)'
+        },
+        {
+          render: 'service有多种写法，这里演示比较常用的三种',
+          tooltip: '这里只做常用的，没有像官网全面',
+        },
+        {
+          code: true,
+          render: `useRequest('/api/userInfo')`,
+          tooltip: '只传入字符串，默认不带参数，请求为get'
+        },
+        {
+          code: true,
+          render: `useRequest({ url: '请求地址', method: '请求模式（默认get）', data: '请求参数' })`,
+        },
+        {
+          code: true,
+          render: "useRequest((userId)=> `/api/userInfo/${userId}}`)",
+        }
+      ]
+    }
+  ],
+  attention: {
+    children: [
+      {
+        render: 'useRequest 请求他会走统一的请求拦截和响应拦截，所以返回的格式需要统一，可以在响应拦截里统一设置所需要的规范',
+        red: true
+      },
+      {
+        render: 'useRequest 功能非常强大，能实现99%的请求，这里只是介绍最常用的几种方式',
+        tooltip: '更加详细请去官网查看使用',
+        red: true
+      },
+
+    ]
+  },
+}
