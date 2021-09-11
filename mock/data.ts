@@ -11,7 +11,7 @@ export const resData = (data: any) => {
 // 内容
 export const content = {
   hook: {
-    useState: '用来声明状态变量',
+    useState: '用来声明状态变量, 类相当于 class 中的 this.state 和 this.setState 的作用',
     useEffect: '副作用，主要是将组件中的 componentDidMount componentDidUpdate componentWillUnmount 到一个方法中，杜绝了频繁定义的繁琐',
     useContext: '上下文，对应的Context,其本意就是设置全局共享数据，使所有组件可跨层级实现共享',
     useReducer: '作用类似于 redux, 增强函数体',
@@ -21,5 +21,6 @@ export const content = {
     useImperativeHandle: '可以让你在使用 ref 时自定义暴露给父组件的实例值。',
     useModel: 'umi3中的数据流，之前使用dva中有很多重复的劳动，也会有很多概念 effects, state, reducers等，为解决这种问题，推出的 useModel 来解决',
     useRequest: 'useRequest 是一个超级强大，且生产完备的网络请求 Hooks，目前已经成为蚂蚁中台最佳实践内置网络请求方案',
+    dva: 'dva 数据流，Ant Design V4 使用的数据流，当然V5也支持，如果学过 redux， 那么非常容易上手使用'
   }
 }
