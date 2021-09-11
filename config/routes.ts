@@ -1,12 +1,12 @@
 export default [
-  { path: '/welcome',exact: true, name: '欢迎', icon: 'smile', component: './Welcome' },
+  { path: '/welcome',exact: true, name: '欢迎', icon: 'FireOutlined', component: './Welcome' },
   {
     path: '/hook',
     name: 'Hook',
-    icon: 'crown',
+    icon: 'BulbOutlined',
     component: './Hook',
     routes: [
-      { path: '/Hook', redirect: '/hook/introduce'},
+      { path: '/hook', redirect: '/hook/introduce'},
       { path: '/hook/introduce', name: '介绍', component: './Hook/Introduce' },
       { path: '/hook/useState', name: 'useState', component: './Hook/UseState'},
       { path: '/hook/useEffect', name: 'useEffect', component: './Hook/UseEffect'},
@@ -20,7 +20,17 @@ export default [
       { path: '/hook/useRequest', name: 'useRequest', component: './Hook/UseRequest'},
     ],
   },
-  { name: '查询表格', icon: 'table', path: '/list', component: './TableList' },
+  {
+    path: '/table',
+    name: '动态表单',
+    icon: 'DesktopOutlined',
+    component: './Table',
+    routes: [
+      { path: '/table', redirect: '/Table/introduce'},
+      { path: '/table/introduce', name: '介绍', component: './Table/Introduce' },
+      { path: '/table/input', name: '输入框', component: './Table/Input'},
+    ]
+  },
   {
     path: '/user',
     layout: false,

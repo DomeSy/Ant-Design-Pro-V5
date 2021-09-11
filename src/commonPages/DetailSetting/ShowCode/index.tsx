@@ -7,6 +7,7 @@ import DetailContent from '../DetailContent'
 import Code from '../Code'
 
 export interface ShowCodeProps {
+  id?: string,
   title?: string, // 标题
   content?: React.ReactNode, // 内容
   titleTooltip?: string, // 标题提示
@@ -27,6 +28,7 @@ const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
   return (
     <div
       ref={cardRef}
+      id={props?.id}
       style={{ width: '100%', borderRadius: 2, border: '1px solid #f0f0f0', marginBottom: 24}}
     >
       <div style={{padding: '24px 24px 0 24px'}}>

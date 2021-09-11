@@ -11,8 +11,6 @@ const Index: React.FC<any> = (props) => {
 
   useEffect(() => {
     queryDetail({detail: 'useRequest'}).then((res) => {
-
-      console.log(res, '000')
       setAnchorList(res.anchorList)
       setDetail({
         ...res.list,

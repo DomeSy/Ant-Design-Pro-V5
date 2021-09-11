@@ -104,7 +104,7 @@ const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, attentio
                 {
                   code.showCode.map((item, index) => (
                     <Col key={index} xs={24} sm={24} md={24} lg={24} xl={12} >
-                      <ShowCode  {...item}>
+                      <ShowCode id={item.id}  {...item}>
                         {item.component}
                       </ShowCode>
                     </Col>
@@ -115,7 +115,7 @@ const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, attentio
               <>
                 {
                   code.showCode.map((item, index) => (
-                    <ShowCode key={index} {...item}>
+                    <ShowCode id={item.id} key={index} {...item}>
                       {item.component}
                     </ShowCode>
                   ))
