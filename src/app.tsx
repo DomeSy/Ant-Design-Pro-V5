@@ -9,6 +9,7 @@ import initData from '@/utils/initData';
 import { Jump } from '@/utils';
 import { requestInterceptors, responseInterceptors, errorHandler } from '@/utils/Request'
 import { LiveSetting } from '@/commonPages'
+import { host } from '@/utils/config'
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -58,12 +59,11 @@ export async function getInitialState(): Promise<any> {
   };
 }
 
-
-// prefix: process.env.NODE_ENV === "production" ? config.baseurl :'api/',
 /**
  * @module 请求模块
  */
 export const request: RequestConfig = {
+  prefix: process.env.NODE_ENV === "production" ? host : '/api/',
   errorHandler,
   requestInterceptors: [requestInterceptors],
   responseInterceptors: [responseInterceptors],

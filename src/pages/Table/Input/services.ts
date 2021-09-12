@@ -1,7 +1,7 @@
 import { request } from 'umi';
 
 export async function queryDetail(params?: any) {
-  return request('/api/table/queryDetail', {
+  return request('table/queryDetail', {
     params,
   });
 }
