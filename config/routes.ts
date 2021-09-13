@@ -34,7 +34,11 @@ export default [
       { path: '/table/checkbox', name: '多选', component: './Table/Checkbox'},
       { path: '/table/radio', name: '单选', component: './Table/Radio'},
       { path: '/table/switch', name: '开关', component: './Table/Switch'},
-      { path: '/table/select', name: '文本框', component: './Table/Select'},
+      { path: '/table/textArea', name: '文本框', component: './Table/TextArea'},
+      { path: '/table/rate', name: '星级评价', component: './Table/Rate'},
+      { path: '/table/slider', name: '滑动输入条', component: './Table/Slider'},
+      { path: '/table/digit', name: '步进器', component: './Table/Digit'},
+      { path: '/table/field', name: '自定义', component: './Table/Field'},
     ]
   },
   {

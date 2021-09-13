@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { resData } from './data';
-import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList, select, selectAnchorList } from './tableMock'
+import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList, select, selectAnchorList, checkbox, checkboxAnchorList } from './tableMock'
 
 // 延时时间
 const waitTime = (time: number = 100) => {
@@ -40,6 +40,13 @@ export default {
         resData({
           list: select,
           anchorList: selectAnchorList
+        }
+      ))
+    } else if(detail === 'checkbox'){
+      res.send(
+        resData({
+          list: checkbox,
+          anchorList: checkboxAnchorList
         }
       ))
     }
