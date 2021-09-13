@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { content, resData } from './data';
+import { resData } from './data';
 import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList, select, selectAnchorList } from './tableMock'
-import Mock from 'mockjs';
 
 // 延时时间
 const waitTime = (time: number = 100) => {

@@ -31,6 +31,10 @@ export default [
       { path: '/table/input', name: '输入框', component: './Table/Input'},
       { path: '/table/password', name: '密码', component: './Table/Password'},
       { path: '/table/select', name: '选择框', component: './Table/Select'},
+      { path: '/table/checkbox', name: '多选', component: './Table/Checkbox'},
+      { path: '/table/radio', name: '单选', component: './Table/Radio'},
+      { path: '/table/switch', name: '开关', component: './Table/Switch'},
+      { path: '/table/select', name: '文本框', component: './Table/Select'},
     ]
   },
   {
