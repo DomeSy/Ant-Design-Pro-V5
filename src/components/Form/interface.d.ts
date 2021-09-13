@@ -155,7 +155,8 @@ export interface formProps extends GroupProps {
   captchaText?: (timing: boolean, count: number) => void;
   fieldRender?: React.ReactNode | Function;
   itemRender?: (getArray: Object) => void;
-  children?: formProps[]
+  captchaTextRender?: (timing: boolean, count: number) => React.ReactNode
+  children?: formProps[];
 }
 
 interface ConfigBackProps extends ButtonProps {

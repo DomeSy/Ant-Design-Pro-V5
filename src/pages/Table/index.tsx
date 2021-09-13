@@ -27,12 +27,8 @@ const Hook: React.FC<any> = ({children, ...props}) => {
       key: 'input',
     },
     {
-      tab: '密码',
+      tab: '密码/验证码',
       key: 'password',
-    },
-    {
-      tab: '验证码',
-      key: 'captcha',
     },
     {
       tab: '选择框',

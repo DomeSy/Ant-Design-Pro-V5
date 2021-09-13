@@ -291,7 +291,7 @@ export const input:Props = {
           status: "React.ReactNode",
         },
         {
-          name: 'addonBefore',
+          name: 'prefix',
           desc: '样式前缀',
           status: "React.ReactNode",
         },
@@ -395,7 +395,7 @@ export const input:Props = {
       list: [
         {
           render: `封装原有的 ProComponent 的 ProFormText，所以这些 Api 并不是最全面的，所以要是有其他的属性，可以参考官网 Api`,
-          strong: true
+          strong: true,
         },
         {
           render: 'input 是最基本的表单项，这里的封装并没有黑科技的东西，只是为了在项目上能更快，更方便，可维护性更好而进行封装',
@@ -450,6 +450,187 @@ export const inputAnchorList:AnchorLinkProps[] = [
             href: 'rules'
           }
         ]
+      }
+    ]
+  },
+  {
+    title: '心得体会',
+    href: 'explain',
+  }
+]
+
+export const password:Props = {
+  use: {
+    title: '使用说明',
+    tooltip: 'type: "password/catch" ',
+    id: 'use'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装并继承于 ProFormText.Password 和 ProFormCaptcha`
+        },
+        {
+          render: 'password 和 captcha 的属性与 input的值类似，这里不多介绍'
+        }
+      ]
+    },
+  ],
+  api: {
+    id: 'Api',
+    hrefTooltip: '更多Api，去官网',
+    href: 'https://procomponents.ant.design/components/field-set',
+  },
+  apiList: [
+    ...tableCommonList,
+    {
+      type: 'title',
+      id: 'passwordApi',
+      render: 'type为password的私有属性',
+      effect: 4,
+      hrefTooltip: '去官网',
+      href: 'https://procomponents.ant.design/components/field-set#proformtextpassword'
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'addonAfter',
+          desc: [
+            '前缀',
+            '带个灰色的背景框'
+          ],
+          status: "React.ReactNode",
+        },
+        {
+          name: 'addonBefore',
+          desc: [
+            '后缀',
+            '带个灰色的背景框'
+          ],
+          status: "React.ReactNode",
+        },
+        {
+          name: 'prefix',
+          desc: '样式前缀',
+          status: "React.ReactNode",
+        },
+        {
+          name: 'suffix',
+          desc: '样式后缀',
+          status: "React.ReactNode",
+        },
+        {
+          name: 'rulesRender',
+          desc: '适用于原本的rules',
+          status: 'Array<any>',
+        },
+        {
+          name: 'rules',
+          desc: '替换原有的规则，并设置更加简便的写法，协助快速开发',
+          status: 'Array<RuleProps>',
+        },
+        {
+          name: 'noRequired',
+          desc: '在很少的情况下，不需要规则必填，但填必须按照规则去填,可以按此规则',
+          status: 'boolean',
+          default: 'false'
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'captchaApi',
+      render: 'type为captcha的私有属性',
+      effect: 4,
+      hrefTooltip: '去官网',
+      href: 'https://procomponents.ant.design/components/field-set#proformcaptcha'
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'getCaptcha',
+          desc: '获取验证码的事件',
+          status: "(phone) => void",
+        },
+        {
+          name: 'captchaTextRender',
+          desc: '渲染计时的文案',
+          status: "React.(timing: boolean, count: number) => React.ReactNode",
+        },
+        {
+          name: 'max',
+          desc: '倒计时的秒数',
+          status: "number",
+          default: '60'
+        },
+        {
+          name: 'captchaProps',
+          desc: '获取验证码按钮的 props，与 antd 的 props 相同',
+          status: "React.ReactNode",
+        }
+      ]
+    },
+  ],
+  explain: {
+    id: 'explain',
+    hrefTooltip: '封装不易，给个Star吧！',
+    href: 'https://github.com/DomeSy/Ant-Design-Pro-V5/tree/master/src/components/Form'
+  },
+  explainList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装原有的 ProComponent 的 ProFormCaptcha、ProFormText.Password，所以这些 Api 并不是最全面的，所以要是有其他的属性，可以参考官网 Api`,
+          strong: true
+        },
+        {
+          render: 'password 密码框，captcha 验证码框，常用于登录，等权限模块',
+          strong: true
+        }
+      ]
+    },
+  ]
+}
+
+export const passwordAnchorList:AnchorLinkProps[] = [
+  {
+    title: '使用场景',
+    href: 'use'
+  },
+  {
+    title: '代码演示',
+    href: 'Code',
+    children: [
+      {
+        title: 'password-基本使用',
+        href: 'code1',
+      },
+      {
+        title: 'catch-基本使用',
+        href: 'code2',
+      },
+    ]
+  },
+  {
+    title: 'Api',
+    href: 'Api',
+    children: [
+      {
+        title: 'formList（公共属性）',
+        href: 'formListProps',
+      },
+      {
+        title: 'password属性',
+        href: 'passwordApi',
+      },
+      {
+        title: 'captcha属性',
+        href: 'captchaApi'
       }
     ]
   },

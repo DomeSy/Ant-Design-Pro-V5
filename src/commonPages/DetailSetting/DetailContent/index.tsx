@@ -92,7 +92,7 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
           <ul>
             {
               dom.desc.map((item:any, index:number) => (
-                <li key={index}>
+                <li key={index + 'desc'}>
                   {item?.render || item}
                   {item?.mark ? <span style={{color: '#f81d22'}}>({item?.mark})</span> : undefined}
                   {
