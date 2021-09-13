@@ -205,7 +205,7 @@ const { data, error, loading, run, params, cancel } = useRequest(service, payloa
 
 export const introduceAnchorList:AnchorLinkProps[] = [
   {
-    title: '使用场景',
+    title: '使用说明',
     href: 'use'
   },
   {
@@ -408,7 +408,7 @@ export const input:Props = {
 
 export const inputAnchorList:AnchorLinkProps[] = [
   {
-    title: '使用场景',
+    title: '使用说明',
     href: 'use'
   },
   {
@@ -599,7 +599,7 @@ export const password:Props = {
 
 export const passwordAnchorList:AnchorLinkProps[] = [
   {
-    title: '使用场景',
+    title: '使用说明',
     href: 'use'
   },
   {
@@ -632,6 +632,133 @@ export const passwordAnchorList:AnchorLinkProps[] = [
         title: 'captcha属性',
         href: 'captchaApi'
       }
+    ]
+  },
+  {
+    title: '心得体会',
+    href: 'explain',
+  }
+]
+
+export const select:Props = {
+  use: {
+    title: '使用说明',
+    tooltip: 'type: "select" ',
+    id: 'use'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装并继承于 ProFormSelect`
+        },
+        {
+          render: 'select 的值主要有四种写法，分别是：'
+        },
+        {
+          render: 'options(string[]): 属性名和属性值都是这个字符串'
+        },
+        {
+          render: 'options(Object[]): label 为属性名， value 为属性名'
+        },
+        {
+          render: 'enum(Object): 对应选择框的值，展示属性值，值为属性名'
+        },
+        {
+          render: 'request: 接收一个函数，可以自定义接口，返回的类型为 label 和 value'
+        }
+      ]
+    },
+  ],
+  api: {
+    id: 'Api',
+    hrefTooltip: '更多Api，去官网',
+    href: 'https://procomponents.ant.design/components/field-set#proformselect',
+  },
+  apiList: [
+    ...tableCommonList,
+    {
+      type: 'title',
+      id: 'selectApi',
+      render: 'type为select的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'enum',
+          desc: '对象的属性传值，可自定义属性值属性名，没有对应的的格式',
+          status: "Object",
+        },
+        {
+          name: 'options',
+          desc: '枚举数据请求，有固定格式： label 和 value',
+          status: "string[] / Object<{label value}>",
+        },
+        {
+          name: 'request',
+          desc: '请求枚举数据，可加入接口，有固定格式： label 和 value',
+          status: "()=>Promise<{[key:string|number]:any}>",
+        },
+        {
+          name: 'multiple',
+          desc: '是否多选',
+          status: "boolean",
+          default: 'false'
+        },
+        {
+          name: 'optionItemRender',
+          desc: '自定义下拉框的文本样式，将当前的item作为参数',
+          status: '(item) => string',
+        },
+      ]
+    },
+  ],
+  explain: {
+    id: 'explain',
+    hrefTooltip: '封装不易，给个Star吧！',
+    href: 'https://github.com/DomeSy/Ant-Design-Pro-V5/tree/master/src/components/Form'
+  },
+  explainList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装原有的 ProComponent 的 ProFormSelect，所以这些 Api 并不是最全面的，所以要是有其他的属性，可以参考官网 Api`,
+          strong: true
+        },
+        {
+          render: '四种写法中，request 的写法最为简便，方便直接从接口获取',
+          strong: true
+        }
+      ]
+    },
+  ]
+}
+
+export const selectAnchorList:AnchorLinkProps[] = [
+  {
+    title: '使用说明',
+    href: 'use'
+  },
+  {
+    title: '代码演示',
+    href: 'Code',
+  },
+  {
+    title: 'Api',
+    href: 'Api',
+    children: [
+      {
+        title: 'formList（公共属性）',
+        href: 'formListProps',
+      },
+      {
+        title: 'select属性',
+        href: 'selectApi',
+      },
     ]
   },
   {

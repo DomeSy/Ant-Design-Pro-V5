@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList  } from './tableMock'
+import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList, select, selectAnchorList } from './tableMock'
 import Mock from 'mockjs';
 
 // 延时时间
@@ -34,6 +34,13 @@ export default {
         resData({
           list: password,
           anchorList: passwordAnchorList
+        }
+      ))
+    } else if(detail === 'select'){
+      res.send(
+        resData({
+          list: select,
+          anchorList: selectAnchorList
         }
       ))
     }

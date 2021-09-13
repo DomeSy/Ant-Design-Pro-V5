@@ -30,6 +30,7 @@ export default [
       { path: '/table/introduce', name: '介绍', component: './Table/Introduce' },
       { path: '/table/input', name: '输入框', component: './Table/Input'},
       { path: '/table/password', name: '密码', component: './Table/Password'},
+      { path: '/table/select', name: '选择框', component: './Table/Select'},
     ]
   },
   {
