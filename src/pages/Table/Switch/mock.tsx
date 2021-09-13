@@ -1,115 +1,52 @@
 import React from 'react';
 import { message } from 'antd';
 import { Form } from '@/components';
+import { MailTwoTone } from '@ant-design/icons';
 import type { formProps } from '@/components'
 
 const Mock: React.FC<any> = () => {
   const list: formProps[] = [
     {
-      name: 'select',
-      label: 'options(string方式)',
-      options: [
-        '已选择',
-        '未选择',
-        '待选择'
-      ],
-      type: 'select',
+      name: 'switch',
+      label: '开关',
+      tooltip: `type: 'switch'`,
+      type: 'switch',
     },
     {
-      name: 'select1',
-      label: 'options(对象方式)',
-      options: [
-        { label: '全部', value: 'all' },
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      type: 'select',
+      name: 'switch1',
+      label: '开关文字',
+      openText: '开启',
+      closeText: '关闭',
+      tooltip: `openText: '开启',closeText: '关闭',`,
+      type: 'switch',
     },
     {
-      name: 'select2',
-      label: 'enum方式',
-      enum: {
-        0: '已选择',
-        1: '未选择',
-        2: '待选择',
-      },
-      type: 'select',
+      name: 'switch2',
+      label: '开关图标',
+      openText: <MailTwoTone />,
+      tooltip: ` openText: <MailTwoTone />,`,
+      type: 'switch',
     },
     {
-      name: 'select3',
-      label: 'request方式',
-      request: async () => [
-        { label: '全部', value: 'all' },
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      type: 'select',
+      name: 'switch3',
+      label: '默认开启',
+      default: true,
+      tooltip: `default: true,`,
+      type: 'switch',
     },
     {
-      name: 'select4',
-      label: '默认值',
-      default: 'open',
-      options: [
-        { label: '全部', value: 'all' },
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      type: 'select',
+      name: 'switch4',
+      label: '开关加载',
+      default: true,
+      loading: true,
+      tooltip: `default: true,loading: true,`,
+      type: 'switch',
     },
     {
-      name: 'select5',
-      label: '必填',
-      enum: {
-        0: '已选择',
-        1: '未选择',
-        2: '代选择',
-      },
-      placeholder: '选择规则',
-      required: true,
-      type: 'select',
-    },
-    {
-      name: 'select6',
-      label: '自定义下拉框样式',
-      tooltip: 'optionItemRender: (item) => void',
-      enum: {
-        0: '已选择',
-        1: '未选择',
-        2: '代选择',
-      },
-      type: 'select',
-      optionItemRender: (item: any) => {
-        return item.label + ' - ' + item.value;
-      },
-    },
-    {
-      name: 'select7',
-      label: '多选',
-      tooltip: 'multiple: true',
-      options: [
-        { label: '全部1', value: 'all' },
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      multiple: true,
-      type: 'select',
-    },
-    {
-      name: 'select8',
-      label: '搜索',
-      tooltip: 'search: true',
-      options: [
-        { label: '全部1', value: 'all' },
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      search: true,
-      type: 'select',
+      name: 'digit',
+      label: '步进器',
+      type: 'digit',
+      tooltip: 'type: digit',
     },
   ];
 

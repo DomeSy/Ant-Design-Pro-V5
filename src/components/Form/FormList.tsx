@@ -203,7 +203,7 @@ const FomList: React.FC<FormListProps> = ({ formList=[], layout = {}, method, _c
         commonType.request = item.request;
       }
       commonType.width =
-        item.type === 'date'
+        (item.type === 'date' || item.type === 'switch' || item.type === 'radio' || item.type === 'checkbox')
           ? undefined
           : item.width
           ? item.width
