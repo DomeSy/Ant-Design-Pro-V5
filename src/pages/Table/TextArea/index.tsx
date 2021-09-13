@@ -10,7 +10,7 @@ const Index: React.FC<any> = (props) => {
   const [anchorList, setAnchorList] = useState<AnchorLinkProps[]>([])
 
   useEffect(() => {
-    queryDetail({detail: 'select'}).then((res) => {
+    queryDetail({detail: 'textArea'}).then((res) => {
       setAnchorList(res.anchorList)
       setDetail({
         ...res.list,
@@ -20,10 +20,7 @@ const Index: React.FC<any> = (props) => {
               id: 'code1',
               component: <Mock />,
               title: '基本使用',
-              content: <div>
-                <p>结合 select 的常用功能，包含四种方式使用，默认值，必填，自定义下拉样式，多选，搜索功能</p>
-                <p>三种的层级关系：request {'>'} option {'>'} enum </p>
-              </div>,
+              content: 'teatArea 可以显示输入的字符，限制个数，高度，默认值，是否禁用等操作',
               code: `
   import React from 'react';
   import { message } from 'antd';
@@ -33,110 +30,52 @@ const Index: React.FC<any> = (props) => {
   export const Mock: React.FC<any> = () => {
     const list: formProps[] = [
       {
-        name: 'select',
-        label: 'options(string方式)',
-        options: [
-          '已选择',
-          '未选择',
-          '待选择'
-        ],
-        type: 'select',
+        name: 'textArea',
+        label: '文本框',
+        tooltip: ”type: 'textArea'”,
+        type: 'textArea',
       },
       {
-        name: 'select1',
-        label: 'options(对象方式)',
-        options: [
-          { label: '全部', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        type: 'select',
+        name: 'textArea1',
+        label: '显示字数',
+        tooltip: ”showCount: true”,
+        showCount: true,
+        type: 'textArea',
       },
       {
-        name: 'select2',
-        label: 'enum方式',
-        enum: {
-          0: '已选择',
-          1: '未选择',
-          2: '待选择',
-        },
-        type: 'select',
+        name: 'textArea2',
+        label: '限制最大值',
+        tooltip: ”max: 200”,
+        max: 200,
+        type: 'textArea',
       },
       {
-        name: 'select3',
-        label: 'request方式',
-        request: async () => [
-          { label: '全部', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        type: 'select',
+        name: 'textArea3',
+        label: '自适应高度',
+        tooltip: ”高度自适应 { autoSize: true }”,
+        type: 'textArea',
+        autoSize: true
       },
       {
-        name: 'select4',
+        name: 'textArea4',
+        label: '限制高度',
+        tooltip: ”高度限制 { rows: 8 }”,
+        rows: 8,
+        type: 'textArea',
+      },
+      {
+        name: 'textArea5',
         label: '默认值',
-        default: 'open',
-        options: [
-          { label: '全部', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        type: 'select',
+        tooltip: ”default: 'DomeSy TextArea'”,
+        default: 'DomeSy TextArea',
+        type: 'textArea',
       },
       {
-        name: 'select5',
-        label: '必填',
-        enum: {
-          0: '已选择',
-          1: '未选择',
-          2: '代选择',
-        },
-        placeholder: '选择规则',
-        required: true,
-        type: 'select',
-      },
-      {
-        name: 'select6',
-        label: '自定义下拉框样式',
-        tooltip: 'optionItemRender: (item) => void',
-        enum: {
-          0: '已选择',
-          1: '未选择',
-          2: '代选择',
-        },
-        type: 'select',
-        optionItemRender: (item: any) => {
-          return item.label + ' - ' + item.value;
-        },
-      },
-      {
-        name: 'select7',
-        label: '多选',
-        tooltip: 'multiple: true',
-        options: [
-          { label: '全部1', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        multiple: true,
-        type: 'select',
-      },
-      {
-        name: 'select8',
-        label: '搜索',
-        tooltip: 'search: true',
-        options: [
-          { label: '全部1', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        search: true,
-        type: 'select',
+        name: 'textArea6',
+        label: '禁用',
+        tooltip: ”disabled: true”,
+        disabled: true,
+        type: 'textArea',
       },
     ];
 

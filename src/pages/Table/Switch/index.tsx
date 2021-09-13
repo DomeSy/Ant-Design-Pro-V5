@@ -25,6 +25,7 @@ const Index: React.FC<any> = (props) => {
   import React from 'react';
   import { message } from 'antd';
   import { Form } from '@/components';
+  import { MailTwoTone } from '@ant-design/icons';
   import type { formProps } from '@/components'
 
   export const Mock: React.FC<any> = () => {

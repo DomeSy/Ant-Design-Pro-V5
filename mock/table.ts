@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { resData } from './data';
-import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList, select, selectAnchorList, checkbox, checkboxAnchorList, radio, radioAnchorList, switchMock, switchAnchorList } from './tableMock'
+import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList, select, selectAnchorList, checkbox, checkboxAnchorList, radio, radioAnchorList, switchMock, switchAnchorList, textArea, textAreaAnchorList } from './tableMock'
 
 // 延时时间
 const waitTime = (time: number = 100) => {
@@ -61,6 +61,13 @@ export default {
         resData({
           list: switchMock,
           anchorList: switchAnchorList
+        }
+      ))
+    } else if(detail === 'textArea'){
+      res.send(
+        resData({
+          list: textArea,
+          anchorList: textAreaAnchorList
         }
       ))
     }

@@ -1111,3 +1111,108 @@ export const switchAnchorList:AnchorLinkProps[] = [
     href: 'explain',
   }
 ]
+
+export const textArea:Props = {
+  use: {
+    title: '使用说明',
+    tooltip: 'type: "textArea"',
+    id: 'use'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装并继承于 ProFormTextArea`
+        },
+      ]
+    },
+  ],
+  api: {
+    id: 'Api',
+    hrefTooltip: '更多Api，去官网',
+    href: 'https://procomponents.ant.design/components/field-set#proformtextarea',
+  },
+  apiList: [
+    ...tableCommonList,
+    {
+      type: 'title',
+      id: 'textAreaApi',
+      render: 'type为textArea的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'showCount',
+          desc: '是否显示字数',
+          status: "boolean",
+          default: "false",
+        },
+        {
+          name: 'max',
+          desc: '限制最大字数',
+          mark: '不需要加 showCount',
+          status: "React.ReactNode",
+        },
+        {
+          name: 'autoSize',
+          desc: '自适应高度',
+          status: "boolean",
+          default: 'false'
+        },
+        {
+          name: 'rows',
+          desc: '设置高度',
+          status: "number",
+        }
+      ]
+    },
+  ],
+  explain: {
+    id: 'explain',
+    hrefTooltip: '封装不易，给个Star吧！',
+    href: 'https://github.com/DomeSy/Ant-Design-Pro-V5/tree/master/src/components/Form'
+  },
+  explainList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装原有的 ProComponent 的 ProFormTextArea，所以这些 Api 并不是最全面的，所以要是有其他的属性，可以参考官网 Api`,
+          strong: true
+        }
+      ]
+    },
+  ]
+}
+
+export const textAreaAnchorList:AnchorLinkProps[] = [
+  {
+    title: '使用说明',
+    href: 'use'
+  },
+  {
+    title: '代码演示',
+    href: 'Code',
+  },
+  {
+    title: 'Api',
+    href: 'Api',
+    children: [
+      {
+        title: 'formList（公共属性）',
+        href: 'formListProps',
+      },
+      {
+        title: 'textArea属性',
+        href: 'textAreaApi',
+      },
+    ]
+  },
+  {
+    title: '心得体会',
+    href: 'explain',
+  }
+]
