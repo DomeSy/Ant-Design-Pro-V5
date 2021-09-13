@@ -194,7 +194,7 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
             <pre>{item.render}</pre>
           </Typography.Paragraph> :
           item.type === 'title' ?
-            <Typography.Title id={item.id} level={item.main ? 2 : item.effect === 4 ? 4 : item.effect === 5 ? 5 : 3} style={{display: 'flex',justifyContent: 'flex-start', alignItems: 'center'}} >
+            <Typography.Title id={item.id} level={item.main ? 2 : item.effect === 4 ? 4 : item.effect === 5 ? 5 : 3} style={item.effect === 3 ? {display: 'flex',justifyContent: 'flex-start', alignItems: 'center'} : {display: 'flex',justifyContent: 'flex-start', alignItems: 'center', margin: '15px 0'}} >
               {
                 item.render
               }
