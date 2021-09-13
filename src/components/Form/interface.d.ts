@@ -157,6 +157,7 @@ export interface formProps extends GroupProps {
   itemRender?: (getArray: Object) => void;
   captchaTextRender?: (timing: boolean, count: number) => React.ReactNode
   children?: formProps[];
+  radioType?: 'button' | 'radio'
 }
 
 interface ConfigBackProps extends ButtonProps {

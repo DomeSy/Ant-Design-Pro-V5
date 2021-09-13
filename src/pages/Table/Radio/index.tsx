@@ -10,7 +10,7 @@ const Index: React.FC<any> = (props) => {
   const [anchorList, setAnchorList] = useState<AnchorLinkProps[]>([])
 
   useEffect(() => {
-    queryDetail({detail: 'select'}).then((res) => {
+    queryDetail({detail: 'radio'}).then((res) => {
       setAnchorList(res.anchorList)
       setDetail({
         ...res.list,
@@ -20,10 +20,7 @@ const Index: React.FC<any> = (props) => {
               id: 'code1',
               component: <Mock />,
               title: '基本使用',
-              content: <div>
-                <p>结合 select 的常用功能，包含四种方式使用，默认值，必填，自定义下拉样式，多选，搜索功能</p>
-                <p>三种的层级关系：request {'>'} option {'>'} enum </p>
-              </div>,
+              content: '与选择框一样，不过过多解释,多了一个按钮模式',
               code: `
   import React from 'react';
   import { message } from 'antd';
@@ -33,112 +30,89 @@ const Index: React.FC<any> = (props) => {
   export const Mock: React.FC<any> = () => {
     const list: formProps[] = [
       {
-        name: 'select',
-        label: 'options(string方式)',
-        options: [
-          '已选择',
-          '未选择',
-          '待选择'
-        ],
-        type: 'select',
+        name: 'radio',
+        label: 'option(字符串)',
+        options: ['React', 'Hook', 'DomesyPro'],
+        type: 'radio',
       },
       {
-        name: 'select1',
-        label: 'options(对象方式)',
+        name: 'radio1',
+        label: 'option（对象）',
         options: [
-          { label: '全部', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
+          { label: 'React', value: 0 },
+          { label: 'Hook', value: 1 },
+          { label: 'DomesyPro', value: 2 },
         ],
-        type: 'select',
+        type: 'radio',
       },
       {
-        name: 'select2',
-        label: 'enum方式',
+        name: 'radio2',
+        label: 'enum',
         enum: {
-          0: '已选择',
-          1: '未选择',
-          2: '待选择',
+          0: 'React',
+          1: 'Hook',
+          2: 'DomesyPro',
         },
-        type: 'select',
+        type: 'radio',
       },
       {
-        name: 'select3',
-        label: 'request方式',
+        name: 'radio3',
+        label: 'request',
         request: async () => [
-          { label: '全部', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
+          { label: 'React', value: 0 },
+          { label: 'Hook', value: 1 },
+          { label: 'DomesyPro', value: 2 },
         ],
-        type: 'select',
+        type: 'radio',
       },
       {
-        name: 'select4',
-        label: '默认值',
-        default: 'open',
-        options: [
-          { label: '全部', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        type: 'select',
-      },
-      {
-        name: 'select5',
+        name: 'radio4',
         label: '必填',
-        enum: {
-          0: '已选择',
-          1: '未选择',
-          2: '代选择',
-        },
-        placeholder: '选择规则',
         required: true,
-        type: 'select',
-      },
-      {
-        name: 'select6',
-        label: '自定义下拉框样式',
-        tooltip: 'optionItemRender: (item) => void',
+        tooltip: 'required: true',
+        message: '请选择radio',
         enum: {
-          0: '已选择',
-          1: '未选择',
-          2: '代选择',
+          0: 'React',
+          1: 'Hook',
+          2: 'DomesyPro',
         },
-        type: 'select',
-        optionItemRender: (item: any) => {
-          return item.label + ' - ' + item.value;
-        },
+        type: 'radio',
       },
       {
-        name: 'select7',
-        label: '多选',
-        tooltip: 'multiple: true',
-        options: [
-          { label: '全部1', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        multiple: true,
-        type: 'select',
+        name: 'radio5',
+        label: '默认值',
+        tooltip: "default: '2' ",
+        default: '2',
+        enum: {
+          0: 'React',
+          1: 'Hook',
+          2: 'DomesyPro',
+        },
+        type: 'radio',
       },
       {
-        name: 'select8',
-        label: '搜索',
-        tooltip: 'search: true',
-        options: [
-          { label: '全部1', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        search: true,
-        type: 'select',
+        name: 'radio6',
+        label: '禁用',
+        tooltip: "disabled: true, default: '2'",
+        disabled: true,
+        default: '2',
+        enum: {
+          0: 'React',
+          1: 'Hook',
+          2: 'DomesyPro',
+        },
+        type: 'radio',
+      },
+      {
+        name: 'radio7',
+        label: '按钮模式',
+        tooltip: "radioType: 'button'",
+        options: ['React', 'Hook', 'DomesyPro'],
+        type: 'radio',
+        radioType: 'button'
       },
     ];
+
 
     return <Form
       onFinish={(values: any) => {

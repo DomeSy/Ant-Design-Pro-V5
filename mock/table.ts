@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { resData } from './data';
-import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList, select, selectAnchorList, checkbox, checkboxAnchorList } from './tableMock'
+import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList, select, selectAnchorList, checkbox, checkboxAnchorList, radio, radioAnchorList } from './tableMock'
 
 // 延时时间
 const waitTime = (time: number = 100) => {
@@ -47,6 +47,13 @@ export default {
         resData({
           list: checkbox,
           anchorList: checkboxAnchorList
+        }
+      ))
+    } else if(detail === 'radio'){
+      res.send(
+        resData({
+          list: radio,
+          anchorList: radioAnchorList
         }
       ))
     }
