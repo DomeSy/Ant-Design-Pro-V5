@@ -39,14 +39,8 @@ const Mock: React.FC<any> = () => {
       label: '开关加载',
       default: true,
       loading: true,
-      tooltip: `default: true,loading: true,`,
+      tooltip: `default: true, loading: true,`,
       type: 'switch',
-    },
-    {
-      name: 'digit',
-      label: '步进器',
-      type: 'digit',
-      tooltip: 'type: digit',
     },
   ];
 

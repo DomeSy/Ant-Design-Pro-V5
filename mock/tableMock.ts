@@ -1000,8 +1000,109 @@ export const radioAnchorList:AnchorLinkProps[] = [
         href: 'formListProps',
       },
       {
-        title: 'radioApi属性',
+        title: 'radio属性',
         href: 'radioApi',
+      },
+    ]
+  },
+  {
+    title: '心得体会',
+    href: 'explain',
+  }
+]
+
+export const switchMock:Props = {
+  use: {
+    title: '使用说明',
+    tooltip: 'type: "switch"',
+    id: 'use'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装并继承于 ProFormSwitch`
+        },
+        {
+          render: 'switch 开关，可自由设置开启和关闭的样式'
+        },
+      ]
+    },
+  ],
+  api: {
+    id: 'Api',
+    hrefTooltip: '更多Api，去官网',
+    href: 'https://procomponents.ant.design/components/field-set#proformswitch',
+  },
+  apiList: [
+    ...tableCommonList,
+    {
+      type: 'title',
+      id: 'switchApi',
+      render: 'type为switch的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'openText',
+          desc: '开启是加载的文字或图标',
+          status: "React.ReactNode",
+        },
+        {
+          name: 'closeText',
+          desc: '关闭是加载的文字或图标',
+          status: "React.ReactNode",
+        },
+        {
+          name: 'loading',
+          desc: '是否加载',
+          status: "boolean",
+          default: 'false'
+        }
+      ]
+    },
+  ],
+  explain: {
+    id: 'explain',
+    hrefTooltip: '封装不易，给个Star吧！',
+    href: 'https://github.com/DomeSy/Ant-Design-Pro-V5/tree/master/src/components/Form'
+  },
+  explainList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装原有的 ProComponent 的 ProFormSwitch，所以这些 Api 并不是最全面的，所以要是有其他的属性，可以参考官网 Api`,
+          strong: true
+        }
+      ]
+    },
+  ]
+}
+
+export const switchAnchorList:AnchorLinkProps[] = [
+  {
+    title: '使用说明',
+    href: 'use'
+  },
+  {
+    title: '代码演示',
+    href: 'Code',
+  },
+  {
+    title: 'Api',
+    href: 'Api',
+    children: [
+      {
+        title: 'formList（公共属性）',
+        href: 'formListProps',
+      },
+      {
+        title: 'switch属性',
+        href: 'switchApi',
       },
     ]
   },
