@@ -10,7 +10,7 @@ const Index: React.FC<any> = (props) => {
   const [anchorList, setAnchorList] = useState<AnchorLinkProps[]>([])
 
   useEffect(() => {
-    queryDetail({detail: 'select'}).then((res) => {
+    queryDetail({detail: 'digit'}).then((res) => {
       setAnchorList(res.anchorList)
       setDetail({
         ...res.list,
@@ -20,10 +20,7 @@ const Index: React.FC<any> = (props) => {
               id: 'code1',
               component: <Mock />,
               title: '基本使用',
-              content: <div>
-                <p>结合 select 的常用功能，包含四种方式使用，默认值，必填，自定义下拉样式，多选，搜索功能</p>
-                <p>三种的层级关系：request {'>'} option {'>'} enum </p>
-              </div>,
+              content: '步进器可以设置小数，可以设置金额等，数字类型非常方便',
               code: `
   import React from 'react';
   import { message } from 'antd';
@@ -33,110 +30,46 @@ const Index: React.FC<any> = (props) => {
   export const Mock: React.FC<any> = () => {
     const list: formProps[] = [
       {
-        name: 'select',
-        label: 'options(string方式)',
-        options: [
-          '已选择',
-          '未选择',
-          '待选择'
-        ],
-        type: 'select',
+        name: 'digit',
+        label: '步进器',
+        type: 'digit',
+        tooltip: 'type: digit',
       },
       {
-        name: 'select1',
-        label: 'options(对象方式)',
-        options: [
-          { label: '全部', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        type: 'select',
-      },
-      {
-        name: 'select2',
-        label: 'enum方式',
-        enum: {
-          0: '已选择',
-          1: '未选择',
-          2: '待选择',
-        },
-        type: 'select',
-      },
-      {
-        name: 'select3',
-        label: 'request方式',
-        request: async () => [
-          { label: '全部', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        type: 'select',
-      },
-      {
-        name: 'select4',
-        label: '默认值',
-        default: 'open',
-        options: [
-          { label: '全部', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        type: 'select',
-      },
-      {
-        name: 'select5',
+        name: 'digit1',
         label: '必填',
-        enum: {
-          0: '已选择',
-          1: '未选择',
-          2: '代选择',
-        },
-        placeholder: '选择规则',
+        type: 'digit',
         required: true,
-        type: 'select',
+        tooltip: 'required: true',
       },
       {
-        name: 'select6',
-        label: '自定义下拉框样式',
-        tooltip: 'optionItemRender: (item) => void',
-        enum: {
-          0: '已选择',
-          1: '未选择',
-          2: '代选择',
-        },
-        type: 'select',
-        optionItemRender: (item: any) => {
-          return item.label + ' - ' + item.value;
-        },
+        name: 'digit2',
+        label: '禁用',
+        type: 'digit',
+        disabled: true,
+        tooltip: 'disabled: true',
       },
       {
-        name: 'select7',
-        label: '多选',
-        tooltip: 'multiple: true',
-        options: [
-          { label: '全部1', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        multiple: true,
-        type: 'select',
+        name: 'digit3',
+        label: '默认',
+        type: 'digit',
+        default: 3,
+        tooltip: 'type: digit',
       },
       {
-        name: 'select8',
-        label: '搜索',
-        tooltip: 'search: true',
-        options: [
-          { label: '全部1', value: 'all' },
-          { label: '未解决', value: 'open' },
-          { label: '已解决', value: 'closed' },
-          { label: '解决中', value: 'processing' },
-        ],
-        search: true,
-        type: 'select',
+        name: 'digit5',
+        label: '限制10~0',
+        type: 'digit',
+        max: 10,
+        min: 0,
+        tooltip: 'max: 10, min: 0',
+      },
+      {
+        name: 'digit4',
+        label: '限制小数点: 3',
+        type: 'digit',
+        precision: 3,
+        tooltip: 'precision: 3',
       },
     ];
 

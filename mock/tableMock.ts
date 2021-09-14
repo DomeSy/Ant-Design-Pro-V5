@@ -28,6 +28,7 @@ export const introduce:Props = {
       type: 'prv',
       render: `
 import { useRequest } from 'umi';
+import { default } from './table';
 const { data, error, loading, run, params, cancel } = useRequest(service, payload)
       `
     },
@@ -1208,6 +1209,350 @@ export const textAreaAnchorList:AnchorLinkProps[] = [
       {
         title: 'textArea属性',
         href: 'textAreaApi',
+      },
+    ]
+  },
+  {
+    title: '心得体会',
+    href: 'explain',
+  }
+]
+
+export const rate:Props = {
+  use: {
+    title: '使用说明',
+    tooltip: 'type: "rate"',
+    id: 'use'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装并继承于 ProFormRate`
+        },
+      ]
+    },
+  ],
+  api: {
+    id: 'Api',
+    hrefTooltip: '更多Api，去官网',
+    href: 'https://procomponents.ant.design/components/field-set#proformrate',
+  },
+  apiList: [
+    ...tableCommonList,
+    {
+      type: 'title',
+      id: 'rateApi',
+      render: 'type为rate的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'color',
+          desc: '颜色',
+          status: "string",
+          default: "主题颜色",
+        },
+        {
+          name: 'max',
+          desc: '星星的个数',
+          status: "number",
+          default: '5'
+        },
+        {
+          name: 'half',
+          desc: '是否允许选择全心',
+          status: "boolean",
+          default: 'false'
+        },
+        {
+          name: 'tooltips',
+          desc: '移动到每个星星上的提示语',
+          mark: '数组的顺序对应星星顺序的提示语',
+          status: "Array<string>",
+        },
+        {
+          name: 'styleNode',
+          desc: '自定义文字，图标，字母等',
+          styleNode: "React.ReactNode | Function",
+          default: '五角星'
+        }
+      ]
+    },
+  ],
+  explain: {
+    id: 'explain',
+    hrefTooltip: '封装不易，给个Star吧！',
+    href: 'https://github.com/DomeSy/Ant-Design-Pro-V5/tree/master/src/components/Form'
+  },
+  explainList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装原有的 ProComponent 的 ProFormRate，所以这些 Api 并不是最全面的，所以要是有其他的属性，可以参考官网 Api`,
+          strong: true
+        },
+        {
+          render: `评价的自定义样式比较有趣`,
+          strong: true
+        }
+      ]
+    },
+  ]
+}
+
+export const rateAnchorList:AnchorLinkProps[] = [
+  {
+    title: '使用说明',
+    href: 'use'
+  },
+  {
+    title: '代码演示',
+    href: 'Code',
+  },
+  {
+    title: 'Api',
+    href: 'Api',
+    children: [
+      {
+        title: 'formList（公共属性）',
+        href: 'formListProps',
+      },
+      {
+        title: 'rate属性',
+        href: 'rateApi',
+      },
+    ]
+  },
+  {
+    title: '心得体会',
+    href: 'explain',
+  }
+]
+
+export const slider:Props = {
+  use: {
+    title: '使用说明',
+    tooltip: 'type: "slider"',
+    id: 'use'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装并继承于 ProFormSlider`,
+        },
+        {
+          render: `单向则返回出值，双向则为数组`,
+        }
+      ]
+    },
+  ],
+  api: {
+    id: 'Api',
+    hrefTooltip: '更多Api，去官网',
+    href: 'https://procomponents.ant.design/components/field-set#proformslider',
+  },
+  apiList: [
+    ...tableCommonList,
+    {
+      type: 'title',
+      id: 'sliderApi',
+      render: 'type为slider的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'color',
+          desc: '颜色',
+          status: "string",
+          default: "主题颜色",
+        },
+        {
+          name: 'max',
+          desc: '星星的个数',
+          status: "number",
+          default: '5'
+        },
+        {
+          name: 'half',
+          desc: '是否允许选择全心',
+          status: "boolean",
+          default: 'false'
+        },
+        {
+          name: 'tooltips',
+          desc: '移动到每个星星上的提示语',
+          mark: '数组的顺序对应星星顺序的提示语',
+          status: "Array<string>",
+        },
+        {
+          name: 'styleNode',
+          desc: '自定义文字，图标，字母等',
+          styleNode: "React.ReactNode | Function",
+          default: '五角星'
+        }
+      ]
+    },
+  ],
+  explain: {
+    id: 'explain',
+    hrefTooltip: '封装不易，给个Star吧！',
+    href: 'https://github.com/DomeSy/Ant-Design-Pro-V5/tree/master/src/components/Form'
+  },
+  explainList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装原有的 ProComponent 的 ProFormRate，所以这些 Api 并不是最全面的，所以要是有其他的属性，可以参考官网 Api`,
+          strong: true
+        },
+        {
+          render: `评价的自定义样式比较有趣`,
+          strong: true
+        }
+      ]
+    },
+  ]
+}
+
+export const sliderAnchorList:AnchorLinkProps[] = [
+  {
+    title: '使用说明',
+    href: 'use'
+  },
+  {
+    title: '代码演示',
+    href: 'Code',
+  },
+  {
+    title: 'Api',
+    href: 'Api',
+    children: [
+      {
+        title: 'formList（公共属性）',
+        href: 'formListProps',
+      },
+      {
+        title: 'slider属性',
+        href: 'sliderApi',
+      },
+    ]
+  },
+  {
+    title: '心得体会',
+    href: 'explain',
+  }
+]
+
+export const digit:Props = {
+  use: {
+    title: '使用说明',
+    tooltip: 'type: "digit"',
+    id: 'use'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装并继承于 ProFormDigit`,
+        },
+        {
+          render: `可自由设置小数点，范围等`,
+        },
+        {
+          render: '他允许输入，但失去焦点会自动清除，传输答案的时候不会讲.0后面的带入'
+        }
+      ]
+    },
+  ],
+  api: {
+    id: 'Api',
+    hrefTooltip: '更多Api，去官网',
+    href: 'https://procomponents.ant.design/components/field-set#proformdigit',
+  },
+  apiList: [
+    ...tableCommonList,
+    {
+      type: 'title',
+      id: 'digitApi',
+      render: 'type为digit的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'max',
+          desc: '最大限制个数',
+          status: "number",
+        },
+        {
+          name: 'min',
+          desc: '最小限制个数',
+          status: "number",
+        },
+        {
+          name: 'precision',
+          desc: '设置小数点位数',
+          status: "number",
+          default: '2',
+          global: true
+        },
+      ]
+    },
+  ],
+  explain: {
+    id: 'explain',
+    hrefTooltip: '封装不易，给个Star吧！',
+    href: 'https://github.com/DomeSy/Ant-Design-Pro-V5/tree/master/src/components/Form'
+  },
+  explainList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装原有的 ProComponent 的 ProFormRate，所以这些 Api 并不是最全面的，所以要是有其他的属性，可以参考官网 Api`,
+          strong: true
+        },
+        {
+          render: `它自带了一个格式化(保留 2 位小数，最小值为 0)，有需要你可以关掉它。`,
+          strong: true
+        }
+      ]
+    },
+  ]
+}
+
+export const digitAnchorList:AnchorLinkProps[] = [
+  {
+    title: '使用说明',
+    href: 'use'
+  },
+  {
+    title: '代码演示',
+    href: 'Code',
+  },
+  {
+    title: 'Api',
+    href: 'Api',
+    children: [
+      {
+        title: 'formList（公共属性）',
+        href: 'formListProps',
+      },
+      {
+        title: 'digit属性',
+        href: 'digitApi',
       },
     ]
   },

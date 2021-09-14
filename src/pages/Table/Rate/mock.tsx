@@ -1,115 +1,100 @@
 import React from 'react';
 import { message } from 'antd';
 import { Form } from '@/components';
+import { HeartOutlined } from '@ant-design/icons';
 import type { formProps } from '@/components'
 
 const Mock: React.FC<any> = () => {
   const list: formProps[] = [
     {
-      name: 'select',
-      label: 'options(string方式)',
-      options: [
-        '已选择',
-        '未选择',
-        '待选择'
-      ],
-      type: 'select',
+      name: 'rate1',
+      label: '评分',
+      tooltip: `type: 'rate'`,
+      type: 'rate',
     },
     {
-      name: 'select1',
-      label: 'options(对象方式)',
-      options: [
-        { label: '全部', value: 'all' },
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      type: 'select',
+      name: 'rate2',
+      label: '全心',
+      half: true,
+      tooltip: `half: true'`,
+      type: 'rate',
     },
     {
-      name: 'select2',
-      label: 'enum方式',
-      enum: {
-        0: '已选择',
-        1: '未选择',
-        2: '待选择',
-      },
-      type: 'select',
+      name: 'rate3',
+      label: '设置星数',
+      max: 8,
+      tooltip: `max: 8`,
+      type: 'rate',
     },
     {
-      name: 'select3',
-      label: 'request方式',
-      request: async () => [
-        { label: '全部', value: 'all' },
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      type: 'select',
+      name: 'rate3',
+      label: '额外配置信息',
+      half: true,
+      tooltips: ['terrible', 'bad', 'normal', 'good', 'wonderful'],
+      tooltip: `type: 'rate'`,
+      type: 'rate',
     },
     {
-      name: 'select4',
-      label: '默认值',
-      default: 'open',
-      options: [
-        { label: '全部', value: 'all' },
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      type: 'select',
+      name: 'rate4',
+      label: '设置颜色',
+      color: 'rgba(12,218,22,.8)',
+      tooltip: `color: 'rgba(12,218,22,.8)'' | yellow | #000`,
+      type: 'rate',
     },
     {
-      name: 'select5',
+      name: 'rate5',
       label: '必填',
-      enum: {
-        0: '已选择',
-        1: '未选择',
-        2: '代选择',
-      },
-      placeholder: '选择规则',
       required: true,
-      type: 'select',
+      tooltip: `{ required: true }`,
+      type: 'rate',
     },
     {
-      name: 'select6',
-      label: '自定义下拉框样式',
-      tooltip: 'optionItemRender: (item) => void',
-      enum: {
-        0: '已选择',
-        1: '未选择',
-        2: '代选择',
+      name: 'rate6',
+      label: '默认',
+      default: 1.5,
+      tooltip: `disabled: 1.5`,
+      type: 'rate',
+    },
+    {
+      name: 'rate7',
+      label: '不可修改',
+      default: 2.5,
+      tooltip: `disabled: true`,
+      disabled: true,
+      type: 'rate',
+    },
+    {
+      name: 'rate8',
+      label: '自定义图标',
+      styleNode: <HeartOutlined />,
+      tooltip: `styleNode: <HeartOutlined />`,
+      type: 'rate',
+    },
+    {
+      name: 'rate9',
+      label: '自定义字母',
+      styleNode: 'D',
+      tooltip: `styleNode: 'D'`,
+      type: 'rate',
+    },
+    {
+      name: 'rate10',
+      label: '自定义文字',
+      styleNode: '好',
+      tooltip: `styleNode: '好'`,
+      type: 'rate',
+    },
+    {
+      name: 'rate11',
+      label: '自定义字符',
+      max: 6,
+      default: 6,
+      styleNode: ({ index }: any) => {
+        const data = ['D', 'O', 'M', 'E', 'S', 'Y'];
+        return data[index];
       },
-      type: 'select',
-      optionItemRender: (item: any) => {
-        return item.label + ' - ' + item.value;
-      },
-    },
-    {
-      name: 'select7',
-      label: '多选',
-      tooltip: 'multiple: true',
-      options: [
-        { label: '全部1', value: 'all' },
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      multiple: true,
-      type: 'select',
-    },
-    {
-      name: 'select8',
-      label: '搜索',
-      tooltip: 'search: true',
-      options: [
-        { label: '全部1', value: 'all' },
-        { label: '未解决', value: 'open' },
-        { label: '已解决', value: 'closed' },
-        { label: '解决中', value: 'processing' },
-      ],
-      search: true,
-      type: 'select',
+      tooltip: `styleNode: ({index}:any) => Array[index]`,
+      type: 'rate',
     },
   ];
 
