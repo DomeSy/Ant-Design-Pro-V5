@@ -22,9 +22,11 @@ export const content = {
     useModel: 'umi3中的数据流，之前使用dva中有很多重复的劳动，也会有很多概念 effects, state, reducers等，为解决这种问题，推出的 useModel 来解决',
     useRequest: 'useRequest 是一个超级强大，且生产完备的网络请求 Hooks，目前已经成为蚂蚁中台最佳实践内置网络请求方案',
     dva: 'dva 数据流，Ant Design V4 使用的数据流，当然V5也支持，如果学过 redux， 那么非常容易上手使用'
+  },
+  file: {
+    ossUploadShow: '图片、文件上传是最常见的表单项，而在原有的封装中，一些比较常用的功能并不是很全面，如裁剪功能不能制定区域的裁剪，OSS功能要自己写，所以这里采用并不是 ProFormUploadDragger, 但也是基于 Ant Design 的 upload 进行封装'
   }
 }
-
 
 // table 公共属性
 export const tableCommonList:any = [

@@ -21,6 +21,16 @@ export default [
     ],
   },
   {
+    path: '/file',
+    name: '文本展示类',
+    icon: 'UnorderedListOutlined',
+    component: './File',
+    routes: [
+      { path: '/file', redirect: '/file/ossUploadShow'},
+      { path: '/file/ossUploadShow', name: '图片文件上传', component: './File/OssUploadShow' },
+    ]
+  },
+  {
     path: '/table',
     name: '动态表单',
     icon: 'DesktopOutlined',
