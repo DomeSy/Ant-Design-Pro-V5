@@ -7,6 +7,7 @@ import { Link } from 'umi';
 import type { DetailListProps } from './interface.d'
 import Props from './interface'
 import './index.less'
+import { Jump } from '@/utils';
 
 
 const testList = [
@@ -123,13 +124,17 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
     return <Typography.Text >
       <Tooltip title={item.tooltip}>
         {
+          item.selfHref ?
+          <Typography.Text style={{marginLeft: 8} }>
+            <span onClick={() => Jump.go(item.selfHref ? item.selfHref : '/', item?.selfPayload)} >{ item.suffix ? item.suffix : suffix ? suffix : <QuestionCircleOutlined /> }</span>
+          </Typography.Text> :
           item.tooltipHref ?
           <Typography.Link style={{marginLeft: 8}} href={item.tooltipHref} target={item.tooltipBlank ? '_blank' : '_self'}>
             { item.suffix ? item.suffix : suffix ? suffix : <QuestionCircleOutlined /> }
           </Typography.Link> :
-          <Typography.Text style={{marginLeft: 8}} >
-          { item.suffix ? item.suffix : suffix ? suffix : <QuestionCircleOutlined /> }
-        </Typography.Text>
+          <Typography.Text style={{marginLeft: 8}}>
+            { item.suffix ? item.suffix : suffix ? suffix : <QuestionCircleOutlined /> }
+          </Typography.Text>
         }
       </Tooltip>
     </Typography.Text>
@@ -199,6 +204,14 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
                 item.render
               }
               <Typography.Text >
+                {
+                  item.selfHref &&
+                  <Tooltip title={item.hrefTooltip}>
+                    <Typography.Title style={{marginTop: 8,marginLeft: 10}} level={5}>
+                      <a onClick={() => Jump.go(item?.selfHref ? item.selfHref : '/', item?.selfPayload)}>{ item.suffix ? item.suffix : <SendOutlined /> }</a>
+                    </Typography.Title>
+                  </Tooltip>
+                }
                 {
                  item.href && <Typography.Title style={{marginTop: 8,marginLeft: 10}} level={5}>
                     <Typography.Link href={item.href} target={'_blank'}>

@@ -4,8 +4,7 @@ import { tableCommonList } from './data'
 
 export const ossUpload:Props = {
   use: {
-    title: '使用说明',
-    tooltip: 'type: "digit"',
+    title: 'OssUpLoad',
     id: 'use'
   },
   useList: [
@@ -13,16 +12,19 @@ export const ossUpload:Props = {
       type: 'list',
       list: [
         {
-          render: `封装并继承于 ProFormDigit`,
+          render: `此组件封装与 Ant Design 的 Upload 和 react-cropper`,
         },
         {
-          render: `可自由设置小数点，范围等`,
+          render: `当你需要上传照片功能时，可以使用此组件`,
         },
         {
-          render: '他允许输入，但失去焦点会自动清除，传输答案的时候不会讲.0后面的带入'
-        }
+          render: 'OssUpload 具有的功能有：OSS上传，图片自定义裁剪，文件类型，文件大小，是否检测同一个文件的功能等'
+        },
       ]
     },
+    {
+
+    }
   ],
   api: {
     id: 'Api',

@@ -6,7 +6,6 @@ import { Typography, Divider, Col, Row } from 'antd'
 import DetailContent from './DetailContent'
 import type { DetailListProps} from './DetailContent/interface.d'
 import type { ShowCodeProps } from './ShowCode'
-import Code from './Code'
 import ShowCode from './ShowCode'
 
 interface ListProps {
@@ -14,7 +13,8 @@ interface ListProps {
   tooltip?: string;
   id?: string;
   href?: string;
-  hrefTooltip?: string
+  hrefTooltip?: string;
+  selfHref?: string;
 }
 
 interface ShowCodeDetailProps extends ShowCodeProps{
@@ -92,6 +92,9 @@ const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, attentio
                     id: code.id || 'Code',
                     render: code?.title ? code.title : '代码演示',
                     tooltip: code?.tooltip ? code.tooltip : undefined,
+                    hrefTooltip: code?.hrefTooltip ? code.hrefTooltip : undefined,
+                    href: code?.href ? code.href : undefined,
+                    selfHref: code?.selfHref ? code.selfHref : undefined
                   },
                 ]}
               />
