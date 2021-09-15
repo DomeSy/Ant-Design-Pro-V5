@@ -9,11 +9,11 @@ const Mock: React.FC<any> = () => {
   const list: formProps[] = [
     {
       name: 'field3',
-      label: '自定义',
+      label: '获取图片',
       type: 'field',
       fieldRender: (
         <OssUpLoad
-          amount={3}
+          // amount={3}
           // initFile={
           //   [
           //     'http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg',
@@ -21,10 +21,12 @@ const Mock: React.FC<any> = () => {
           //   ]
           // }
           // OSS={false}
-          crop
-          getFiles={(file: Array<any>) => {
-            console.log(file, '00000000000')
-            setFile(file[0]);
+          // crop
+          getFiles={(file: Array<any>, flag) => {
+            const msg = flag ? '新增成功, 请打开控制台查看' : '删除成功，请打开控制台查看'
+            message.success(msg)
+            console.log('获取到的图片：', file)
+            setFile(file);
           }}
         />
       ),

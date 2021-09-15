@@ -20,6 +20,10 @@ export const ossUpload:Props = {
         {
           render: 'OssUpload 具有的功能有：OSS上传，图片自定义裁剪，文件类型，文件大小，是否检测同一个文件的功能等'
         },
+        {
+          render: '如果开启 OSS 功能，返回的则直接是地址的数组，否则有一个文件对象，和Base64的地址',
+          strong: true
+        },
       ]
     },
     {
