@@ -1,21 +1,53 @@
 import React, { useState, useCallback, memo } from 'react';
 import { Button, message } from 'antd';
+import { OssUpLoad, Form } from '@/components';
+import type { formProps, tableListProps } from '@/components'
 
 const Mock: React.FC<any> = () => {
-  const [count, setCount] = useState(0);
+  const [file, setFile] = useState<any>('');
 
-  const callBackCount = useCallback(() => {
-    setCount(count + 1)
-  }, [])
+  const list: formProps[] = [
+    {
+      name: 'field3',
+      label: '自定义',
+      type: 'field',
+      fieldRender: (
+        <OssUpLoad
+          amount={3}
+          // initFile={
+          //   [
+          //     'http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg',
+          //     'http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg'
+          //   ]
+          // }
+          // OSS={false}
+          crop
+          getFiles={(file: Array<any>) => {
+            console.log(file, '00000000000')
+            setFile(file[0]);
+          }}
+        />
+      ),
+    },
+  ];
 
   return (
-    <div>
-      <div style={{display: 'flex', justifyContent: 'flex-start'}}>
-        <Button type='primary' onClick={() => setCount(count + 1)}>加1</Button>
-        <Button type='primary' onClick={() => callBackCount()} style={{marginLeft: 24}}>callBack 加1</Button>
-      </div>
-      <div style={{marginTop: 20}}>count: {count}</div>
-    </div>
+    <Form
+      onFinish={(values: any) => {
+        message.success('打开控制台观看');
+        console.log(values)
+      }}
+      formList={list}
+      _config={{
+        back: true
+      }}
+      fieldValues={[
+        {
+          name: 'field3',
+          value: file
+        }
+      ]}
+    />
   );
 };
 

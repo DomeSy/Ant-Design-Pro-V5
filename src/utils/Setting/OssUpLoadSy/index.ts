@@ -13,6 +13,17 @@ interface OssUpLoadProps {
   };
   open: boolean; //是否开启OSS
   listType: 'text' | 'picture' | 'picture-card';// 类型
+  OssUrl: string; // OSS上传后统一的路径
+  _config: { //统一定义设置样式
+    text: string //全局统一配置为上传时的文字字样
+  };
+  crop: { //裁剪框的属性
+    title: string;  // 标题
+    cropText: string; // 裁剪时的文字
+    cancelText: string; // 取消时的文字
+    cropStyle: React.CSSProperties; // 裁剪按钮的样式
+    cancelStyle?: React.CSSProperties; // 取消按钮的样式
+  }
 }
 
 const OssUpLoadSy: OssUpLoadProps = {
@@ -22,8 +33,19 @@ const OssUpLoadSy: OssUpLoadProps = {
     accessKeySecret: 'otIM3G2WhGxdfbpxBDBB9NtMj2yVQ3',
     bucket: 'bmx-system',
   },
+  OssUrl: 'web/domesy/imgs',
   open: true,
-  listType: 'picture-card'
+  listType: 'picture-card',
+  _config: {
+    text: 'Upload'
+  },
+  crop: {
+    title: '普片裁剪',
+    cropText: '裁剪',
+    cancelText: '取消',
+    cropStyle: {},
+    cancelStyle: {}
+  }
 };
 
 export default OssUpLoadSy;

@@ -1,57 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Upload, message, Modal, Button } from 'antd';
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { OssUpLoadSy } from '@/utils/Setting'
-import { useState } from 'react';
-import ImgCrop from 'antd-img-crop';
+import { useState, useRef,  } from 'react';
+import Cropper from 'react-cropper';
+import 'cropperjs/dist/cropper.css';
 import Props from './interface.d';
-
 import './index.less';
-
-/**
- * @module OssUpLoad 图片上传
- * @author Domesy
- *
- * @param amount 数量 可设置上传的数量，默认为1张
- * @param getFiles 上传后图片返回的值
- * @param rules 规则 判断规则不可传入的条件
- * @param _config 额外的配置
- * @param OSS 开启OSS上传
- * @param crop 裁剪功能，默认false 注：截取有点问题，如gif动态截取后就成静止图,裁剪模式下，不能选取除照片格式以外的文件
- * @param listType 三种模式，分别为 'text' ’picture' ‘picture-card'，默认 ‘picture-card'
- * @param button 当type 为 'text' ’picture' 继承button的属性，如果children不存在时
- * @param children  当type 为 'text' ’picture' 可自定义样式
- * @param initFile  默认已有的文件
- * @param cropConfig 裁剪默认配置的选项
- *
- * @param listType
- * listType 为 picture-card 只能支持图片， 其他文件格式不支持
- * listType为其他值时，出照片格式外，不应该预览
- *
- * @rules
- * @param type 限制类型，可字符串可数组
- * @param typeMsg 类型不符合的提示语
- * @param size 文件的类型大小 单位为M
- * @param sizeMsg 文件大小不符合的提示语
- *
- * @_config
- * @param noCheck 检验是否同一张图片 （当相同名字和文件大小一致时，才会校验不通过），默认false
- * @param radio 单选照片，默认多选(当图片为一张时默认单选)
- * @param text 未上传时的文字 默认 Upload
- * @param uploadNode 自定义upload样式，类型 Function | React.ReactNode
- * @param ossUrl 上传完图片，统一前缀 默认 web/domesy/images/
- * @param ossText 上传完图片，oss的统一文字 默认不加
- * @param pictureCardTip listType为picture-card时上传其他模式时的提示语 默认'请上传正确的图片类型！'
- */
-
-/**
- * 问题：
- *  无法同时满足裁剪功能的照片和文件共同满足的情况，这种情况建议分开处理
- */
-
-/**
- * @是否支持多选 maxCount
- */
 
 let aliOSS = require('ali-oss');
 let client = new aliOSS({
@@ -76,12 +31,32 @@ const OssUpLoad: React.FC<Props> = ({
   cropConfig = {},
   ...props
 }) => {
-  const [fileList, setFileList] = useState<Array<any>>(initFile); //总文件数组
+  const cropperRef = useRef<any>(null)
+
+  const [fileList, setFileList] = useState<Array<any>>([]); //总文件数组
   const [getFilesList, setGetFilesList] = useState<Array<any>>([]); //总文件数组
   const [previewVisible, setPreviewVisible] = useState<boolean>(false); // 是否打开弹出框
   const [isFileFlag, setIsFileFlag] = useState<boolean>(false); // 控制照片，如果不满足则不添加
   const [previewTitle, setPreviewTitle] = useState<any>(''); // 图片名称
   const [previewImage, setPreviewImage] = useState<any>(''); // 图片展示的数据
+  const [src, setSrc] = useState<any>(false) //裁剪图片
+  const [file, setFile] = useState<any>(false) //裁剪图片
+
+  useEffect(() => {
+    if(initFile.length !== 0){
+      let fileList: Array<{url: string, name: string, uid: number | string}> = []
+      initFile.map((item, index) => {
+        const param = OSS ? { newFile: item } : {}
+        if(typeof item === 'string'){
+          fileList = [...fileList, { url: item, uid: index, name: `图片`, ...param}]
+        }else {
+          fileList = [...fileList, { url: item?.url || '', uid: item?.uid || index, name: item?.name || `图片`, ...param}]
+        }
+      })
+      setGetFilesList([...fileList])
+      setFileList(fileList)
+    }
+  }, [])
 
   // 预览
   const handlePreview = async (file: any) => {
@@ -143,6 +118,19 @@ const OssUpLoad: React.FC<Props> = ({
         flag = false;
       }
     }
+
+    // 裁剪
+    if(crop){
+      const fileReader = new FileReader()
+      fileReader.onload = (e:any) => {
+        const dataURL = e.target.result;
+        setSrc(dataURL)
+      }
+      fileReader.readAsDataURL(file)
+      setFile(file)
+      return;
+    }
+
     if (flag) onGetFiles(file);
     setIsFileFlag(flag);
     return file;
@@ -153,21 +141,23 @@ const OssUpLoad: React.FC<Props> = ({
     if (getFiles) {
       let result: any = file;
       let OssList: Array<any> = [];
+      let fileBase64:any = ''
       if (OSS) {
         const suffix = file.name.slice(file.name.lastIndexOf('.'));
-        const filename = _config.ossText + suffix || suffix;
+        const filename = _config?.ossText ? _config.ossText + suffix : suffix;
+
         const res = await client.put(
-          `${_config.ossUrl || 'web/domesy/images'}/${Date.now() + filename}`,
+          `${_config.ossUrl || OssUpLoadSy.OssUrl}/${Date.now() + filename}`,
           file,
         );
         result = res.url;
-      } else {
-        setGetFilesList(result);
+      }else{
+        fileBase64 = await getBase64(file)
       }
-      result = [...getFilesList, { file, newFile: result }];
+      result = [...getFilesList, OSS ? { file, newFile: result } : { file, fileBase64 }];
       OSS ? result.map((item: any) => (OssList = [...OssList, item.newFile])) : '';
       setGetFilesList(result);
-      getFiles(OSS ? OssList : result);
+      getFiles(OSS ? OssList : result, true);
     }
   };
 
@@ -179,66 +169,62 @@ const OssUpLoad: React.FC<Props> = ({
     return (
       <div>
         <PlusOutlined />
-        <div style={{ marginTop: 8 }}>{_config.text || 'Upload'}</div>
+        <div style={{ marginTop: 8 }}>{_config.text || OssUpLoadSy._config.text}</div>
       </div>
     );
   };
 
-  const uploadNode = (
-    <Upload
-      {...props}
-      // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-      // listType="text"
-      listType={listType}
-      fileList={fileList}
-      onPreview={handlePreview}
-      onChange={({ fileList }) => {
-        if (isFileFlag) setFileList(fileList);
-      }}
-      multiple={!_config.radio && amount !== 1}
-      onRemove={(file) => {
-        const result = fileList.filter((item) => item.uid !== file.uid);
-        setFileList(result);
-        if (getFiles) {
-          const getFileResult = getFilesList.filter((item) => item.file.uid !== file.uid);
-          setGetFilesList(getFileResult);
-          // 删除文件
-          getFiles(getFileResult);
-        }
-        if (onRemove) onRemove(file);
-      }}
-      beforeUpload={beforeUpload}
-      maxCount={amount}
-    >
-      {listType === 'picture-card' ? (
-        fileList.length >= amount ? null : (
-          uploadButton()
-        )
-      ) : children ? (
-        children
-      ) : (
-        <Button
-          {...button}
-          icon={button.icon || <UploadOutlined />}
-          type={button.type || 'primary'}
-          disabled={fileList.length === amount}
-          onClick={(ev) => {
-            if (button.onClick) button.onClick(ev);
-          }}
-        >
-          {_config.text || 'Upload'}
-        </Button>
-      )}
-    </Upload>
-  );
-
   return (
     <div className="UpLoadComponents">
-      {crop && listType === 'picture-card' ? (
-        <ImgCrop {...cropConfig}>{uploadNode}</ImgCrop>
-      ) : (
-        uploadNode
-      )}
+      <Upload
+        {...props}
+        listType={listType}
+        fileList={fileList}
+        onPreview={handlePreview}
+        onChange={({ fileList }) => {
+          if (isFileFlag) setFileList(fileList);
+        }}
+        multiple={!_config.radio && amount !== 1}
+        onRemove={ (file) => {
+          const result = fileList.filter((item) => item.uid !== file.uid);
+          setFileList(result);
+          if (getFiles) {
+            let getFileResult:any = getFilesList.filter((item) => item.file ? item.file.uid !== file.uid : item.uid !== file.uid);
+            let OSSList:any = []
+            if(OSS && getFileResult.length !== 0) {
+              getFileResult.map((item:any) => {
+                OSSList = [...OSSList, item?.newFile]
+              })
+            }
+            setGetFilesList(getFileResult);
+            // 删除文件
+            getFiles(OSS ? OSSList : getFileResult, false);
+          }
+          if (onRemove) onRemove(file);
+        }}
+        beforeUpload={beforeUpload}
+        maxCount={amount}
+      >
+        {listType === 'picture-card' ? (
+          fileList.length >= amount ? null : (
+            uploadButton()
+          )
+        ) : children ? (
+          children
+        ) : (
+          <Button
+            {...button}
+            icon={button.icon || <UploadOutlined />}
+            type={button.type || 'primary'}
+            disabled={fileList.length === amount}
+            onClick={(ev) => {
+              if (button.onClick) button.onClick(ev);
+            }}
+          >
+            {_config.text || 'Upload'}
+          </Button>
+        )}
+      </Upload>
       <Modal
         visible={previewVisible}
         title={previewTitle}
@@ -247,6 +233,41 @@ const OssUpLoad: React.FC<Props> = ({
       >
         <img alt="example" style={{ width: '100%' }} src={previewImage} />
       </Modal>
+      <Modal
+        destroyOnClose
+        title={cropConfig?.title || OssUpLoadSy.crop.title}
+        visible={src ? true : false}
+        style={{height: 200}}
+        onCancel={() => {setSrc(false);setFile(false)}}
+        footer={null}
+      >
+        <Cropper
+          src={src}
+          ref={cropperRef}
+          style={{height: 400}}
+          zoomable={false}
+          guides={false}
+        />
+        <div style={{marginTop: 30, display: 'flex',justifyContent: 'flex-end'}}>
+          <Button onClick={() => setSrc(false)} {...cropConfig?.cancelProps} style={{marginRight: 20, ...OssUpLoadSy.crop.cancelStyle, ...cropConfig?.cancelStyle}}>{cropConfig?.cancelText || OssUpLoadSy.crop.cropText}</Button>
+          <Button
+            type="primary"
+            {...cropConfig?.cropProps}
+            style={{ ...OssUpLoadSy.crop.cropStyle, ...cropConfig?.cropStyle }}
+            onClick={async () =>{
+              cropperRef?.current?.cropper?.getCroppedCanvas().toBlob(async (blob:any) => {
+                const base64 = await getBase64(blob)
+                const newFile:any = new File([blob], file.name, {type: file.type})
+                newFile.uid = file.uid
+                onGetFiles(newFile)
+                setFileList([...fileList, { url: base64, uid: file.uid, name: file.name}])
+                setFile(false)
+              })
+              setSrc(false)
+            }}
+          >{cropConfig?.cropText || OssUpLoadSy.crop.cancelText}</Button>
+        </div>
+    </Modal>
     </div>
   );
 };

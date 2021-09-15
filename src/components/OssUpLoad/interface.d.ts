@@ -1,5 +1,4 @@
 import { UploadProps, ButtonProps } from 'antd';
-import { Button } from '@/components';
 
 interface rulesProps {
   type?: string | Array<string>;
@@ -18,8 +17,18 @@ interface configProps {
   pictureCardTip?: string;
 }
 
+interface cropConfigProps {
+  title?: string;
+  cropText?: string;
+  cancelText?: string;
+  cropProps?:  ButtonProps;
+  cancelProps?: ButtonProps;
+  cropStyle?: React.CSSProperties;
+  cancelStyle?: React.CSSProperties;
+}
+
 interface Props extends UploadProps {
-  getFiles: Function;
+  getFiles: (resultList: any[], flag?: boolean) => void;
   amount?: number;
   rules?: rulesProps;
   _config?: configProps;
@@ -27,7 +36,7 @@ interface Props extends UploadProps {
   crop?: boolean;
   button?: ButtonProps;
   initFile?: Array<any>;
-  cropConfig?: Object<any>;
+  cropConfig?: cropConfigProps;
 }
 
 export default Props;

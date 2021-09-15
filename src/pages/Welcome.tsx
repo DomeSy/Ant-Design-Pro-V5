@@ -56,6 +56,8 @@ const Welcome: React.FC<any> = (props) => {
       key: 'info',
     },
   ];
+
+
   return (
     <PageLayout
       tab={tab}
