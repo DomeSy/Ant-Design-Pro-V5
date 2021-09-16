@@ -50,7 +50,7 @@ const OssUpLoad: React.FC<Props> = ({
         if(typeof item === 'string'){
           fileList = [...fileList, { url: item, uid: index, name: `图片`, ...param}]
         }else {
-          fileList = [...fileList, { url: item?.url || '', uid: item?.uid || index, name: item?.name || `图片`, ...param}]
+          fileList = [...fileList, {...item, url: item?.url || '', uid: item?.uid || index, name: item?.name || `图片`, ...param}]
         }
       })
       setGetFilesList([...fileList])
@@ -85,6 +85,8 @@ const OssUpLoad: React.FC<Props> = ({
     // 判断文件类型
     if (typeof rules.type === 'string' && flag) {
       const type = rules.type.trim() === 'jpg' ? 'jpeg' : rules.type.trim();
+      console.log(type, '001', file.type)
+      console.log(file.type.indexOf(type))
       if (file.type.indexOf(type) === -1) {
         message.error(rules.typeMsg || '请上传正确的文件类型');
         flag = false;
@@ -249,7 +251,7 @@ const OssUpLoad: React.FC<Props> = ({
           guides={false}
         />
         <div style={{marginTop: 30, display: 'flex',justifyContent: 'flex-end'}}>
-          <Button onClick={() => setSrc(false)} {...cropConfig?.cancelProps} style={{marginRight: 20, ...OssUpLoadSy.crop.cancelStyle, ...cropConfig?.cancelStyle}}>{cropConfig?.cancelText || OssUpLoadSy.crop.cropText}</Button>
+          <Button onClick={() => setSrc(false)} {...cropConfig?.cancelProps} style={{marginRight: 20, ...OssUpLoadSy.crop.cancelStyle, ...cropConfig?.cancelStyle}}>{cropConfig?.cancelText || OssUpLoadSy.crop.cancelText}</Button>
           <Button
             type="primary"
             {...cropConfig?.cropProps}
@@ -265,7 +267,7 @@ const OssUpLoad: React.FC<Props> = ({
               })
               setSrc(false)
             }}
-          >{cropConfig?.cropText || OssUpLoadSy.crop.cancelText}</Button>
+          >{cropConfig?.cropText || OssUpLoadSy.crop.cropText}</Button>
         </div>
     </Modal>
     </div>
