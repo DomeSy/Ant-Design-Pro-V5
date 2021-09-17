@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useMemo } from 'react';
+import React, { useRef, useEffect } from 'react';
 import FormListView from './FormList';
 import type { FormInstance } from 'antd';
 import ProForm, { ProFormField } from '@ant-design/pro-form';
@@ -6,26 +6,11 @@ import { FooterToolbar } from '@ant-design/pro-layout';
 import Props, { FormCommonProps } from './interface.d';
 import { fromSy } from '@/utils/Setting';
 import { Button } from 'antd';
-import Jump from '../../utils/Jump/index';
-
-// 输入规则不一定要必填，因为可以不填，如果填了就必须按照规定去填
-
-
-// 自定义确认字段,有很大问题
-// Table中编辑应该返回当前行的值
-/**
- * 1. 基本布局 居中响应式，每行一列 栅格 按钮的问题 自定义文本框
- * 9. 样式垂直，formTailLayout无效的问题
- * 3. 日期问题， 没有限制日期时分秒等操作，没并且method应设置两个字段，分别是前几天几月可设置，没有设置选择时间段时的限制
- *
- * // 日期的预设的范围， 日期的选择范围
- * ??自定义问题
- */
+import { Jump } from '@/utils';
 
 /**
  * @module Form表单
  */
-
 const Form: React.FC<Props & FormCommonProps> = ({
   getRef,
   onFinish,

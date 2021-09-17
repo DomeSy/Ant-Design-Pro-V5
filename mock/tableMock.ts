@@ -1561,3 +1561,122 @@ export const digitAnchorList:AnchorLinkProps[] = [
     href: 'explain',
   }
 ]
+
+export const field:Props = {
+  use: {
+    title: '使用说明',
+    tooltip: 'type: "field"',
+    id: 'use'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装并继承于 ProFormField, 自定义的情况比较特殊，他有两种情况`,
+        },
+        {
+          render: `第一种，当我们封装 Ant Design 组件，如 Cascader(级联选择), TreeSelect(树选择
+            ), 它是可以自动获取到选择的值 `,
+        },
+        {
+          render: '第二种，封装一些比较特殊的组件，表单获取不到值，如 OSSUpload，这是你需要使用 一些特殊的手段帮助 表单获取到值（本文以特殊组件获取值的问题来举例）'
+        }
+      ]
+    },
+  ],
+  api: {
+    id: 'Api',
+    hrefTooltip: '更多Api，去官网',
+    href: 'https://procomponents.ant.design/components/field-set',
+  },
+  apiList: [
+    ...tableCommonList,
+    {
+      type: 'title',
+      id: 'filedApi',
+      render: 'type为filed的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'fieldRender',
+          desc: '自定义组件区域',
+          status: "React.ReactNode | Function",
+        },
+      ]
+    },
+    {
+      type: 'title',
+      id: 'fieldValuesApi',
+      render: 'fieldValues 属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'name',
+          desc: '属性名，需要与自定义组件的 name 保持一致',
+          status: "string",
+        },
+        {
+          name: 'value',
+          desc: '传入的value',
+          status: "any",
+        },
+      ]
+    },
+  ],
+  explain: {
+    id: 'explain',
+    hrefTooltip: '封装不易，给个Star吧！',
+    href: 'https://github.com/DomeSy/Ant-Design-Pro-V5/tree/master/src/components/Form'
+  },
+  explainList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `自定义组件比较特殊，除了使用 initValue，同时也可以通 Ref 来进行对应的操作`,
+          strong: true
+        },
+      ]
+    },
+  ]
+}
+
+export const fieldAnchorList:AnchorLinkProps[] = [
+  {
+    title: '使用说明',
+    href: 'use'
+  },
+  {
+    title: '代码演示',
+    href: 'Code',
+  },
+  {
+    title: 'Api',
+    href: 'Api',
+    children: [
+      {
+        title: 'formList（公共属性）',
+        href: 'formListProps',
+      },
+      {
+        title: 'filed属性',
+        href: 'filedApi',
+      },
+      {
+        title: 'fieldValues属性',
+        href: 'fieldValuesApi'
+      }
+    ]
+  },
+  {
+    title: '心得体会',
+    href: 'explain',
+  }
+]

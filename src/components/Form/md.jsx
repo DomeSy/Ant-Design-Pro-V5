@@ -1248,63 +1248,40 @@
 //   name: 'field',
 //   label: '自定义',
 //   type: 'field',
-//   fieldValue: file,
-//   tooltip: `fieldValue: value, fieldRender: getValue(获取传递fieldValue)`,
 //   fieldRender: (
 //     <OssUpLoad
 //       getFiles={(file: Array<any>) => {
-//         setFile(file[0].file);
+//         setFile(file)
 //       }}
 //     />
 //   ),
 // },
 // {
 //   name: 'field1',
-//   label: '自定义Ref',
+//   label: '必填',
 //   type: 'field',
-//   fieldValue: file,
-//   tooltip: `通过 ref 来获取 ref?.current?.setFieldsValue({})`,
-//   fieldRender: (
-//     <OssUpLoad
-//       getFiles={(file: Array<any>) => {
-//         ref?.current?.setFieldsValue({
-//           field: file[0].file,
-//         });
-//       }}
-//     />
-//   ),
-// },
-// {
-//   name: 'field2',
-//   label: '自定义必填',
-//   type: 'field',
-//   fieldValue: file,
-//   tooltip: `required: true, message: '欢迎使用自定义组件'`,
-//   fieldRender: (
-//     <OssUpLoad
-//       getFiles={(file: Array<any>) => {
-//         setFile(file);
-//       }}
-//     />
-//   ),
 //   required: true,
-//   message: '欢迎使用自定义组件',
-// },
-// {
-//   name: 'field3',
-//   label: '自定义规则',
-//   type: 'field',
-//   fieldValue: file,
-//   tooltip: `rules: [{ required: true, message: '欢迎使用自定义组件' }]`,
 //   fieldRender: (
 //     <OssUpLoad
 //       getFiles={(file: Array<any>) => {
-//         setFile(file);
+//         setFile1(file)
 //       }}
 //     />
 //   ),
 // },
-// ];
+// {
+//   name: 'field',
+//   label: '自定义',
+//   type: 'field',
+//   fieldRender: (
+//     <OssUpLoad
+//       initFile={['https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png']}
+//       getFiles={(file: Array<any>) => {
+//         setFile(file)
+//       }}
+//     />
+//   ),
+// },
 
   // 切换
   // const list: formProps[] = [

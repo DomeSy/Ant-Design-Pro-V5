@@ -195,5 +195,5 @@ export interface formLayoutProps {
 }
 export interface fieldValuesProps {
   name:string,
-  value: string | number
+  value: any
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { resData } from './data';
-import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList, select, selectAnchorList, checkbox, checkboxAnchorList, radio, radioAnchorList, switchMock, switchAnchorList, textArea, textAreaAnchorList, rate, rateAnchorList, slider, sliderAnchorList, digit, digitAnchorList } from './tableMock'
+import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList, select, selectAnchorList, checkbox, checkboxAnchorList, radio, radioAnchorList, switchMock, switchAnchorList, textArea, textAreaAnchorList, rate, rateAnchorList, slider, sliderAnchorList, digit, digitAnchorList, field, fieldAnchorList } from './tableMock'
 
 // 延时时间
 const waitTime = (time: number = 100) => {
@@ -89,6 +89,13 @@ export default {
         resData({
           list: digit,
           anchorList: digitAnchorList
+        }
+      ))
+    }else if(detail === 'field'){
+      res.send(
+        resData({
+          list: field,
+          anchorList: fieldAnchorList
         }
       ))
     }

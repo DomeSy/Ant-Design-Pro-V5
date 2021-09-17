@@ -62,19 +62,19 @@ export const tableCommonList:any = [
         default: 'input'
       },
       {
-        name: 'width',
-        desc: '宽度',
-        status: "number | 'sm' | 'md' | 'xl' | 'xs' | 'lg'",
-        default: '当前内容区域的 80%',
-        global: true
-      },
-      {
         name: 'default',
         desc: [
           '默认初始值',
           '每个type对应不同的值，如是input他就是字符串，开关则是布尔值'
         ],
         status: 'any'
+      },
+      {
+        name: 'width',
+        desc: '宽度',
+        status: "number | 'sm' | 'md' | 'xl' | 'xs' | 'lg'",
+        default: '当前内容区域的 80%',
+        global: true
       },
       {
         name: 'tooltip',
