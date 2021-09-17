@@ -116,6 +116,7 @@ export const ossUpload:Props = {
     },
     {
       type: 'title',
+      id: 'Api1',
       effect: 4,
       render: 'rules 的 rulesProps 属性'
     },
@@ -153,6 +154,7 @@ export const ossUpload:Props = {
     {
       type: 'title',
       effect: 4,
+      id: 'Api2',
       render: 'cropConfig 的 cropConfigProps 属性'
     },
     {
@@ -206,6 +208,7 @@ export const ossUpload:Props = {
     {
       type: 'title',
       effect: 4,
+      id: 'Api3',
       render: '_config 的 ConfigProps 属性'
     },
     {
@@ -262,6 +265,7 @@ export const ossUpload:Props = {
     {
       type: 'title',
       effect: 4,
+      id: 'Api4',
       render: 'initFile 的 uploadFile 属性'
     },
     {
@@ -299,6 +303,105 @@ export const ossUpload:Props = {
         },
       ]
     },
+    {
+      type: 'title',
+      id: 'ApiGlobal',
+      render: '全局配置属性'
+    },
+    {
+      render: '当我们需要用到此组件，通常是更具项目需求来的，所以这时我们需要全局控制这些属性，方便开发，文件位置在 utils/Setting/OssUpLoadSy 这个文件设置',
+      red: true
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'OSS.region',
+          global: true,
+          desc: '源地址（OSS相关配置）',
+          status: "string",
+        },
+        {
+          name: 'OSS.accessKeyId',
+          global: true,
+          desc: '接口验权时掉的，需要从阿里云官网控制台获取 (OSS相关配置)',
+          status: "string",
+        },
+        {
+          name: 'OSS.accessKeySecret',
+          global: true,
+          desc: '	接口验权时掉的，需要从阿里云官网控制台获取 (OSS相关配置)',
+          status: "string",
+        },
+        {
+          name: 'OSS.bucket',
+          desc: '名称,具备唯一性(OSS相关配置)',
+          global: true,
+          status: "string",
+        },
+        {
+          name: 'open',
+          desc: '是否开启OSS模式',
+          status: "boolean",
+          global: true,
+          default: 'false'
+        },
+        {
+          name: 'listType',
+          desc: '三种文件的格式，建议不要去改动',
+          global: true,
+          status: "'text' | 'picture' | 'picture-card'",
+          default: 'picture-card'
+        },
+        {
+          name: 'OssUrl',
+          desc: 'Oss 后面的统一路径名',
+          global: true,
+          status: "string",
+          default: 'picture-card'
+        },
+        {
+          name: '_config.text',
+          desc: '全局统一配置为上传时的文字字样',
+          status: "string",
+          global: true,
+          default: '全局统一配置为上传时的文字字样'
+        },
+        {
+          name: 'crop.title',
+          desc: '弹出框标题',
+          status: "string",
+          global: true,
+          default: '图片裁剪'
+        },
+        {
+          name: 'crop.cropText',
+          desc: '裁剪时的文字',
+          status: "string",
+          global: true,
+          default: '裁剪'
+        },
+        {
+          name: 'crop.cancelText',
+          desc: '取消时的文字',
+          status: "string",
+          global: true,
+          default: '取消'
+        },
+        {
+          name: 'crop.cropStyle',
+          desc: '裁剪按钮的样式',
+          status: "React.CSSProperties",
+          global: true,
+        },
+        {
+          name: 'crop.cancelStyle',
+          desc: '取消按钮的样式',
+          status: "React.CSSProperties",
+          global: true,
+        },
+      ]
+    },
   ],
   explain: {
     id: 'explain',
@@ -310,11 +413,11 @@ export const ossUpload:Props = {
       type: 'list',
       list: [
         {
-          render: `封装原有的 ProComponent 的 ProFormRate，所以这些 Api 并不是最全面的，所以要是有其他的属性，可以参考官网 Api`,
+          render: `OSSUpload 替换 Ant Design Pro 上的 ProFormUploadDragger ProFormUploadButton，主要原因是裁剪的原因，目前并未配置裁剪框的属性`,
           strong: true
         },
         {
-          render: `它自带了一个格式化(保留 2 位小数，最小值为 0)，有需要你可以关掉它。`,
+          render: `OSSUpload 在表单中，需要的属性是自定义，使用上必须通过 getFiles 来获取文件，然后做想关的操作 `,
           strong: true
         }
       ]
@@ -324,7 +427,7 @@ export const ossUpload:Props = {
 
 export const ossUploadAnchorList:AnchorLinkProps[] = [
   {
-    title: '使用说明',
+    title: 'OssUpLoad',
     href: 'use'
   },
   {
@@ -350,16 +453,28 @@ export const ossUploadAnchorList:AnchorLinkProps[] = [
     ]
   },
   {
-    title: 'Api',
+    title: 'OSSUpload 属性',
     href: 'Api',
     children: [
       {
-        title: 'formList（公共属性）',
-        href: 'formListProps',
+        title: 'rulesProps',
+        href: 'Api1',
       },
       {
-        title: 'digit属性',
-        href: 'digitApi',
+        title: 'cropConfigProps',
+        href: 'Api2',
+      },
+      {
+        title: 'ConfigProps',
+        href: 'Api3',
+      },
+      {
+        title: 'uploadFile',
+        href: 'Api4',
+      },
+      {
+        title: '全局属性',
+        href: 'ApiGlobal',
       },
     ]
   },
