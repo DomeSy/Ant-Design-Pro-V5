@@ -259,6 +259,85 @@ export const MockCorp: React.FC<any> = () => {
         />
       ),
     },
+    {
+      name: 'pic1',
+      label: '设置文字',
+      type: 'field',
+      fieldRender: (
+        <OssUpLoad
+          crop
+          cropConfig={{
+            title: '裁剪标题',
+            cropText: '裁剪按钮文字',
+            cancelText: '取消按钮文字'
+          }}
+          getFiles={(file: Array<any>, flag) => {
+            const msg = flag ? '新增成功, 请打开控制台查看' : '删除成功，请打开控制台查看'
+            message.success(msg)
+            console.log('获取到的图片：', file)
+          }}
+        />
+      ),
+    },
+  ];
+
+  return (
+    <Form.List
+      formList={list}
+    />
+  );
+};
+
+export const MockOther: React.FC<any> = () => {
+
+  const list: formProps[] = [
+    {
+      name: 'pic',
+      label: 'text格式',
+      type: 'field',
+      fieldRender: (
+        <OssUpLoad
+          listType={'text'}
+          getFiles={(file: Array<any>, flag) => {
+            const msg = flag ? '新增成功, 请打开控制台查看' : '删除成功，请打开控制台查看'
+            message.success(msg)
+            console.log('获取到的图片：', file)
+          }}
+        />
+      ),
+    },
+    {
+      name: 'pic',
+      label: 'picture格式',
+      type: 'field',
+      fieldRender: (
+        <OssUpLoad
+          listType={'picture'}
+          getFiles={(file: Array<any>, flag) => {
+            const msg = flag ? '新增成功, 请打开控制台查看' : '删除成功，请打开控制台查看'
+            message.success(msg)
+            console.log('获取到的图片：', file)
+          }}
+        />
+      ),
+    },
+    {
+      name: 'pic',
+      label: '设置文字',
+      type: 'field',
+      fieldRender: (
+        <OssUpLoad
+          listType={'picture'}
+          getFiles={(file: Array<any>, flag) => {
+            const msg = flag ? '新增成功, 请打开控制台查看' : '删除成功，请打开控制台查看'
+            message.success(msg)
+            console.log('获取到的图片：', file)
+          }}
+        >
+          <div>自定义上传</div>
+        </OssUpLoad>
+      ),
+    },
   ];
 
   return (

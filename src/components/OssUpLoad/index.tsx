@@ -44,13 +44,13 @@ const OssUpLoad: React.FC<Props> = ({
 
   useEffect(() => {
     if(initFile.length !== 0){
-      let fileList: Array<{url: string, name: string, uid: number | string}> = []
+      let fileList: Array<{url: string, name: string, uid?: number | string}> = []
       initFile.map((item, index) => {
         const param = OSS ? { newFile: item } : {}
         if(typeof item === 'string'){
-          fileList = [...fileList, { url: item, uid: index, name: `图片`, ...param}]
+          fileList = [...fileList, { url: item, name: `图片`, ...param}]
         }else {
-          fileList = [...fileList, {...item, url: item?.url || '', uid: item?.uid || index, name: item?.name || `图片`, ...param}]
+          fileList = [...fileList, {...item, url: item?.url || '', uid: item?.uid || undefined, name: item?.name || `图片`, ...param}]
         }
       })
       setGetFilesList([...fileList])

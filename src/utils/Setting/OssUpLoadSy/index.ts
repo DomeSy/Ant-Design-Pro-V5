@@ -40,7 +40,7 @@ const OssUpLoadSy: OssUpLoadProps = {
     text: 'Upload'
   },
   crop: {
-    title: '普片裁剪',
+    title: '图片裁剪',
     cropText: '裁剪',
     cancelText: '取消',
     cropStyle: {},
