@@ -183,7 +183,7 @@ interface Props extends ProFormProps {
   footer?: boolean;
   layout?: layoutProps;
   buttonConfig?: ButtonRenderProps;
-  initValues?: Object<any>;
+  initValues?: Object;
 }
 
 export interface FormListProps extends FormCommonProps {}

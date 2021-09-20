@@ -75,132 +75,682 @@ const { data, error, loading, run, params, cancel } = useRequest(service, payloa
   api: {
     id: 'Api',
     hrefTooltip: '这里列举常见的Api，点击去官网',
-    href: 'https://hooks.umijs.org/zh-CN/hooks/async#%E9%9B%86%E6%88%90%E8%AF%B7%E6%B1%82%E5%BA%93',
+    href: 'https://procomponents.ant.design/components/form',
   },
   apiList: [
     {
+      render: '这里只是列举以封装功能的Api，并且支持原有 ProComponents 的所有属性，如果有其余属性，可参照官网的使用对齐增加',
+      red: true
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'formList',
+          desc: '表单配置，属性列表，所有的都通过此数组进行构建',
+          status: 'formProps[]'
+        },
+        {
+          name: 'footer',
+          desc: '按钮是否显示在页脚',
+          status: 'boolean',
+          default: 'false'
+        },
+        {
+          name: 'buttonConfig',
+          desc: '按钮相关的配置',
+          status: 'buttonConfigProps'
+        },
+        {
+          name: 'layout',
+          desc: '布局相关的属性',
+          status: 'layoutProps'
+        },
+        {
+          name: 'method',
+          desc: '特殊模式用于表单的一些特殊模式',
+          status: 'string'
+        },
+        {
+          name: 'initValues',
+          desc: ['集中设置初始值，初始值对象 设置默认初始值', '属性名：formList的name字段 属性值：你想输入的默认字段（少部分field除外，需要在组件内自己写）'],
+          status: 'Object'
+        },
+        {
+          name: 'onValuesChange',
+          desc: [
+            '用于监听表单项的值，如果你想监听到那个值，就使用此方法，但值再变化，他会返回一个对象，属性值就是当前表单的name。',
+            '用这个的好处，保持单向的数据流无论对开发者还是维护者都大有脾益'],
+          status: '(changeValues) => voids'
+        },
+        {
+          name: 'fieldValues',
+          desc: '自定义函数的值，当使用自定义的时候，表单无法绑定对应的值，这个时候将值绑定需要用到这个数组，如果不需要，也可以自行通过ref获取',
+          status: 'fieldValuesProps[]'
+        },
+      ]
+    },
+    {
       type: 'title',
-      id: 'Result',
-      render: 'Result',
+      id: 'Api1',
+      render: 'layoutProps 的参数',
+      effect: 4
+    },
+    {
+      render: 'formLayout 和 formTailLayout，居中显示，Modal中展示为例正常的Modal可容纳6个字符，也就是一个必填项加四个字和一个冒号，如果超过了四字，建议使用 vertical 垂直属性，或是将Modal宽度调大即可解决所有的 Options 均是可选的。',
+      red: true
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'close',
+          desc: '是否关闭所有布局样式，自动充满当前格',
+          status: 'boolean',
+          default: 'false'
+        },
+        {
+          name: 'way',
+          desc: '控制样本展示的方式 horizontal(水平) vertical(垂直)',
+          status: 'horizontal | vertical',
+          default: 'horizontal'
+        },
+        {
+          name: 'formLayout',
+          desc: [
+            '栅格布局 与col类似,基础col的属性，将表格进行栅格布局，响应式布局等',
+            '现在默认的居中，默认居中，有label字段，包含两个属性labelCol和wrapperCol'
+          ],
+          status: 'labelCol: colProps; wrapperCol: colProps;',
+          global: true
+        },
+        {
+          name: 'formTailLayout',
+          desc: '与formLayout相同，但无label字段',
+          status: 'labelCol: colProps; wrapperCol: colProps;',
+          global: true
+        },
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api2',
+      render: 'fieldValuesProps 属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'name',
+          desc: '属性名，需要与自定义组件的 name 保持一致',
+          status: "string",
+        },
+        {
+          name: 'value',
+          desc: '传入的value',
+          status: "any",
+        },
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api3',
+      render: 'buttonConfigProps 按钮属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'submitText',
+          desc: '提交的按钮文字',
+          status: "string",
+          default: '提交'
+        },
+        {
+          name: 'resetText',
+          desc: '重置的按钮文字',
+          status: "string",
+          default: '重置'
+        },
+        {
+          name: 'submitButton',
+          desc: '提交按钮的属性',
+          status: "ButtonProps",
+        },
+        {
+          name: 'resetButton',
+          desc: '提交按钮的属性',
+          status: "ButtonProps",
+        },
+        {
+          name: 'onSubmit',
+          desc: '提交按钮事件',
+          mark: '不建议使用',
+          status: "() => void",
+        },
+        {
+          name: 'onReset',
+          desc: '重置按钮事件',
+          mark: '不建议使用',
+          status: "() => void",
+        },
+        {
+          name: 'otherRender',
+          desc: '在原有的重置和提交增加其他按钮，如返回上一步，可以加个上一步的按钮，需要自己根据需求设计样式',
+          status: "() => void",
+        },
+        {
+          name: 'position',
+          desc: '自定义渲染按钮的位置',
+          status: "left和 right",
+          default: 'left'
+        },
+        {
+          name: 'render',
+          desc: '自定义按钮样式',
+          mark: '此方法是重置的按钮,继承原有的ProForm中submitter中的render，返回原有的props和dome，一旦由此方法，buttonConfig的其他方法都无法使用',
+          status: "() => React.ReactNode | React.ReactNode[]",
+        },
+      ]
+    },
+    ...tableCommonList,
+    {
+      type: 'title',
+      id: 'Api6',
+      render: 'type为input的私有属性',
       effect: 4
     },
     {
       type: 'table',
       tableList: [
         {
-          name: 'data',
+          name: 'addonAfter',
           desc: [
-            'service 返回的数据，默认为 undefined',
-            '如果有 formatResult, 则该数据为被格式化后的数据。'
+            '前缀',
+            '带个灰色的背景框'
           ],
-          status: 'undefined / any'
+          status: "React.ReactNode",
         },
         {
-          name: 'error',
-          desc: 'service 抛出的异常，默认为 undefined',
-          status: 'undefined / Error'
-        },
-        {
-          name: 'loading',
-          desc: 'service 是否正在执行',
-          status: 'boolean'
-        },
-        {
-          name: 'run',
+          name: 'addonBefore',
           desc: [
-            '手动触发 service 执行，参数会传递给 service',
-            'debounce 模式与 throttle 模式返回值为 Promise<null>'
+            '后缀',
+            '带个灰色的背景框'
           ],
-          status: '(...args: any[]) => Promise'
+          status: "React.ReactNode",
         },
         {
-          name: 'params',
-          desc: '当次执行的 service 的参数数组。比如你触发了 run(1, 2, 3)，则 params 等于 [1, 2, 3]',
-          status: 'any[]'
+          name: 'prefix',
+          desc: '样式前缀',
+          status: "React.ReactNode",
         },
         {
-          name: 'cancel',
-          desc: [
-            '取消当前请求',
-            '如果有轮询，停止'
-          ],
-          status: '() => void'
+          name: 'suffix',
+          desc: '样式后缀',
+          status: "React.ReactNode",
+        },
+        {
+          name: 'rulesRender',
+          desc: '适用于原本的rules',
+          status: 'Array<any>',
+        },
+        {
+          name: 'rules',
+          desc: '替换原有的规则，并设置更加简便的写法，协助快速开发',
+          status: 'Array<RuleProps>',
+        },
+        {
+          name: 'noRequired',
+          desc: '在很少的情况下，不需要规则必填，但填必须按照规则去填,可以按此规则',
+          status: 'boolean',
+          default: 'false'
         }
       ]
     },
     {
       type: 'title',
-      id: 'Params',
-      render: 'Params',
-      effect: 4
-    },
-    {
-      render: '所有的 Options 均是可选的。',
+      id: 'Api7',
+      render: '规则的属性',
+      effect: 5,
     },
     {
       type: 'table',
       tableList: [
         {
-          name: 'manual',
-          desc: [
-            '默认 false。 即在初始化时自动执行 service。',
-            '如果设置为 true，则需要手动调用 run 触发执行。'
-          ],
-          status: 'boolean',
+          name: 'message',
+          desc: '验证失败时返回的字段，可单独设置，下面的字段统一的默认message',
+          status: "string",
+          default: 'placeholder字段'
+        },
+        {
+          name: 'reMessage',
+          desc: '有规则，但无必填字段，默认加入必填字段的message，取数组最后一个的reMessage',
+          status: "string",
+        },
+        {
+          name: 'required',
+          desc: '判断是否有该字段',
+          status: "boolean",
           default: 'false'
         },
         {
-          name: 'initialData',
-          desc: '默认的 data',
-          status: 'any',
+          name: 'pattern',
+          desc: '正则，为 true 则通过校验，否则不通过',
+          status: "RegExp",
         },
         {
-          name: 'onSuccess',
-          desc: [
-            'service resolve 时触发，参数为 data 和 params',
-            '如果有 formatResult ，则 data 为格式化后数据。'
-          ],
-          status: '(data: any, params: any[]) => void',
-        },
-        {
-          name: 'onError',
-          desc: 'service 报错时触发，参数为 error 和 params。',
-          status: '(error: Error, params: any[]) => void',
-        },
-        {
-          name: 'cacheKey',
-          desc: [
-            '请求唯一标识。如果设置了 cacheKey，我们会启用缓存机制',
-            '我们会缓存每次请求的 data , error , params , loading',
-            '在缓存机制下，同样的请求我们会先返回缓存中的数据，同时会在背后发送新的请求，待新数据返回后，重新触发数据更新'
-          ],
-          status: 'string',
-        },
-        {
-          name: 'defaultParams',
-          desc: '轮询间隔，单位为毫秒。设置后，将进入轮询模式，定时触发 run',
+          name: 'min',
+          desc: '限定最少几个字符，可与max配合使用',
           status: 'number',
         },
         {
-          name: 'pollingWhenHidden',
+          name: 'max',
+          desc: '限定最多几个字符，可与mix配合使用',
+          status: 'number',
+        },
+        {
+          name: 'len',
+          desc: '只限定几个字符能输入',
+          status: 'number',
+        },
+        {
+          name: 'method',
           desc: [
-            '在页面隐藏时，是否继续轮询。默认为 true，即不会停止轮询',
-            '如果设置为 false , 在页面隐藏时会暂时停止轮询，页面重新显示时继续上次轮询'
+            '简化开发设定常用的的值, 所设的正则yue utils/Regexp 的值有关',
+            'name: 姓名',
+            'tel: 电话',
+            'password: 密码',
+            'card: 银行卡号',
+            'sfz: 身份证',
+            'emil: 邮箱',
+            'telEmil: 电话+邮箱',
+            'number: 数字',
+            '‘numberZero: 非零数字',
+            'numberFloat: 数字加浮点数（后两位）',
           ],
-          status: '(error: Error, params: any[]) => void',
+          status: "'tel' | 'password' | 'name' | 'card' | 'sfz' | 'emil' | 'telEmil' | 'number' | 'numberZero' | 'numberFloat'",
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api8',
+      render: 'type为password的私有属性',
+      effect: 4,
+      hrefTooltip: '去官网',
+      href: 'https://procomponents.ant.design/components/field-set#proformtextpassword'
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'addonAfter',
+          desc: [
+            '前缀',
+            '带个灰色的背景框'
+          ],
+          status: "React.ReactNode",
         },
         {
-          name: 'debounceInterval',
-          desc: '防抖间隔, 单位为毫秒，设置后，请求进入防抖模式。',
-          status: 'number',
+          name: 'addonBefore',
+          desc: [
+            '后缀',
+            '带个灰色的背景框'
+          ],
+          status: "React.ReactNode",
         },
         {
-          name: 'throttleInterval',
-          desc: '节流间隔, 单位为毫秒，设置后，请求进入节流模式。',
-          status: 'number',
+          name: 'prefix',
+          desc: '样式前缀',
+          status: "React.ReactNode",
+        },
+        {
+          name: 'suffix',
+          desc: '样式后缀',
+          status: "React.ReactNode",
+        },
+        {
+          name: 'rulesRender',
+          desc: '适用于原本的rules',
+          status: 'Array<any>',
+        },
+        {
+          name: 'rules',
+          desc: '替换原有的规则，并设置更加简便的写法，协助快速开发',
+          status: 'Array<RuleProps>',
+        },
+        {
+          name: 'noRequired',
+          desc: '在很少的情况下，不需要规则必填，但填必须按照规则去填,可以按此规则',
+          status: 'boolean',
+          default: 'false'
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api9',
+      render: 'type为captcha的私有属性',
+      effect: 4,
+      hrefTooltip: '去官网',
+      href: 'https://procomponents.ant.design/components/field-set#proformcaptcha'
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'getCaptcha',
+          desc: '获取验证码的事件',
+          status: "(phone) => void",
+        },
+        {
+          name: 'captchaTextRender',
+          desc: '渲染计时的文案',
+          status: "React.(timing: boolean, count: number) => React.ReactNode",
+        },
+        {
+          name: 'max',
+          desc: '倒计时的秒数',
+          status: "number",
+          default: '60'
+        },
+        {
+          name: 'captchaProps',
+          desc: '获取验证码按钮的 props，与 antd 的 props 相同',
+          status: "React.ReactNode",
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api10',
+      render: 'type为select的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'enum',
+          desc: '对象的属性传值，可自定义属性值属性名，没有对应的的格式',
+          status: "Object",
+        },
+        {
+          name: 'options',
+          desc: '枚举数据请求，有固定格式： label 和 value',
+          status: "string[] / Object<{label value}>",
+        },
+        {
+          name: 'request',
+          desc: '请求枚举数据，可加入接口，有固定格式： label 和 value',
+          status: "()=>Promise<{[key:string|number]:any}>",
+        },
+        {
+          name: 'multiple',
+          desc: '是否多选',
+          status: "boolean",
+          default: 'false'
+        },
+        {
+          name: 'search',
+          desc: '是否搜索',
+          status: "boolean",
+          default: 'false'
+        },
+        {
+          name: 'optionItemRender',
+          desc: '自定义下拉框的文本样式，将当前的item作为参数',
+          status: '(item) => string',
         },
       ]
-    }
+    },
+    {
+      type: 'title',
+      id: 'Api11',
+      render: 'type为checkout的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'enum',
+          desc: '对象的属性传值，可自定义属性值属性名，没有对应的的格式',
+          status: "Object",
+        },
+        {
+          name: 'options',
+          desc: '枚举数据请求，有固定格式： label 和 value',
+          status: "string[] / Object<{label value}>",
+        },
+        {
+          name: 'request',
+          desc: '请求枚举数据，可加入接口，有固定格式： label 和 value',
+          status: "()=>Promise<{[key:string|number]:any}>",
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api12',
+      render: 'type为radio的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'enum',
+          desc: '对象的属性传值，可自定义属性值属性名，没有对应的的格式',
+          status: "Object",
+        },
+        {
+          name: 'options',
+          desc: '枚举数据请求，有固定格式： label 和 value',
+          status: "string[] / Object<{label value}>",
+        },
+        {
+          name: 'request',
+          desc: '请求枚举数据，可加入接口，有固定格式： label 和 value',
+          status: "()=>Promise<{[key:string|number]:any}>",
+        },
+        {
+          name: 'radioType',
+          desc: '单选框的模式',
+          status: "button | radio",
+          default: 'radio'
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api13',
+      render: 'type为switch的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'openText',
+          desc: '开启是加载的文字或图标',
+          status: "React.ReactNode",
+        },
+        {
+          name: 'closeText',
+          desc: '关闭是加载的文字或图标',
+          status: "React.ReactNode",
+        },
+        {
+          name: 'loading',
+          desc: '是否加载',
+          status: "boolean",
+          default: 'false'
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api14',
+      render: 'type为textArea的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'showCount',
+          desc: '是否显示字数',
+          status: "boolean",
+          default: "false",
+        },
+        {
+          name: 'max',
+          desc: '限制最大字数',
+          mark: '不需要加 showCount',
+          status: "React.ReactNode",
+        },
+        {
+          name: 'autoSize',
+          desc: '自适应高度',
+          status: "boolean",
+          default: 'false'
+        },
+        {
+          name: 'rows',
+          desc: '设置高度',
+          status: "number",
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api15',
+      render: 'type为rate的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'color',
+          desc: '颜色',
+          status: "string",
+          default: "主题颜色",
+        },
+        {
+          name: 'max',
+          desc: '星星的个数',
+          status: "number",
+          default: '5'
+        },
+        {
+          name: 'half',
+          desc: '是否允许选择全心',
+          status: "boolean",
+          default: 'false'
+        },
+        {
+          name: 'tooltips',
+          desc: '移动到每个星星上的提示语',
+          mark: '数组的顺序对应星星顺序的提示语',
+          status: "Array<string>",
+        },
+        {
+          name: 'styleNode',
+          desc: '自定义文字，图标，字母等',
+          styleNode: "React.ReactNode | Function",
+          default: '五角星'
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api16',
+      render: 'type为slider的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'color',
+          desc: '颜色',
+          status: "string",
+          default: "主题颜色",
+        },
+        {
+          name: 'max',
+          desc: '星星的个数',
+          status: "number",
+          default: '5'
+        },
+        {
+          name: 'half',
+          desc: '是否允许选择全心',
+          status: "boolean",
+          default: 'false'
+        },
+        {
+          name: 'tooltips',
+          desc: '移动到每个星星上的提示语',
+          mark: '数组的顺序对应星星顺序的提示语',
+          status: "Array<string>",
+        },
+        {
+          name: 'styleNode',
+          desc: '自定义文字，图标，字母等',
+          styleNode: "React.ReactNode | Function",
+          default: '五角星'
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api17',
+      render: 'type为digit的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'max',
+          desc: '最大限制个数',
+          status: "number",
+        },
+        {
+          name: 'min',
+          desc: '最小限制个数',
+          status: "number",
+        },
+        {
+          name: 'precision',
+          desc: '设置小数点位数',
+          status: "number",
+          default: '2',
+          global: true
+        },
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api18',
+      render: 'type为filed的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'fieldRender',
+          desc: '自定义组件区域',
+          status: "React.ReactNode | Function",
+        },
+      ]
+    },
   ],
 }
 
@@ -226,13 +776,86 @@ export const introduceAnchorList:AnchorLinkProps[] = [
     href: 'Api',
     children: [
       {
-        title: 'Result',
-        href: 'Result',
+        title: 'layoutProps',
+        href: 'Api1',
       },
       {
-        title: 'Params',
-        href: 'Params'
+        title: 'fieldValuesProps',
+        href: 'Api2'
+      },
+      {
+        title: 'buttonConfigProps',
+        href: 'Api3'
+      },
+      {
+        title: 'fieldValuesProps',
+        href: 'Api4'
+      },
+      {
+        title: 'fieldValuesProps',
+        href: 'Api5'
+      },
+      {
+        title: 'formList（公共属性）',
+        href: 'formListProps',
+        children: [
+          {
+            title: 'input属性',
+            href: 'Api6',
+            children: [
+              {
+                title: 'rules属性',
+                href: 'Api7',
+              }
+            ]
+          }
+        ]
+      },
+      {
+        title: 'password属性',
+        href: 'Api8'
+      },
+      {
+        title: 'captcha属性',
+        href: 'Api9'
+      },
+      {
+        title: 'select属性',
+        href: 'Api10'
+      },
+      {
+        title: 'checkout属性',
+        href: 'Api11'
+      },
+      {
+        title: 'radio属性',
+        href: 'Api12'
+      },
+      {
+        title: 'switch属性',
+        href: 'Api13'
+      },
+      {
+        title: 'textArea属性',
+        href: 'Api14'
+      },
+      {
+        title: 'rate属性',
+        href: 'Api15'
+      },
+      {
+        title: 'slider属性',
+        href: 'Api16'
       }
+      ,
+      {
+        title: 'digit属性',
+        href: 'Api17'
+      },
+      {
+        title: 'field属性',
+        href: 'Api18'
+      },
     ]
   }
 ]

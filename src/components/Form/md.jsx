@@ -2,7 +2,7 @@
  * @module Form表单
  * @author Domesy
  *
- * @param formList 必填 表单配置的数据
+ * @param formList  表单配置的数据
  * @param footer 按钮是否显示在页脚，如果自定义按钮则无效 默认：false
  * @param buttonConfig 按钮相关的配置
  * @param layout 全局控制表单样式
