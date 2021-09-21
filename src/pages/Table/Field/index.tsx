@@ -4,7 +4,8 @@ import { queryDetail } from './services'
 import Mock, { MockDefault } from './mock'
 import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
 import type { AnchorLinkProps } from '@/components'
-const Index: React.FC<any> = (props) => {
+
+const Index: React.FC<any> = () => {
 
   const [detail, setDetail] = useState<DetailSettingListProps>({})
   const [anchorList, setAnchorList] = useState<AnchorLinkProps[]>([])
