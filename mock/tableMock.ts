@@ -15,48 +15,17 @@ export const introduce:Props = {
         },
         {
           render: '你只需要一个数组就可以自动生成你所需要的任意表单，内置多种表单格式包括'
+        },
+        {
+          render: '他有点类似于 Schema Form - JSON 表单，希望通过一个数组（即 formList ）来构建出所需要的表单，主要通过 type 来区分，主要由 input, password, captcha, select, checkbox, radio, switch, textArea, rate, slider, field, digit, dependency 构成',
+          strong: true
+        },
+        {
+          render: '这里兼容原有组件的所有属性',
+          red: true
         }
       ]
     },
-    {
-      type: 'title',
-      effect: 4,
-      id: 'useWay',
-      render: '使用方式'
-    },
-    {
-      type: 'prv',
-      render: `
-import { useRequest } from 'umi';
-import { default } from './table';
-const { data, error, loading, run, params, cancel } = useRequest(service, payload)
-      `
-    },
-    {
-      type: 'list',
-      list: [
-        {
-          render: '主要的有 data(返回的结果), error(抛出的异常), loading(是否执行完毕), run(手动执行), params(请求的参数) cancel(取消执行)'
-        },
-        {
-          render: 'service有多种写法，这里演示比较常用的三种',
-          tooltip: '这里只做常用的，没有像官网全面',
-        },
-        {
-          code: true,
-          render: `useRequest('/api/userInfo')`,
-          tooltip: '只传入字符串，默认不带参数，请求为get'
-        },
-        {
-          code: true,
-          render: `useRequest({ url: '请求地址', method: '请求模式（默认get）', data: '请求参数' })`,
-        },
-        {
-          code: true,
-          render: "useRequest((userId)=> `/api/userInfo/${userId}}`)",
-        }
-      ]
-    }
   ],
   attention: {
     id: 'attention',
@@ -108,8 +77,11 @@ const { data, error, loading, run, params, cancel } = useRequest(service, payloa
         },
         {
           name: 'method',
-          desc: '特殊模式用于表单的一些特殊模式',
-          status: 'string'
+          desc: [
+            'none 模式： 没有底部按钮',
+            'mask 模式： 弹框模式，抽屉模式，宽度变为100%，并且没有按钮',
+          ],
+          status: 'none | mask'
         },
         {
           name: 'initValues',
@@ -760,10 +732,6 @@ export const introduceAnchorList:AnchorLinkProps[] = [
     href: 'use'
   },
   {
-    title: '使用方式',
-    href: 'useWay'
-  },
-  {
     title: '代码演示',
     href: 'Code'
   },
@@ -798,63 +766,6 @@ export const introduceAnchorList:AnchorLinkProps[] = [
       {
         title: 'formList（公共属性）',
         href: 'formListProps',
-        children: [
-          {
-            title: 'input属性',
-            href: 'Api6',
-            children: [
-              {
-                title: 'rules属性',
-                href: 'Api7',
-              }
-            ]
-          }
-        ]
-      },
-      {
-        title: 'password属性',
-        href: 'Api8'
-      },
-      {
-        title: 'captcha属性',
-        href: 'Api9'
-      },
-      {
-        title: 'select属性',
-        href: 'Api10'
-      },
-      {
-        title: 'checkout属性',
-        href: 'Api11'
-      },
-      {
-        title: 'radio属性',
-        href: 'Api12'
-      },
-      {
-        title: 'switch属性',
-        href: 'Api13'
-      },
-      {
-        title: 'textArea属性',
-        href: 'Api14'
-      },
-      {
-        title: 'rate属性',
-        href: 'Api15'
-      },
-      {
-        title: 'slider属性',
-        href: 'Api16'
-      }
-      ,
-      {
-        title: 'digit属性',
-        href: 'Api17'
-      },
-      {
-        title: 'field属性',
-        href: 'Api18'
       },
     ]
   }

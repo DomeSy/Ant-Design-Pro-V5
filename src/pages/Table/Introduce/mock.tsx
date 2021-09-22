@@ -1,72 +1,207 @@
 import React, { useState } from 'react';
-import { useRequest } from 'umi';
-import { Button, Spin } from 'antd';
+import { message, Switch } from 'antd';
+import { Form } from '@/components';
+import type { formProps } from '@/components'
 
 const Mock: React.FC<any> = () => {
-  const [count,  setCount ] = useState<number>(0)
-
-  const { data, loading , run } = useRequest({
-    url: '/api/hook/useRequest/test',
-    method: 'POST',
-    data: {
-      param: '11'
-    }
-  },{
-    manual: true,
-    initialData: '未请求',
-    onSuccess: (result:any, params) => {
-      if (result) {
-        setCount(count + params[0]);
-      }
-    }
-  })
-
-  return (
-    <div>
-      <div style={{marginBottom: 20}}>count: {count}</div>
-      <div style={{marginBottom: 20}}>count: {data.message ? data.message : data}</div>
-      <Button loading={loading} type='primary' onClick={() => run(count + 1)}>手动请求</Button>
-    </div>
-  );
-};
-
-export const MockCache: React.FC<any> = () => {
-
-  const [show, setShow] = useState<boolean>(false)
-
-  const { data, run, loading } = useRequest('/api/hook/useRequest/cache', {
-    manual: true,
-    cacheKey: 'article'
-  })
-
-  return <>
-    <Button type='primary' onClick={() => { setShow(!show); run()}} >{show ? '隐藏' : '展开'}</Button>
+  const list: formProps[] = [
     {
-      show && <Spin spinning={!data && loading}>
-        <p>上次更新的时间：{data?.time}</p>
-        <p>更新内容</p>
-        <p>{data?.data}</p>
-      </Spin>
-    }
-  </>
+      name: 'input',
+      label: '输入框',
+    },
+    {
+      name: 'password',
+      label: '密码',
+      type: 'password'
+    },
+    {
+      name: 'select',
+      label: '选择',
+      request: async () => [
+        { label: '全部', value: 'all' },
+        { label: '未解决', value: 'open' },
+        { label: '已解决', value: 'closed' },
+        { label: '解决中', value: 'processing' },
+      ],
+      type: 'select',
+    },
+    {
+      name: 'checkbox',
+      label: '多选',
+      request: async () => [
+        { label: 'React', value: 0 },
+        { label: 'Hook', value: 1 },
+        { label: 'DomesyPro', value: 2 }
+      ],
+      type: 'checkbox',
+    },
+    {
+      name: 'radio',
+      label: '单选',
+      request: async () => [
+        { label: 'React', value: 0 },
+        { label: 'Hook', value: 1 },
+        { label: 'DomesyPro', value: 2 },
+      ],
+      type: 'radio',
+    },
+    {
+      name: 'switch',
+      label: '开关',
+      type: 'switch',
+    },
+    {
+      name: 'textArea',
+      label: '文本框',
+      type: 'textArea',
+    },
+    {
+      name: 'rate',
+      label: '评分',
+      type: 'rate',
+    },
+    {
+      name: 'slider',
+      label: '双向滑动',
+      range: true,
+      type: 'slider',
+    },
+    {
+      name: 'digit',
+      label: '步进器',
+      type: 'digit',
+    },
+  ];
+
+  return <Form
+    initValues={{
+      input: 'Domesy',
+      password: 'Domesy',
+      select: 'all',
+      checkbox: [1, 2],
+      radio: 2,
+      switch: true,
+      textArea: '欢迎来到 DomeSy',
+      rate: 3.5,
+      slider: [10, 70],
+      digit: 2.5
+    }}
+    onFinish={(values: any) => {
+      message.success('打开控制台观看');
+      console.log(values, '动态表单的值')
+    }}
+    formList={list}
+  />
 }
 
-export const MockPooling: React.FC<any> = () => {
+export const MockLayout: React.FC<any> = () => {
+  const list: formProps[] = [
+    {
+      name: 'input',
+      label: '布局样式1',
+    },
+    {
+      name: 'input2',
+      label: '布局样式2',
+    },
+  ];
 
-  const { data, loading, run, cancel } = useRequest('/api/hook/useRequest/pooling', {
-    manual: true,
-    pollingInterval: 1000,
-    pollingWhenHidden: false
-  })
-
-  return <>
-    <Spin spinning={loading}>
-      <p>姓名为：{data?.name || '请开始'}</p>
-    </Spin>
-    <Button style={{marginTop: 20}} type='primary' onClick={run} >开始</Button>
-    <Button style={{marginLeft: 24}} onClick={cancel} >停止</Button>
-  </>
+  return <div>
+    <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>关闭样式，自动填充</div>
+    <div>
+      <Form
+        layout={{
+          close: true
+        }}
+        onFinish={(values: any) => {
+          message.success('打开控制台观看');
+          console.log(values, '动态表单的值')
+        }}
+        formList={list}
+      />
+    </div>
+    <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>按钮样式，默认 horizontal（水平）</div>
+    <div>
+      <Form
+        layout={{
+          way: 'vertical'
+        }}
+        onFinish={(values: any) => {
+          message.success('打开控制台观看');
+          console.log(values, '动态表单的值')
+        }}
+        formList={list}
+      />
+    </div>
+    <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>无底部按钮</div>
+    <div>
+      <Form
+        method={'none'}
+        onFinish={(values: any) => {
+          message.success('打开控制台观看');
+          console.log(values, '动态表单的值')
+        }}
+        formList={list}
+      />
+    </div>
+    <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>mask模式，无底部按钮，并且宽度填满</div>
+    <div>
+      <Form
+        method={'mask'}
+        onFinish={(values: any) => {
+          message.success('打开控制台观看');
+          console.log(values, '动态表单的值')
+        }}
+        formList={list}
+      />
+    </div>
+  </div>
 }
 
+export const MockButton: React.FC<any> = () => {
 
-export default Mock;
+  const [open, setOpen] = useState<boolean>(false)
+
+  const list: formProps[] = [
+    {
+      name: 'input',
+      label: '布局样式1',
+    },
+    {
+      name: 'input2',
+      label: '布局样式2',
+    },
+  ];
+
+  return <div>
+    <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>是否打开页脚(不打开则展示返回按钮)： <Switch checked={open} onChange={(e) => setOpen(e)}/></div>
+    <div>
+      <Form
+        onFinish={(values: any) => {
+          message.success('打开控制台观看');
+          console.log(values, '动态表单的值')
+        }}
+        footer={open ? true : false}
+        _config={open ? undefined : {
+          back: -1
+        }}
+        formList={list}
+      />
+    </div>
+    <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>无重置按钮</div>
+    <div>
+      <Form
+        onFinish={(values: any) => {
+          message.success('打开控制台观看');
+          console.log(values, '动态表单的值')
+        }}
+        _config={{
+          noRest: true
+        }}
+        formList={list}
+      />
+    </div>
+  </div>
+}
+
+export default Mock
