@@ -27,20 +27,6 @@ export const introduce:Props = {
       ]
     },
   ],
-  attention: {
-    id: 'attention',
-    children: [
-      {
-        render: 'useRequest 请求他会走统一的请求拦截和响应拦截，所以返回的格式需要统一，可以在响应拦截里统一设置所需要的规范',
-        red: true
-      },
-      {
-        render: 'useRequest 功能非常强大，能实现99%的请求，这里只是介绍最常用的几种方式',
-        tooltip: '更加详细请去官网查看使用',
-        red: true
-      },
-    ]
-  },
   api: {
     id: 'Api',
     hrefTooltip: '这里列举常见的Api，点击去官网',
@@ -99,6 +85,44 @@ export const introduce:Props = {
           name: 'fieldValues',
           desc: '自定义函数的值，当使用自定义的时候，表单无法绑定对应的值，这个时候将值绑定需要用到这个数组，如果不需要，也可以自行通过ref获取',
           status: 'fieldValuesProps[]'
+        },
+        {
+          name: '_config',
+          desc: '表单的额外配置',
+          status: 'configProps'
+        },
+      ]
+    },
+    {
+      type: 'title',
+      id: 'ApiConfig',
+      render: 'configProps属性',
+      effect: 4
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'width',
+          desc: '集中控制表单的宽度',
+          status: 'string | number',
+          default: '40%',
+          global: true
+        },
+        {
+          name: 'noRest',
+          desc: '是否不要重置按钮',
+          status: 'boolean',
+          default: 'false'
+        },
+        {
+          name: 'back',
+          desc: [
+            '是否带返回按钮，可为对象，可为布尔，可为数字',
+            '为对象时继承按钮的所有属性，布尔：为true时，默认返回为-1，为number时可自己设置返回层数'
+          ],
+          status: 'Object | boolean | number',
+          default: '1'
         },
       ]
     },
@@ -724,6 +748,28 @@ export const introduce:Props = {
       ]
     },
   ],
+  explain: {
+    id: 'explain'
+  },
+  explainList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: '封装 Ant Design Pro 的组件是因为一个项目中经常用的该组件，如果每个页面都要引入相同的组件，并且进行相同的配置，然后复制粘贴，会让代码非常冗余，不利于维护。',
+          red: true
+        },
+        {
+          render: '举个简单的例子，后台常用的 表格 分页如果要设置 5 条，那么多的表格 都要单独设置表格，后期如果将 5 跳 改为 10 条，那么我们每个页面都要找用到表格的位置，更改十分麻烦，也不易维护',
+          red: true
+        },
+        {
+          render: '所以为了更好处理，我们将在封装一层，让他更好的维护，之后只要改一个位置，就可以全量替换了',
+          red: true
+        }
+      ]
+    }
+  ]
 }
 
 export const introduceAnchorList:AnchorLinkProps[] = [
@@ -733,16 +779,30 @@ export const introduceAnchorList:AnchorLinkProps[] = [
   },
   {
     title: '代码演示',
-    href: 'Code'
-  },
-  {
-    title: '注意事项',
-    href: 'attention'
+    href: 'Code',
+    children: [
+      {
+        title: '统一默认值',
+        href: 'code1'
+      },
+      {
+        title: '布局样式',
+        href: 'code2'
+      },
+      {
+        title: '表单按钮',
+        href: 'code3'
+      }
+    ]
   },
   {
     title: 'Api',
     href: 'Api',
     children: [
+      {
+        title: 'ConfigProps',
+        href: 'ApiConfig'
+      },
       {
         title: 'layoutProps',
         href: 'Api1',
@@ -767,7 +827,12 @@ export const introduceAnchorList:AnchorLinkProps[] = [
         title: 'formList（公共属性）',
         href: 'formListProps',
       },
+
     ]
+  },
+  {
+    title: '心得体会',
+    href: 'explain'
   }
 ]
 

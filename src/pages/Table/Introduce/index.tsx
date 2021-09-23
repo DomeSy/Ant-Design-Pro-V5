@@ -22,6 +22,7 @@ const Introduce: React.FC<any> = (props) => {
             {
               component: <Mock />,
               title: '统一默认值',
+              id: 'code1',
               content: <div>
                 <p>我们可以通过 initValues 设置统一的默认值，当然也可以设置 fromList 中的 default 来设置默认值</p>
                 <p>自定义组件的情况特殊，不能通过此设置</p>
@@ -129,6 +130,7 @@ const Introduce: React.FC<any> = (props) => {
             {
               component: <MockLayout />,
               title: '布局样式',
+              id: 'code2',
               content: <div>
                 <p>有时候我们需要一些特殊的情况来显示表单，所以我们需要通过特殊的参数改变表单的样式</p>
                 <p>此外还有 formLayout formTailLayout 两个字段，来控制表单的集体布局</p>
@@ -209,6 +211,7 @@ const Introduce: React.FC<any> = (props) => {
             {
               component: <MockButton />,
               title: '表单按钮',
+              id: 'code3',
               content: '我们可以设置按钮的样式增加返回，或者是否显示在页脚，并且可以自定义按钮的样式文字等操作',
               code: `
   import React from 'react';
