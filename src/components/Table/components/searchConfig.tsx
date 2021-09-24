@@ -26,8 +26,14 @@ import { SearchConfigProps } from '../interface';
         key="reset"
         htmlType='reset'
         style={{ ...tableSy.search.commonStyle, ...tableSy.search.resetStyle,...search?.resetStyle}}
-        onClick={() => {
-          actionRef?.current?.reload()
+        onClick={async() => {
+          // console.log(actionRef?.current, '001')
+          console.log(FormRef?.current, '002')
+          // FormRef
+          // await FormRef?.current?.resetFields();
+          // console.log('11')
+          // await actionRef?.current?.submit()
+          // actionRef?.current?.reload()
         }}
         {...search?.resetProps}
       >
@@ -108,7 +114,7 @@ import { SearchConfigProps } from '../interface';
     labelWidth: search?.labelWidth ? search.labelWidth : 100,
     span: search?.span ? search.span : tableSy.search.span ? tableSy.search.span : undefined,
     layout: search?.layout ? search.layout : tableSy.search.vertical ? 'vertical' : undefined,
-    // optionRender: optionConfig,
+    optionRender: optionConfig,
     ...search,
   };
 };
