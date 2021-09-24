@@ -21,20 +21,13 @@ import { SearchConfigProps } from '../interface';
     >
       {search?.searchPrefix || tableSy.search.searchPrefix} {search?.searchText || tableSy.search.searchText}
     </Button>
-
     const reset = <Button
         key="reset"
         htmlType='reset'
         style={{ ...tableSy.search.commonStyle, ...tableSy.search.resetStyle,...search?.resetStyle}}
         onClick={async() => {
-          // console.log(actionRef?.current, '001')
-          console.log(FormRef?.current, '002')
-
-          // FormRef
-          // await FormRef?.current?.resetFields();
-          // console.log('11')
-          // await actionRef?.current?.submit()
-          // actionRef?.current?.reload()
+          await actionRef?.current?.reset();
+          await actionRef?.current?.submit()
         }}
         {...search?.resetProps}
       >
