@@ -12,7 +12,7 @@ const waitTime = (time: number = 100) => {
 };
 
 export default {
-  'GET /api/table/queryDetail': async (req: Request, res: Response) => {
+  'GET /api/form/queryDetail': async (req: Request, res: Response) => {
     const { detail } = req.query;
     if (detail === 'introduce') {
       res.send(
