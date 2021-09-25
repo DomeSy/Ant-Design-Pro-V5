@@ -33,7 +33,7 @@ export default [
   },
   {
     path: '/form',
-    name: '动态表单1',
+    name: '动态表单',
     icon: 'DesktopOutlined',
     component: './Form',
     routes: [
@@ -51,6 +51,12 @@ export default [
       { path: '/form/digit', name: '步进器', component: './Form/Digit'},
       { path: '/form/field', name: '自定义', component: './Form/Field'},
     ]
+  },
+  {
+    path: '/table',
+    name: '动态表格',
+    icon: 'TableOutlined',
+    component: './Table',
   },
   {
     path: '/user',
