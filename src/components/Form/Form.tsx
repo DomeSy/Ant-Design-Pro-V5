@@ -28,6 +28,7 @@ const Form: React.FC<Props & FormCommonProps> = ({
 
   useEffect(() => {
     if (getRef) getRef(formRef);
+
   }, []);
 
   useEffect(() => {
@@ -60,6 +61,13 @@ const Form: React.FC<Props & FormCommonProps> = ({
           },
           onReset: () => {
             if (buttonConfig?.onReset) buttonConfig.onReset();
+            if(fieldValues.length !== 0){
+              fieldValues.map((item) => {
+                let payload: any = {};
+                payload[item.name] = item.value;
+                formRef?.current?.setFieldsValue(payload);
+              })
+            }
           },
           render: (props, dom) => {
             if (method === 'none' || method === 'mask') return;

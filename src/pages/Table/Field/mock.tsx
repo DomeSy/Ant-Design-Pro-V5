@@ -24,7 +24,7 @@ const Mock: React.FC<any> = () => {
       name: 'field1',
       label: '必填',
       type: 'field',
-      required: true,
+      // required: true,
       fieldRender: (
         <OssUpLoad
           getFiles={(file: Array<any>) => {
@@ -66,6 +66,7 @@ export const MockDefault: React.FC<any> = () => {
       name: 'field',
       label: '自定义',
       type: 'field',
+      required: true,
       fieldRender: (
         <OssUpLoad
           initFile={['https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png']}
