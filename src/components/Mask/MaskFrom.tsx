@@ -51,12 +51,20 @@ const MaskFrom: React.FC<MaskFromProps> = ({
         </Button>,
         <Button
           key="reset"
-          onClick={() => {
+          onClick={async () => {
             if (onReset) {
               onReset();
               return;
             }
-            maskFormRef?.current?.resetFields();
+            console.log(form)
+            await maskFormRef?.current?.resetFields();
+            if(form.fieldValues && Array.isArray(form.fieldValues) && form.fieldValues.length !== 0){
+              form.fieldValues.map((item) => {
+                let payload: any = {};
+                payload[item.name] = item.value;
+                maskFormRef?.current?.setFieldsValue(payload);
+              })
+            }
           }}
         >
           {props.resetText || maskSy.maskFrom.resetText}
