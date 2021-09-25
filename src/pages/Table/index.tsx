@@ -4,7 +4,7 @@ import { DetailSetting } from '@/commonPages'
 import { PageLayout } from '@/components'
 import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
 import type { AnchorLinkProps } from '@/components'
-import Mock, { MockLayout, MockButton } from './mock'
+import Mock, {  } from './mock'
 
 const Hook: React.FC<any> = ({children, ...props}) => {
 
@@ -13,7 +13,7 @@ const Hook: React.FC<any> = ({children, ...props}) => {
   const [anchorList, setAnchorList] = useState<AnchorLinkProps[]>([])
 
   useEffect(() => {
-    queryDetail({detail: 'introduce'}).then((res) => {
+    queryDetail({detail: 'table'}).then((res) => {
       setAnchorList(res.anchorList)
       setDetail({
         ...res.list,
@@ -125,146 +125,6 @@ const Hook: React.FC<any> = ({children, ...props}) => {
   }
 
   export default Mock
-              `
-            },
-            {
-              component: <MockLayout />,
-              title: '布局样式',
-              id: 'code2',
-              content: <div>
-                <p>有时候我们需要一些特殊的情况来显示表单，所以我们需要通过特殊的参数改变表单的样式</p>
-                <p>此外还有 formLayout formTailLayout 两个字段，来控制表单的集体布局</p>
-              </div>,
-              code: `
-  import React from 'react';
-  import { message } from 'antd';
-  import { Form } from '@/components';
-  import type { formProps } from '@/components'
-
-  const MockLayout: React.FC<any> = () => {
-    const list: formProps[] = [
-      {
-        name: 'input',
-        label: '布局样式1',
-      },
-      {
-        name: 'input2',
-        label: '布局样式2',
-      },
-    ];
-
-    return <div>
-      <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>关闭样式，自动填充</div>
-      <div>
-        <Form
-          layout={{
-            close: true
-          }}
-          onFinish={(values: any) => {
-            message.success('打开控制台观看');
-            console.log(values, '动态表单的值')
-          }}
-          formList={list}
-        />
-      </div>
-      <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>按钮样式，默认 horizontal（水平）</div>
-      <div>
-        <Form
-          layout={{
-            way: 'vertical'
-          }}
-          onFinish={(values: any) => {
-            message.success('打开控制台观看');
-            console.log(values, '动态表单的值')
-          }}
-          formList={list}
-        />
-      </div>
-      <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>无底部按钮</div>
-      <div>
-        <Form
-          method={'none'}
-          onFinish={(values: any) => {
-            message.success('打开控制台观看');
-            console.log(values, '动态表单的值')
-          }}
-          formList={list}
-        />
-      </div>
-      <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>mask模式，无底部按钮，并且宽度填满</div>
-      <div>
-        <Form
-          method={'mask'}
-          onFinish={(values: any) => {
-            message.success('打开控制台观看');
-            console.log(values, '动态表单的值')
-          }}
-          formList={list}
-        />
-      </div>
-    </div>
-  }
-
-  export default MockLayout
-              `
-            },
-            {
-              component: <MockButton />,
-              title: '表单按钮',
-              id: 'code3',
-              content: '我们可以设置按钮的样式增加返回，或者是否显示在页脚，并且可以自定义按钮的样式文字等操作',
-              code: `
-  import React from 'react';
-  import { message } from 'antd';
-  import { Form } from '@/components';
-  import type { formProps } from '@/components'
-
-  const MockButton: React.FC<any> = () => {
-    const [open, setOpen] = useState<boolean>(false)
-
-    const list: formProps[] = [
-      {
-        name: 'input',
-        label: '布局样式1',
-      },
-      {
-        name: 'input2',
-        label: '布局样式2',
-      },
-    ];
-
-    return <div>
-      <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>是否打开页脚(不打开则展示返回按钮)： <Switch checked={open} onChange={(e) => setOpen(e)}/></div>
-      <div>
-        <Form
-          onFinish={(values: any) => {
-            message.success('打开控制台观看');
-            console.log(values, '动态表单的值')
-          }}
-          footer={open ? true : false}
-          _config={open ? undefined : {
-            back: -1
-          }}
-          formList={list}
-        />
-      </div>
-      <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>无重置按钮</div>
-      <div>
-        <Form
-          onFinish={(values: any) => {
-            message.success('打开控制台观看');
-            console.log(values, '动态表单的值')
-          }}
-          _config={{
-            noRest: true
-          }}
-          formList={list}
-        />
-      </div>
-    </div>
-  }
-
-  export default MockButton
               `
             },
           ]

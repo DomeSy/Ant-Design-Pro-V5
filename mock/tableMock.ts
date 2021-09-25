@@ -1,10 +1,11 @@
 import type { Props } from '@/commonPages/DetailSetting'
 import type { AnchorLinkProps } from '@/components'
 import { tableCommonList } from './data'
+import Mock from 'mockjs';
 
 export const table:Props = {
   use: {
-    title: 'OssUpLoad',
+    title: 'Table',
     id: 'use'
   },
   useList: [
@@ -483,3 +484,32 @@ export const tableAnchorList:AnchorLinkProps[] = [
     href: 'explain',
   }
 ]
+
+export const tableList:any = () => {
+  // Mock.mock('@name')
+  const list = [
+    {
+      key: 0,
+      name: 'Domesy',
+      tel: 1796369321,
+      address: 'asdasd1',
+    }
+  ]
+  let data:any = []
+  for(let i = 0; i < 100; i++){
+    data = [...data, {
+      key: i + 1,
+      name: Mock.mock('@cname'),
+      title: Mock.mock('@ctitle(3, 7)'),
+      address: Mock.mock('@county(true)'),
+      color: Mock.mock('@color'),
+      email: Mock.mock('@email'),
+      time: Mock.mock(`@date('yyyy-MM-dd')`),
+    }]
+  }
+
+  return {
+    data,
+    total: 100
+  }
+}
