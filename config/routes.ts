@@ -33,9 +33,9 @@ export default [
   },
   {
     path: '/form',
-    name: '动态表单',
+    name: '动态表单1',
     icon: 'DesktopOutlined',
-    component: './Table',
+    component: './Form',
     routes: [
       { path: '/form', redirect: '/Form/introduce'},
       { path: '/form/introduce', name: '介绍', component: './Form/Introduce' },
