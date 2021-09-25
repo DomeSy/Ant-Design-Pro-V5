@@ -20,135 +20,88 @@ const Index: React.FC<any> = (props) => {
           wrap: true,
           showCode: [
             {
-              id: 'code1',
               component: <Mock />,
               title: '基本使用',
               content: <div>
-                <p>默认图片可以值传入 string[] 为链接地址，这是预览时的弹框名称为固定的图片，如果要传入对象，则参照 Upload 默认值的传入</p>
-                <p>是否是 OSS上传， 可以通过全局设置，不用每个都进行设置</p>
-                <p>Oss 上传后的格式为：['地址1', '地址2']</p>
+                <p>弹出表单支持表单的所有属性，并且将按钮等可以自定义设置，这里以特殊的自定义为例！</p>
+                <p>首先我们需要传入接口：onRequest 这里只是传入接口的函数</p>
+                <p>其次就是接口所需要的参数，如果无其他参数，那么参数就是表单的参数，如果有多余的参数，那么则需要 onEdit 的帮助，这个函数 最终的返回值 会作为 onRequest 的参数</p>
               </div>,
               code: `
-  import React from 'react';
-  import { message } from 'antd';
-  import { OssUpLoad, Form } from '@/components';
+  import React,{ useState, useEffect } from 'react';
+  import { Button, OssUpLoad, Mask } from '@/components';
   import type { formProps } from '@/components'
+  import { queryDetail } from './services'
 
   const Mock: React.FC<any> = () => {
+    const [maskVisible, setMaskVisible] = useState<boolean>(false);
+    const [file, setFile] = useState<any>('');
+
+    useEffect(() => {
+      setFile('https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png')
+    }, []);
 
     const list: formProps[] = [
       {
-        name: 'pic',
-        label: '上传图片',
+        name: 'field3',
+        label: '自定义',
         type: 'field',
+        required: true,
         fieldRender: (
           <OssUpLoad
-            getFiles={(file: Array<any>, flag) => {
-              const msg = flag ? '新增成功, 请打开控制台查看' : '删除成功，请打开控制台查看'
-              message.success(msg)
-              console.log('获取到的图片：', file)
-            }}
-          />
-        ),
-      },
-      {
-        name: 'pic1',
-        label: '更改文字',
-        tooltip: '可全局配置',
-        type: 'field',
-        fieldRender: (
-          <OssUpLoad
-            _config={{
-              text: '上传'
-            }}
-            getFiles={(file: Array<any>, flag) => {
-              const msg = flag ? '新增成功, 请打开控制台查看' : '删除成功，请打开控制台查看'
-              message.success(msg)
-              console.log('获取到的图片：', file)
-            }}
-          />
-        ),
-      },
-      {
-        name: 'pic2',
-        label: '图片数量',
-        tooltip: 'amount={3}',
-        type: 'field',
-        fieldRender: (
-          <OssUpLoad
-            amount={3}
-            getFiles={(file: Array<any>, flag) => {
-              const msg = flag ? '新增成功, 请打开控制台查看' : '删除成功，请打开控制台查看'
-              message.success(msg)
-              console.log('获取到的图片：', file)
-            }}
-          />
-        ),
-      },
-      {
-        name: 'pic3',
-        label: '默认图片',
-        type: 'field',
-        tooltip: 'initFile = {[]}',
-        fieldRender: (
-          <OssUpLoad
-            amount={3}
             initFile={
-              [
-                'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-                {
-                  name: '图片标签',
-                  url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-                  status: 'done'
-                }
-              ]
-            }
-            getFiles={(file: Array<any>, flag) => {
-              const msg = flag ? '新增成功, 请打开控制台查看' : '删除成功，请打开控制台查看'
-              message.success(msg)
-              console.log('获取到的图片：', file)
+            [{ uid: 1, name: 'logo', url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png' }]}
+            getFiles={(file: Array<any>) => {
+              setFile(file[0]);
             }}
           />
         ),
       },
       {
-        name: 'pic4',
-        label: 'OSS上传',
-        tooltip: '可全局配置OSS功能是否开启',
-        type: 'field',
-        fieldRender: (
-          <OssUpLoad
-            OSS
-            getFiles={(file: Array<any>, flag) => {
-              const msg = flag ? '新增成功, 请打开控制台查看' : '删除成功，请打开控制台查看'
-              message.success(msg)
-              console.log('获取到的图片：', file)
-            }}
-          />
-        ),
+        name: 'name',
+        label: '自定义',
       },
       {
-        name: 'pic5',
-        label: '普通上传',
-        type: 'field',
-        tooltip: '可全局配置OSS功能是否开启',
-        fieldRender: (
-          <OssUpLoad
-            OSS={false}
-            getFiles={(file: Array<any>, flag) => {
-              const msg = flag ? '新增成功, 请打开控制台查看' : '删除成功，请打开控制台查看'
-              message.success(msg)
-              console.log('获取到的图片：', file)
-            }}
-          />
-        ),
+        name: 'detail',
+        default: 'maskFrom',
+        label: '请求参数',
+        readonly: true
       },
     ];
 
     return (
-      <Form.List
-        formList={list}
-      />
+      <>
+      <Button onClick={() => {
+        setMaskVisible(true)
+      }}>弹框表单</Button>
+      {
+        maskVisible &&
+        <Mask.Form
+          title="表单弹框"
+          message={"编辑成功"}
+          visible={maskVisible}
+          onRequest={queryDetail}
+          formList={list}
+          form={
+            {
+              fieldValues: [
+                {
+                  name: 'field3',
+                  value: file
+                }
+              ]
+            }
+          }
+          onCancel={() => setMaskVisible(false)}
+          onSubmit={() => setMaskVisible(false)}
+          onEdit={(value) => {
+            return value
+          }}
+        />
+      }
+
+      </>
+
     );
   };
 

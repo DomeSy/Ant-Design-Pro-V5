@@ -9,22 +9,6 @@ import Props from './interface'
 import './index.less'
 import { Jump } from '@/utils';
 
-
-const testList = [
-  {
-    key: 0,
-    name: '名称',
-    desc: <span>'我是一段话'<span>nihao1</span></span>,
-    status: 'React.ReactNode',
-    default: '1',
-    global: true,
-    href: 'https://www.baidu.com/',
-    tooltip: '提示语',
-    mark: '我是特殊的备注'
-  }
-]
-
-
 /**
  * key
  * name：参数

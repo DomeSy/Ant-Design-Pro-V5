@@ -494,41 +494,29 @@ export const maskFrom:Props = {
       type: 'list',
       list: [
         {
-          render: `此组件封装与 Ant Design 的 Upload 和 react-cropper`,
+          render: `此组件是将 Modal 和 From 相结合，并适配 From 的所有功能`,
         },
         {
-          render: `当你需要上传照片功能时，可以使用此组件`,
+          render: `场景：在表单中的新建，编辑，如果内容不是很多，我们希望他在当前页面展示，所以 Mask.From 能很好的帮助我们实现`,
         },
         {
-          render: 'OssUpload 具有的功能有：OSS上传，图片自定义裁剪，文件类型，文件大小，是否检测同一个文件的功能等'
-        },
-        {
-          render: '如果开启 OSS 功能，返回的则直接是地址的数组，否则有一个文件对象，和Base64的地址',
-          strong: true
-        },
+          render: '要特别注意 onRequest 和 onEdit 这两个Api，是这个组件的核心'
+        }
       ]
     },
-    {
-
-    }
   ],
   api: {
     id: 'Api',
-    hrefTooltip: '更多Api，去官网',
-    href: 'https://ant-design.gitee.io/components/upload-cn/',
   },
   apiList: [
     {
       type: 'table',
       tableList: [
         {
-          name: 'initFile',
-          desc: [
-            '默认文件',
-            '可以只传入地址',
-            '如果有其他属性可按 ant Design Upload 的模式传'
-          ],
+          name: 'formList',
+          desc: '动态表单的 formList',
           status: "string[] | uploadFile[]",
+          href: '/table/introduce'
         },
         {
           name: 'amount',
@@ -909,30 +897,12 @@ export const maskFrom:Props = {
 
 export const maskFromAnchorList:AnchorLinkProps[] = [
   {
-    title: 'OssUpLoad',
+    title: 'Mask.From',
     href: 'use'
   },
   {
     title: '代码演示',
     href: 'Code',
-    children: [
-      {
-        title: '基本使用',
-        href: 'code1'
-      },
-      {
-        title: '规则',
-        href: 'code2'
-      },
-      {
-        title: '裁剪',
-        href: 'code3'
-      },
-      {
-        title: '其他格式',
-        href: 'code4'
-      },
-    ]
   },
   {
     title: 'OSSUpload 属性',

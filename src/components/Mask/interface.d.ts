@@ -19,7 +19,7 @@ export interface MaskFromProps extends CommonProps {
   formList?: formProps[];
   onCancel?: (e: any) => void;
   onSubmit?: () => void;
-  onEdit?: (values: Object<any>) => void;
+  onEdit?: (values: Object) => void;
   onReset?: () => void;
   onRequest?: any;
   cancelText?: string;

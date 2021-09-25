@@ -1,6 +1,5 @@
 import React,{ useState, useEffect } from 'react';
-import { message } from 'antd';
-import { Button, OssUpLoad, Form, PageLayout, Table, Mask } from '@/components';
+import { Button, OssUpLoad, Mask } from '@/components';
 import type { formProps } from '@/components'
 import { queryDetail } from './services'
 
