@@ -25,7 +25,7 @@ export const content = {
   },
   file: {
     ossUploadShow: '图片、文件上传是最常见的表单项，而在原有的封装中，一些比较常用的功能并不是很全面，如裁剪功能不能制定区域的裁剪，OSS功能要自己写，所以这里采用并不是 ProFormUploadDragger, 但也是基于 Ant Design 的 upload 进行封装',
-    maskFrom: '弹框和表格的结合'
+    maskFrom: '弹框(Modal)和表格(Form)的结合'
   }
 }
 

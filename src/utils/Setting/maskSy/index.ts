@@ -4,10 +4,10 @@
  */
 
 interface maskFromProps {
-  cancelText: string;
-  resetText: string;
-  submitText: string;
-  message: string;
+  cancelText: string; // 取消按钮文字
+  resetText: string; // 取消按钮文字
+  submitText: string; // 取消按钮文字
+  message: string;// 取消按钮文字
 }
 
 interface MaskProps {
