@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import { message, Switch } from 'antd';
 import { Table } from '@/components';
 import type { formProps, tableListProps } from '@/components'
+import { InfoCircleOutlined } from '@ant-design/icons';
+
 import { queryTable } from './services'
+import './mock.less'
 
 const Mock: React.FC<any> = () => {
   const [ref, setRef] = useState<any>(false);
+  const [openSearch, setOpenSearch] = useState<boolean>(true)
+  const [openPagination, setOpenPagination] = useState<boolean>(true)
+  const [openOptions, setOpenOptions] = useState<boolean>(true)
 
   const columns: tableListProps[] = [
     {
@@ -15,28 +21,32 @@ const Mock: React.FC<any> = () => {
     },
     {
       title: '姓名',
+      hideInSearch: true,
       dataIndex: 'name',
-      valueType: 'textarea',
     },
     {
-      title: '家庭地址',
+      title: '地址',
+      hideInSearch: true,
       dataIndex: 'address',
     },
     {
-      title: '喜欢的颜色',
+      title: '颜色',
       dataIndex: 'color',
+      hideInSearch: true,
       render: (dome:any) => {
         return <p style={{ background: dome, width: 15, height: 15}}></p>
       }
     },
     {
-      title: '邮箱',
-      dataIndex: 'email',
+      title: '时间',
+      dataIndex: 'time',
+      hideInSearch: true,
     },
     {
       title: '状态',
       dataIndex: 'status',
       hideInForm: true,
+      hideInSearch: true,
       valueEnum: {
         0: { text: '关闭', status: 'Default' },
         1: { text: '运行中', status: 'Processing'},
@@ -121,12 +131,27 @@ const Mock: React.FC<any> = () => {
     // },
   ];
 
-  return  <Table
-  getRef={(ref) => setRef(ref)}
-  request={(params, sorter, filter) => queryTable({ ...params, sorter, filter })}
-  tableList={columns}
-  rowKey="key"
-/>
+  return <>
+    <div className="TableMockBasic">
+      <div className="TableMockBasic-title">是否开启：</div>
+      <div className="TableMockBasic-content">
+        <p>搜索<InfoCircleOutlined />：<Switch checked={openSearch} onChange={(e) => setOpenSearch(e)}/></p>
+        <p>分页器： <Switch checked={openPagination} onChange={(e) => setOpenPagination(e)}/></p>
+        <p>密度： <Switch checked={openOptions} onChange={(e) => setOpenOptions(e)}/></p>
+      </div>
+    </div>
+    <Table
+      headerTitle={'基础配置'}
+      tooltip={'包括搜索栏，密度，页脚的设置'}
+      search={openSearch ? undefined : false}
+      pagination={openPagination ? undefined : false}
+      getRef={(ref) => setRef(ref)}
+      options={openOptions ? undefined : false}
+      request={(params, sorter, filter) => queryTable({ ...params, sorter, filter })}
+      tableList={columns}
+      rowKey="key"
+    />
+  </>
 }
 
 

@@ -51,10 +51,10 @@ const Welcome: React.FC<any> = (props) => {
       dataIndex: 'status',
       hideInForm: true,
       valueEnum: {
-        0: { text: '关闭', status: 'Default' },
-        1: { text: '运行中', status: 'Processing'},
-        2: { text: '已上线', status: 'Success' },
-        3: { text: '异常', status: 'Error' },
+        0: { text: '入土', status: 'Default' },
+        1: { text: '健康', status: 'Processing'},
+        2: { text: '运动', status: 'Success' },
+        3: { text: '生病', status: 'Error' },
       },
     },
     {

@@ -1,6 +1,6 @@
 import commonSy from '../commonSy';
 import TableProps from './interface'
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, SearchOutlined, RedoOutlined, ExportOutlined } from '@ant-design/icons';
 
 /**
  * @module 全局表单部分
@@ -30,12 +30,12 @@ const tableSy: TableProps = {
     searchStyle: {},
     resetStyle: {},
     commonStyle: {},
-    searchPrefix: false,
-    resetPrefix: false,
+    searchPrefix: <SearchOutlined />, //如果不需要，false即可
+    resetPrefix: <RedoOutlined />, //如果不需要，false即可
     options: {
       export: {
         text: '导出',
-        prefix: false,
+        prefix: <ExportOutlined />, //如果不需要，false即可
         style: {}
       }
     }

@@ -486,7 +486,6 @@ export const tableAnchorList:AnchorLinkProps[] = [
 ]
 
 export const tableList:any = () => {
-  // Mock.mock('@name')
   const list = [
     {
       key: 0,
@@ -505,6 +504,7 @@ export const tableList:any = () => {
       color: Mock.mock('@color'),
       email: Mock.mock('@email'),
       time: Mock.mock(`@date('yyyy-MM-dd')`),
+      status: (i + 1) % 5 === 0 ? 0 : (i + 1) % 5 === 1 ? 1 : (i + 1) % 5 === 2 ? 3 : 2
     }]
   }
 

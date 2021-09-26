@@ -2,6 +2,8 @@
  * @module Table
  * @author Domesy
  *
+ * @param headerTitle 表格标题
+ * @param tooltip 表格提示语
  * @param search 搜索框的配置
  * @param pagination 分页器的配置
  * @param getRef 获取表格的Ref
@@ -15,7 +17,7 @@
  *
  * @param toolBar 数组的格式，接收React.ReactNode的形式。
  * @param method 方式 creat 新建 button 自定义按钮
- * @param create 新建按钮存在的对象
+* @param create 新建按钮存在的对象
  * @param button 新建按钮存在的对象
  * @param fieldRender 自定义，接收toolBarRender的参数，返回数组=>React.React.ReactNode
  *
