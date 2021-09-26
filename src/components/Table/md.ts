@@ -128,6 +128,7 @@
  * @param cancelShow 是否默认展开并去除展开收起按钮
  * @param labelWidth 名称的宽度 默认为 100（刚好是4字加一个提示符号和冒号）
  * @param options 自定义按钮配置
+ * @param layout 是否垂直 'horizontal' | 'vertical'
  *
  * @options下的参数 （返回一个数组）
  * @param method（在查询重置之后） 模式 export 导出 search 查询按钮 reset 重置按钮 button 自定义按钮

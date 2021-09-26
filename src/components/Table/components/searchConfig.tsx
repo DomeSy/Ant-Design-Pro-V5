@@ -6,9 +6,12 @@ import { SearchConfigProps } from '../interface';
 /**
  * @module 分页模块配置
  */
- const searchConfig = (search?: false | SearchConfigProps, FormRef?: any, actionRef?:any) => {
+ const searchConfig = (search?: false | SearchConfigProps, actionRef?:any) => {
   if ((typeof search === 'undefined' && tableSy.search.hidden) || typeof search === 'boolean')
     return false;
+
+  let searchProps = search
+  delete searchProps?.show
 
   // 搜索按钮配置
   const optionConfig = (searchConfig:any, formProps:any) => {
@@ -93,23 +96,17 @@ import { SearchConfigProps } from '../interface';
   }
 
   return {
-    collapsed: search?.cancelShow
-      ? false
-      : search?.show
-      ? !search.show
-      : tableSy.search.cancelShow
+    collapsed: search?.show ? undefined : tableSy.search.cancelShow
       ? !tableSy.search.cancelShow
       : !tableSy.search.show,
-    collapseRender: search?.cancelShow
-      ? () => <></>
-      : tableSy.search.cancelShow
+    collapseRender: search?.show ? undefined : tableSy.search.cancelShow
       ? () => <></>
       : undefined,
     labelWidth: search?.labelWidth ? search.labelWidth : 100,
     span: search?.span ? search.span : tableSy.search.span ? tableSy.search.span : undefined,
     layout: search?.layout ? search.layout : tableSy.search.vertical ? 'vertical' : undefined,
     optionRender: optionConfig,
-    ...search,
+    ...searchProps,
   };
 };
 

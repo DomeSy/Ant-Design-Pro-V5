@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { message, Switch } from 'antd';
+import { message, Switch, Tooltip } from 'antd';
 import { Table } from '@/components';
 import type { formProps, tableListProps } from '@/components'
 import { InfoCircleOutlined } from '@ant-design/icons';
@@ -7,11 +7,21 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { queryTable } from './services'
 import './mock.less'
 
+const searchInit = {
+  layout: false
+}
+
+const TextShow: React.FC<{text: string, title: string}> = ({text='', title='', children}) => {
+  return <p>{text} <Tooltip title={title}><InfoCircleOutlined /></Tooltip> : {children}</p>
+}
+
 const Mock: React.FC<any> = () => {
   const [ref, setRef] = useState<any>(false);
   const [openSearch, setOpenSearch] = useState<boolean>(true)
   const [openPagination, setOpenPagination] = useState<boolean>(true)
   const [openOptions, setOpenOptions] = useState<boolean>(true)
+
+  const [searchConfig, setSearchConfig] = useState<any>(searchInit)
 
   const columns: tableListProps[] = [
     {
@@ -21,17 +31,14 @@ const Mock: React.FC<any> = () => {
     },
     {
       title: '姓名',
-      hideInSearch: true,
       dataIndex: 'name',
     },
     {
       title: '地址',
-      hideInSearch: true,
       dataIndex: 'address',
     },
     {
       title: '颜色',
-      dataIndex: 'color',
       hideInSearch: true,
       render: (dome:any) => {
         return <p style={{ background: dome, width: 15, height: 15}}></p>
@@ -40,7 +47,6 @@ const Mock: React.FC<any> = () => {
     {
       title: '时间',
       dataIndex: 'time',
-      hideInSearch: true,
     },
     {
       title: '状态',
@@ -135,15 +141,28 @@ const Mock: React.FC<any> = () => {
     <div className="TableMockBasic">
       <div className="TableMockBasic-title">是否开启：</div>
       <div className="TableMockBasic-content">
-        <p>搜索<InfoCircleOutlined />：<Switch checked={openSearch} onChange={(e) => setOpenSearch(e)}/></p>
-        <p>分页器： <Switch checked={openPagination} onChange={(e) => setOpenPagination(e)}/></p>
-        <p>密度： <Switch checked={openOptions} onChange={(e) => setOpenOptions(e)}/></p>
+        <TextShow text={'搜索'} title="search={false}" >
+          <Switch checked={openSearch} onChange={(e) => setOpenSearch(e)}/>
+        </TextShow>
+        <TextShow text={'分页器'} title="pagination={false}" >
+          <Switch checked={openPagination} onChange={(e) => setOpenPagination(e)}/>
+        </TextShow>
+        <TextShow text={'密度'} title="options={false}" >
+          <Switch checked={openOptions} onChange={(e) => setOpenOptions(e)}/>
+        </TextShow>
       </div>
+      <div className="TableMockBasic-title">搜索配置 <Tooltip title="search下的属性"><InfoCircleOutlined /></Tooltip> ：</div>
+      <TextShow text={'是否垂直'} title="layout: 'vertical' | 'horizontal'" >
+        <Switch checked={searchConfig.layout} onChange={(e) => setSearchConfig({...searchConfig, layout: e})}/>
+      </TextShow>
     </div>
     <Table
       headerTitle={'基础配置'}
       tooltip={'包括搜索栏，密度，页脚的设置'}
-      search={openSearch ? undefined : false}
+      search={openSearch ? {
+        layout: searchConfig.layout ? 'vertical' : 'horizontal',
+        show: true
+      } : false}
       pagination={openPagination ? undefined : false}
       getRef={(ref) => setRef(ref)}
       options={openOptions ? undefined : false}

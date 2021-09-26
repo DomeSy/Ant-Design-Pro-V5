@@ -566,7 +566,7 @@ const Table: React.FC<Props> = ({
           return result
         }}
         columns={list}
-        search={searchConfig(search, FormRef, actionRef)}
+        search={searchConfig(search, actionRef)}
         pagination={paginationConfig(pagination)}
       />
       {

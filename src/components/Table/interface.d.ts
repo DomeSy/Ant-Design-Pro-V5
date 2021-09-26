@@ -15,7 +15,6 @@ export interface TableListProps {
 export interface SearchConfigProps extends BaseQueryFilterProps {
   filterType?: 'query' | 'light';
   show?: boolean;
-  cancelShow?: boolean;
   layout?: 'horizontal' | 'vertical';
   cancel?: boolean;
   searchProps?: ButtonProps;
