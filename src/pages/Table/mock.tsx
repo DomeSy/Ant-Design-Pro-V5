@@ -156,6 +156,7 @@ const Mock: React.FC<any> = () => {
         <Switch checked={searchConfig.layout} onChange={(e) => setSearchConfig({...searchConfig, layout: e})}/>
       </TextShow>
     </div>
+
     <Table
       headerTitle={'基础配置'}
       tooltip={'包括搜索栏，密度，页脚的设置'}
