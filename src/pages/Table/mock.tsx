@@ -151,7 +151,7 @@ const Mock: React.FC<any> = () => {
           <Switch checked={openOptions} onChange={(e) => setOpenOptions(e)}/>
         </TextShow>
       </div>
-      <div className="TableMockBasic-title">搜索配置 <Tooltip title="search下的属性"><InfoCircleOutlined /></Tooltip> ：</div>
+      <div className="TableMockBasic-title">搜索配置 <Tooltip title="search下的属性，搜索时只有id有效"><InfoCircleOutlined /></Tooltip> ：</div>
       <TextShow text={'是否垂直'} title="layout: 'vertical' | 'horizontal'" >
         <Switch checked={searchConfig.layout} onChange={(e) => setSearchConfig({...searchConfig, layout: e})}/>
       </TextShow>
