@@ -112,6 +112,8 @@ import { SearchConfigProps } from '../interface';
     }
   }
 
+
+
   return {
     ...collapsedConfig(),
     labelWidth: search?.labelWidth ? search.labelWidth : 100,

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { message, Switch, Tooltip } from 'antd';
+import React, { useState, useMemo } from 'react';
+import { message, Switch, Tooltip, Input } from 'antd';
 import { Table } from '@/components';
 import type { formProps, tableListProps } from '@/components'
 import { InfoCircleOutlined } from '@ant-design/icons';
@@ -8,20 +8,29 @@ import { queryTable } from './services'
 import './mock.less'
 
 const searchInit = {
-  layout: false
+  show: false,
+  layout: false,
+  with: 100,
+  span: 8
+}
+const paginationInit = {
+  jump: false,
 }
 
 const TextShow: React.FC<{text: string, title: string}> = ({text='', title='', children}) => {
-  return <p>{text} <Tooltip title={title}><InfoCircleOutlined /></Tooltip> : {children}</p>
+  return <div>{text} <Tooltip title={title}><InfoCircleOutlined /></Tooltip> : {children}</div>
 }
 
 const Mock: React.FC<any> = () => {
   const [ref, setRef] = useState<any>(false);
+  const [flag, setFlag] = useState<boolean>(true)
+
   const [openSearch, setOpenSearch] = useState<boolean>(true)
   const [openPagination, setOpenPagination] = useState<boolean>(true)
   const [openOptions, setOpenOptions] = useState<boolean>(true)
 
   const [searchConfig, setSearchConfig] = useState<any>(searchInit)
+  const [paginationConfig, setPaginationConfig] = useState<any>(paginationInit)
 
   const columns: tableListProps[] = [
     {
@@ -41,7 +50,7 @@ const Mock: React.FC<any> = () => {
       title: '颜色',
       hideInSearch: true,
       render: (dome:any) => {
-        return <p style={{ background: dome, width: 15, height: 15}}></p>
+        return <p style={{ background: dome.color, width: 15, height: 15}}></p>
       }
     },
     {
@@ -54,10 +63,10 @@ const Mock: React.FC<any> = () => {
       hideInForm: true,
       hideInSearch: true,
       valueEnum: {
-        0: { text: '关闭', status: 'Default' },
-        1: { text: '运行中', status: 'Processing'},
-        2: { text: '已上线', status: 'Success' },
-        3: { text: '异常', status: 'Error' },
+        0: { text: '仙去', status: 'Default' },
+        1: { text: '活着', status: 'Processing'},
+        2: { text: '开心', status: 'Success' },
+        3: { text: '生病', status: 'Error' },
       },
     },
     // {
@@ -154,28 +163,59 @@ const Mock: React.FC<any> = () => {
       <div className="TableMockBasic-title">搜索配置 <Tooltip title="search下的属性，搜索时只有id有效"><InfoCircleOutlined /></Tooltip> ：</div>
       <div className="TableMockBasic-content">
         <TextShow text={'是否有展开'} title="show: true (这里的show是与全局配置相反的)" >
-          <Switch checked={searchConfig.layout} onChange={(e) => setSearchConfig({...searchConfig, layout: e})}/>
+          <Switch checked={searchConfig.show} onChange={(e) => setSearchConfig({...searchConfig, show: e})}/>
         </TextShow>
         <TextShow text={'是否垂直'} title="layout: 'vertical' | 'horizontal'" >
-          <Switch checked={searchConfig.layout} onChange={(e) => setSearchConfig({...searchConfig, layout: e})}/>
+          <Switch checked={searchConfig.layout} onChange={(e) => {
+            setFlag(false)
+            setSearchConfig({...searchConfig, layout: e})
+            setTimeout(() => {
+              setFlag(true)
+            }, 100)
+          }}/>
+        </TextShow>
+        <TextShow text={'宽度'} title="labelWidth (默认为100))" >
+          <Input placeholder="请输入宽度"  defaultValue={100} onBlur={(e) => {
+            setFlag(false)
+            setSearchConfig({...searchConfig, width: e.target.value})
+            setTimeout(() => {
+              setFlag(true)
+            }, 100)
+          }}/>
+        </TextShow>
+        <TextShow text={'占格'} title="span (默认为8，与 响应式有关，区间为0~24))" >
+          <Input placeholder="请输入宽度"  defaultValue={8} onBlur={(e) => {
+            setFlag(false)
+            setSearchConfig({...searchConfig, span: Number(e.target.value)})
+            setTimeout(() => {
+              setFlag(true)
+            }, 100)
+          }}/>
         </TextShow>
       </div>
+      <div className="TableMockBasic-title">页脚配置 <Tooltip title="pagination下的属性"><InfoCircleOutlined /></Tooltip> ：</div>
+      《
     </div>
-
-    <Table
-      headerTitle={'基础配置'}
-      tooltip={'包括搜索栏，密度，页脚的设置'}
-      search={openSearch ? {
-        show: true,
-        layout: searchConfig.layout ? 'vertical' : 'horizontal',
-      } : false}
-      pagination={openPagination ? undefined : false}
-      getRef={(ref) => setRef(ref)}
-      options={openOptions ? undefined : false}
-      request={(params, sorter, filter) => queryTable({ ...params, sorter, filter })}
-      tableList={columns}
-      rowKey="key"
-    />
+    {
+      flag && <Table
+        headerTitle={'基础配置'}
+        tooltip={'包括搜索栏，密度，页脚的设置'}
+        search={openSearch ? {
+          show: searchConfig.show,
+          layout: searchConfig.layout ? 'vertical' : 'horizontal',
+          labelWidth: searchConfig.width,
+          span: searchConfig.span
+        } : false}
+        pagination={openPagination ? {
+          // showQuickJumper: true
+        } : false}
+        getRef={(ref) => setRef(ref)}
+        options={openOptions ? undefined : false}
+        request={(params, sorter, filter) => queryTable({ ...params, sorter, filter })}
+        tableList={columns}
+        rowKey="key"
+      />
+    }
   </>
 }
 
