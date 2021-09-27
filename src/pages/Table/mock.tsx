@@ -152,16 +152,21 @@ const Mock: React.FC<any> = () => {
         </TextShow>
       </div>
       <div className="TableMockBasic-title">搜索配置 <Tooltip title="search下的属性，搜索时只有id有效"><InfoCircleOutlined /></Tooltip> ：</div>
-      <TextShow text={'是否垂直'} title="layout: 'vertical' | 'horizontal'" >
-        <Switch checked={searchConfig.layout} onChange={(e) => setSearchConfig({...searchConfig, layout: e})}/>
-      </TextShow>
+      <div className="TableMockBasic-content">
+        <TextShow text={'是否有展开'} title="show: true (这里的show是与全局配置相反的)" >
+          <Switch checked={searchConfig.layout} onChange={(e) => setSearchConfig({...searchConfig, layout: e})}/>
+        </TextShow>
+        <TextShow text={'是否垂直'} title="layout: 'vertical' | 'horizontal'" >
+          <Switch checked={searchConfig.layout} onChange={(e) => setSearchConfig({...searchConfig, layout: e})}/>
+        </TextShow>
+      </div>
     </div>
 
     <Table
       headerTitle={'基础配置'}
       tooltip={'包括搜索栏，密度，页脚的设置'}
       search={openSearch ? {
-        show: false,
+        show: true,
         layout: searchConfig.layout ? 'vertical' : 'horizontal',
       } : false}
       pagination={openPagination ? undefined : false}

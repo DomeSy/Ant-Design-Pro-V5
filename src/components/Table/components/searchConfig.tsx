@@ -98,13 +98,22 @@ import { SearchConfigProps } from '../interface';
     return search
   }, [])
 
+  const collapsedConfig = () => {
+    if(tableSy.search.show){
+      return {
+        collapsed: search?.show ? true : false,
+        collapseRender: search?.show ? undefined : () => <></>,
+      }
+    }else{
+      return {
+        collapsed: search?.show ? false : true,
+        collapseRender:  search?.show ? () => <></> : undefined,
+      }
+    }
+  }
+
   return {
-    collapsed: search?.show ? undefined : tableSy.search.cancelShow
-      ? !tableSy.search.cancelShow
-      : !tableSy.search.show,
-    collapseRender: search?.show ? undefined : tableSy.search.cancelShow
-      ? () => <></>
-      : undefined,
+    ...collapsedConfig(),
     labelWidth: search?.labelWidth ? search.labelWidth : 100,
     span: search?.span ? search.span : tableSy.search.span ? tableSy.search.span : undefined,
     layout: search?.layout ? search.layout : tableSy.search.vertical ? 'vertical' : undefined,

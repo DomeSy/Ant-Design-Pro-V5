@@ -21,8 +21,7 @@ const tableSy: TableProps = {
   },
   search: {
     hidden: false,
-    show: false,
-    cancelShow: true,
+    show: true,
     searchText: '查询',
     resetText: '重置',
     vertical: false,

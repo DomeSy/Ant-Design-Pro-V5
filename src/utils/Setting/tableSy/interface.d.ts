@@ -10,8 +10,7 @@ interface SearchOptionsProps {
 }
 interface SearchProps {
   hidden: boolean; //是否影藏搜索框, 如果这个设置为true则其余设置均无用
-  show: boolean; //是否默认展开，默认 false 不展开
-  cancelShow: boolean; //取消展开收起样式，默认取消
+  show: boolean; //取消展开收起样式，默认取消
   searchText: string; //查询按钮文案
   resetText: string; //重置按钮文本
   vertical: boolean; //样式是否垂直 默认水平
