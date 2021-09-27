@@ -1,3 +1,4 @@
+import React, { useCallback } from 'react';
 import { tableSy } from '@/utils/Setting';
 import { Button, message } from 'antd';
 import { Method } from '@/utils';
@@ -9,9 +10,6 @@ import { SearchConfigProps } from '../interface';
  const searchConfig = (search?: false | SearchConfigProps, actionRef?:any) => {
   if ((typeof search === 'undefined' && tableSy.search.hidden) || typeof search === 'boolean')
     return false;
-
-  let searchProps = search
-  delete searchProps?.show
 
   // 搜索按钮配置
   const optionConfig = (searchConfig:any, formProps:any) => {
@@ -95,6 +93,11 @@ import { SearchConfigProps } from '../interface';
     return [ ...result]
   }
 
+  const configProps = useCallback(() => {
+    delete search?.show
+    return search
+  }, [])
+
   return {
     collapsed: search?.show ? undefined : tableSy.search.cancelShow
       ? !tableSy.search.cancelShow
@@ -106,7 +109,7 @@ import { SearchConfigProps } from '../interface';
     span: search?.span ? search.span : tableSy.search.span ? tableSy.search.span : undefined,
     layout: search?.layout ? search.layout : tableSy.search.vertical ? 'vertical' : undefined,
     optionRender: optionConfig,
-    ...searchProps,
+    ...configProps(),
   };
 };
 

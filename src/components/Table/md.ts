@@ -125,7 +125,6 @@
  * @param searchText 查询按钮文本，默认查询
  * @param resetText 重置按钮文本，默认重置
  * @param show 是否默认展开
- * @param cancelShow 是否默认展开并去除展开收起按钮
  * @param labelWidth 名称的宽度 默认为 100（刚好是4字加一个提示符号和冒号）
  * @param options 自定义按钮配置
  * @param layout 是否垂直 'horizontal' | 'vertical'

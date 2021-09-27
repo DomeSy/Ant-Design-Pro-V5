@@ -161,8 +161,8 @@ const Mock: React.FC<any> = () => {
       headerTitle={'基础配置'}
       tooltip={'包括搜索栏，密度，页脚的设置'}
       search={openSearch ? {
+        show: false,
         layout: searchConfig.layout ? 'vertical' : 'horizontal',
-        show: true
       } : false}
       pagination={openPagination ? undefined : false}
       getRef={(ref) => setRef(ref)}
