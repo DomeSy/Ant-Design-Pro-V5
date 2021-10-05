@@ -34,84 +34,64 @@ export const table:Props = {
   api: {
     id: 'Api',
     hrefTooltip: '更多Api，去官网',
-    href: 'https://ant-design.gitee.io/components/upload-cn/',
+    href: 'https://procomponents.ant.design/components/form',
   },
   apiList: [
     {
       type: 'table',
       tableList: [
         {
-          name: 'initFile',
+          name: 'headerTitle',
+          desc: '表格标题',
+          status: "string",
+        },
+        {
+          name: 'tooltip',
+          desc: '表格标题提示语',
+          status: "string",
+        },
+        {
+          name: 'getRef',
+          desc: '获取表格的ref',
+          status: "(ref:any) => void",
+        },
+        {
+          name: 'getFormRef',
+          desc: '获取表单的ref',
+          status: "(ref:any) => void",
+        },
+        {
+          name: 'request',
           desc: [
-            '默认文件',
-            '可以只传入地址',
-            '如果有其他属性可按 ant Design Upload 的模式传'
+            '获取 dataSource 的方法',
+            'request 会接收一个对象。对象中必须要有 data 和 success，如果需要手动分页 total 也是必需的。request 会接管 loading 的设置，同时在查询表单查询和 params 参数发生修改时重新执行。同时 查询表单的值和 params 参数也会带入'
           ],
-          status: "string[] | uploadFile[]",
+          status: "(params?: {pageSize,current},sort,filter) => {data,success,total}",
         },
         {
-          name: 'amount',
-          desc: '数量，可设置上传的数量',
-          status: "number",
-          default: '1'
-        },
-        {
-          name: 'getFiles',
+          name: 'tableList',
           desc: [
-            '获取文件，的方法，参数有两个',
-            '数组：返回上传文件的数组',
-            '状态：为 true 代表新增，为 false 代表删除'
+            '替换原有的 columns 属性，增加规则等额外属性',
+            '如果 columns 属性存在，则会替换 tableList 属性'
           ],
-          status: "(resultList: any[], flag?: boolean) => void",
+          status: 'tableListProps[]'
         },
         {
-          name: 'rules',
-          desc: '判断规则不可传入时的条件',
-          status: "rulesProps",
-        },
-        {
-          name: 'OSS',
+          name: 'rowKey',
+          desc: 'rowKey对应列表中的key,这个值其实就是列表的key，没有会报错，通常来说，后端返回列表的时候会有一个类似于key，id这样唯一的值做以区分，那么这个 rowKey 就是接口返回的key，id，因为通常而言这个key是一样的所以可以统一设置',
           global: true,
-          desc: '是否开启OSS上传',
-          status: "boolean",
-          default: 'false'
+          status: 'string',
+          default: 'key'
         },
         {
-          name: 'listType',
-          global: true,
-          desc: [
-            '上传的类型',
-            'listType 为 picture-card 只能支持图片， 其他文件格式不支持',
-            'listType为其他值时，出照片格式外，不应该预览'
-          ],
-          status: "text | picture | picture-card",
-          default: 'false'
+          name: 'search',
+          desc: '搜索框的配置',
+          status: 'searchProps',
         },
         {
-          name: 'crop',
-          desc: '是否开启裁剪功能',
-          status: "boolean",
-          default: 'false'
-        },
-        {
-          name: 'cropConfig',
-          desc: '裁剪功能的默认配置项',
-          status: "cropConfigProps",
-        },
-        {
-          name: 'button',
-          desc: "当type 为 'text' ’picture' 继承button的属性，如果children不存在时",
-          status: "ButtonProps(按钮属性)",
-        },
-        {
-          name: 'children',
-          desc: "当type 为 'text' ’picture' 可自定义样式",
-          status: "React.ReactNode",
-        },
-        {
-          name: '_config',
-          desc: "额外配置选项",
-          status: "ConfigProps",
+          name: 'pagination',
+          desc: '分页器的配置',
+          status: 'paginationProps',
         }
       ]
     },
@@ -119,36 +99,92 @@ export const table:Props = {
       type: 'title',
       id: 'Api1',
       effect: 4,
-      render: 'rules 的 rulesProps 属性'
+      render: 'tableList 的 tableListProps 属性'
     },
     {
       type: 'table',
       tableList: [
         {
+          name: 'initialValue',
+          desc: '初始值',
+          status: "any",
+        },
+        {
           name: 'type',
           desc: [
-            '限制传输文件的类型',
-            '当只有一个的时候直接输入即可，如 png',
-            "当有多个限制传输的时候，以数组的形式传输，如：['png', 'jpeg']"
+            '不同的 type 对应不同的类型，目前设有 date 和 tool',
+            '其中类型为 tool 的代表 编辑，删除，状态，和自定义',
           ],
-          status: "string | string[]",
+          status: " date | tools",
         },
         {
-          name: 'typeMsg',
-          desc: '不符合文件类型的提示语',
+          name: 'method',
+          desc: 'type下的分类',
           status: "string",
-          default: '请上传正确的文件类型'
         },
         {
-          name: 'size',
-          desc: '文件的类型大小, 单位为M',
-          status: 'number',
+          name: 'title',
+          desc: '表格的标题',
+          status: 'ReactNode',
         },
         {
-          name: 'sizeMsg',
-          desc: '文件大小失效的提示语',
+          name: 'tooltip',
+          desc: '提示语',
+          status: 'string',
+        },
+        {
+          name: 'title',
+          desc: '表格的标题',
+          status: 'ReactNode',
+        },
+        {
+          name: 'ellipsis',
+          desc: '是否自动缩略',
+          status: 'boolean',
+        },
+        {
+          name: 'copyable',
+          desc: '是否支持复制',
+          status: 'boolean',
+        },
+        {
+          name: 'readonly',
+          desc: '是否只读',
+          status: 'boolean',
+          default: 'false'
+        },
+        {
+          name: 'hideInSearch',
+          desc: '在搜索框内不查询',
+          status: 'boolean',
+        },
+        {
+          name: 'hideInTable',
+          desc: '在 Table 中不展示此列',
+          status: 'boolean',
+        },
+        {
+          name: 'required',
+          desc: '只有是否必填，加入必填',
+          status: "boolean",
+          default: 'false'
+        },
+        {
+          name: 'rules',
+          desc: '设置规则，disabled设置为true，规则不生效，接收一个数组，按照原本的参数传递，并在此基础上做了些方便的功能，如果想使用原本参数的形式，可适用 rulesRender',
+          status: 'Array',
+        },
+        {
+          name: 'message',
+          desc: '只必填时的消息提示',
           status: "string",
-          default: '上传文件大于${rules.size}M!请重新上传'
+          default: '标题+为必填项'
+        },
+        {
+          name: 'noRequired',
+          desc: '在很少的情况下，不需要规则必填，但填必须按照规则去填,可以按此规则 ',
+          status: "boolean",
+          default: 'false'
         },
       ]
     },
@@ -156,251 +192,76 @@ export const table:Props = {
       type: 'title',
       effect: 4,
       id: 'Api2',
-      render: 'cropConfig 的 cropConfigProps 属性'
+      render: 'search 的 searchProps 属性'
     },
     {
       type: 'table',
       tableList: [
         {
-          name: 'title',
-          desc: '弹出框的标题',
+          name: 'searchText',
+          desc: '查询按钮文本',
           status: "string",
-          default: '图片裁剪',
+          default: '查询',
           global: true
         },
         {
-          name: 'cropText',
-          desc: '裁剪按钮',
+          name: 'resetText',
+          desc: '重置按钮',
           status: "string",
-          default: '裁剪',
+          default: '重置',
           global: true
         },
         {
-          name: 'cancelText',
-          desc: '取消按钮',
+          name: 'labelWidth',
+          desc: '名称的宽度（刚好是4字加一个提示符号和冒号）',
+          status: "number",
+          default: '100',
+        },
+        {
+          name: 'layout',
+          desc: '是否垂直',
+          status: "'horizontal' | 'vertical'",
+          default: 'horizontal',
+        },
+        {
+          name: 'resetText',
+          desc: '重置按钮',
           status: "string",
-          default: '取消',
+          default: '重置',
           global: true
         },
-        {
-          name: 'cropProps',
-          desc: '裁剪按钮属性',
-          status: "ButtonProps按钮属性",
-        },
-        {
-          name: 'cancelProps',
-          desc: '取消按钮',
-          status: "ButtonProps按钮属性",
-        },
-        {
-          name: 'cropStyle',
-          desc: '裁剪按钮样式',
-          status: "React.CSSProperties",
-          global: true
-        },
-        {
-          name: 'cancelStyle',
-          desc: '取消按钮样式',
-          status: "React.CSSProperties",
-          global: true
-        }
+
       ]
     },
     {
       type: 'title',
       effect: 4,
       id: 'Api3',
-      render: '_config 的 ConfigProps 属性'
+      render: 'pagination 的 paginationProps 属性'
     },
     {
       type: 'table',
       tableList: [
         {
-          name: 'noCheck',
-          desc: '是否检测有同一张图片',
+          name: 'showQuickJumper',
+          desc: '是否加入跳转元素',
+          mark: '当数据只有一页时, 不显示',
           status: "boolean",
-          default: 'false'
+          global: true
         },
         {
-          name: 'radio',
-          desc: [
-            '是否允许单选上传图片',
-            '如果是一张则是单选，多张的话是允许多选'
-          ],
-          status: "boolean",
-          default: 'false'
-        },
-        {
-          name: 'text',
-          global: true,
-          desc: '	上传文字的字样',
-          status: "Upload",
-        },
-        {
-          name: 'uploadNode',
-          desc: '自定义upload样式',
-          status: "Function | React.ReactNode",
-        },
-        {
-          name: 'ossUrl',
-          desc: '上传完图片，统一前缀 ',
-          status: "string",
-          default: 'web/domesy/images/',
-        },
-        {
-          name: 'ossText',
-          desc: [
-            '上传完图片，oss地址最后的后缀',
-            '无论是否有这个属性，都会加上时间戳'
-          ],
-          status: "string",
-        },
-        {
-          name: 'pictureCardTip',
-          desc: 'listType为picture-card时上传其他模式时的提示语',
-          status: "string",
-          default: '请上传正确的图片类型！'
-        },
-      ]
-    },
-    {
-      type: 'title',
-      effect: 4,
-      id: 'Api4',
-      render: 'initFile 的 uploadFile 属性'
-    },
-    {
-      type: 'table',
-      tableList: [
-        {
-          name: 'name',
-          desc: '文件名',
-          status: "string",
-        },
-        {
-          name: 'url',
-          desc: '下载地址',
+          name: 'pageSize',
+          desc: '每行页数',
           status: "number",
+          default: '10',
+          global: true
         },
         {
-          name: 'percent',
-          desc: '	上传进度',
-          status: "number",
-        },
-        {
-          name: 'uid',
-          desc: '唯一标识符，不设置时会自动生成',
-          status: "number",
-        },
-        {
-          name: 'status',
-          desc: '上传状态，不同状态展示颜色也会有所不同',
-          status: "error | success | done | uploading | removed",
-        },
-        {
-          name: 'thumbUrl',
-          desc: '缩略图地址',
-          status: "string",
-        },
-      ]
-    },
-    {
-      type: 'title',
-      id: 'ApiGlobal',
-      render: '全局配置属性'
-    },
-    {
-      render: '当我们需要用到此组件，通常是更具项目需求来的，所以这时我们需要全局控制这些属性，方便开发，文件位置在 utils/Setting/OssUpLoadSy 这个文件设置',
-      red: true
-    },
-    {
-      type: 'table',
-      tableList: [
-        {
-          name: 'OSS.region',
-          global: true,
-          desc: '源地址（OSS相关配置）',
-          status: "string",
-        },
-        {
-          name: 'OSS.accessKeyId',
-          global: true,
-          desc: '接口验权时掉的，需要从阿里云官网控制台获取 (OSS相关配置)',
-          status: "string",
-        },
-        {
-          name: 'OSS.accessKeySecret',
-          global: true,
-          desc: '	接口验权时掉的，需要从阿里云官网控制台获取 (OSS相关配置)',
-          status: "string",
-        },
-        {
-          name: 'OSS.bucket',
-          desc: '名称,具备唯一性(OSS相关配置)',
-          global: true,
-          status: "string",
-        },
-        {
-          name: 'open',
-          desc: '是否开启OSS模式',
-          status: "boolean",
-          global: true,
-          default: 'false'
-        },
-        {
-          name: 'listType',
-          desc: '三种文件的格式，建议不要去改动',
-          global: true,
-          status: "'text' | 'picture' | 'picture-card'",
-          default: 'picture-card'
-        },
-        {
-          name: 'OssUrl',
-          desc: 'Oss 后面的统一路径名',
-          global: true,
-          status: "string",
-          default: 'picture-card'
-        },
-        {
-          name: '_config.text',
-          desc: '全局统一配置为上传时的文字字样',
-          status: "string",
-          global: true,
-          default: '全局统一配置为上传时的文字字样'
-        },
-        {
-          name: 'crop.title',
-          desc: '弹出框标题',
-          status: "string",
-          global: true,
-          default: '图片裁剪'
-        },
-        {
-          name: 'crop.cropText',
-          desc: '裁剪时的文字',
-          status: "string",
-          global: true,
-          default: '裁剪'
-        },
-        {
-          name: 'crop.cancelText',
-          desc: '取消时的文字',
-          status: "string",
-          global: true,
-          default: '取消'
-        },
-        {
-          name: 'crop.cropStyle',
-          desc: '裁剪按钮的样式',
-          status: "React.CSSProperties",
-          global: true,
-        },
-        {
-          name: 'crop.cancelStyle',
-          desc: '取消按钮的样式',
-          status: "React.CSSProperties",
-          global: true,
-        },
+          name: 'size',
+          desc: '分页器大小',
+          status: "small | default",
+          default: 'small',
+        }
       ]
     },
   ],
@@ -486,14 +347,6 @@ export const tableAnchorList:AnchorLinkProps[] = [
 ]
 
 export const tableList:any = () => {
-  const list = [
-    {
-      key: 0,
-      name: 'Domesy',
-      tel: 1796369321,
-      address: 'asdasd1',
-    }
-  ]
   let data:any = []
   for(let i = 0; i < 100; i++){
     data = [...data, {

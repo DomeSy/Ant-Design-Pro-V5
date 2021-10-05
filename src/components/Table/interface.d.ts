@@ -148,7 +148,7 @@ interface ToolBar {
 }
 interface Props extends ProTableProps<TableListProps, ParamsType> {
   getFormRef?: (ref: any) => void;
-  getRef?: (ref: Object<ActionType>) => void;
+  getRef?: (ref: any) => void;
   tableList?: tableListProps[];
   search?: false | SearchConfigProps;
   pagination?: false | PaginationConfigProps;

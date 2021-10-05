@@ -11,9 +11,7 @@ const paginationConfig = (pagination?: false | PaginationConfigProps) => {
     return false;
 
   return {
-    showQuickJumper: pagination?.showQuickJumper
-      ? pagination.showQuickJumper
-      : tableSy.pagination.jump,
+    showQuickJumper: tableSy.pagination.jump,
     pageSize: pagination?.pageSize ? pagination.pageSize : tableSy.pagination.pageSize,
     size: pagination?.size ? pagination.size : tableSy.pagination.size,
     ...pagination,
