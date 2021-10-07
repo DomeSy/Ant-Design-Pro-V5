@@ -92,6 +92,11 @@ export const table:Props = {
           name: 'pagination',
           desc: '分页器的配置',
           status: 'paginationProps',
+        },
+        {
+          name: 'options',
+          desc: '配置栏属性',
+          status: 'optionsProps',
         }
       ]
     },
@@ -213,7 +218,8 @@ export const table:Props = {
         },
         {
           name: 'labelWidth',
-          desc: '名称的宽度（刚好是4字加一个提示符号和冒号）',
+          desc: '名称的宽度',
+          mark: '刚好是4字加一个提示符号和冒号',
           status: "number",
           default: '100',
         },
@@ -262,6 +268,41 @@ export const table:Props = {
           status: "small | default",
           default: 'small',
         }
+      ]
+    },
+    {
+      type: 'title',
+      effect: 4,
+      id: 'Api4',
+      render: 'options 的 optionsProps 属性'
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'reload',
+          desc: '刷新',
+          status: "boolean",
+          global: true
+        },
+        {
+          name: 'density',
+          desc: '密度',
+          status: "boolean",
+          global: true
+        },
+        {
+          name: 'setting',
+          desc: '列设置',
+          status: "boolean",
+          global: true
+        },
+        {
+          name: 'fullScreen',
+          desc: '全屏',
+          status: "boolean",
+          global: true
+        },
       ]
     },
   ],

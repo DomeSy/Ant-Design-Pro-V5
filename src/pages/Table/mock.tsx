@@ -216,7 +216,7 @@ const Mock: React.FC<any> = () => {
           }}/>
         </TextShow>
       </div>
-      <div className="TableMockBasic-title">配置栏 <Tooltip title="pagination下的属性"><InfoCircleOutlined /></Tooltip> ：</div>
+      <div className="TableMockBasic-title">配置栏 <Tooltip title="options下的属性"><InfoCircleOutlined /></Tooltip> ：</div>
       <div className="TableMockBasic-content">
         <TextShow text={'刷新'} title="reload: true" >
           <Switch checked={optionsConfig.reload} onChange={(e) => setOptionsConfig({...optionsConfig, reload: e})}/>
