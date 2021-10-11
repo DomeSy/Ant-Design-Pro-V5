@@ -223,7 +223,7 @@ const Hook: React.FC<any> = ({children, ...props}) => {
             {
               component: <MockTool />,
               title: '操作配置',
-              id: 'code1',
+              id: 'code2',
               content: <div>
                 <p>操作配置我们主要分为表格的编辑、启/禁用、删除，搜索的新建，搜索框的导出，和自定义配置</p>
                 <p>我们只需要配置引用对应的接口，结合弹出表单的参数就能轻易完成效果，减少开发时间（其中编辑和新建可跳转页面）</p>

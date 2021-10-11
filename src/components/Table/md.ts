@@ -19,7 +19,7 @@
  *
  * @param toolBar 数组的格式，接收React.ReactNode的形式。
  * @param method 方式 creat 新建 button 自定义按钮
-* @param create 新建按钮存在的对象
+ * @param create 新建按钮存在的对象
  * @param button 新建按钮存在的对象
  * @param fieldRender 自定义，接收toolBarRender的参数，返回数组=>React.React.ReactNode
  *
@@ -27,7 +27,6 @@
  * @param go 跳转页面的路径
  * @param payload 跳转页面所需的参数
  * @param text 新建按钮的文字， 默认 新建
- * @param title 对应Button的相关属性
  * @param maskFrom 对应 Mask.From组件的全部属性，具体的请参照对应的文档
  * @param from 对应 From组件的全部属性，具体的请参照对应的文档
  * @param formList 对应from表单的list属性
@@ -65,8 +64,8 @@
  * @state下的参数 以启用禁用为例
  * @param openText 启用时的文字，默认启用
  * @param closeText 禁止时的文字，默认禁止
- * @param title 删除提示框的提示语，默认 你确定要禁用（启用）吗
- * @param okText 删除上提示框的确定文字，默认确定
+ * @param title 提示框的提示语，默认 你确定要禁用（启用）吗
+ * @param okText 提示框的确定文字，默认确定
  * @param cancelText 删除上提示框的取消文字，默认取消
  * @param onState 接收当列的值，返回一个布尔值， 为true则代表启用状态，按钮为禁用，反之亦然
  * @param onEdit 编辑，编辑前的操作，返回一个对象，为 open 和 close 分别对应 启用时，和禁用的接口数据，返回的字符串给出提示，返回的对象作为onRequest的参数，否则没有任何操作
@@ -104,7 +103,7 @@
  * @param min 限定最少几个字符，可与max配合使用
  * @param max 限定最多几个字符，可与min配合使用
  * @param len 只限定几个字符能输入
- * @param method 简化开发设定常用的的值 具体有 'tel'：电话 'password'：密码 'name'：姓名 'card'：银行卡号 'sfz'：身份证 'emil'：邮箱 'telEmil'：电话+邮箱 'number': 数字 ‘numberZero': 非零数字 'numberFloat': 数字加浮点数（后两位）;
+ * @param method 简化开发设定常用的的值 具体有;
  *
  * @date下的config字段
  * @param add 当前日期的后几天，包含当天

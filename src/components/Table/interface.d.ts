@@ -53,7 +53,7 @@ export interface editTools extends createProps {
   style?: React.CSSProperties;
   onBeforeFiled?: any;
   onBeforeStart?: any;
-  onEdit?: (values: Object<any>, record: Object<any>) => void;
+  onEdit?: (values: Object, record: Object) => void;
 }
 export interface deleteTools {
   text?: string;
@@ -61,7 +61,7 @@ export interface deleteTools {
   cancelText?: string;
   message?: string;
   title?: string;
-  onEdit: (values: Object<any>) => void;
+  onEdit: (values: Object) => void;
   onSuccess?: (data: any) => void;
   onRequest: any;
   style?: React.CSSProperties;
@@ -72,8 +72,8 @@ export interface stateTools {
   okText?: string;
   cancelText?: string;
   title?: string;
-  onState: (values: Object<any>) => void;
-  onEdit: (values: Object<any>) => void;
+  onState: (values: Object) => void;
+  onEdit: (values: Object) => void;
   onSuccess?: (data: any, flag: boolean) => void;
   onRequest: any;
   onRequestClose?: any;
