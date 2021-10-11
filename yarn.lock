@@ -2,10 +2,18 @@
 # yarn lockfile v1
 
 
-"@ahooksjs/use-request@^2.0.0", "@ahooksjs/use-request@^2.8.10":
+"@ahooksjs/use-request@^2.0.0":
   version "2.8.10"
   resolved "https://registry.nlark.com/@ahooksjs/use-request/download/@ahooksjs/use-request-2.8.10.tgz#643ea1a3c025fc7d0ff6a41621f11c03eed9ac22"
   integrity sha1-ZD6ho8Al/H0P9qQWIfEcA+7ZrCI=
+  dependencies:
+    lodash.debounce "^4.0.8"
+    lodash.throttle "^4.1.1"
+
+"@ahooksjs/use-request@^2.8.12":
+  version "2.8.12"
+  resolved "https://registry.npmmirror.com/@ahooksjs/use-request/download/@ahooksjs/use-request-2.8.12.tgz#5234d5d7823d7759e87bd86f6ddbe40368090903"
+  integrity sha1-UjTV14I9d1noe9hvbdvkA2gJCQM=
   dependencies:
     lodash.debounce "^4.0.8"
     lodash.throttle "^4.1.1"
@@ -3385,12 +3393,12 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-ahooks@^2.10.9:
-  version "2.10.9"
-  resolved "https://registry.nlark.com/ahooks/download/ahooks-2.10.9.tgz#531fa1c11bfa1a2aa2697a051ac499147a3a7e0a"
-  integrity sha1-Ux+hwRv6GiqiaXoFGsSZFHo6fgo=
+ahooks@^2.10.11:
+  version "2.10.11"
+  resolved "https://registry.npmmirror.com/ahooks/download/ahooks-2.10.11.tgz?cache=0&sync_timestamp=1632485060837&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fahooks%2Fdownload%2Fahooks-2.10.11.tgz#167fb30909a63cdc3361e80fad5329fc498461fd"
+  integrity sha1-Fn+zCQmmPNwzYegPrVMp/EmEYf0=
   dependencies:
-    "@ahooksjs/use-request" "^2.8.10"
+    "@ahooksjs/use-request" "^2.8.12"
     "@types/js-cookie" "^2.2.6"
     dayjs "^1.9.1"
     intersection-observer "^0.7.0"
@@ -13879,7 +13887,7 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.nlark.com/regenerator-runtime/download/regenerator-runtime-0.11.1.tgz?cache=0&sync_timestamp=1626993001371&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fregenerator-runtime%2Fdownload%2Fregenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha1-vgWtf5v30i4Fb5cmzuUBf78Z4uk=
 
-regenerator-runtime@^0.13.2, regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.7:
+regenerator-runtime@^0.13.2, regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.7, regenerator-runtime@^0.13.9:
   version "0.13.9"
   resolved "https://registry.nlark.com/regenerator-runtime/download/regenerator-runtime-0.13.9.tgz?cache=0&sync_timestamp=1626993001371&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fregenerator-runtime%2Fdownload%2Fregenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
   integrity sha1-iSV0Kpj/2QgUmI11Zq0wyjsmO1I=
