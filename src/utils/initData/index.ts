@@ -14,12 +14,12 @@ const initData = async () => {
   const currentUser = await queryCurrentUser()
 
   // 动态路由：menuData接收的为路由的函数，为false时，不启动动态路由
-  // const menuData: MenuDataItem[] = await getMenuData()
+  // const menuData: {data: MenuDataItem[]} = await getMenuData()
 
   return {
     currentUser: currentUser,
     content: content,
-    // menuData: formatter(menuData), // 示例，动态路由
+    // menuData: formatter(menuData.data), // 示例，动态路由
     menuData: false,
     domesy:{
       layoutSy,

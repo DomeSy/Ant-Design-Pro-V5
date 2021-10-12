@@ -14,7 +14,7 @@ const Settings: LayoutSettings & {
   // menuRender: false, // 是否拥有菜单
   title: 'Domesy',
   pwa: false,
-  iconfontUrl: '',
+  iconfontUrl: '', //icon
 };
 
 export default Settings;
