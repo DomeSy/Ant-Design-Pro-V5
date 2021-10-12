@@ -48,9 +48,9 @@ const GlobalHeaderRight: React.FC = () => {
               value: 'Pro Layout',
             },
           ]}
-          // onSearch={value => {
-          //   console.log('input', value);
-          // }}
+          onSearch={value => {
+            console.log('input', value);
+          }}
         />
       }
       {

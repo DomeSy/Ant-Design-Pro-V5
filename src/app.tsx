@@ -1,6 +1,7 @@
 import { PageContainer, ProBreadcrumb, PageLoading } from '@ant-design/pro-layout';
 import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
 import { history, useModel, KeepAlive } from 'umi';
+import "regenerator-runtime/runtime";
 import routes from '../config/routes';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';

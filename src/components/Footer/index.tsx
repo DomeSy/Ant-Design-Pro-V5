@@ -7,8 +7,8 @@ const Footer: React.FC = () => (
     copyright={`人生平凡无奇，才能在故事中做一场美梦。`}
     links={[
       {
-        key: 'JueJing',
-        title: '掘金',
+        key: 'YuQue',
+        title: '语雀',
         href: 'https://pro.ant.design',
         blankTarget: true,
       },
@@ -19,8 +19,8 @@ const Footer: React.FC = () => (
         blankTarget: true,
       },
       {
-        key: 'YuQue',
-        title: '语雀',
+        key: 'Gitee',
+        title: 'Gitee',
         href: 'https://ant.design',
         blankTarget: true,
       },
