@@ -123,11 +123,6 @@ export const table:Props = {
           status: " date | tools",
         },
         {
-          name: 'method',
-          desc: 'type下的分类',
-          status: "string",
-        },
-        {
           name: 'title',
           desc: '表格的标题',
           status: 'ReactNode',
@@ -136,11 +131,6 @@ export const table:Props = {
           name: 'tooltip',
           desc: '提示语',
           status: 'string',
-        },
-        {
-          name: 'title',
-          desc: '表格的标题',
-          status: 'ReactNode',
         },
         {
           name: 'ellipsis',
@@ -391,14 +381,6 @@ export const table:Props = {
           status: "'horizontal' | 'vertical'",
           default: 'horizontal',
         },
-        {
-          name: 'resetText',
-          desc: '重置按钮',
-          status: "string",
-          default: '重置',
-          global: true
-        },
-
       ]
     },
     {
@@ -814,18 +796,18 @@ export const table:Props = {
   explain: {
     id: 'explain',
     hrefTooltip: '封装不易，给个Star吧！',
-    href: 'https://github.com/DomeSy/Ant-Design-Pro-V5/tree/master/src/components/OssUpLoad'
+    href: 'https://github.com/DomeSy/Ant-Design-Pro-V5/tree/master/src/components/Table'
   },
   explainList: [
     {
       type: 'list',
       list: [
         {
-          render: `OSSUpload 替换 Ant Design Pro 上的 ProFormUploadDragger ProFormUploadButton，主要原因是裁剪的原因，目前并未配置裁剪框的属性`,
+          render: `Table 在原有的 ProTable中做了些对应的配置，就目前而言，还有很多配置没有配置，以后会陆续增加简洁的配置`,
           strong: true
         },
         {
-          render: `OSSUpload 在表单中，需要的属性是自定义，使用上必须通过 getFiles 来获取文件，然后做想关的操作 `,
+          render: `主要的是由工具类，对新建、编辑、状态、删除、导出及自定义做了些优化，如搜索栏的按钮都是重新通过自定义写的，加入对应的小图片，使界面更加美化一定，可以根据自己项目的需求作出一些调整`,
           strong: true
         }
       ]
