@@ -4,7 +4,6 @@ import { storageSy } from '@/utils/Setting'
 
 /**请求拦截 */
 export const requestInterceptors: any = (url: string, options: RequestInit) => {
-
   if (storageSy.token) {
     const token = `Bearer ` + localStorage.getItem(storageSy.token);
     options.headers = {

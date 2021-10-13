@@ -121,18 +121,18 @@ export default {
   'POST /api/login/account': async (req: Request, res: Response) => {
     const { password, username, type } = req.body;
     await waitTime(2000);
-    if (password === 'ant.design' && username === 'admin') {
+    if (password === 'domesy.pro' && username === 'domesy') {
       res.send({
         status: 'ok',
         code: 200,
         type,
         token: 'Bearer Domesy-Ant-Design-Pro',
-        currentAuthority: 'admin',
+        currentAuthority: 'domesy',
       });
-      access = 'admin';
+      access = 'domesy';
       return;
     }
-    if (password === 'ant.design' && username === 'user') {
+    if (password === 'domesy.pro' && username === 'user') {
       res.send({
         status: 'ok',
         type,

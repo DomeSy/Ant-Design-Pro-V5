@@ -109,7 +109,7 @@ const Login: React.FC = () => {
             }}
             submitter={{
               searchConfig: {
-                submitText: '登录1',
+                submitText: '登录',
               },
               render: (_, dom) => dom.pop(),
               submitButtonProps: {
@@ -130,7 +130,7 @@ const Login: React.FC = () => {
             </Tabs>
 
             {status === 'error' && loginType === 'account' && (
-              <LoginMessage content={'错误的用户名和密码（admin/ant.design)'} />
+              <LoginMessage content={'错误的用户名和密码（domesy/ant.design)'} />
             )}
             {type === 'account' && (
               <>
@@ -140,8 +140,8 @@ const Login: React.FC = () => {
                     size: 'large',
                     prefix: <UserOutlined className={styles.prefixIcon} />,
                   }}
-                  initialValue="admin"
-                  placeholder={'用户名: admin or user'}
+                  initialValue="domesy"
+                  placeholder={'用户名: domesy'}
                   rules={[
                     {
                       required: true,
@@ -155,8 +155,8 @@ const Login: React.FC = () => {
                     size: 'large',
                     prefix: <LockOutlined className={styles.prefixIcon} />,
                   }}
-                  initialValue="ant.design"
-                  placeholder={'密码: ant.design'}
+                  initialValue="domesy.pro"
+                  placeholder={'密码: domesy.pro'}
                   rules={[
                     {
                       required: true,
