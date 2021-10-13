@@ -11,8 +11,20 @@ const initInfoValue: Props = {
 export default function modelTest() {
 
   const [init, setInitValue] = useState(initInfoValue);
+  const [loading, setLoading] = useState(false);
 
-  const setInit = useCallback((res:any) => {
+  const waitTime = (time: number = 2000) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(true);
+      }, time);
+    });
+  };
+
+  const setInit = useCallback(async(res:any) => {
+    setLoading(true)
+    await waitTime()
+    setLoading(false)
     setInitValue({count: res})
   }, [init])
 
@@ -21,6 +33,7 @@ export default function modelTest() {
   }, [init])
 
   return {
+    loading,
     init,
     setAdd,
     setInit

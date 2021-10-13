@@ -4,6 +4,7 @@ import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
 import { Button, OssUpLoad, Form, PageLayout, Table, Mask } from '@/components';
 import type { formProps, tableListProps } from '@/components'
 import { queryRule } from './services'
+import { useModel, useRequest } from 'umi';
 import MultiCascader from "antd-multi-cascader";
 import "antd-multi-cascader/dist/index.css";
 const { Option } = Select;
@@ -17,6 +18,13 @@ const waitTime = (time: number = 100) => {
 };
 
 const Welcome: React.FC<any> = (props) => {
+  const { initialState } = useModel('@@initialState',(ret) => {
+    console.log(ret)
+    return {
+      initialState: ret.initialState
+    }
+  });
+
   const [maskFormRef, setMaskFormRef] = useState<any>(false);
   const [maskVisible, setMaskVisible] = useState<boolean>(false);
   useEffect(() => {

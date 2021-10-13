@@ -18,11 +18,11 @@ const Mock: React.FC<any> = () => {
 };
 
 export const MockModel: React.FC<any> = () => {
-  const { init, setInit, setAdd } = useModel('test.modelTest');
+  const { init, setInit, setAdd, loading } = useModel('test.modelTest');
 
   return <div>
     <div style={{ marginBottom: 14 }}> count 对应的值{init.count}</div>
-    <Button style={{ marginBottom: 18 }} type='primary' onClick={() => setInit(5)} >设置count为5</Button>
+    <Button loading={loading} style={{ marginBottom: 18 }} type='primary' onClick={() => setInit(5)} >设置count为5</Button>
     <br />
     <Button type='primary' onClick={() => setAdd(init.count)} >累加1</Button>
   </div>

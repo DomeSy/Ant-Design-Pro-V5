@@ -45,18 +45,18 @@ const Index: React.FC<any> = (props) => {
             {
               title: '自定义Model',
               component: <MockModel />,
-              content: '着这里暴露了一个值(init)，和两个方法: 设置初始值（setInit）累加值（setAdd）',
+              content: '着这里暴露了一个值(init)，和两个方法: 设置初始值（setInit）累加值（setAdd），设置初始值会有2s的延迟',
               code: `
   import React from 'react';
   import { useModel } from 'umi';
   import { Button } from 'antd';
 
   const MockModel: React.FC<any> = () => {
-    const { init, setInit, setAdd } = useModel('test.modelTest');
+    const { init, setInit, setAdd, loading } = useModel('test.modelTest');
 
     return <div>
       <div style={{ marginBottom: 14 }}> count 对应的值{init.count}</div>
-      <Button style={{ marginBottom: 18 }} type='primary' onClick={() => setInit(5)} >设置count为5</Button>
+      <Button loading={loading} style={{ marginBottom: 18 }} type='primary' onClick={() => setInit(5)} >设置count为5</Button>
       <br />
       <Button type='primary' onClick={() => setAdd(init.count)} >累加1</Button>
     </div>
