@@ -11,6 +11,7 @@ interface OssUpLoadProps {
     accessKeySecret: string,
     bucket: string,
   };
+  amount: number; // 限制张数
   open: boolean; //是否开启OSS
   listType: 'text' | 'picture' | 'picture-card';// 类型
   OssUrl: string; // OSS上传后统一的路径
@@ -33,6 +34,7 @@ const OssUpLoadSy: OssUpLoadProps = {
     accessKeySecret: 'otIM3G2WhGxdfbpxBDBB9NtMj2yVQ3',
     bucket: 'bmx-system',
   },
+  amount: 1,
   OssUrl: 'web/domesy/imgs',
   open: true,
   listType: 'picture-card',

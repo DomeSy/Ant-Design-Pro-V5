@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useModel } from 'umi';
 import { Button, message } from 'antd';
 

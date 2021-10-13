@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Upload, message, Modal, Button } from 'antd';
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { OssUpLoadSy } from '@/utils/Setting'
-import { useState, useRef,  } from 'react';
+import { useState, useRef } from 'react';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 import Props from './interface.d';
@@ -17,7 +17,7 @@ let client = new aliOSS({
 });
 
 const OssUpLoad: React.FC<Props> = ({
-  amount = 1,
+  amount = OssUpLoadSy.amount,
   OSS = OssUpLoadSy.open,
   rules = {},
   listType = OssUpLoadSy.listType,
@@ -40,7 +40,7 @@ const OssUpLoad: React.FC<Props> = ({
   const [previewTitle, setPreviewTitle] = useState<any>(''); // 图片名称
   const [previewImage, setPreviewImage] = useState<any>(''); // 图片展示的数据
   const [src, setSrc] = useState<any>(false) //裁剪图片
-  const [file, setFile] = useState<any>(false) //裁剪图片
+  const [file, setFile] = useState<any>(false)
 
   useEffect(() => {
     if(initFile.length !== 0){
