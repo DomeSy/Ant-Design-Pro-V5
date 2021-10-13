@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DetailSetting } from '@/commonPages'
 import { queryDetail } from './services'
-import Mock, { MockModel } from './mock'
+import Mock, { MockModel, MockModelRet } from './mock'
 import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
 
 const Index: React.FC<any> = (props) => {
@@ -46,6 +46,59 @@ const Index: React.FC<any> = (props) => {
               title: '自定义Model',
               component: <MockModel />,
               content: '着这里暴露了一个值(init)，和两个方法: 设置初始值（setInit）累加值（setAdd）',
+              code: `
+  import React from 'react';
+  import { useModel } from 'umi';
+  import { Button } from 'antd';
+
+  const MockModel: React.FC<any> = () => {
+    const { init, setInit, setAdd } = useModel('test.modelTest');
+
+    return <div>
+      <div style={{ marginBottom: 14 }}> count 对应的值{init.count}</div>
+      <Button style={{ marginBottom: 18 }} type='primary' onClick={() => setInit(5)} >设置count为5</Button>
+      <br />
+      <Button type='primary' onClick={() => setAdd(init.count)} >累加1</Button>
+    </div>
+  }
+
+  export default MockModel;
+
+  // src/models/test/modelTest.ts 文件下
+  import { useState, useCallback } from 'react';
+
+  interface Props {
+    count?: number
+  }
+
+  const initInfoValue: Props = {
+    count: 1,
+  }
+
+  export default function modelTest() {
+
+    const [init, setInitValue] = useState(initInfoValue);
+
+    const setInit = useCallback((res:any) => {
+      setInitValue({count: res})
+    }, [init])
+
+    const setAdd= useCallback((res:any) => {
+      setInitValue({ count: res +1})
+    }, [init])
+
+    return {
+      init,
+      setAdd,
+      setInit
+    };
+  }
+              `
+            },
+            {
+              title: '性能优化',
+              component: <MockModelRet />,
+              content: 'useModel 有一个可选的第二个参数，用于性能优化，你可以理解为，当需要这个方法就写入，不需要就不要，返回的值就是解析的值',
               code: `
   import React from 'react';
   import { useModel } from 'umi';

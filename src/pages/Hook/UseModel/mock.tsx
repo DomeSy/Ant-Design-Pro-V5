@@ -28,4 +28,18 @@ export const MockModel: React.FC<any> = () => {
   </div>
 }
 
+export const MockModelRet: React.FC<any> = () => {
+  const { init, setAdds } = useModel('test.modelTest', (ret) => {
+    return {
+      init: ret.init,
+      setAdds: ret.setAdd
+    }
+  });
+
+  return <div>
+    <div style={{ marginBottom: 14 }}> count 对应的值{init.count}</div>
+    <Button type='primary' onClick={() => setAdds(init.count)} >累加1</Button>
+  </div>
+}
+
 export default Mock;

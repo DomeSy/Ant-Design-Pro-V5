@@ -364,7 +364,6 @@ export const MockTool: React.FC<any> = () => {
     },
   ];
 
-
   return <Table
     headerTitle={'操作配置'}
     tooltip={'主要包括新增、删除、状态转化、编辑、导出、自定义功能'}

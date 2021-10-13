@@ -231,9 +231,9 @@ export const useModel:Props = {
     }
   ],
   attention: {
-    title: 'useImperativeHandle的使用',
-    href: '/hook/useImperativeHandle',
-    hrefTooltip: '去看dva的使用',
+    title: '注意事项',
+    // href: '/hook/useImperativeHandle',
+    // hrefTooltip: '去看dva的使用',
     children: [
       {
         render: '必须要在src下加入models文件夹',
