@@ -25,7 +25,7 @@ interface EllipsisProps {
   tooltip?: React.ReactNode;
 }
 export interface DetailListProps {
-  type?: 'title' | 'content' | 'divider' | 'list' | 'prv' | 'ellipsis' | 'table', // 标题 内容 分割线, 内容块, 可省略 默认为content
+  type?: 'title' | 'content' | 'divider' | 'list' | 'prv' | 'ellipsis' | 'table' | 'img', // 标题 内容 分割线, 内容块, 可省略 默认为content
   main?: boolean; //是否是主要的
   effect?: 3 | 4 | 5; //判断标题的名称
   id?: string, // 唯一索引，对应获取的id值

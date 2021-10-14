@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Typography, Tooltip, Divider } from 'antd';
+import React, { useEffect } from 'react';
+import { Typography, Tooltip, Divider, Image } from 'antd';
 import { Table } from '@/components';
 import type { formProps, tableListProps } from '@/components'
 import { InfoCircleOutlined, QuestionCircleOutlined, EditOutlined, SendOutlined } from '@ant-design/icons';
@@ -18,26 +18,6 @@ import { Jump } from '@/utils';
  * global: 是否可全局配置
  * mark：特需的备注
  */
-
-//  <DetailContent
-//  list={[
-//    {
-//      type: 'table',
-//      tableList: [
-//        {
-//          name: '名称',
-//          desc: <span>'我是一段话'<span>nihao1</span></span>,
-//          status: 'React.ReactNode',
-//          default: '1',
-//          global: true,
-//          href: 'https://www.baidu.com/',
-//          tooltip: '提示语',
-//          mark: '我是特殊的备注'
-//        }
-//      ]
-//    }
-//  ]}
-// />
 
 const DetailContent: React.FC<Props> = ({ list = [] }) => {
 
@@ -233,6 +213,12 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
             }
             </ul>
           </Typography.Paragraph>
+           : (item.type === 'img' && typeof item.render === 'string') ?
+           <Image
+              width={'100%'}
+              style={{...item.style}}
+              src={item.render}
+            />
            :
           <Typography.Paragraph style={{...item.style}}>
             { contentRender(item) }

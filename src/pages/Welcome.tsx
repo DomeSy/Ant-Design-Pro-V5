@@ -1,118 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { PageContainer } from '@ant-design/pro-layout';
-import { Card, Select, message, Col, Dropdown, Menu, Row } from 'antd';
-import { Button, OssUpLoad, Form, PageLayout, Table, Mask } from '@/components';
-import type { formProps, tableListProps } from '@/components'
-import { queryRule } from './services'
-import { useModel, useRequest } from 'umi';
-import MultiCascader from "antd-multi-cascader";
-import "antd-multi-cascader/dist/index.css";
-const { Option } = Select;
-
-const waitTime = (time: number = 100) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(true);
-    }, time);
-  });
-};
+import { Card } from 'antd';
+import { PageLayout } from '@/components';
+import { DetailSetting } from '@/commonPages'
+import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
+import type { AnchorLinkProps } from '@/components'
+import { queryDetail } from './services'
 
 const Welcome: React.FC<any> = (props) => {
-  const { initialState } = useModel('@@initialState',(ret) => {
-    console.log(ret)
-    return {
-      initialState: ret.initialState
-    }
-  });
 
-  const [maskFormRef, setMaskFormRef] = useState<any>(false);
-  const [maskVisible, setMaskVisible] = useState<boolean>(false);
+  const [detail, setDetail] = useState<DetailSettingListProps>({})
+  const [anchorList, setAnchorList] = useState<AnchorLinkProps[]>([])
+
   useEffect(() => {
-    setFile('http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg')
+    queryDetail({detail: 'welcome'}).then((res) => {
+      setAnchorList(res.anchorList)
+      setDetail({
+        ...res.list,
+      })
+    })
   }, []);
-  const [file, setFile] = useState<any>('');
-  const [ref, setRef] = useState<any>(false);
 
-  const list: formProps[] = [
-    {
-      name: 'field3',
-      label: '自定义',
-      type: 'field',
-      required: true,
-      fieldRender: (
-        <OssUpLoad
-          initFile={
-          [{ uid: 1, name: 'logo', url: 'http://bmx-system.oss-cn-shanghai.aliyuncs.com/web/domesy/images/1629963410227undefined.jpeg' }]}
-          getFiles={(file: Array<any>) => {
-            setFile(file[0]);
-          }}
-        />
-      ),
-    },
-    {
-      name: 'field31',
-      label: '自定义规则',
-    },
-  ];
-  const tab = [
-    {
-      tab: '基本信息',
-      key: 'base',
-    },
-    {
-      tab: '详细信息',
-      key: 'info',
-    },
-  ];
   return (
     <PageLayout
-      tab={tab}
+      content={'欢迎来到 Domesy 的博客，如果对大家有任何疑问，请联系微信 domesyPro ~'}
     >
-      <Card>
-        <Button onClick={() => {
-          setMaskVisible(true)
-        }}>测试</Button>
-        <Form
-          onFinish={(values: any) => {
-            message.success('打开控制台观看');
-          }}
-          formList={list}
-          _config={{
-            back: true
-          }}
-          fieldValues={[
-            {
-              name: 'field3',
-              value: file
-            }
-          ]}
-          getRef={(fromRef: any) => {
-            setRef(fromRef);
-          }}
-        />
+      <Card
+        title='前言'
+      >
+        <DetailSetting anchorList={anchorList} {...detail} />
       </Card>
-      <Mask.Form
-        title="批量编辑"
-        message={"编辑成功"}
-        visible={maskVisible}
-        onRequest={queryRule}
-        formList={list}
-        form={
-          {
-            fieldValues: [
-              {
-                name: 'field3',
-                value: file
-              }
-            ]
-          }
-        }
-        onCancel={() => setMaskVisible(false)}
-        onSubmit={() => setMaskVisible(false)}
-        onEdit={(value) => {
-          return value
-        }}
-      />
     </PageLayout>
   );
 };

@@ -1,3 +1,7 @@
+import { Request, Response } from 'express';
+import { resData } from './data';
+import { welcome, welcomeAnchorList } from './domesyMock'
+
 //路径
 //mock/menu.ts
 
@@ -9,7 +13,24 @@ export default {
       { name: 'PageLayout', component: '页面容器', desc: '对PageContainer进行封装'},
     ],
     total: 10
-  }
+  },
+  'POST /api/domesy/queryDetail': async (req: Request, res: Response) => {
+    const { detail } = req.query
+    if(detail === 'welcome') {
+      res.send(
+        resData({
+          list: welcome,
+          anchorList: welcomeAnchorList
+        }
+      ))
+      return
+    }
+    res.send({
+      code: 400,
+      detail,
+      message: '请输入参数'
+    })
+  },
 };
 
 
