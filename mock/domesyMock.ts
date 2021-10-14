@@ -89,7 +89,96 @@ export const welcome:Props = {
       render: 'https://user-images.githubusercontent.com/8186664/44953195-581e3d80-aec4-11e8-8dcb-54b9db38ec11.png',
       type: 'img'
     },
+    {
+      render: '相关技术栈',
+      id: 'about',
+      effect: 4,
+      type: 'title'
+    },
+    {
+      render: 'React',
+      id: 'React',
+      effect: 5,
+      type: 'title',
+      href: 'https://react.docschina.org/?no-cache=1',
+      hrefTooltip: 'React文档'
+    },
+    {
+      render: '如果你对它还不了解，请查看：React文档，它是学习该教程的前提。学过Vue的小伙伴，有的反馈说，它比较难上手，不如Vue简单高效。其实这点我个人观点是不同意的，Vue适合小型项目，代码复用低的情况。',
+    },
+    {
+      render: 'React难归难，但是一旦上手，便爱不释手。',
+      strong: true
+    },
+    {
+      render: 'dva',
+      id: 'dva',
+      effect: 5,
+      type: 'title',
+      href: 'https://dvajs.com/',
+      hrefTooltip: 'dva文档'
+    },
+    {
+      render: 'dva 首先是一个基于 redux 和 redux-saga 的数据流方案，然后为了简化开发体验，dva 还额外内置了 react-router 和 fetch，所以也可以理解为一个轻量级的应用框架。',
+    },
+    {
+      render: '简单的说，Dva是在Mobx和Redux基础上的高度封装，使用更简单高效。',
+      strong: true
+    },
+    {
+      render: 'Umi@3',
+      id: 'Umi@3',
+      effect: 5,
+      type: 'title',
+      href: 'https://umijs.org/zh/',
+      hrefTooltip: 'umi文档'
+    },
+    {
+      render: 'umi 是蚂蚁金服的底层前端框架，已直接或间接地服务了 600+ 应用，是一个可插拔的企业级 react 应用框架。umi 以路由为基础的，支持类 next.js 的约定式路由，以及各种进阶的路由功能，并以此进行功能扩展，比如支持路由级的按需加载。',
+    },
+    {
+      render: '简单的说，有了Umi，从此操作路由变得如此高效简单。',
+      strong: true
+    },
+    {
+      render: 'TypeScript',
+      id: 'TypeScript',
+      effect: 5,
+      type: 'title',
+    },
+    {
+      render: '带类型的 JS，ypeScript 是 javascript 的超集，TypeScript 不仅包含 JavaScript 的语法，同时还提供了静态类型检查和更完善的代码提示功能。任何现有的 JavaScript 程序都是合法的 TypeScript 程序，只需要简单的学习，就可以获得更佳的开发体验。',
+    },
+    {
+      render: '简单来说，ts就是代码检测，使用的时候超级方便，同时也让代买更加规范，更好维护',
+      strong: true
+    }
   ],
+  explain: {
+    title: '其他',
+    id: 'other',
+  },
+  explainList: [
+    {
+      render: '如果本文对您有帮助，请点个至高无上的 Star，支持一下吧~',
+      strong: true
+    },
+    {
+      render: '点我去语雀文档',
+      effect: 5,
+      href: 'https://www.yuque.com/domesy/vlgpwh',
+    },
+    {
+      render: '点我去gitHub',
+      effect: 5,
+      href: 'https://github.com/DomeSy/Ant-Design-Pro-V5',
+    },
+    {
+      render: '点我去Gitee',
+      effect: 5,
+      href: 'https://github.com/DomeSy/Ant-Design-Pro-V5',
+    }
+  ]
 }
 
 export const welcomeAnchorList:AnchorLinkProps[] = [
@@ -109,10 +198,32 @@ export const welcomeAnchorList:AnchorLinkProps[] = [
         title: 'Ant Design Pro 介绍',
         href: 'AntDesign',
       },
+      {
+        title: '相关技术栈',
+        href: 'about',
+        children: [
+          {
+            title: 'React',
+            href: 'React',
+          },
+          {
+            title: 'dva',
+            href: 'dva',
+          },
+          {
+            title: 'Umi@3',
+            href: 'Umi@3',
+          },
+          {
+            title: 'TypeScript',
+            href: 'TypeScript',
+          }
+        ]
+      },
     ]
   },
   {
-    title: 'Ant Design Pro 介绍',
-    href: 'AntDesign',
+    title: '其他',
+    href: 'other',
   },
 ]
