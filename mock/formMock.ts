@@ -747,6 +747,32 @@ export const introduce:Props = {
         },
       ]
     },
+    {
+      type: 'title',
+      id: 'Api19',
+      render: 'type为dependency的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'name',
+          desc: '一个传字符串，多个传数组',
+          mark: '必填',
+          status: "string | string[]",
+        },
+        {
+          name: 'itemRender',
+          desc: [
+            '自定义的函数，接收获取name的值',
+            '返回一个的话，返回对象，返回多个的话，返回数组'
+          ],
+          mark: '必填，并且返回的是数组，格式就是 formProps[] 或者formProps',
+          status: "(getArray: Object) => void",
+        },
+      ]
+    },
   ],
   explain: {
     id: 'explain'
@@ -792,6 +818,10 @@ export const introduceAnchorList:AnchorLinkProps[] = [
       {
         title: '表单按钮',
         href: 'code3'
+      },
+      {
+        title: '其他情况',
+        href: 'code4'
       }
     ]
   },

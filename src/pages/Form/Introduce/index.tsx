@@ -3,7 +3,7 @@ import { queryDetail } from './services'
 import { DetailSetting } from '@/commonPages'
 import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
 import type { AnchorLinkProps } from '@/components'
-import Mock, { MockLayout, MockButton } from './mock'
+import Mock, { MockLayout, MockButton, MockOther } from './mock'
 
 // 这里借鉴的是 ProComponents 中的 ProForm， 这里会完全支持 ProForm 的所有属性，同时也会再次基础上封装，所以与原有使用 ProForm 有些不同，大家可以根据自己的项目进行相应的设置，使开发更加简单
 
@@ -261,6 +261,65 @@ const Introduce: React.FC<any> = (props) => {
           formList={list}
         />
       </div>
+    </div>
+  }
+
+  export default MockButton
+              `
+            },
+            {
+              component: <MockOther />,
+              title: '其他情况',
+              id: 'code4',
+              content: '目前做了 表单联动（dependency）',
+              code: `
+  import React from 'react';
+  import { message } from 'antd';
+  import { Form } from '@/components';
+  import type { formProps } from '@/components'
+
+  const MockButton: React.FC<any> = () => {
+    const list: formProps[] = [
+      {
+        name: 'input',
+        default:'React',
+        label: '技术栈',
+      },
+      {
+        name: 'input1',
+        default: 'Domesy',
+        label: '作者',
+      },
+      {
+        type: 'dependency',
+        name: ['input', 'input1'],
+        itemRender: (data:any) => {
+          return [
+            {
+              name: 'input3',
+              label: "你使用的技术栈" +  data?.input || '',
+            },
+            {
+              name: 'input4',
+              label: "你欣赏的作者" + data?.input1 || '',
+            },
+          ]
+        }
+      }
+    ];
+
+    return <div>
+      <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>表单联动 dependency</div>
+      <Form
+        layout={{
+          way: 'vertical'
+        }}
+        onFinish={(values: any) => {
+          message.success('打开控制台观看');
+          console.log(values, '动态表单的值')
+        }}
+        formList={list}
+      />
     </div>
   }
 

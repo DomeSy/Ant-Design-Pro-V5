@@ -204,4 +204,50 @@ export const MockButton: React.FC<any> = () => {
   </div>
 }
 
+export const MockOther: React.FC<any> = () => {
+
+  const list: formProps[] = [
+    {
+      name: 'input',
+      default:'React',
+      label: '技术栈',
+    },
+    {
+      name: 'input1',
+      default: 'Domesy',
+      label: '作者',
+    },
+    {
+      type: 'dependency',
+      name: ['input', 'input1'],
+      itemRender: (data:any) => {
+        return [
+          {
+            name: 'input3',
+            label: `你使用的技术栈${data?.input || ''}`,
+          },
+          {
+            name: 'input4',
+            label: `你欣赏的作者${data?.input1 || ''}`,
+          },
+        ]
+      }
+    }
+  ];
+
+  return <div>
+    <div style={{fontSize: 16,fontWeight: 500, marginBottom: 20}}>表单联动 dependency</div>
+    <Form
+      layout={{
+        way: 'vertical'
+      }}
+      onFinish={(values: any) => {
+        message.success('打开控制台观看');
+        console.log(values, '动态表单的值')
+      }}
+      formList={list}
+    />
+  </div>
+}
+
 export default Mock
