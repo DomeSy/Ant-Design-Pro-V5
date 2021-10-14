@@ -746,6 +746,41 @@ const Hook: React.FC<any> = ({children, ...props}) => {
             },
           ]
         },
+        {
+          type: 'title',
+          id: 'Api7',
+          effect: 4,
+          render: '弹出表框配置 maskSy'
+        },
+        {
+          type: 'table',
+          tableList: [
+            {
+              name: 'maskFrom.submitText',
+              desc: '确定按钮文字',
+              status: "string",
+              default: JSON.stringify(maskSy.maskFrom.submitText),
+            },
+            {
+              name: 'maskFrom.cancelText',
+              desc: '取消按钮文字',
+              status: "string",
+              default: JSON.stringify(maskSy.maskFrom.cancelText),
+            },
+            {
+              name: 'maskFrom.resetText',
+              desc: '重置按钮文字',
+              status: "string",
+              default: JSON.stringify(maskSy.maskFrom.resetText),
+            },
+            {
+              name: 'maskFrom.message',
+              desc: '成功时的文字',
+              status: "string",
+              default: JSON.stringify(maskSy.maskFrom.message),
+            },
+          ]
+        }
       ],
     }
     setDetail(result)
@@ -762,8 +797,58 @@ const Hook: React.FC<any> = ({children, ...props}) => {
         href: 'Api',
         children: [
           {
-            title: 'Ant Design Pro 介绍',
-            href: 'AntDesign',
+            title: 'layoutSy',
+            href: 'Api1',
+          },
+          {
+            title: 'pageLayoutSy',
+            href: 'Api2',
+          },
+          {
+            title: 'fromSy',
+            href: 'Api3',
+          },
+          {
+            title: 'tableSy',
+            href: 'Api4',
+            children: [
+              {
+                title: 'SearchProps',
+                href: 'Api4-1'
+              },
+              {
+                title: 'PaginationProps',
+                href: 'Api4-2'
+              },
+              {
+                title: 'OptionProps',
+                href: 'Api4-3'
+              },
+              {
+                title: 'tableList',
+                href: 'Api4-4'
+              },
+              {
+                title: 'ToolsProps',
+                href: 'Api4-5'
+              },
+              {
+                title: 'ToolBarProps',
+                href: 'Api4-6'
+              },
+            ]
+          },
+          {
+            title: 'RuleProps',
+            href: 'Api5',
+          },
+          {
+            title: 'OssUpLoadSy',
+            href: 'Api6',
+          },
+          {
+            title: 'maskSy',
+            href: 'Api7',
           },
         ]
       },
