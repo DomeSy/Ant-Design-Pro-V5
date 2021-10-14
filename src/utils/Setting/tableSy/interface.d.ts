@@ -33,7 +33,7 @@ interface SearchProps {
       };
 }
 interface PaginationProps {
-  hidden: boolean; //是否影分页器, 如果这个设置为true则其余设置均无用，默认展示10条数据
+  hidden: boolean; //是否隐藏分页器, 如果这个设置为true则其余设置均无用，默认展示10条数据
   pageSize: number; //配置页数， 统一配置 10
   jump: boolean; //是否增加跳转页数，如果总页数为一页时则不显示
   size: 'small' | 'default'; // 分页器的大小，默认small

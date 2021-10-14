@@ -5,9 +5,9 @@
 
 interface maskFromProps {
   cancelText: string; // 取消按钮文字
-  resetText: string; // 取消按钮文字
+  resetText: string; // 重置按钮文字
   submitText: string; // 取消按钮文字
-  message: string;// 取消按钮文字
+  message: string;// 成功时的文件
 }
 
 interface MaskProps {
