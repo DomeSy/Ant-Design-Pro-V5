@@ -19,7 +19,7 @@ import { Jump } from '@/utils';
  * mark：特需的备注
  */
 
-const DetailContent: React.FC<Props> = ({ list = [] }) => {
+const DetailContent: React.FC<Props> = ({ list = [], noRed = false }) => {
 
 
   useEffect(() => {}, [])
@@ -28,7 +28,7 @@ const DetailContent: React.FC<Props> = ({ list = [] }) => {
     {
       title: '参数',
       dataIndex: 'name',
-      tip: '红色可为全局配置',
+      tip: noRed ? undefined : '红色可为全局配置',
       width: '15%',
       render: (_, dom:any) => {
         if(dom.global) return <span style={{color: '#f81d22'}}>{dom.name}</span>

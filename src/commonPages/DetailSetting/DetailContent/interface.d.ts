@@ -51,5 +51,6 @@ export interface DetailListProps {
 }
 
 export default interface Props {
-  list: DetailListProps[]
+  list: DetailListProps[];
+  noRed?: boolean; // 不要参数的提示
 }

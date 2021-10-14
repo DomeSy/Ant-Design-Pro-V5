@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { resData } from './data';
-import { welcome, welcomeAnchorList } from './domesyMock'
+import { welcome, welcomeAnchorList, globalSetting, globalSettingAnchorList } from './domesyMock'
 
 //路径
 //mock/menu.ts
@@ -24,7 +24,16 @@ export default {
         }
       ))
       return
+    }else if(detail === 'globalSetting') {
+      res.send(
+        resData({
+          list: globalSetting,
+          anchorList: globalSettingAnchorList
+        }
+      ))
+      return
     }
+
     res.send({
       code: 400,
       detail,

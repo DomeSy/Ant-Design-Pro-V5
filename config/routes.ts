@@ -65,5 +65,10 @@ export default [
       { path: '/user', routes: [{ name: '登录', path: '/user/login', component: './user/Login' }] },
     ],
   },
+  {
+    path: '/globalSetting',
+    name: '全局配置文件',
+    component: './GlobalSetting',
+  },
   { component: './_404' },
 ];

@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback,  } from 'react'
 import { PageLayout, Anchor } from '@/components'
 import ProCard from '@ant-design/pro-card'
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons'
-import { Typography, Divider, Col, Row } from 'antd'
+import { Col, Row } from 'antd'
 import DetailContent from './DetailContent'
 import type { DetailListProps} from './DetailContent/interface.d'
 import type { ShowCodeProps } from './ShowCode'
@@ -15,6 +14,7 @@ interface ListProps {
   href?: string;
   hrefTooltip?: string;
   selfHref?: string;
+  noRed?: boolean; //去除标题的红色
 }
 
 interface ShowCodeDetailProps extends ShowCodeProps{
@@ -28,6 +28,7 @@ interface CodeListProps extends ListProps {
 interface attentionProps extends ListProps {
   children?: DetailListProps[]
 }
+
 
 export interface Props {
   layout?: boolean; //关于头部的layout
@@ -159,6 +160,7 @@ const DetailSetting: React.FC<Props> = ({layout, use, useList=[], code, attentio
               }]}
             />
             <DetailContent
+              noRed={api?.noRed || false}
               list={apiList}
             />
           </>
