@@ -102,7 +102,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       return (
         <>
           {dom}
-          {dom.props?.location?.pathname !== '/user/login' && <LiveSetting />}
+          {dom.props?.location?.pathname !== '/user/login' && initialState?.liveSetting &&  <LiveSetting />}
         </>
       )
     },

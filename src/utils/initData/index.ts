@@ -21,6 +21,7 @@ const initData = async () => {
     content: content,
     // menuData: formatter(menuData.data), // 示例，动态路由
     menuData: false,
+    liveSetting: true,
     domesy:{
       layoutSy,
       pageLayoutSy,

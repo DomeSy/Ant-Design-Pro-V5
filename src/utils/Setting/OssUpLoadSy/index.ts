@@ -30,13 +30,13 @@ interface OssUpLoadProps {
 const OssUpLoadSy: OssUpLoadProps = {
   OSS: {
     region: 'oss-cn-shanghai',
-    accessKeyId: 'LTAI4GK4W6BVkYDcHdAQzAW9',
-    accessKeySecret: 'otIM3G2WhGxdfbpxBDBB9NtMj2yVQ3',
+    accessKeyId: 'LTAI5tGVkAXoxVgputGNWnPL',
+    accessKeySecret: 'qcCflXt01GRu9t1QbhYAJmNg6kQEGY',
     bucket: 'bmx-system',
   },
   amount: 1,
   OssUrl: 'web/domesy/imgs',
-  open: true,
+  open: false,
   listType: 'picture-card',
   _config: {
     text: 'Upload'
