@@ -235,6 +235,9 @@ export const globalSetting:Props = {
   },
   useList: [
     {
+      render: '除了本身 config 里的设置外，其他部分可以再此设置~',
+    },
+    {
       render: '/src/utils/Setting',
       type: 'prv'
     }
@@ -254,78 +257,17 @@ export const globalSetting:Props = {
       type: 'table',
       tableList: [
         {
-          name: 'initFile',
-          desc: [
-            '默认文件',
-            '可以只传入地址',
-            '如果有其他属性可按 ant Design Upload 的模式传'
-          ],
-          status: "string[] | uploadFile[]",
-        },
-        {
-          name: 'amount',
-          desc: '数量，可设置上传的数量',
-          status: "number",
-          default: '1'
-        },
-        {
-          name: 'getFiles',
-          desc: [
-            '获取文件，的方法，参数有两个',
-            '数组：返回上传文件的数组',
-            '状态：为 true 代表新增，为 false 代表删除'
-          ],
-          status: "(resultList: any[], flag?: boolean) => void",
-        },
-        {
-          name: 'rules',
-          desc: '判断规则不可传入时的条件',
-          status: "rulesProps",
-        },
-        {
-          name: 'OSS',
-          global: true,
-          desc: '是否开启OSS上传',
-          status: "boolean",
-          default: 'false'
-        },
-        {
-          name: 'listType',
-          global: true,
-          desc: [
-            '上传的类型',
-            'listType 为 picture-card 只能支持图片， 其他文件格式不支持',
-            'listType为其他值时，出照片格式外，不应该预览'
-          ],
-          status: "text | picture | picture-card",
-          default: 'false'
-        },
-        {
-          name: 'crop',
-          desc: '是否开启裁剪功能',
-          status: "boolean",
-          default: 'false'
-        },
-        {
-          name: 'cropConfig',
-          desc: '裁剪功能的默认配置项',
-          status: "cropConfigProps",
-        },
-        {
-          name: 'button',
-          desc: "当type 为 'text' ’picture' 继承button的属性，如果children不存在时",
-          status: "ButtonProps(按钮属性)",
-        },
-        {
-          name: 'children',
-          desc: "当type 为 'text' ’picture' 可自定义样式",
+          name: 'logo',
+          desc: '设置logo',
           status: "React.ReactNode",
+          default: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
         },
         {
-          name: '_config',
-          desc: "额外配置选项",
-          status: "ConfigProps",
-        }
+          name: 'footer',
+          desc: '底部按钮，为true展示Footer组件',
+          status: "boolean",
+          default: 'true',
+        },
       ]
     },
   ],
