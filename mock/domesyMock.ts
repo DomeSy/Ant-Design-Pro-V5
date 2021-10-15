@@ -111,6 +111,21 @@ export const welcome:Props = {
       strong: true
     },
     {
+      render: 'React Hook',
+      id: 'ReactHook',
+      effect: 5,
+      type: 'title',
+      href: 'https://react.docschina.org/docs/hooks-intro.html',
+      hrefTooltip: 'React Hook文档'
+    },
+    {
+      render: 'Hook 是 React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性',
+    },
+    {
+      render: '也就是说函数式组件也能拥有状态，并且比class组件的使用更加简洁',
+      strong: true
+    },
+    {
       render: 'dva',
       id: 'dva',
       effect: 5,
@@ -205,6 +220,10 @@ export const welcomeAnchorList:AnchorLinkProps[] = [
           {
             title: 'React',
             href: 'React',
+          },
+          {
+            title: 'React Hook',
+            href: 'ReactHook',
           },
           {
             title: 'dva',
