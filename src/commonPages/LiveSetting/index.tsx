@@ -13,7 +13,7 @@ const LiveSetting: React.FC = () => (
   >
     <iframe
       title="resg"
-      src={'http://www.domesy.cn/live2d/index.html'}
+      src={'http://mobile.domesy.cn/live2d/index.html'}
       style={{
         width: '100%',
         border: '0px',
