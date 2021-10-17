@@ -85,7 +85,7 @@ export const ImportMock: React.FC<any> = () => {
       <OssUpLoad
         listType={'picture'}
         rules={{
-          type: ['xlsx', 'jpg'],
+          type: 'xlsx',
           typeMsg: '请上传Excel文件'
         }}
         _config={{

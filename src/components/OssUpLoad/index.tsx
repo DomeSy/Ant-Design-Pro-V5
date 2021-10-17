@@ -85,8 +85,6 @@ const OssUpLoad: React.FC<Props> = ({
     // 判断文件类型
     if (typeof rules.type === 'string' && flag) {
       const type = rules.type.trim() === 'jpg' ? 'jpeg' : rules.type.trim();
-      console.log(file,'--,')
-
       if(rules.type === 'xlsx' || rules.type === 'xls') {
         //  单独处理 excel
         const fileType = file.name.split('.').pop();
