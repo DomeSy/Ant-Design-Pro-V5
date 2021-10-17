@@ -85,17 +85,29 @@ const OssUpLoad: React.FC<Props> = ({
     // 判断文件类型
     if (typeof rules.type === 'string' && flag) {
       const type = rules.type.trim() === 'jpg' ? 'jpeg' : rules.type.trim();
-      console.log(type, '001', file.type)
-      console.log(file.type.indexOf(type))
-      if (file.type.indexOf(type) === -1) {
+      console.log(file,'--,')
+
+      if(rules.type === 'xlsx' || rules.type === 'xls') {
+        //  单独处理 excel
+        const fileType = file.name.split('.').pop();
+        if(['xlsx', 'xls'].indexOf(fileType) < 0) {
+          message.error(rules.typeMsg || '请上传xlsx或xls格式文件');
+          flag = false
+        }
+      } else if (file.type.indexOf(type) === -1) {
         message.error(rules.typeMsg || '请上传正确的文件类型');
         flag = false;
       }
     } else if (Array.isArray(rules.type) && flag) {
       let allFlag = false;
-      await rules.type.map((item) => {
+      rules.type.map((item) => {
         const type = item.trim() === 'jpg' ? 'jpeg' : item.trim();
-        if (file.type.indexOf(type) !== -1) {
+        if(item  === 'xlsx' || item === 'xls'){
+          const fileType = file.name.split('.').pop();
+          if(['xlsx', 'xls'].indexOf(fileType) !== -1) {
+            allFlag = true
+          }
+        } else if (file.type.indexOf(type) !== -1) {
           allFlag = true;
           return;
         }
