@@ -3,7 +3,6 @@ import { Modal, Button, message } from 'antd';
 import { Form } from '@/components';
 import { MaskFromProps } from './interface';
 import { maskSy } from '@/utils/Setting';
-
 /**
  * @module 表单弹框模块 继承弹框的样式
  *

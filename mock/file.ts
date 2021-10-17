@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { resData } from './data';
-import { ossUpload, ossUploadAnchorList, maskFrom, maskFromAnchorList} from './fileMock'
+import { ossUpload, ossUploadAnchorList, maskFrom, maskFromAnchorList, excel, excelAnchorList } from './fileMock'
 
 export default {
   'POST /api/file/queryDetail': async (req: Request, res: Response) => {
@@ -18,6 +18,14 @@ export default {
         resData({
           list: maskFrom,
           anchorList: maskFromAnchorList
+        }
+      ))
+      return
+    } else if(detail === 'excel') {
+      res.send(
+        resData({
+          list: excel,
+          anchorList: excelAnchorList
         }
       ))
       return

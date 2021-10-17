@@ -661,3 +661,181 @@ export const maskFromAnchorList:AnchorLinkProps[] = [
     href: 'explain',
   }
 ]
+
+export const excel:Props = {
+  use: {
+    title: 'Mask.From',
+    id: 'use'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `此组件是将 Modal 和 From 相结合，并适配 From 的所有功能，和 Modal 的所有属性`,
+        },
+        {
+          render: `场景：在表单中的新建，编辑，如果内容不是很多，我们希望他在当前页面展示，所以 Mask.From 能很好的帮助我们实现`,
+        },
+        {
+          render: '要特别注意 onRequest 和 onEdit 这两个Api，是这个组件的核心'
+        }
+      ]
+    },
+  ],
+  api: {
+    id: 'Api',
+  },
+  apiList: [
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'formList',
+          desc: '动态表单的 formList',
+          status: "formListProps[]",
+          href: '/table/introduce'
+        },
+        {
+          name: 'form',
+          desc: '表单的其余属性',
+          status: "formApi",
+          href: '/table/introduce'
+        },
+        {
+          name: 'submitText',
+          desc: '提交按钮文字',
+          global: true,
+          status: "string",
+          default: '提交'
+        },
+        {
+          name: 'resetText',
+          desc: '重置按钮文字',
+          global: true,
+          status: "string",
+          default: '重置'
+        },
+        {
+          name: 'cancelText',
+          desc: '取消按钮文字',
+          global: true,
+          status: "string",
+          default: '取消'
+        },
+        {
+          name: 'message',
+          desc: '提交成功的提示语',
+          global: true,
+          status: "string",
+          default: '提交成功'
+        },
+        {
+          name: 'onRequest',
+          desc: '请求接口的函数',
+          status: "any",
+        },
+        {
+          name: 'onEdit',
+          desc: [
+            '接收表单的值',
+            '如果存在则改变传递接口的参数，接收表单的值，返回对象',
+            '注意如果返回的不是对象，则不会进行下步操作，只有返回对象才会走接口'
+          ],
+          status: "(values: Object) => void",
+        },
+        {
+          name: 'onSubmit',
+          desc: [
+            '提交完成后的操作',
+            '但如果使用，绑定的提交不会拥有loading效果，也就是没有防抖功能'
+          ],
+          status: "() => void",
+        },
+        {
+          name: 'onCancel',
+          desc: '取消时的回调函数',
+          status: "() => void",
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'ApiGlobal',
+      effect: 4,
+      render: '全局配置属性（ maskSy ）'
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'type',
+          desc: [
+            '限制传输文件的类型',
+            '当只有一个的时候直接输入即可，如 png',
+            "当有多个限制传输的时候，以数组的形式传输，如：['png', 'jpeg']"
+          ],
+          status: "string | string[]",
+        },
+        {
+          name: 'typeMsg',
+          desc: '不符合文件类型的提示语',
+          status: "string",
+          default: '请上传正确的文件类型'
+        },
+        {
+          name: 'size',
+          desc: '文件的类型大小, 单位为M',
+          status: 'number',
+        },
+        {
+          name: 'sizeMsg',
+          desc: '文件大小失效的提示语',
+          status: "string",
+          default: '上传文件大于${rules.size}M!请重新上传'
+        },
+      ]
+    },
+  ],
+  explain: {
+    id: 'explain',
+    hrefTooltip: '封装不易，给个Star吧！',
+    href: 'https://github.com/DomeSy/Ant-Design-Pro-V5/tree/master/src/components/Mask'
+  },
+  explainList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `当出现表单的情况时，希望能够适配于项目，集中管理样式，再结合接口进行相应的操作，这样可以节约大部分的开发时间，同时代码也会相当简洁，维护更加方便。`,
+          strong: true
+        }
+      ]
+    },
+  ]
+}
+
+export const excelAnchorList:AnchorLinkProps[] = [
+  {
+    title: 'Mask.From',
+    href: 'use'
+  },
+  {
+    title: '代码演示',
+    href: 'Code',
+  },
+  {
+    title: 'OSSUpload 属性',
+    href: 'Api',
+    children: [
+      {
+        title: '全局属性(maskSy)',
+        href: 'ApiGlobal',
+      },
+    ]
+  },
+  {
+    title: '心得体会',
+    href: 'explain',
+  }
+]

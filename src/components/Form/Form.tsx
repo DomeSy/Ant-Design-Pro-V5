@@ -28,7 +28,6 @@ const Form: React.FC<Props & FormCommonProps> = ({
 
   useEffect(() => {
     if (getRef) getRef(formRef);
-
   }, []);
 
   useEffect(() => {

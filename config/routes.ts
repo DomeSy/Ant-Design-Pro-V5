@@ -29,6 +29,7 @@ export default [
       { path: '/file', redirect: '/file/ossUploadShow'},
       { path: '/file/ossUploadShow', name: '图片文件上传', component: './File/OssUploadShow' },
       { path: '/file/maskFrom', name: '弹出表单', component: './File/MaskFrom' },
+      { path: '/file/excel', name: 'Excel数据', component: './File/Excel' },
     ]
   },
   {
