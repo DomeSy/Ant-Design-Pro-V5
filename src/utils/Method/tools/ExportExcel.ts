@@ -25,6 +25,7 @@ const ExportExcel = (sheets: exportProps[] | string, fileName:string= 'Excel文�
     window.location.href = sheets
     return
   }
+
   if(!Array.isArray(sheets)) return message.error('请返回对应的数组或者下载地址！')
   const getPostition = (index:number) => {
     let result = String.fromCharCode(65 + parseInt(String(index % 26)));
