@@ -16,7 +16,7 @@ const Index: React.FC<any> = (props) => {
         ...res.list,
         code:{
           hrefTooltip: '为演示方便结合 Form（表单） 使用 ，点击跳转',
-          selfHref: '/table/field',
+          selfHref: '/form/field',
           wrap: true,
           showCode: [
             {

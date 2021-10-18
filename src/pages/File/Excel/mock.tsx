@@ -57,49 +57,4 @@ const Mock: React.FC<any> = () => {
   );
 };
 
-export const ImportMock: React.FC<any> = () => {
-  const [maskVisible, setMaskVisible] = useState<boolean>(false);
-  const [file, setFile] = useState<any>('');
-
-  const columns: tableListProps[] = [
-    {
-      title: 'id',
-      dataIndex: 'key',
-      tip: '对应key',
-    },
-    {
-      title: '姓名',
-      dataIndex: 'name',
-      hideInSearch: true,
-    },
-    {
-      title: '地址',
-      dataIndex: 'address',
-      hideInSearch: true,
-    },
-  ];
-
-
-  return (
-    <>
-      <OssUpLoad
-        listType={'picture'}
-        rules={{
-          type: 'xlsx',
-          typeMsg: '请上传Excel文件'
-        }}
-        _config={{
-          text: '上传Excel文件'
-        }}
-        getFiles={(file: Array<any>, flag) => {
-          const msg = flag ? '新增成功, 请打开控制台查看' : '删除成功，请打开控制台查看'
-          message.success(msg)
-          console.log('获取到的图片：', file)
-        }}
-      />
-    </>
-  );
-};
-
-
 export default Mock;
