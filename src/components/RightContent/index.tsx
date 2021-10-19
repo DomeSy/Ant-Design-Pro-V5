@@ -14,7 +14,6 @@ const GlobalHeaderRight: React.FC = () => {
     setInitialState: ret.setInitialState
   }));
 
-
   let className = styles.right;
 
   return (

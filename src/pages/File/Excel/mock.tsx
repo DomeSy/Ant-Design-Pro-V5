@@ -1,5 +1,5 @@
 import React,{ useState } from 'react';
-import { Button, OssUpLoad } from '@/components';
+import { Button } from '@/components';
 import type { tableListProps } from '@/components'
 import { Table } from '@/components';
 import { Method } from '@/utils'

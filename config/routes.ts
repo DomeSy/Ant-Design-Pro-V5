@@ -70,6 +70,7 @@ export default [
     path: '/globalSetting',
     name: '全局配置文件',
     component: './GlobalSetting',
+    hideInMenu: true
   },
   { component: './_404' },
 ];
