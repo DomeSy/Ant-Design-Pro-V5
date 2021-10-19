@@ -29,10 +29,10 @@ interface OssUpLoadProps {
 
 const OssUpLoadSy: OssUpLoadProps = {
   OSS: {
-    region: 'oss-cn-shanghai',
-    accessKeyId: 'LTAI5tGVkAXoxVgputGNWnPL',
-    accessKeySecret: 'qcCflXt01GRu9t1QbhYAJmNg6kQEGY',
-    bucket: 'bmx-system',
+    region: 'xxx-xx-xxxxxxxxxx',
+    accessKeyId: 'xxxxxxxxxxxxxxxxxxxxxx',
+    accessKeySecret: 'xxxxxxxxxxxxxxxxxx',
+    bucket: 'xxxx-xxx',
   },
   amount: 1,
   OssUrl: 'web/domesy/imgs',
