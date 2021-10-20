@@ -9,7 +9,7 @@ const Footer: React.FC = () => (
       {
         key: 'YuQue',
         title: '语雀',
-        href: 'https://pro.ant.design',
+        href: 'https://www.yuque.com/domesy/pro',
         blankTarget: true,
       },
       {
@@ -21,7 +21,7 @@ const Footer: React.FC = () => (
       {
         key: 'Gitee',
         title: 'Gitee',
-        href: 'https://ant.design',
+        href: 'https://gitee.com/domesy/Ant-Design-Pro-V5',
         blankTarget: true,
       },
     ]}
