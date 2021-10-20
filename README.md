@@ -6,6 +6,7 @@
 ## 线上预览
 
 ![](http://mobile.domesy.cn/img/img1.png)
+![](http://mobile.domesy.cn/img/img2.png)
 
 - 预览: http://www.domesy.cn/
 - 语雀: https://www.yuque.com/domesy/pro
