@@ -9,7 +9,7 @@ const Index: React.FC<any> = (props) => {
   const [detail, setDetail] = useState<DetailSettingListProps>({})
 
   useEffect(() => {
-    queryDetail({detail: 'useState'}).then((res) => {
+    queryDetail({detail: 'LifeCycle'}).then((res) => {
       setDetail({
         ...res,
         code:{

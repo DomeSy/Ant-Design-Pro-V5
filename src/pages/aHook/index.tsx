@@ -19,44 +19,8 @@ const Hook: React.FC<any> = ({children, ...props}) => {
 
   const tab = [
     {
-      tab: 'useState',
-      key: 'useState',
-    },
-    {
-      tab: 'useEffect',
-      key: 'useEffect',
-    },
-    {
-      tab: 'useContext',
-      key: 'useContext',
-    },
-    {
-      tab: 'useReducer',
-      key: 'useReducer',
-    },
-    {
-      tab: 'useMemo',
-      key: 'useMemo',
-    },
-    {
-      tab: 'useCallback',
-      key: 'useCallback',
-    },
-    {
-      tab: 'useRef',
-      key: 'useRef',
-    },
-    {
-      tab: 'useImperativeHandle',
-      key: 'useImperativeHandle',
-    },
-    {
-      tab: 'useModel',
-      key: 'useModel',
-    },
-    {
-      tab: 'useRequest',
-      key: 'useRequest',
+      tab: 'LifeCycle',
+      key: 'LifeCycle',
     },
   ];
 

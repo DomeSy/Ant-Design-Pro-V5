@@ -1,7 +1,7 @@
 import type { Props } from '@/commonPages/DetailSetting'
 import type { AnchorLinkProps } from '@/components'
 
-export const useState:Props = {
+export const LifeCycle:Props = {
   use: {
     title: '简单介绍'
   },

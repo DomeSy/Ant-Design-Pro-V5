@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { useState } from './hookMock'
+import { LifeCycle } from './ahookMock'
 import Mock from 'mockjs';
 
 // 延时时间
@@ -16,7 +16,7 @@ export default {
   'GET /api/ahook/queryList': async (req: Request, res: Response) => {
     res.send(
       resData({
-        content: 'ahook',
+        content: 'ahooks 是一个 React Hooks 库，致力提供常用且高质量的 Hooks. 你可以这么理解，有他的帮助我们可以更快速的开发，并且更加好用。介绍一些比较好用的Api',
         cardInfo: [
           {
             title: 'useState',
@@ -28,8 +28,8 @@ export default {
   },
   'POST /api/ahook/queryDetail': async (req: Request, res: Response) => {
     const { detail } = req.query
-    if(detail === 'useState') {
-      res.send( resData(useState) )
+    if(detail === 'LifeCycle') {
+      res.send( resData(LifeCycle) )
       return
     }
     res.send({
