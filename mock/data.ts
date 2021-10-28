@@ -23,6 +23,9 @@ export const content = {
     useRequest: 'useRequest 是一个超级强大，且生产完备的网络请求 Hooks，目前已经成为蚂蚁中台最佳实践内置网络请求方案',
     dva: 'dva 数据流，Ant Design V4 使用的数据流，当然V5也支持，如果学过 redux， 那么非常容易上手使用'
   },
+  ahook: {
+    useState: '用来声明状态变量, 类相当于 class 中的 this.state 和 this.setState 的作用',
+  },
   file: {
     ossUploadShow: '图片、文件上传是最常见的表单项，而在原有的封装中，一些比较常用的功能并不是很全面，如裁剪功能不能制定区域的裁剪，OSS功能要自己写，所以这里采用并不是 ProFormUploadDragger, 但也是基于 Ant Design 的 upload 进行封装',
     maskFrom: '弹框(Modal)和表格(Form)的结合',

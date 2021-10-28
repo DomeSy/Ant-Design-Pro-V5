@@ -21,6 +21,17 @@ export default [
     ],
   },
   {
+    path: '/ahook',
+    name: 'aHook',
+    icon: 'BulbOutlined',
+    component: './aHook',
+    routes: [
+      { path: '/ahook', redirect: '/ahook/introduce'},
+      { path: '/ahook/introduce', name: '介绍', component: './aHook/Introduce' },
+      { path: '/ahook/useState', name: 'useState', component: './aHook/UseState'},
+    ],
+  },
+  {
     path: '/file',
     name: '文本展示类',
     icon: 'UnorderedListOutlined',
