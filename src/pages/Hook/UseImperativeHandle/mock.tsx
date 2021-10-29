@@ -1,18 +1,34 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useImperativeHandle, useRef } from 'react';
 import { Button } from 'antd';
 
-const Mock: React.FC<any> = () => {
-  const [count, setCount ] = useState<number>(0)
+const Children: React.FC<any> = ({cRef}) => {
 
-  const add = useMemo(() => {
-    return count + 1
-  }, [count])
+  const [count, setCount] = useState<number>(0)
+
+  const add = () => {
+    setCount((c) => c + 1)
+  }
+
+  useImperativeHandle(cRef, () => ({
+    add
+  }))
+
+  return <div style={{marginBottom: 20}}>
+    <p>点击次数：{count}</p>
+    <Button type='primary' onClick={() => add()}>加1</Button>
+  </div>
+}
+
+
+const Mock: React.FC<any> = () => {
+  const ref = useRef<any>(null)
 
   return (
-    <div style={{display: 'flex', justifyContent: 'space-between', paddingRight: 50}}>
-      <Button type='primary' onClick={() => setCount(count + 1)}>加1</Button>
-      <div>count: {count}</div>
-      <div>次数： {add}</div>
+    <div>
+      <Children cRef={ref} />
+      <Button type='primary' onClick={() => {
+        ref.current.add()
+      }}>父节点加1</Button>
     </div>
   );
 };

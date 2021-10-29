@@ -19,8 +19,8 @@ export default {
         content: 'ahooks 是一个 React Hooks 库，致力提供常用且高质量的 Hooks. 你可以这么理解，有他的帮助我们可以更快速的开发，并且更加好用。介绍一些比较好用的Api',
         cardInfo: [
           {
-            title: 'useState',
-            content: content.hook.useState,
+            title: 'LifeCycle',
+            content: content.ahook.LifeCycle,
           },
         ]
       }
