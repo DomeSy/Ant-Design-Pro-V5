@@ -115,7 +115,13 @@ const Hook: React.FC<any> = ({children, ...props}) => {
         <div className="TableMockBasic-title">是否开启：</div>
         <div className="TableMockBasic-content">
           <TextShow text={'搜索'} title="search={false}" >
-            <Switch checked={openSearch} onChange={(e) => setOpenSearch(e)}/>
+            <Switch checked={openSearch} onChange={(e) => {
+              setFlag(false)
+              setOpenSearch(e)
+              setTimeout(() => {
+                setFlag(true)
+              }, 100)
+            }}/>
           </TextShow>
           <TextShow text={'分页器'} title="pagination={false}" >
             <Switch checked={openPagination} onChange={(e) => setOpenPagination(e)}/>

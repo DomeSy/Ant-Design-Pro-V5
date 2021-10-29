@@ -25,6 +25,7 @@ export const content = {
   },
   ahook: {
     LifeCycle: '生命周期可以说是开发最重要的一环，主要介绍下：useMount、useUnmount、 useUpdateEffect、 useUpdateEffect、 useTrackedEffect、 useDebounceEffect、 useThrottleEffect 这7个Api',
+    State: '整合'
   },
   file: {
     ossUploadShow: '图片、文件上传是最常见的表单项，而在原有的封装中，一些比较常用的功能并不是很全面，如裁剪功能不能制定区域的裁剪，OSS功能要自己写，所以这里采用并不是 ProFormUploadDragger, 但也是基于 Ant Design 的 upload 进行封装',

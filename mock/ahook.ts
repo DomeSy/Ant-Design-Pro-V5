@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { LifeCycle } from './ahookMock'
+import { LifeCycle, State } from './ahookMock'
 import Mock from 'mockjs';
 
 // 延时时间
@@ -22,6 +22,10 @@ export default {
             title: 'LifeCycle',
             content: content.ahook.LifeCycle,
           },
+          {
+            title: 'State',
+            content: content.ahook.State,
+          },
         ]
       }
     ))
@@ -30,6 +34,9 @@ export default {
     const { detail } = req.query
     if(detail === 'LifeCycle') {
       res.send( resData(LifeCycle) )
+      return
+    } else if(detail === 'State') {
+      res.send( resData(State) )
       return
     }
     res.send({
