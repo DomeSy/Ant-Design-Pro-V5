@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { DetailSetting } from '@/commonPages'
 import { queryDetail } from './services'
 import Mock, { MockCountDown } from './mock'
+import { Method } from '@/utils'
 import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
 
 const Index: React.FC<any> = (props) => {
@@ -9,6 +10,7 @@ const Index: React.FC<any> = (props) => {
   const [detail, setDetail] = useState<DetailSettingListProps>({})
 
   useEffect(() => {
+
     queryDetail({detail: 'State'}).then((res) => {
       setDetail({
         ...res,
@@ -28,6 +30,7 @@ const Index: React.FC<any> = (props) => {
   import React from 'react';
   import { Button } from 'antd';
   import { useBoolean } from 'ahooks';
+import Method from '../../../utils/Method/index';
 
   const Mock: React.FC<any> = () => {
     const [state, { toggle, setTrue, setFalse }] = useBoolean(true);
@@ -66,6 +69,7 @@ const Index: React.FC<any> = (props) => {
   import React from 'react';
   import { Button } from 'antd';
   import { useBoolean } from 'ahooks';
+import { Method } from '@/utils';
 
   const Mock: React.FC<any> = () => {
     const [state, { toggle, setTrue, setFalse }] = useBoolean(true);

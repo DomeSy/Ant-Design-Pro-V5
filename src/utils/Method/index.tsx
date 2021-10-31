@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { Moment } from './date'
+import { Moment, getDate } from './date'
 import { ExportExcel } from './tools'
 /**
  * @module 公用方法
@@ -92,46 +92,6 @@ class Method {
   };
 
   /**
-   * @module 获取年月日
-   *
-   * @param {*} type
-   * @param {*} show
-   */
-  static getDate = (type?: any, show?: any) => {
-    let dd = new Date();
-    let option: any = {};
-    let isShow = 0;
-    if (type) {
-      option = {
-        year: type.year || '',
-        mounth: type.mounth || '',
-        day: type.day || '',
-      };
-    } else {
-      option = {
-        year: '-',
-        mounth: '-',
-        day: '',
-      };
-    }
-    if (show) {
-      isShow = show;
-    }
-    let y = dd.getFullYear();
-    let m = dd.getMonth() + 1 < 10 ? '0' + (dd.getMonth() + 1) : dd.getMonth() + 1;
-    let d = dd.getDate() < 10 ? '0' + dd.getDate() : dd.getDate();
-    let result = '';
-    if (isShow == 0) {
-      result = `${y}${option.year}${m}${option.mounth}${d}${option.day}`;
-    } else if (isShow == 1) {
-      result = `${m}${option.mounth}${d}${option.day}`;
-    } else if (isShow == 2) {
-      result = `${d}${option.day}`;
-    }
-    return result;
-  };
-
-  /**
    * @module 树形数组
    *
    * @param arrList 数组集合
@@ -157,14 +117,16 @@ class Method {
 
   /**
    * @module 日期转化
-   *
-   * @param type 默认为 1 格式 YYYY-MM-DD HH:mm:ss 年月日 时分秒
-   * @param type 2 格式 YYYY-MM-DD
+
    */
   static Moment = Moment
 
+  // 时间转化
+  static getDate = getDate
+
   // 导出数据
   static ExportExcel = ExportExcel
+
 }
 
 export default Method;
