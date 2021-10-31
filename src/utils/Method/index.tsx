@@ -1,25 +1,11 @@
 import moment from 'moment';
+import { Moment } from './date'
 import { ExportExcel } from './tools'
 /**
  * @module 公用方法
  *
  */
 class Method {
-  /**
-   * @module 日期转化
-   *
-   * @param type 默认为 1 格式 YYYY-MM-DD HH:mm:ss 年月日 时分秒
-   * @param type 2 格式 YYYY-MM-DD
-   */
-  static Moment = (data: string, type: number = 1) => {
-    let result = '';
-    if (type === 1) {
-      result = moment(data).format('YYYY-MM-DD HH:mm:ss');
-    } else if (type === 2) {
-      result = moment(data).format('YYYY-MM-DD');
-    }
-    return result;
-  };
 
   /**
    * @module 防抖
@@ -168,6 +154,14 @@ class Method {
     const result:any = Method.ArrayTree(tree, filterArr, id)
     return result;
   }
+
+  /**
+   * @module 日期转化
+   *
+   * @param type 默认为 1 格式 YYYY-MM-DD HH:mm:ss 年月日 时分秒
+   * @param type 2 格式 YYYY-MM-DD
+   */
+  static Moment = Moment
 
   // 导出数据
   static ExportExcel = ExportExcel

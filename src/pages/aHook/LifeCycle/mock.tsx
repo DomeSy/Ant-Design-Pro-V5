@@ -127,21 +127,21 @@ export const MockDebounceEffect: React.FC<any> = () => {
   );
 
   return (
-    <>
+    <div>
       <input
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Typed value"
         style={{ width: 280 }}
       />
-      <p style={{ marginTop: 16 }}>
+      <div style={{ marginTop: 16 }}>
         <ul>
           {records.map((record, index) => (
             <li key={index}>{record}</li>
           ))}
         </ul>
-      </p>
-    </>
+      </div>
+    </div>
   );
 };
 
@@ -159,21 +159,21 @@ export const MockThrottleEffect: React.FC<any> = () => {
   );
 
   return (
-    <>
+    <div>
       <input
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Typed value"
         style={{ width: 280 }}
       />
-      <p style={{ marginTop: 16 }}>
+      <div style={{ marginTop: 16 }}>
         <ul>
           {records.map((record, index) => (
             <li key={index}>{record}</li>
           ))}
         </ul>
-      </p>
-    </>
+      </div>
+    </div>
   );
 };
 

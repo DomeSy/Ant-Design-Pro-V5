@@ -27,7 +27,6 @@ const Hook: React.FC<any> = ({children, ...props}) => {
       key: 'State',
     },
   ];
-
   if(children.props.location.pathname === '/ahook/introduce') return children
 
   return (
@@ -49,5 +48,6 @@ const Hook: React.FC<any> = ({children, ...props}) => {
     </PageLayout>
   );
 };
+
 
 export default Hook;
