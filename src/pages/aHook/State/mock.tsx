@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import { useBoolean, useCountDown } from 'ahooks';
+import { Method } from '@/utils'
 
 const Mock: React.FC<any> = () => {
   const [state, { toggle, setTrue, setFalse }] = useBoolean(true);
@@ -23,30 +24,53 @@ const Mock: React.FC<any> = () => {
   );
 };
 
-export const MockCountDown: React.FC<any> = () => {
-
-
+const CountDownTest1: React.FC<any> = () => {
   const [countdown, setTargetDate, formattedRes] = useCountDown({
-    targetDate: '2021-10-31 24:00:00',
-
+    targetDate: Method.getDate({add: 3}),
   });
-  const [ show, setShow ] = useState<boolean>(false)
-  const { days, hours, minutes, seconds, milliseconds } = formattedRes;
 
   useEffect(() => {
-    setTargetDate('2021-10-31 13:58:00')
-    setShow(true)
+    setTargetDate(Method.getDate({add: 2}))
   }, [])
 
-  // if(!show) return <div></div>
+  const { days, hours, minutes, seconds, milliseconds } = formattedRes;
+
+  return <div>设置时间为后天，目标时间为大后天：{days} 天， {hours} 小时 {minutes} 分钟 {seconds} 秒 {milliseconds}</div>
+}
+
+const CountDownTest2: React.FC<any> = () => {
+  const [countdown, setTargetDate, formattedRes] = useCountDown({
+    onEnd: () => {
+      message.info('已停止!')
+    }
+  });
+
+  return <div style={{display: 'flex',justifyContent: 'flex-start'}}>
+    倒计时：
+    <Button style={{margin: '0 24px'}} type='primary' onClick={() => {
+      setTargetDate(Date.now() + 60000);
+    }}>{countdown === 0 ? '倒计时' : `${Math.round(countdown / 1000)}s`}</Button>
+    <Button onClick={() => {
+      setTargetDate(undefined);
+    }}>停止 </Button>
+  </div>
+}
+
+export const MockCountDown: React.FC<any> = () => {
+
+  const [countdown, setTargetDate, formattedRes] = useCountDown({
+    targetDate: Method.getDate({add: 1}),
+  });
+
+  const { days, hours, minutes, seconds, milliseconds } = formattedRes;
 
   return (
     <>
-      {/* <p>{countdown === 0 ? 'Start Interval' : `Reset After ${Math.round(countdown / 1000)}s`}</p> */}
-     <p>
-        天数：{days} 天， {hours} 小时 {minutes} 分钟 {seconds} 秒 {milliseconds}
-        {/* There are {days} days {hours} hours {minutes} minutes {seconds} seconds {milliseconds}{' '} */}
-      </p>
+      <div>距离下一天0点的数据：{days} 天， {hours} 小时 {minutes} 分钟 {seconds} 秒 {milliseconds}</div>
+      <div></div>
+      <CountDownTest1 />
+      <div></div>
+      <CountDownTest2 />
     </>
   );
 };
