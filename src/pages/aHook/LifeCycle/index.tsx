@@ -2,22 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { DetailSetting } from '@/commonPages'
 import { queryDetail } from './services'
 import Mock, { MockUpdateEffect, MockUpdate, MockTrackedEffect, MockDebounceEffect, MockThrottleEffect } from './mock'
+import type { AnchorLinkProps } from '@/components'
 import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
 
 const Index: React.FC<any> = (props) => {
-
+  const [anchorList, setAnchorList] = useState<AnchorLinkProps[]>([])
   const [detail, setDetail] = useState<DetailSettingListProps>({})
 
   useEffect(() => {
     queryDetail({detail: 'LifeCycle'}).then((res) => {
+      setAnchorList(res.anchorList)
       setDetail({
-        ...res,
+        ...res.list,
         code:{
           wrap: true,
           showCode: [
             {
               component: <Mock />,
               title: '装载与卸载',
+              id: 'code1',
               content: <div>
                 <div>useMount：组件装载的时候调用，类似于 class 组件的 componentDidMount</div>
                 <div>useUnmount：组件卸载的时候调用，类似于 class 组件的 componentWillUnmount</div>
@@ -59,6 +62,7 @@ const Index: React.FC<any> = (props) => {
             {
               component: <MockUpdateEffect />,
               title: '更新',
+              id: 'code2',
               content: 'useUpdateEffect 在使用的时候与 useEffect 一致，不同时是 忽略了首次渲染',
               code: `
   import React, { useState, useEffect } from 'react';
@@ -95,6 +99,7 @@ const Index: React.FC<any> = (props) => {
             {
               component: <MockTrackedEffect />,
               title: '依赖改变',
+              id: 'code3',
               content: <div>
                 <p>当做一个比较复杂的功能时，我们所依赖的参数较多，我们可能需要做某一项依赖改变的时候才进行触发，这是就有一个非常棒的Api来帮助我们，就是 useTrackedEffect</p>
                 <p>changes：第几个依赖项发生了改变</p>
@@ -163,6 +168,7 @@ const Index: React.FC<any> = (props) => {
             {
               component: <MockUpdate />,
               title: '强制更新',
+              id: 'code4',
               content: 'useUpdateEffect 在使用的时候与 useEffect 一致，不同时是 忽略了首次渲染',
               code: `
   import React from 'react';
@@ -187,6 +193,7 @@ const Index: React.FC<any> = (props) => {
             {
               component: <MockDebounceEffect />,
               title: '防抖',
+              id: 'code5',
               content: 'useDebounceEffect： 增强 effect 的防抖能力',
               code: `
   import React, { useState } from 'react';
@@ -230,6 +237,7 @@ const Index: React.FC<any> = (props) => {
             {
               component: <MockThrottleEffect />,
               title: '节流',
+              id: 'code6',
               content: 'useThrottleEffect: 增强 effect 的节流能力',
               code: `
   import React, { useState } from 'react';
@@ -277,7 +285,7 @@ const Index: React.FC<any> = (props) => {
   }, []);
 
   return (
-    <DetailSetting {...detail} />
+    <DetailSetting {...detail} anchorList={anchorList} />
   );
 };
 

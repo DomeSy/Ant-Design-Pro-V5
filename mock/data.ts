@@ -24,8 +24,8 @@ export const content = {
     dva: 'dva 数据流，Ant Design V4 使用的数据流，当然V5也支持，如果学过 redux， 那么非常容易上手使用'
   },
   ahook: {
-    LifeCycle: '生命周期可以说是开发最重要的一环，主要介绍下：useMount、useUnmount、 useUpdateEffect、 useUpdateEffect、 useTrackedEffect、 useDebounceEffect、 useThrottleEffect 这7个Api',
-    State: '整合'
+    LifeCycle: '生命周期可以说是开发最重要的一环，主要介绍下：useMount（装载）、useUnmount（卸载）、 useUpdateEffect（更新）、 useUpdateEffect（强制更新）、 useTrackedEffect（依赖）、 useDebounceEffect（防抖）、 useThrottleEffect（节流） 这7个Api',
+    State: '状态管理，主要介绍下：useCountDown（倒计时）、useBoolean（布尔管理）、useToggle（两种状态切换）、MockSet（Set类型管理）、Object（Object类型管理）、useCounter（数字类型管理）、useNetwork（网络连接状态）、MockWhyDidYouUpdate（什么导致渲染 render）'
   },
   file: {
     ossUploadShow: '图片、文件上传是最常见的表单项，而在原有的封装中，一些比较常用的功能并不是很全面，如裁剪功能不能制定区域的裁剪，OSS功能要自己写，所以这里采用并不是 ProFormUploadDragger, 但也是基于 Ant Design 的 upload 进行封装',

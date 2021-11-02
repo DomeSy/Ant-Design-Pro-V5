@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, message } from 'antd';
-import { useBoolean, useCounter, useCountDown, useNetwork, useSet } from 'ahooks';
+import { useBoolean, useCounter, useCountDown, useNetwork, useSet, useSetState, useToggle, useWhyDidYouUpdate } from 'ahooks';
 import { Method } from '@/utils'
 
 const Mock: React.FC<any> = () => {
@@ -131,6 +131,90 @@ export const MockSet: React.FC<any> = () => {
       <div style={{ marginTop: 16 }}>
         {console.log(set)}
         <pre>{JSON.stringify(Array.from(set), null, 2)}</pre>
+      </div>
+    </>
+  );
+};
+
+interface State {
+  hello: string;
+  count: number;
+  [key: string]: any;
+}
+
+export const MockSetState: React.FC<any> = () => {
+  const [state, setState] = useSetState<State>({
+    hello: '',
+    count: 0,
+  });
+
+  return (
+    <>
+      <div style={{justifyContent: 'flex-start', display:'flex',}}>
+        <Button type='primary' style={{marginRight: 8}} onClick={() => setState({ hello: 'domesy' })}>
+          设置 hello
+        </Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() => setState({ domesy: '欢迎👏🏻' })} >设置任意值，domesy</Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() => setState((prev) => ({ count: prev.count + 1 }))} >加1</Button>
+      </div>
+      <pre>{JSON.stringify(state, null, 2)}</pre>
+    </>
+  );
+};
+
+export const MockToggle: React.FC<any> = () => {
+  const [state, { toggle, setLeft, setRight }] = useToggle('Hello', 'World');
+  const [boolean , { toggle:toggleBool }] = useToggle(false);
+
+  return (
+    <>
+      <div style={{fontWeight: 'bolder'}}>基础用法（与useBoolean使用一直）:</div>
+      <div style={{marginTop: 8, fontWeight: 'bolder'}}>状态：{JSON.stringify(boolean)}</div>
+      <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
+        <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleBool()}>切换</Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleBool(false)}>切换1</Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleBool(true)}>切换2</Button>
+
+      </div>
+      <div style={{marginTop: 8, fontWeight: 'bolder'}}>高级用法:</div>
+      <div style={{marginTop: 8}}>两种状态切换：{state}</div>
+      <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
+        <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggle()}>切换</Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() => toggle('Hello1')} >切换为 hello</Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() => toggle('World')} >切换为 World</Button>
+      </div>
+      <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
+        <Button type='primary' style={{marginRight: 8}} onClick={() => setLeft()} >设置为Hello</Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() => setRight()} >设置为World</Button>
+      </div>
+    </>
+  );
+};
+
+const Demo: React.FC<{ count: number }> = (props) => {
+  const [randomNum, setRandomNum] = useState(Math.random());
+
+  useWhyDidYouUpdate('useWhyDidYouUpdateComponent', { ...props, randomNum });
+
+  return (
+    <div>
+      <p>父传子的 number: {props.count}</p>
+      <div>子组件的随机数：{randomNum}</div>
+      <Button type="primary" style={{margin: '8px 0'}} onClick={() => setRandomNum(Math.random)}>更改子组件🎲</Button>
+    </div>
+  )
+}
+
+export const MockWhyDidYouUpdate: React.FC<any> = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <>
+      <div style={{fontWeight: 'bolder', marginBottom: 8}}>需要在控制台查看是什么引起的 render</div>
+      <Demo count={count} />
+      <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
+        <Button type='primary' style={{marginRight: 8}} onClick={() => setCount((prevCount) => prevCount + 1)}>加1</Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() => setCount((prevCount) => prevCount - 1)} >减1</Button>
       </div>
     </>
   );

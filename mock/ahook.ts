@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { LifeCycle, State } from './ahookMock'
+import { LifeCycle, LifeCycleAnchorList,  State, StateAnchorList } from './ahookMock'
 import Mock from 'mockjs';
 
 // 延时时间
@@ -33,10 +33,16 @@ export default {
   'POST /api/ahook/queryDetail': async (req: Request, res: Response) => {
     const { detail } = req.query
     if(detail === 'LifeCycle') {
-      res.send( resData(LifeCycle) )
+      res.send( resData({
+        list: LifeCycle,
+        anchorList: LifeCycleAnchorList
+      }) )
       return
     } else if(detail === 'State') {
-      res.send( resData(State) )
+      res.send( resData({
+        list: State,
+        anchorList: StateAnchorList
+      }) )
       return
     }
     res.send({
