@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { LifeCycle, LifeCycleAnchorList,  State, StateAnchorList } from './ahookMock'
+import { LifeCycle, LifeCycleAnchorList,  State, StateAnchorList, SideEffect, SideEffectAnchorList} from './ahookMock'
 import Mock from 'mockjs';
 
 // 延时时间
@@ -42,6 +42,12 @@ export default {
       res.send( resData({
         list: State,
         anchorList: StateAnchorList
+      }) )
+      return
+    } else if(detail === 'SideEffect') {
+      res.send( resData({
+        list: SideEffect,
+        anchorList: SideEffectAnchorList
       }) )
       return
     }

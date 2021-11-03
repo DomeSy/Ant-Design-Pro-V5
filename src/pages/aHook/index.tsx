@@ -26,6 +26,10 @@ const Hook: React.FC<any> = ({children, ...props}) => {
       tab: 'State',
       key: 'State',
     },
+    {
+      tab: 'SideEffect',
+      key: 'SideEffect',
+    },
   ];
   if(children.props.location.pathname === '/ahook/introduce') return children
 

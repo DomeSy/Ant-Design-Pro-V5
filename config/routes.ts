@@ -30,6 +30,7 @@ export default [
       { path: '/ahook/introduce', name: '介绍', component: './aHook/Introduce' },
       { path: '/ahook/LifeCycle', name: 'LifeCycle', component: './aHook/LifeCycle'},
       { path: '/ahook/State', name: 'State', component: './aHook/State'},
+      { path: '/ahook/SideEffect', name: 'SideEffect', component: './aHook/SideEffect'},
     ],
   },
   {
