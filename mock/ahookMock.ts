@@ -119,18 +119,18 @@ export const SideEffect:Props = {
   },
   useList: [
     {
-      render: '我们常常会弄各种各样的状态，如何更好的去管理，更加简洁去做这些事~！'
+      render: '各种副作用的方法，如定时器的Hook、防抖函数，尤其是表单提交，按钮这块非常有用~~'
     }
   ],
   attention: {
     children: [
       {
-        render: '状态管理可以让我们更好的管理属性，如定时器，这就方便了很多，还有 useWhyDidYouUpdate 他可以帮助我们在开发的时候快速定位导致渲染是何引起的',
+        render: '对于防抖与节流是有响应函数的，但直接封装于hook，其实是非常好用的~',
         strong: true
       },
       {
         render: '这里只是做了比较重要的Api，更多Api，请看官网~',
-        href: 'https://ahooks.js.org/zh-CN/hooks/state',
+        href: 'https://ahooks.js.org/zh-CN/hooks/side-effect/use-debounce',
         hrefTooltip: '去官网看看~',
         blank: true
       }
@@ -140,35 +140,27 @@ export const SideEffect:Props = {
 
 export const SideEffectAnchorList:AnchorLinkProps[] = [
   {
-    title: '布尔值（useBoolean）',
+    title: 'setInterval（管理 setInterval）',
     href: 'code1'
   },
   {
-    title: '两种状态之间的切换（useToggle）',
+    title: 'setInterval（管理 setInterval）',
     href: 'code2'
   },
   {
-    title: 'Set类型（useSet）',
+    title: 'useDebounce（对值的防抖）',
     href: 'code3'
   },
   {
-    title: 'Object类型（useSetState）',
+    title: 'useDebounceFn（对函数的防抖）',
     href: 'code4'
   },
   {
-    title: '数字类型（useCounter）',
+    title: 'useThrottle（对值的节流）',
     href: 'code5'
   },
   {
-    title: '倒计时（useCountDown）',
+    title: 'useThrottleFn（对函数的节流）',
     href: 'code6'
-  },
-  {
-    title: '网络连接状态（useNetwork）',
-    href: 'code7'
-  },
-  {
-    title: '什么导致渲染了 render（useWhyDidYouUpdate）',
-    href: 'code8'
   },
 ]
