@@ -23,7 +23,7 @@ export default [
   {
     path: '/ahook',
     name: 'aHook',
-    icon: 'BulbOutlined',
+    icon: 'AntCloudOutlined',
     component: './aHook',
     routes: [
       { path: '/ahook', redirect: '/ahook/introduce'},

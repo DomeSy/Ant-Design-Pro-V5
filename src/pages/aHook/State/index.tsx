@@ -31,7 +31,6 @@ const Index: React.FC<any> = (props) => {
   import React from 'react';
   import { Button } from 'antd';
   import { useBoolean } from 'ahooks';
-import Method from '../../../utils/Method/index';
 
   const Mock: React.FC<any> = () => {
     const [state, { toggle, setTrue, setFalse }] = useBoolean(true);
@@ -220,7 +219,7 @@ import Method from '../../../utils/Method/index';
               title: '倒计时',
               id: 'code6',
               content: <div>
-                <p>useCountDown</p>
+                <p>useCountDown：倒计时</p>
                 <p>首先有两个值，一个是目标值（targetDate），一个是设置值，如果不设置初始值（setTargetDate），则默认为现在</p>
                 <p>会自动计算离目标值的天月周等（formattedRes），同时也有据目标值的时间戳（countdown），注意这里的单位是毫秒，所以精确到秒为 Math.round(countdown / 1000) </p>
                 <p>有常用的倒计时功能，并能控制停止时所触发的函数（onEnd）</p>

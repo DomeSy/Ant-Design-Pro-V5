@@ -22,7 +22,7 @@ const Index: React.FC<any> = (props) => {
               title: '管理 setInterval 的函数',
               id: 'code1',
               content: <div>
-                <p>setInterval：简单的理解就是，每隔一段时间就执行的函数，类似于轮询</p>
+                <p>useInterval：简单的理解就是，每隔一段时间就执行的函数，类似于轮询</p>
                 <p>使用：三个参数 fn delay option</p>
                 <p>fn：重复调用的函数</p>
                 <p>delay：间隔时间，当值为 null 或 undefined 会停止计时器</p>
@@ -84,10 +84,10 @@ const Index: React.FC<any> = (props) => {
             },
             {
               component: <MockTimeout />,
-              title: '管理 useTimeout 的函数',
+              title: '管理 setTimeout 的函数',
               id: 'code2',
               content: <div>
-                <p>setInterval：处理计时器函数的Hook</p>
+                <p>useTimeout：处理计时器函数的Hook</p>
                 <p>使用：两个参数 fn delay</p>
                 <p>fn：重复调用的函数</p>
                 <p>delay：间隔时间，当值为 null 或 undefined 会停止计时器</p>
@@ -223,7 +223,7 @@ const Index: React.FC<any> = (props) => {
             },
             {
               component: <MockThrottleFn />,
-              title: '对值的节流',
+              title: '对函数的节流',
               id: 'code6',
               content: <div>
                 <p>useThrottleFn：对函数进行节流的hook</p>

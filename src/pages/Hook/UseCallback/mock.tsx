@@ -1,5 +1,5 @@
 import React, { useState, useCallback, memo } from 'react';
-import { Button, message } from 'antd';
+import { Button } from 'antd';
 
 const Mock: React.FC<any> = () => {
   const [count, setCount] = useState(0);
