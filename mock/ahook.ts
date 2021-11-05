@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { LifeCycle, LifeCycleAnchorList,  State, StateAnchorList, SideEffect, SideEffectAnchorList} from './ahookMock'
+import { LifeCycle, LifeCycleAnchorList,  State, StateAnchorList, SideEffect, SideEffectAnchorList, Dom, DomAnchorList} from './ahookMock'
 import Mock from 'mockjs';
 
 // 延时时间
@@ -26,6 +26,14 @@ export default {
             title: 'State',
             content: content.ahook.State,
           },
+          {
+            title: 'SideEffect',
+            content: content.ahook.SideEffect,
+          },
+          {
+            title: 'Dom',
+            content: content.ahook.Dom,
+          },
         ]
       }
     ))
@@ -48,6 +56,12 @@ export default {
       res.send( resData({
         list: SideEffect,
         anchorList: SideEffectAnchorList
+      }) )
+      return
+    } else if(detail === 'Dom') {
+      res.send( resData({
+        list: Dom,
+        anchorList: DomAnchorList
       }) )
       return
     }

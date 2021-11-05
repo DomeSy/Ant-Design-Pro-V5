@@ -31,6 +31,7 @@ export default [
       { path: '/ahook/LifeCycle', name: 'LifeCycle', component: './aHook/LifeCycle'},
       { path: '/ahook/State', name: 'State', component: './aHook/State'},
       { path: '/ahook/SideEffect', name: 'SideEffect', component: './aHook/SideEffect'},
+      { path: '/ahook/Dom', name: 'Dom', component: './aHook/Dom'},
     ],
   },
   {

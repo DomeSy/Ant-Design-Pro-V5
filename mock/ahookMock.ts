@@ -164,3 +164,63 @@ export const SideEffectAnchorList:AnchorLinkProps[] = [
     href: 'code6'
   },
 ]
+
+export const Dom:Props = {
+  use: {
+    title: '简单介绍'
+  },
+  useList: [
+    {
+      render: '有关Dom的操作，有些时候看似比较鸡肋，实际功能非常强大，我们可以结合DOM操作，做一些非常好用的操作！'
+    }
+  ],
+  attention: {
+    children: [
+      {
+        render: '页面如何完善，美观，首先你要知道，只有知道，才能作出更加优美的页面~',
+        strong: true
+      },
+      {
+        render: '这里只是做了比较重要的Api，更多Api，请看官网~',
+        href: 'https://ahooks.js.org/zh-CN/hooks/dom/use-click-away',
+        hrefTooltip: '去官网看看~',
+        blank: true
+      }
+    ]
+  }
+}
+
+export const DomAnchorList:AnchorLinkProps[] = [
+  {
+    title: 'useEventListener（管理 addEventListener）',
+    href: 'code1'
+  },
+  {
+    title: 'useHover（鼠标悬停）',
+    href: 'code2'
+  },
+  {
+    title: 'useFullscreen（dom全屏）',
+    href: 'code3'
+  },
+  {
+    title: 'useMouse（鼠标位置）',
+    href: 'code4'
+  },
+  {
+    title: 'useScroll（元素滚动的位置）',
+    href: 'code5'
+  },
+  {
+    title: 'useResponsive（响应式信息）',
+    href: 'code6'
+  },
+  {
+    title: 'useTextSelection（监听选取的位置及内容）',
+    href: 'code7'
+  },
+  {
+    title: 'useSize（监听屏幕尺寸）',
+    href: 'code8'
+  },
+]
