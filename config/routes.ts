@@ -32,6 +32,7 @@ export default [
       { path: '/ahook/State', name: 'State', component: './aHook/State'},
       { path: '/ahook/SideEffect', name: 'SideEffect', component: './aHook/SideEffect'},
       { path: '/ahook/Dom', name: 'Dom', component: './aHook/Dom'},
+      { path: '/ahook/Advanced', name: 'Advanced', component: './aHook/Advanced'},
     ],
   },
   {
