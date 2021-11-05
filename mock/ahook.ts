@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { LifeCycle, LifeCycleAnchorList,  State, StateAnchorList, SideEffect, SideEffectAnchorList, Dom, DomAnchorList} from './ahookMock'
+import { LifeCycle, LifeCycleAnchorList,  State, StateAnchorList, SideEffect, SideEffectAnchorList, Dom, DomAnchorList, Advanced, AdvancedList} from './ahookMock'
 import Mock from 'mockjs';
 
 // 延时时间
@@ -34,6 +34,10 @@ export default {
             title: 'Dom',
             content: content.ahook.Dom,
           },
+          {
+            title: 'Advanced',
+            content: content.ahook.Advanced,
+          },
         ]
       }
     ))
@@ -64,7 +68,14 @@ export default {
         anchorList: DomAnchorList
       }) )
       return
+    } else if(detail === 'Advanced') {
+      res.send( resData({
+        list: Advanced,
+        anchorList: AdvancedList
+      }))
+      return
     }
+
     res.send({
       code: 400,
       detail,
