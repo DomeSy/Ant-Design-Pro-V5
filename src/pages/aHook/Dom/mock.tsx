@@ -126,7 +126,7 @@ export const MockScroll: React.FC<any> = () => {
   return (
     <>
       <div>滚动Left：{scroll.left}  滚动Top: {scroll.top}</div>
-      <div ref={ref} style={{height: 200, width: 200, border: '1px solid #eee', overflow: 'scroll', fontSize: 32, whiteSpace: 'nowrap'}}>
+      <div ref={ref} style={{height: 200, width: 300, border: '1px solid #eee', overflow: 'scroll', fontSize: 32, whiteSpace: 'nowrap'}}>
         <div>如果对你有帮助，请点个Star支持下吧！~~</div>
         <div>如果对你有帮助，请点个Star支持下吧！~~</div>
         <div>如果对你有帮助，请点个Star支持下吧！~~</div>
