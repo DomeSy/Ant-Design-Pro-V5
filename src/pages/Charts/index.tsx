@@ -19,11 +19,11 @@ const Hook: React.FC<any> = ({children, ...props}) => {
 
   const tab = [
     {
-      tab: 'LifeCycle',
-      key: 'LifeCycle',
+      tab: 'Line',
+      key: 'Line',
     },
   ];
-  if(children.props.location.pathname === '/ahook/introduce') return children
+  if(children.props.location.pathname === '/charts/introduce') return children
 
   return (
     <PageLayout

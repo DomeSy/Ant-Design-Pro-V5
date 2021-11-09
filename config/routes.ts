@@ -36,6 +36,18 @@ export default [
     ],
   },
   {
+    path: '/Charts',
+    name: '图表类',
+    icon: 'BarChartOutlined',
+    component: './Charts',
+    routes: [
+      { path: '/Charts', redirect: '/Charts/line'},
+      // { path: '/Charts/introduce', name: '介绍', component: './Charts/Introduce' },
+      { path: '/Charts/Line', name: '折线图', component: './Charts/Line'},
+
+    ],
+  },
+  {
     path: '/file',
     name: '文本展示类',
     icon: 'UnorderedListOutlined',

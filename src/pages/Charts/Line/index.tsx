@@ -11,15 +11,14 @@ const Index: React.FC<any> = (props) => {
 
   useEffect(() => {
     queryDetail({detail: 'State'}).then((res) => {
-      setAnchorList(res.anchorList)
+      // setAnchorList(res.anchorList)
       setDetail({
         // ...res.list,
         code:{
-          wrap: true,
           showCode: [
             {
               component: <Mock />,
-              title: '布尔值',
+              title: '基本操作',
               id: 'code1',
               content: <div>
               </div>,

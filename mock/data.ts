@@ -30,6 +30,9 @@ export const content = {
     Dom: '有关Dom的操作，主要包括：useEventListener（管理 addEventListener）、useHover（鼠标悬停状态）、useFullscreen（全屏功能）、useMouse（获取鼠标位置）、useScroll（获取元素滚动的位置）、useResponsive（响应式信息）、useTextSelection（监听选取的位置及内容）、useSize（监听屏幕尺寸），8个Api',
     Advanced: '高阶使用，主要包含：useCreation（结合 useMemo 或 useRef）、useEventEmitter（共享事件通知、useReactive（另一种useState），4个Api'
   },
+  Charts: {
+    Line: 'YYDS'
+  },
   file: {
     ossUploadShow: '图片、文件上传是最常见的表单项，而在原有的封装中，一些比较常用的功能并不是很全面，如裁剪功能不能制定区域的裁剪，OSS功能要自己写，所以这里采用并不是 ProFormUploadDragger, 但也是基于 Ant Design 的 upload 进行封装',
     maskFrom: '弹框(Modal)和表格(Form)的结合',
