@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from 'antd';
-import { PageLayout, Charts } from '@/components';
+import { PageLayout } from '@/components';
 import { DetailSetting } from '@/commonPages'
 import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
 import type { AnchorLinkProps } from '@/components'
@@ -22,9 +22,12 @@ const Welcome: React.FC<any> = (props) => {
 
   return (
     <PageLayout
+      content={'欢迎来到 Domesy 的博客，如果对大家有任何疑问，请联系微信 domesyPro ~'}
     >
-      <Card>
-        <Charts data={[]} xField='1' yField='2' />
+      <Card
+        title='前言'
+      >
+        <DetailSetting anchorList={anchorList} {...detail} />
       </Card>
     </PageLayout>
   );
