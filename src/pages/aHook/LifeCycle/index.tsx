@@ -169,7 +169,7 @@ const Index: React.FC<any> = (props) => {
               component: <MockUpdate />,
               title: '强制更新',
               id: 'code4',
-              content: 'useUpdate 强制更新当前组件',
+              content: 'useUpdateEffect 在使用的时候与 useEffect 一致，不同时是 忽略了首次渲染',
               code: `
   import React from 'react';
   import { Button } from 'antd';

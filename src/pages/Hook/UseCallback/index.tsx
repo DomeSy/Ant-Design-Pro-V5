@@ -22,6 +22,7 @@ const Index: React.FC<any> = (props) => {
               code: `
   import React, { useState, useCallback } from 'react';
   import { Button } from 'antd';
+import [ from '../../../../config/routes';
 
   const Mock: React.FC<any> = () => {
     const [count, setCount] = useState(0);
