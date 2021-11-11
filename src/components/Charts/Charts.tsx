@@ -8,49 +8,20 @@ import { Line, ColumnConfig } from '@ant-design/charts';
  * @param data 数组（必填），数据里的值
  * @param xField string 横坐标对应的值
  * @param yField string 纵坐标对应的值
+ * @param seriesField string 区分字段
  * @param width number 图标的宽度， 响应式变化 默认 400
  * @param height number 图标的高度 默认 400
  * @param autoFit boolean 图表是否自适应容器宽高 默认为true
+ * @param color 控制颜色， 数组形式，每一个对应第几个的颜色
  *
  */
 
-const Charts: React.FC<ChartProps>  = ({ data, xField, yField,  ...props }) => {
-  var datas = [
-    {
-      type: '家具家电',
-      sales: 38,
-    },
-    {
-      type: '粮油副食',
-      sales: 52,
-    },
-    {
-      type: '生鲜水果',
-      sales: 61,
-    },
-    {
-      type: '美容洗护',
-      sales: 145,
-    },
-    {
-      type: '母婴用品',
-      sales: 48,
-    },
-    {
-      type: '进口食品',
-      sales: 38,
-    },
-    {
-      type: '食品饮料',
-      sales: 38,
-    },
-    {
-      type: '家庭清洁',
-      sales: 38,
-    },
-  ];
+const Charts: React.FC<ChartProps>  = ({ setFiled = '',  ...props }) => {
 
-  return <Line  data={datas} xField='type' yField='sales'  {...props} />;
+  return <Line
+    seriesField={setFiled}
+    {...props}
+  />;
 };
 
 export default Charts
