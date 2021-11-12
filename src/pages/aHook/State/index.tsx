@@ -68,32 +68,32 @@ import Method from '../../../utils/Method/index';
   import { useToggle } from 'ahooks';
 
   const Mock: React.FC<any> = () => {
-  const [state, { toggle, setLeft, setRight }] = useToggle('Hello', 'World');
-  const [boolean , { toggle:toggleBool }] = useToggle(false);
+    const [state, { toggle, set, setLeft, setRight }] = useToggle('Hello', 'World');
+    const [boolean , { toggle:toggleBool, set: toggleSet }] = useToggle(false);
 
-  return (
-    <>
-      <div style={{fontWeight: 'bolder'}}>基础用法（与useBoolean使用一直）:</div>
-      <div style={{marginTop: 8, fontWeight: 'bolder'}}>状态：{JSON.stringify(boolean)}</div>
-      <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
-        <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleBool()}>切换</Button>
-        <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleBool(false)}>切换1</Button>
-        <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleBool(true)}>切换2</Button>
+    return (
+      <>
+        <div style={{fontWeight: 'bolder'}}>基础用法（与useBoolean使用一直）:</div>
+        <div style={{marginTop: 8, fontWeight: 'bolder'}}>状态：{JSON.stringify(boolean)}</div>
+        <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
+          <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleBool()}>切换</Button>
+          <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleSet(false)}>切换1</Button>
+          <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleSet(true)}>切换2</Button>
 
-      </div>
-      <div style={{marginTop: 8, fontWeight: 'bolder'}}>高级用法:</div>
-      <div style={{marginTop: 8}}>两种状态切换：{state}</div>
-      <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
-        <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggle()}>切换</Button>
-        <Button type='primary' style={{marginRight: 8}} onClick={() => toggle('Hello1')} >切换为 hello</Button>
-        <Button type='primary' style={{marginRight: 8}} onClick={() => toggle('World')} >切换为 World</Button>
-      </div>
-      <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
-        <Button type='primary' style={{marginRight: 8}} onClick={() => setLeft()} >设置为Hello</Button>
-        <Button type='primary' style={{marginRight: 8}} onClick={() => setRight()} >设置为World</Button>
-      </div>
-    </>
-  );
+        </div>
+        <div style={{marginTop: 8, fontWeight: 'bolder'}}>高级用法:</div>
+        <div style={{marginTop: 8}}>两种状态切换：{state}</div>
+        <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
+          <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggle()}>切换</Button>
+          <Button type='primary' style={{marginRight: 8}} onClick={() => set('Hello1')} >切换为 hello</Button>
+          <Button type='primary' style={{marginRight: 8}} onClick={() => set('World')} >切换为 World</Button>
+        </div>
+        <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
+          <Button type='primary' style={{marginRight: 8}} onClick={() => setLeft()} >设置为Hello</Button>
+          <Button type='primary' style={{marginRight: 8}} onClick={() => setRight()} >设置为World</Button>
+        </div>
+      </>
+    );
   };
 
   export default Mock;
@@ -230,40 +230,81 @@ import Method from '../../../utils/Method/index';
   import { Button, message } from 'antd';
   import { useBoolean } from 'ahooks';
   import { Method } from '@/utils';
-  const CountDownTest1: React.FC<any> = () => {
-    const [countdown, setTargetDate, formattedRes] = useCountDown({
-      targetDate: Method.getDate({add: 3}),
-    });
 
-    useEffect(() => {
-      setTargetDate(Method.getDate({add: 2}))
-    }, [])
 
-    const { days, hours, minutes, seconds, milliseconds } = formattedRes;
+const CountDownTest1: React.FC<any> = () => {
+  const [targetDate, setTargetDate] = useState<any>(Method.getDate({add: 3}));
+  const [countdown, formattedRes] = useCountDown({
+    targetDate,
+  });
 
-    return <div>设置时间为后天，目标时间为大后天：{days} 天， {hours} 小时 {minutes} 分钟 {seconds} 秒 {milliseconds}</div>
-  }
+  useEffect(() => {
+    setTargetDate(Method.getDate({add: 2}))
+  }, [])
 
-  const CountDownTest2: React.FC<any> = () => {
-    const [countdown, setTargetDate, formattedRes] = useCountDown({
-      onEnd: () => {
-        message.info('已停止!')
-      }
-    });
+  const { days, hours, minutes, seconds, milliseconds } = formattedRes;
 
-    return <div style={{display: 'flex',justifyContent: 'flex-start'}}>
-      倒计时：
-      <Button style={{margin: '0 24px'}} type='primary' onClick={() => {
-        setTargetDate(Date.now() + 60000);
-      }}>{countdown === 0 ? '倒计时' : "Math.round(countdown / 1000)" +s}</Button>
-      <Button onClick={() => {
-        setTargetDate(undefined);
-      }}>停止 </Button>
-    </div>
-  }
+  return <div>设置时间为后天，目标时间为大后天：{days} 天， {hours} 小时 {minutes} 分钟 {seconds} 秒 {milliseconds}</div>
+}
+
+const CountDownTest2: React.FC<any> = () => {
+  const [targetDate, setTargetDate] = useState<any>(Method.getDate({add: 3}));
+
+  const [countdown, formattedRes] = useCountDown({
+    targetDate,
+    onEnd: () => {
+      message.info('已停止!')
+    }
+  });
+
+  return <div style={{display: 'flex',justifyContent: 'flex-start'}}>
+    倒计时：
+    <Button style={{margin: '0 24px'}} type='primary' onClick={() => {
+      setTargetDate(Date.now() + 60000);
+    }}>{countdown === 0 ? '倒计时' : “Math.round(countdown / 1000)}s“</Button>
+    <Button onClick={() => {
+      setTargetDate(undefined);
+    }}>停止 </Button>
+  </div>
+}
+const CountDownTest1: React.FC<any> = () => {
+  const [targetDate, setTargetDate] = useState<any>(Method.getDate({add: 3}));
+  const [countdown, formattedRes] = useCountDown({
+    targetDate,
+  });
+
+  useEffect(() => {
+    setTargetDate(Method.getDate({add: 2}))
+  }, [])
+
+  const { days, hours, minutes, seconds, milliseconds } = formattedRes;
+
+  return <div>设置时间为后天，目标时间为大后天：{days} 天， {hours} 小时 {minutes} 分钟 {seconds} 秒 {milliseconds}</div>
+}
+
+const CountDownTest2: React.FC<any> = () => {
+  const [targetDate, setTargetDate] = useState<any>(Method.getDate({add: 3}));
+
+  const [countdown, formattedRes] = useCountDown({
+    targetDate,
+    onEnd: () => {
+      message.info('已停止!')
+    }
+  });
+
+  return <div style={{display: 'flex',justifyContent: 'flex-start'}}>
+    倒计时：
+    <Button style={{margin: '0 24px'}} type='primary' onClick={() => {
+      setTargetDate(Date.now() + 60000);
+    }}>{countdown === 0 ? '倒计时' : Math.round(countdown / 1000)}s</Button>
+    <Button onClick={() => {
+      setTargetDate(undefined);
+    }}>停止 </Button>
+  </div>
+}
 
   const Mock: React.FC<any> = () => {
-    const [countdown, setTargetDate, formattedRes] = useCountDown({
+    const [countdown, formattedRes] = useCountDown({
       targetDate: Method.getDate({add: 1}),
     });
 

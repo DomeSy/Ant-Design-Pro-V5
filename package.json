@@ -56,7 +56,7 @@
     "@ant-design/pro-layout": "^6.15.3",
     "@ant-design/pro-table": "^2.30.8",
     "@umijs/route-utils": "^1.0.36",
-    "ahooks": "^2.10.11",
+    "ahooks": "^3.0.0-alpha.2",
     "ali-oss": "^6.16.0",
     "antd": "^4.14.0",
     "antd-img-crop": "^3.14.3",

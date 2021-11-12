@@ -10,11 +10,12 @@
     lodash.debounce "^4.0.8"
     lodash.throttle "^4.1.1"
 
-"@ahooksjs/use-request@^2.8.12":
-  version "2.8.12"
-  resolved "https://registry.npmmirror.com/@ahooksjs/use-request/download/@ahooksjs/use-request-2.8.12.tgz#5234d5d7823d7759e87bd86f6ddbe40368090903"
-  integrity sha1-UjTV14I9d1noe9hvbdvkA2gJCQM=
+"@ahooksjs/use-request@^3.0.0-alpha.0":
+  version "3.0.0-alpha.0"
+  resolved "https://registry.npmmirror.com/@ahooksjs/use-request/download/@ahooksjs/use-request-3.0.0-alpha.0.tgz?cache=0&sync_timestamp=1635254649895&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40ahooksjs%2Fuse-request%2Fdownload%2F%40ahooksjs%2Fuse-request-3.0.0-alpha.0.tgz#16c2426503239e431cc51dfe309f5aabbd1aab7d"
+  integrity sha1-FsJCZQMjnkMcxR3+MJ9aq70aq30=
   dependencies:
+    core-js "^2.6.12"
     lodash.debounce "^4.0.8"
     lodash.throttle "^4.1.1"
 
@@ -2681,11 +2682,6 @@
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
 
-"@types/js-cookie@^2.2.6":
-  version "2.2.7"
-  resolved "https://registry.nlark.com/@types/js-cookie/download/@types/js-cookie-2.2.7.tgz#226a9e31680835a6188e887f3988e60c04d3f6a3"
-  integrity sha1-ImqeMWgINaYYjoh/OYjmDATT9qM=
-
 "@types/json-schema@*", "@types/json-schema@^7.0.7", "@types/json-schema@^7.0.8":
   version "7.0.8"
   resolved "https://registry.nlark.com/@types/json-schema/download/@types/json-schema-7.0.8.tgz?cache=0&sync_timestamp=1625608069156&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fjson-schema%2Fdownload%2F%40types%2Fjson-schema-7.0.8.tgz#edf1bf1dbf4e04413ca8e5b17b3b7d7d54b59818"
@@ -3785,19 +3781,16 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-ahooks@^2.10.11:
-  version "2.10.11"
-  resolved "https://registry.npmmirror.com/ahooks/download/ahooks-2.10.11.tgz?cache=0&sync_timestamp=1632485060837&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fahooks%2Fdownload%2Fahooks-2.10.11.tgz#167fb30909a63cdc3361e80fad5329fc498461fd"
-  integrity sha1-Fn+zCQmmPNwzYegPrVMp/EmEYf0=
+ahooks@^3.0.0-alpha.2:
+  version "3.0.0-alpha.4"
+  resolved "https://registry.npmmirror.com/ahooks/download/ahooks-3.0.0-alpha.4.tgz#e6944f2b760f2911c9d48d077aff5cd452ae63c7"
+  integrity sha512-XGxsdu4RT3P2O4mF8dHCgu14OH8xfZTgAxjmUbegOL0wdy1LYRwLslFHW71GU1135F0lEjHeGK3EtOOIAsErBg==
   dependencies:
-    "@ahooksjs/use-request" "^2.8.12"
-    "@types/js-cookie" "^2.2.6"
+    "@ahooksjs/use-request" "^3.0.0-alpha.0"
     dayjs "^1.9.1"
     intersection-observer "^0.7.0"
     js-cookie "^2.2.1"
-    lodash.debounce "^4.0.8"
-    lodash.isequal "^4.5.0"
-    lodash.throttle "^4.1.1"
+    lodash "^4.17.21"
     resize-observer-polyfill "^1.5.1"
     screenfull "^5.0.0"
 
@@ -5684,9 +5677,9 @@ core-js@^1.0.0:
   resolved "https://registry.nlark.com/core-js/download/core-js-1.2.7.tgz?cache=0&sync_timestamp=1624966102256&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js%2Fdownload%2Fcore-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
   integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
 
-core-js@^2.4.0:
+core-js@^2.4.0, core-js@^2.6.12:
   version "2.6.12"
-  resolved "https://registry.nlark.com/core-js/download/core-js-2.6.12.tgz?cache=0&sync_timestamp=1624966102256&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js%2Fdownload%2Fcore-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
+  resolved "https://registry.npmmirror.com/core-js/download/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
   integrity sha1-2TM9+nsGXjR8xWgiGdb2kIWcwuw=
 
 core-js@^3.0.0, core-js@^3.15.2:

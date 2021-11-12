@@ -25,8 +25,9 @@ const Mock: React.FC<any> = () => {
 };
 
 const CountDownTest1: React.FC<any> = () => {
-  const [countdown, setTargetDate, formattedRes] = useCountDown({
-    targetDate: Method.getDate({add: 3}),
+  const [targetDate, setTargetDate] = useState<any>(Method.getDate({add: 3}));
+  const [countdown, formattedRes] = useCountDown({
+    targetDate,
   });
 
   useEffect(() => {
@@ -39,7 +40,10 @@ const CountDownTest1: React.FC<any> = () => {
 }
 
 const CountDownTest2: React.FC<any> = () => {
-  const [countdown, setTargetDate, formattedRes] = useCountDown({
+  const [targetDate, setTargetDate] = useState<any>(Method.getDate({add: 3}));
+
+  const [countdown, formattedRes] = useCountDown({
+    targetDate,
     onEnd: () => {
       message.info('已停止!')
     }
@@ -58,7 +62,7 @@ const CountDownTest2: React.FC<any> = () => {
 
 export const MockCountDown: React.FC<any> = () => {
 
-  const [countdown, setTargetDate, formattedRes] = useCountDown({
+  const [countdown, formattedRes] = useCountDown({
     targetDate: Method.getDate({add: 1}),
   });
 
@@ -112,7 +116,7 @@ export const MockNetwork: React.FC<any> = () => {
 };
 
 export const MockSet: React.FC<any> = () => {
-  const [set, { add, has, remove, reset }] = useSet(['Hello']);
+  const [set, { add, remove, reset }] = useSet(['Hello']);
   const [current, { inc, reset:countReset }] = useCounter(1);
 
   return (
@@ -124,7 +128,7 @@ export const MockSet: React.FC<any> = () => {
         }}>
           日期加1
         </Button>
-        <Button type='primary' style={{marginRight: 8}} onClick={() => remove('Hello')} disabled={!has('Hello')} >删除 Hello</Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() => remove('Hello')} >删除 Hello</Button>
         <Button type='primary' style={{marginRight: 8}} onClick={() => {reset(); countReset()}} >重置</Button>
       </div>
 
@@ -163,8 +167,8 @@ export const MockSetState: React.FC<any> = () => {
 };
 
 export const MockToggle: React.FC<any> = () => {
-  const [state, { toggle, setLeft, setRight }] = useToggle('Hello', 'World');
-  const [boolean , { toggle:toggleBool }] = useToggle(false);
+  const [state, { toggle, set, setLeft, setRight }] = useToggle('Hello', 'World');
+  const [boolean , { toggle:toggleBool, set: toggleSet }] = useToggle(false);
 
   return (
     <>
@@ -172,16 +176,16 @@ export const MockToggle: React.FC<any> = () => {
       <div style={{marginTop: 8, fontWeight: 'bolder'}}>状态：{JSON.stringify(boolean)}</div>
       <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
         <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleBool()}>切换</Button>
-        <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleBool(false)}>切换1</Button>
-        <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleBool(true)}>切换2</Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleSet(false)}>切换1</Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggleSet(true)}>切换2</Button>
 
       </div>
       <div style={{marginTop: 8, fontWeight: 'bolder'}}>高级用法:</div>
       <div style={{marginTop: 8}}>两种状态切换：{state}</div>
       <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
         <Button type='primary' style={{marginRight: 8}} onClick={() =>  toggle()}>切换</Button>
-        <Button type='primary' style={{marginRight: 8}} onClick={() => toggle('Hello1')} >切换为 hello</Button>
-        <Button type='primary' style={{marginRight: 8}} onClick={() => toggle('World')} >切换为 World</Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() => set('Hello1')} >切换为 hello</Button>
+        <Button type='primary' style={{marginRight: 8}} onClick={() => set('World')} >切换为 World</Button>
       </div>
       <div style={{justifyContent: 'flex-start', display:'flex', marginTop: 8}}>
         <Button type='primary' style={{marginRight: 8}} onClick={() => setLeft()} >设置为Hello</Button>
