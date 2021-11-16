@@ -19,8 +19,8 @@ const Hook: React.FC<any> = ({children, ...props}) => {
 
   const tab = [
     {
-      tab: 'Line',
-      key: 'Line',
+      tab: 'Global',
+      key: 'Global',
     },
   ];
   if(children.props.location.pathname === '/charts/introduce') return children

@@ -36,14 +36,14 @@ export default [
     ],
   },
   {
-    path: '/Charts',
-    name: '图表类',
+    path: '/Map',
+    name: '地图',
     icon: 'BarChartOutlined',
-    component: './Charts',
+    component: './Map',
     routes: [
-      { path: '/Charts', redirect: '/Charts/line'},
-      // { path: '/Charts/introduce', name: '介绍', component: './Charts/Introduce' },
-      { path: '/Charts/Line', name: '折线图', component: './Charts/Line'},
+      { path: '/Map', redirect: '/Map/Global'},
+      // { path: '/Map/introduce', name: '介绍', component: './Map/Introduce' },
+      { path: '/Map/Global', name: '折线图', component: './Map/Global'},
 
     ],
   },
