@@ -12,6 +12,7 @@ export { default as Card } from './Card';
 export { default as Anchor } from './Anchor';
 export { default as Typography } from './Typography';
 export { default as Charts } from './Charts';
+export { default as Map } from './Map';
 
 export type { tableListProps } from './Table/interface.d';
 export type { default as FormPropsSy } from './Form/interface.d'
