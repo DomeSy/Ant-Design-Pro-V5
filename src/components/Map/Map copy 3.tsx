@@ -1,7 +1,7 @@
 import type { MapsProps } from './interface';
 import React, { useState, useEffect } from 'react';
 import { Scene } from '@antv/l7';
-import { ProvinceLayer, CountryLayer } from '@antv/l7-district';
+import { ProvinceLayer } from '@antv/l7-district';
 import { GaodeMap, Mapbox } from '@antv/l7-maps';
 import { Select } from 'antd';
 import { AMapScene, LineLayer, PolygonLayer, LoadImage, PointLayer } from '@antv/l7-react';
@@ -9,16 +9,15 @@ import dataPoint from './data.json';
 
 const { Option } = Select;
 
-const colors = [ '#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70' ];
 
 /**
  * @module Map // 地图
  *
  */
 
-const ProvinceData = [
+ const ProvinceData = [
   {
-    NAME_CHN: '云南省1',
+    NAME_CHN: '云南省',
     adcode: 530000,
     value: 17881.12,
   },
@@ -204,38 +203,39 @@ const Index: React.FC<MapsProps>  = ({  ...props}) => {
         center: [116.2825, 39.9],
         pitch: 0,
         style: 'blank',
-        zoom: 5,
-        // minZoom: 3,
-        // maxZoom: 10,
-        // autoFit: true
+        zoom: 3,
+        minZoom: 3,
+        maxZoom: 10,
       }),
-      // options:{
-      //   autoFit: true,
-      // }
     });
     scene.on('loaded', () => {
       // const { province } = this.state;
-      provinceLayer = new CountryLayer(scene, {
-        data: [],
-        joinBy: [ 'NAME_CHN', 'value' ],
+      provinceLayer = new ProvinceLayer(scene, {
+        adcode: province,
         depth: 1,
-        provinceStroke: '#fff',
-        cityStroke: '#EBCCB4',
-        cityStrokeWidth: 1,
-        autoFit: true,
+        label: {
+          field: 'NAME_CHN',
+          textAllowOverlap: false,
+        },
         fill: {
           color: {
             field: 'NAME_CHN',
-            values: colors
-          }
+            values: [
+              '#feedde',
+              '#fdd0a2',
+              '#fdae6b',
+              '#fd8d3c',
+              '#e6550d',
+              '#a63603',
+            ],
+          },
         },
         popup: {
           enable: true,
-          Html: props => {
-            console.log(props, '90978')
+          Html: (props) => {
             return `<span>${props.NAME_CHN}</span>`;
-          }
-        }
+          },
+        },
       });
 
     });
@@ -243,6 +243,29 @@ const Index: React.FC<MapsProps>  = ({  ...props}) => {
   }, [])
 
   return <>
+    <Select
+      defaultValue="黑龙江省"
+      style={{
+        width: 120,
+        zIndex: 2,
+        position: 'absolute',
+        right: '10px',
+        top: '10px',
+      }}
+      onChange={(e) => {
+        setProvinced(e)
+        provinceLayer.updateDistrict([e])
+        console.log(provinceLayer, '00')
+      }}
+    >
+      {ProvinceData.map((province, i) => {
+        return (
+          <Option key={i} value={province.adcode}>
+            {province.NAME_CHN}
+          </Option>
+        );
+      })}
+    </Select>
     <div id='map' style={{width: '100%', height: '100%',top: 0, left: 0, justifyContent: 'center', position: 'relative'}}></div>
   </>;
 };

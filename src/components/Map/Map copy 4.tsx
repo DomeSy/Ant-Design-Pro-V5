@@ -18,7 +18,7 @@ const colors = [ '#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70' ];
 
 const ProvinceData = [
   {
-    NAME_CHN: '云南省1',
+    NAME_CHN: '云南省',
     adcode: 530000,
     value: 17881.12,
   },
@@ -216,13 +216,12 @@ const Index: React.FC<MapsProps>  = ({  ...props}) => {
     scene.on('loaded', () => {
       // const { province } = this.state;
       provinceLayer = new CountryLayer(scene, {
-        data: [],
-        joinBy: [ 'NAME_CHN', 'value' ],
+        data: ProvinceData,
+        joinBy: [ 'NAME_CHN', 'name' ],
         depth: 1,
         provinceStroke: '#fff',
         cityStroke: '#EBCCB4',
         cityStrokeWidth: 1,
-        autoFit: true,
         fill: {
           color: {
             field: 'NAME_CHN',
@@ -232,7 +231,6 @@ const Index: React.FC<MapsProps>  = ({  ...props}) => {
         popup: {
           enable: true,
           Html: props => {
-            console.log(props, '90978')
             return `<span>${props.NAME_CHN}</span>`;
           }
         }
