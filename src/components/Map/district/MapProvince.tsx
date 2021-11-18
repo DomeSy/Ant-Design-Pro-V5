@@ -3,6 +3,7 @@ import { Scene } from '@antv/l7';
 import { ProvinceLayer } from '@antv/l7-district';
 import { Mapbox } from '@antv/l7-maps';
 import { useUnmount } from 'ahooks';
+import { MapSy } from '@/utils/Setting';
 
 
 import type { MapProvinceProps } from './interface';
@@ -14,7 +15,7 @@ import type { MapProvinceProps } from './interface';
 
 let Layer:any
 
-const Index: React.FC<MapProvinceProps>  = ({  ...props}) => {
+const Index: React.FC<MapProvinceProps>  = ({ map={}, status={}, ...props}) => {
   const [scene, setScene] = useState<any>()
 
   useEffect( () => {
@@ -25,6 +26,7 @@ const Index: React.FC<MapProvinceProps>  = ({  ...props}) => {
     scene.destroy()
   })
 
+  // 初始化地图
   const initData = async () => {
     const response = await fetch(
       'https://gw.alipayobjects.com/os/bmw-prod/149b599d-21ef-4c24-812c-20deaee90e20.json',
@@ -41,27 +43,29 @@ const Index: React.FC<MapProvinceProps>  = ({  ...props}) => {
     const scene = new Scene({
       id: 'map',
       map: new Mapbox({
-        center: [116.2825, 39.9],
-        pitch: 0,
-        style: 'blank',
-        zoom: 3,
-        minZoom: 3,
-        maxZoom: 10,
+        token: MapSy.key ? MapSy.key : undefined,
+        ...MapSy.district,
+        ...map
       }),
+      ...MapSy.scene,
+      ...props.scene
     })
+
+    console.log(data, '000')
+
     scene.on('loaded', () => {
       Layer = new ProvinceLayer(scene, {
         data,
-        joinBy: ['adcode', 'code'],
-        adcode: ['330000'],
-        depth: 3,
+        // joinBy: ['adcode', 'code'],
+        adcode: ['320000'],
+        depth: 2,
         label: {
           field: 'NAME_CHN',
           textAllowOverlap: false,
         },
         fill: {
           color: {
-            field: 'name',
+            field: 'NAME_CHN',
             values: [
               'red',
               'green',
@@ -92,13 +96,7 @@ const Index: React.FC<MapProvinceProps>  = ({  ...props}) => {
         console.log(e,'---')
       })
     });
-    scene.setMapStatus({
-      dragEnable: false, // 是否允许地图拖拽
-      keyboardEnable: false, // 是否允许形键盘事件
-      doubleClickZoom: false, // 双击放大
-      zoomEnable: false, // 滚动缩放
-      rotateEnable: false // 旋转
-    })
+    scene.setMapStatus({ ...MapSy.status, ...status})
     setScene(scene)
   }
 

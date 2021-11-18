@@ -278,6 +278,7 @@ const Index: React.FC<MapsProps>  = ({  ...props}) => {
   }
 
   return <>
+    <AMapScene map />
     <div id='map' style={{width: '100%', height: '100%',top: 0, left: 0, justifyContent: 'center', position: 'relative'}}></div>
   </>;
 };
