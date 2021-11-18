@@ -6,7 +6,7 @@ const Mock: React.FC<any> = () => {
 
   return (
     <div style={{width: '100%', height: '600px'}}>
-      <Map />
+      <Map.Province />
     </div>
   );
 };

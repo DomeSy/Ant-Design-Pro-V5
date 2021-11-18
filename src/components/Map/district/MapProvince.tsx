@@ -1,4 +1,4 @@
-import type { MapsProps } from './interface';
+import type { MapsProps } from '../interface';
 import React, { useState, useEffect } from 'react';
 import { Scene } from '@antv/l7';
 import { ProvinceLayer } from '@antv/l7-district';

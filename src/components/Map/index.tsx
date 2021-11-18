@@ -1,19 +1,18 @@
 
 import Map from './Map';
-import MaskFrom from './MaskFrom';
-
+import { MapProvince } from './district';
 
 /**
- * @module 图标类
+ * @module 地图类类
  */
 type MapType = typeof Map;
-type MaskFromType = typeof MaskFrom;
+type MapProvinceType = typeof MapProvince;
 
 export interface RenderWay extends MapType {
-  Form: MaskFromType;
+  Province: MapProvinceType;
 }
 
 const Index = Map as RenderWay
-Index.Form = MaskFrom;
+Index.Province = MapProvince; // 省
 
 export default Index;
