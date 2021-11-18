@@ -1,14 +1,16 @@
+import { IFillOptions, IAttributeOption, ILabelOption } from '@antv/l7-district';
 
 interface MapDistrict {  // 省市区地图公共配置类
-  map?: mapProps; // 地图初始化样式
+  map?: mapProps; // 地图初始化模板
   scene?: sceneProps; // 地图场景配置
   status?: statusProps; // 地图的状态
+  config?: configProps; // 地图详细配置
   data?: Array<{ [key: string]: any }>; // 匹配的数据源
   joinBy?: [string, string]; // 数据关联项，与 data 数据源做关联，即，如果data的code码与地图本身的code码相等，则进行匹配，在后续的操作中。 目前只支持  NAME_CHN 与 adcode， 默认: ['adcode', 'code']
 }
 
 export interface MapProvinceProps extends MapDistrict { //省地图
-  init: [string | number]; // 初始化省地图的编码
+  init: string[] | string | number | number[]; // 初始化省地图的编码
 }
 
 interface mapProps { // 其他配置，查看高德地图的Api https://lbs.amap.com/api/javascript-api/reference/map
@@ -38,4 +40,13 @@ interface statusProps {
   rotateEnable: boolean; // 是否旋转
   showIndoorMap: boolean; // 是否展示室内场景，
   resizeEnable: boolean; // 尺寸变动问题
+}
+// 包含 field 与 values 需要注意的是，当自定义颜色的时候，接收的是 对应 field 的参数，而 field 是结合数据源data的参数，如果在 joinBy 中没有匹配到，values接收不到对应的参数，即为 undefined
+interface configProps { // 这里只展示常用的一些api，详细的查看官网配置
+  depth?: 0 | 1 | 2 | 3; // 数据显示的层级，0：国际级，1：省级，2：市级，3：县级
+  fill?: Partial<IFillOptions>; // 填充图样式
+  fillColor?: IAttributeOption; // 将fill中的color,单独提出，层级 fill > fillColor,
+  label?: Partial<ILabelOption>; // 文字显示区域
+  noneLabel?: boolean; // 不显示文字
+  [key: string]: any;
 }

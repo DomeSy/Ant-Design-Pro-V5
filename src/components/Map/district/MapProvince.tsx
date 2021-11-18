@@ -13,9 +13,10 @@ import type { MapProvinceProps } from './interface';
  *
  */
 
+const { district, key } = MapSy
 let Layer:any
 
-const Index: React.FC<MapProvinceProps>  = ({ map={}, status={}, ...props}) => {
+const Index: React.FC<MapProvinceProps>  = ({ map={}, status={}, config={}, ...props}) => {
   const [scene, setScene] = useState<any>()
 
   useEffect( () => {
@@ -28,35 +29,34 @@ const Index: React.FC<MapProvinceProps>  = ({ map={}, status={}, ...props}) => {
 
   // 初始化地图
   const initData = async () => {
+    const scene = new Scene({
+      id: 'map',
+      map: new Mapbox({
+        token: key ? key : undefined,
+        ...district.map,
+        ...map
+      }),
+      ...district.scene,
+      ...props.scene
+    })
+
     scene.on('loaded', () => {
       Layer = new ProvinceLayer(scene, {
         data: props.data ? props.data : undefined,
-        joinBy: ['adcode', 'code'],
-        adcode: ['320000'],
-        depth: 2,
+        joinBy: props.joinBy || district.joinBy,
+        adcode: props.init,
+        depth: config?.depth || 2,
         label: {
-          field: 'NAME_CHN',
-          textAllowOverlap: false,
+          opacity: config.noneLabel ? 0 : undefined,
+          ...district?.config?.label,
+          ...config?.label
         },
         fill: {
           color: {
-            field: 'NAME_CHN',
-            values: [
-              'red',
-              'green',
-              'yellow',
-              'blue',
-              'orange',
-              'pink',
-            ],
-            // values: (res) => {
-            //   console.log(res, '--')
-            //   if(res === '拱墅区'){
-            //     return 'yellow'
-            //   }
-            //   return 'red'
-            // }
+            field: config?.fillColor?.field || 'NAME_CHN',
+            values: config?.fillColor?.values || district.config.fillColor,
           },
+          ...config?.fill
         },
         popup: {
           enable: true,
@@ -71,7 +71,9 @@ const Index: React.FC<MapProvinceProps>  = ({ map={}, status={}, ...props}) => {
         console.log(e,'---')
       })
     });
-    scene.setMapStatus({ ...MapSy.status, ...status})
+
+    scene.setMapStatus({ ...district.status, ...status})
+
     setScene(scene)
   }
 
