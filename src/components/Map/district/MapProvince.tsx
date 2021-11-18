@@ -28,35 +28,10 @@ const Index: React.FC<MapProvinceProps>  = ({ map={}, status={}, ...props}) => {
 
   // 初始化地图
   const initData = async () => {
-    const response = await fetch(
-      'https://gw.alipayobjects.com/os/bmw-prod/149b599d-21ef-4c24-812c-20deaee90e20.json',
-    );
-    const provinceData = await response.json();
-
-    const data = Object.keys(provinceData).map((key: string) => {
-      return {
-        code: key,
-        name: provinceData[key][0],
-        pop: provinceData[key][2] * 1,
-      };
-    });
-    const scene = new Scene({
-      id: 'map',
-      map: new Mapbox({
-        token: MapSy.key ? MapSy.key : undefined,
-        ...MapSy.district,
-        ...map
-      }),
-      ...MapSy.scene,
-      ...props.scene
-    })
-
-    console.log(data, '000')
-
     scene.on('loaded', () => {
       Layer = new ProvinceLayer(scene, {
-        data,
-        // joinBy: ['adcode', 'code'],
+        data: props.data ? props.data : undefined,
+        joinBy: ['adcode', 'code'],
         adcode: ['320000'],
         depth: 2,
         label: {

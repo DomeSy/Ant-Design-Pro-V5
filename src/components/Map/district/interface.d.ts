@@ -4,6 +4,7 @@ interface MapDistrict {  // 省市区地图公共配置类
   scene?: sceneProps; // 地图场景配置
   status?: statusProps; // 地图的状态
   data?: Array<{ [key: string]: any }>; // 匹配的数据源
+  joinBy?: [string, string]; // 数据关联项，与 data 数据源做关联，即，如果data的code码与地图本身的code码相等，则进行匹配，在后续的操作中。 目前只支持  NAME_CHN 与 adcode， 默认: ['adcode', 'code']
 }
 
 export interface MapProvinceProps extends MapDistrict { //省地图

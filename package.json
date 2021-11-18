@@ -70,7 +70,6 @@
     "moment": "^2.25.3",
     "omit.js": "^2.0.2",
     "react": "^17.0.0",
-    "react-amap": "^1.2.8",
     "react-cropper": "^2.1.8",
     "react-dev-inspector": "^1.1.1",
     "react-dom": "^17.0.0",
