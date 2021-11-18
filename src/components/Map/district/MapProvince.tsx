@@ -1,19 +1,20 @@
-import type { MapsProps } from '../interface';
 import React, { useState, useEffect } from 'react';
 import { Scene } from '@antv/l7';
 import { ProvinceLayer } from '@antv/l7-district';
 import { Mapbox } from '@antv/l7-maps';
 import { useUnmount } from 'ahooks';
-// 市级地图
+
+
+import type { MapProvinceProps } from './interface';
 
 /**
- * @module Map // 地图
+ * @module Map.Province // 省级地图
  *
  */
 
 let Layer:any
 
-const Index: React.FC<MapsProps>  = ({  ...props}) => {
+const Index: React.FC<MapProvinceProps>  = ({  ...props}) => {
   const [scene, setScene] = useState<any>()
 
   useEffect( () => {
@@ -101,9 +102,7 @@ const Index: React.FC<MapsProps>  = ({  ...props}) => {
     setScene(scene)
   }
 
-  return <>
-    <div id='map' style={{width: '100%', height: '100%',top: 0, left: 0, justifyContent: 'center', position: 'relative'}}></div>
-  </>;
+  return <div id='map' style={{width: '100%', height: '100%',top: 0, left: 0, justifyContent: 'center', position: 'relative'}}></div>;
 };
 
 export default Index
