@@ -42,13 +42,13 @@ interface sceneProps {
   preserveDrawingBuffer?: boolean, // 是否保留缓冲区数据 false
 }
 interface statusProps {
-  dragEnable: boolean, // 是否允许地图拖拽
-  keyboardEnable: boolean, // 是否允许形键盘事件
-  doubleClickZoom: boolean, // 是否双击放大
-  zoomEnable: boolean, // 是否滚动缩放
-  rotateEnable: boolean; // 是否旋转
-  showIndoorMap: boolean; // 是否展示室内场景，
-  resizeEnable: boolean; // 尺寸变动问题
+  dragEnable?: boolean, // 是否允许地图拖拽
+  keyboardEnable?: boolean, // 是否允许形键盘事件
+  doubleClickZoom?: boolean, // 是否双击放大
+  zoomEnable?: boolean, // 是否滚动缩放
+  rotateEnable?: boolean; // 是否旋转
+  showIndoorMap?: boolean; // 是否展示室内场景，
+  resizeEnable?: boolean; // 尺寸变动问题
 }
 // 包含 field 与 values 需要注意的是，当自定义颜色的时候，接收的是 对应 field 的参数，而 field 是结合数据源data的参数，如果在 joinBy 中没有匹配到，values接收不到对应的参数，即为 undefined
 interface configProps { // 这里只展示常用的一些api，详细的查看官网配置
@@ -61,8 +61,8 @@ interface configProps { // 这里只展示常用的一些api，详细的查看�
   stroke?: string; // 描边颜色
   strokeWidth?: number, // 描边宽度
   strokeOpacity?: number, // 描边透明度
-  popup: Partial<IPopupOptions>; // 信息窗口, 有三个字段，enable（是否开启，boolean， 默认开启）triggerEvent（触发时间，如  'mousemove' | 'click'， 默认 'mousemove'， Html 接收 当前的 字段，返回 字符串，在字符串中书写 React.Node）
-  bubble: Partial<IBubbleOption>; // 气泡窗
+  popup?: Partial<IPopupOptions>; // 信息窗口, 有三个字段，enable（是否开启，boolean， 默认开启）triggerEvent（触发时间，如  'mousemove' | 'click'， 默认 'mousemove'， Html 接收 当前的 字段，返回 字符串，在字符串中书写 React.Node）
+  bubble?: Partial<IBubbleOption>; // 气泡窗
   extra?:{  // 除上述属性外的其他属性
     [key: string]: any;
   }
