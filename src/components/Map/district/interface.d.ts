@@ -1,4 +1,4 @@
-import { IFillOptions, IAttributeOption, ILabelOption } from '@antv/l7-district';
+import { IFillOptions, IAttributeOption, ILabelOption, IPopupOptions } from '@antv/l7-district';
 
 interface MapDistrict {  // 省市区地图公共配置类
   map?: mapProps; // 地图初始化模板
@@ -7,10 +7,19 @@ interface MapDistrict {  // 省市区地图公共配置类
   config?: configProps; // 地图详细配置
   data?: Array<{ [key: string]: any }>; // 匹配的数据源
   joinBy?: [string, string]; // 数据关联项，与 data 数据源做关联，即，如果data的code码与地图本身的code码相等，则进行匹配，在后续的操作中。 目前只支持  NAME_CHN 与 adcode， 默认: ['adcode', 'code']
+  style?: React.CSSProperties; // 渲染图层的css
+  getScene?: (scene: any) => void; // 获取Map创的实例
+  getLayer?: (layer: any) => void; // 获取图层渲染示例
+  initMethod?: initMethodProps[]; // 初始化方法集合
+  onClick?: (layer:any) => void; // 点击省份方法，此方法存在，initMethod 的click将无效
+  onDoubleClick?: (layer:any) => void; // 双击省份方法 此方法存在，initMethod 的dblclick将无效
+  unClick?: (layer:any) => void; // 点击空白处，此方法存在，initMethod 的unclick将无效
+  unDoubleClick?: (layer:any) => void; // 双击空白处 此方法存在，initMethod 的undblclick将无效
 }
 
 export interface MapProvinceProps extends MapDistrict { //省地图
   init: string[] | string | number | number[]; // 初始化省地图的编码
+  id?: string; // 用于区分渲染的图层，默认：mapProvince , 多次渲染的时候需要id不同
 }
 
 interface mapProps { // 其他配置，查看高德地图的Api https://lbs.amap.com/api/javascript-api/reference/map
@@ -52,7 +61,14 @@ interface configProps { // 这里只展示常用的一些api，详细的查看�
   stroke?: string; // 描边颜色
   strokeWidth?: number, // 描边宽度
   strokeOpacity?: number, // 描边透明度
+  popup: Partial<IPopupOptions>; // 信息窗口, 有三个字段，enable（是否开启，boolean， 默认开启）triggerEvent（触发时间，如  'mousemove' | 'click'， 默认 'mousemove'， Html 接收 当前的 字段，返回 字符串，在字符串中书写 React.Node）
+  bubble: Partial<IBubbleOption>; // 气泡窗
   extra?:{  // 除上述属性外的其他属性
     [key: string]: any;
   }
+}
+
+interface initMethodProps {
+  type: string;  // 事件类集合，如：click, doubleClick 等
+  render: (e) => void //渲染事件的集合
 }

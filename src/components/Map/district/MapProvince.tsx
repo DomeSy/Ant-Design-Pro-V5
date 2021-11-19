@@ -16,7 +16,7 @@ import type { MapProvinceProps } from './interface';
 const { district, key } = MapSy
 let Layer:any
 
-const Index: React.FC<MapProvinceProps>  = ({ map={}, status={}, config={}, ...props}) => {
+const Index: React.FC<MapProvinceProps>  = ({ id='mapProvince', map={}, status={}, config={}, getScene, getLayer, initMethod, ...props}) => {
   const [scene, setScene] = useState<any>()
 
   useEffect( () => {
@@ -30,7 +30,7 @@ const Index: React.FC<MapProvinceProps>  = ({ map={}, status={}, config={}, ...p
   // 初始化地图
   const initData = async () => {
     const scene = new Scene({
-      id: 'map',
+      id,
       map: new Mapbox({
         token: key ? key : undefined,
         ...district.map,
@@ -62,27 +62,48 @@ const Index: React.FC<MapProvinceProps>  = ({ map={}, status={}, config={}, ...p
           },
           ...config?.fill
         },
-        popup: {
-          enable: true,
-          Html: (props) => {
-            console.log(props)
-            return `<span>${props.NAME_CHN}:</span>`;
-          },
-        },
+        popup: { ...config?.popup },
+        bubble:{ ...config?.bubble },
         ...config?.extra
       });
+      if(getLayer) getLayer(Layer)
 
-      Layer.on('click', (e:any) => {
-        console.log(e,'---')
-      })
+      if(initMethod && initMethod.length !== 0){
+        initMethod.map((item) => {
+          if(props.onClick || props.onDoubleClick) return
+          Layer.on(item.type, (e:any) => {
+            item.render(e)
+          })
+        })
+      }
+      if(props.onClick){
+        Layer.on('click', (e:any) => {
+          if(props.onClick) props.onClick(e)
+        })
+      }
+      if(props.onDoubleClick){
+        Layer.on('dblclick', (e:any) => {
+          if(props.onDoubleClick) props.onDoubleClick(e)
+        })
+      }
+      if(props.unClick){
+        Layer.on('unclick', (e:any) => {
+          if(props.unClick) props.unClick(e)
+        })
+      }
+      if(props.unDoubleClick){
+        Layer.on('undblclick', (e:any) => {
+          if(props.unDoubleClick) props.unDoubleClick(e)
+        })
+      }
     });
 
     scene.setMapStatus({ ...district.status, ...status})
-
+    if(getScene) getScene(scene)
     setScene(scene)
   }
 
-  return <div id='map' style={{width: '100%', height: '100%',top: 0, left: 0, justifyContent: 'center', position: 'relative'}}></div>;
+  return <div id={id} style={{width: '100%', height: '100%',top: 0, left: 0, justifyContent: 'center', position: 'relative', ...props.style}}></div>;
 };
 
 export default Index
