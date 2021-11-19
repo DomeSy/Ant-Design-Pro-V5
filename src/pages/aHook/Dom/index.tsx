@@ -118,8 +118,8 @@ const Index: React.FC<any> = (props) => {
 
   const Mock: React.FC<any> = () => {
     const ref = useRef<any>(null);
-    const [isFullscreen, { setFull, exitFull, toggleFull }] = useFullscreen(ref);
-    const [, { setFull: setFullImg, exitFull: exitFullImg, toggleFull: toggleFullImg }] = useFullscreen(() => document.getElementById('fullscreen-img'));
+    const [isFullscreen, { enterFullscreen, exitFullscreen, toggleFullscreen }] = useFullscreen(ref);
+    const [, { enterFullscreen: enterFullscreenImg }] = useFullscreen(() => document.getElementById('fullscreen-img'));
 
     return (
       <div>
@@ -127,15 +127,15 @@ const Index: React.FC<any> = (props) => {
           <div style={{fontWeight: 'bolder', marginBottom: 8}}>基础用法:</div>
           <div>当前状态：{isFullscreen ? '全屏状态' : '非全屏状态'} </div>
           <div style={{marginTop: 8, display: 'flex', justifyContent: 'flex-start'}}>
-            <Button type='primary' style={{marginRight: 8}} onClick={setFull}>全屏</Button>
-            <Button type='primary' style={{marginRight: 8}} onClick={exitFull}>退出全屏</Button>
-            <Button type='primary' onClick={toggleFull}>切换状态</Button>
+            <Button type='primary' style={{marginRight: 8}} onClick={enterFullscreen}>全屏</Button>
+            <Button type='primary' style={{marginRight: 8}} onClick={exitFullscreen}>退出全屏</Button>
+            <Button type='primary' onClick={toggleFullscreen}>切换状态</Button>
           </div>
         </div>
         <div style={{fontWeight: 'bolder', margin:'8px 0'}}>图片全屏:</div>
         <img id="fullscreen-img" src={'https://ahooks.js.org/static/react-hooks.dd0f9d30.jpg'} style={{ width: 320 }} alt="" />
         <div style={{marginTop: 8, display: 'flex', justifyContent: 'flex-start'}}>
-          <Button type='primary' style={{marginRight: 8}} onClick={setFullImg}>全屏</Button>
+          <Button type='primary' style={{marginRight: 8}} onClick={enterFullscreenImg}>全屏</Button>
         </div>
       </div>
     );
@@ -194,7 +194,7 @@ const Index: React.FC<any> = (props) => {
 
     return (
       <>
-        <div>滚动Left：{scroll.left}  滚动Top: {scroll.top}</div>
+        <div>滚动Left：{scroll?.left || 0}  滚动Top: {scroll?.top || 0}</div>
         <div ref={ref} style={{height: 200, width: 200, border: '1px solid #eee', overflow: 'scroll',  whiteSpace: 'nowrap', fontSize: 32}}>
           <div>如果对你有帮助，请点个Star支持下吧！~~</div>
           <div>如果对你有帮助，请点个Star支持下吧！~~</div>
@@ -368,9 +368,9 @@ const Index: React.FC<any> = (props) => {
     return (
       <>
         <div style={{ fontWeight: 'bold', marginBottom: 8}}>通过ref获取：</div>
-        <div ref={ref}>改变屏幕尺寸(div)： 宽度：{size.width} px, 高度：{size.height} px</div>
+        <div ref={ref}>改变屏幕尺寸(div)： 宽度：{size?.width} px, 高度：{size?.height} px</div>
         <div style={{ fontWeight: 'bold', margin: '8px 0'}}>通过dom获取：</div>
-        <div ref={ref}>改变屏幕尺寸（body）： 宽度：{size1.width} px, 高度：{size1.height} px</div>
+        <div ref={ref}>改变屏幕尺寸（body）： 宽度：{size1?.width} px, 高度：{size1?.height} px</div>
       </>
     );
   };
