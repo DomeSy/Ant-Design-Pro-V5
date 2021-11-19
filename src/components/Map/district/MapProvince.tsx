@@ -44,10 +44,14 @@ const Index: React.FC<MapProvinceProps>  = ({ map={}, status={}, config={}, ...p
       Layer = new ProvinceLayer(scene, {
         data: props.data ? props.data : undefined,
         joinBy: props.joinBy || district.joinBy,
+        visible: config?.visible,
         adcode: props.init,
         depth: config?.depth || 2,
+        stroke: config?.stroke || district.config.stroke,
+        strokeWidth: config?.strokeWidth || district.config.strokeWidth,
+        strokeOpacity: config?.strokeOpacity || district.config.strokeOpacity,
         label: {
-          opacity: config.noneLabel ? 0 : undefined,
+          opacity: config.noneLabel ? 0 : district.config.noneLabel ? 0 : undefined,
           ...district?.config?.label,
           ...config?.label
         },
@@ -65,6 +69,7 @@ const Index: React.FC<MapProvinceProps>  = ({ map={}, status={}, config={}, ...p
             return `<span>${props.NAME_CHN}:</span>`;
           },
         },
+        ...config?.extra
       });
 
       Layer.on('click', (e:any) => {

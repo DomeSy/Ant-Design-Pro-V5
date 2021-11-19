@@ -44,9 +44,15 @@ interface statusProps {
 // 包含 field 与 values 需要注意的是，当自定义颜色的时候，接收的是 对应 field 的参数，而 field 是结合数据源data的参数，如果在 joinBy 中没有匹配到，values接收不到对应的参数，即为 undefined
 interface configProps { // 这里只展示常用的一些api，详细的查看官网配置
   depth?: 0 | 1 | 2 | 3; // 数据显示的层级，0：国际级，1：省级，2：市级，3：县级
+  visible?: boolean; // 地图是否可见
   fill?: Partial<IFillOptions>; // 填充图样式
   fillColor?: IAttributeOption; // 将fill中的color,单独提出，层级 fill > fillColor,
   label?: Partial<ILabelOption>; // 文字显示区域
   noneLabel?: boolean; // 不显示文字
-  [key: string]: any;
+  stroke?: string; // 描边颜色
+  strokeWidth?: number, // 描边宽度
+  strokeOpacity?: number, // 描边透明度
+  extra?:{  // 除上述属性外的其他属性
+    [key: string]: any;
+  }
 }

@@ -30,6 +30,10 @@ interface MapSyProps {
     config: { // 地图详细配置
       fillColor: string[]; //填充颜色
       label: Partial<ILabelOption>; // 全局配置
+      noneLabel: boolean; // 不显示文字
+      stroke: string; // 描边颜色
+      strokeWidth: number; // 描边宽度
+      strokeOpacity: number; // 描边透明度
     }
   };
 
@@ -60,6 +64,10 @@ const MapSy: MapSyProps = {
       preserveDrawingBuffer: false
     },
     config: {
+      noneLabel: false, // 是否显示省份名
+      stroke: "#ffffff", // 描边颜色
+      strokeWidth: 0.5, // 描边宽度
+      strokeOpacity: 1, // 描边透明度
       fillColor: ['rgb(227,147,131)', 'rgb(211,104,101)', 'rgb(181,78,76)', 'rgb(144,55,53)', 'rgb(106,33,29)'],
       label: {
         field: 'NAME_CHN',
