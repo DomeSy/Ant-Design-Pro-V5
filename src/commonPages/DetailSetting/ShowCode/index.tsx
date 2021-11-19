@@ -23,7 +23,7 @@ const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
   const [codeShow, setCodeShow] = useState<boolean>(false)
   const cardRef = useRef<any>();
   const contentRef = useRef<any>(null);
-  // const [{ setFull }] = useFullscreen(contentRef);
+  const [, { enterFullscreen }] = useFullscreen(contentRef);
 
   useEffect(() => {
   }, [])
@@ -34,7 +34,7 @@ const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
       id={props?.id}
       style={{ width: '100%', borderRadius: 2, border: '1px solid #f0f0f0', marginBottom: 24}}
     >
-      <div style={{padding: '24px 24px 0 24px'}} ref={contentRef}>
+      <div style={{padding: '24px 24px 0 24px', background: 'white'}} ref={contentRef}>
         {children}
       </div>
       <DetailContent
@@ -60,10 +60,12 @@ const ShowCode: React.FC<ShowCodeProps> = ({ children, ...props }) => {
         <Divider style={{margin: 0}} />
           <div style={{ display: 'flex',marginTop: 12, justifyContent: 'center', alignContent: 'center'}}>
             <Typography.Paragraph  copyable={{text: props.code, tooltips: '复制代码' }}  />
-            <ArrowsAltOutlined
-              style={{marginLeft: 24, cursor: 'pointer'}}
-              // onClick={setFull}
-            />
+            <Tooltip title={'全屏'}>
+              <ArrowsAltOutlined
+                style={{marginLeft: 24, cursor: 'pointer', position: 'relative', top: 4, opacity: 0.8}}
+                onClick={enterFullscreen}
+              />
+            </Tooltip>
             <Tooltip title={codeShow ? '收起代码' : '展开代码'}>
               {
                 codeShow ? <img src="https://gw.alipayobjects.com/zos/antfincdn/4zAaozCvUH/unexpand.svg" onClick={() => setCodeShow(false)} style={{width: 21, height: 21, marginLeft: 20, opacity: 0.3, cursor: 'pointer'}} /> :
