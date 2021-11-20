@@ -55,7 +55,7 @@ interface configProps { // 这里只展示常用的一些api，详细的查看�
   depth?: 0 | 1 | 2 | 3; // 数据显示的层级，0：国际级，1：省级，2：市级，3：县级
   visible?: boolean; // 地图是否可见
   fill?: Partial<IFillOptions>; // 填充图样式
-  fillColor?: IAttributeOption; // 将fill中的color,单独提出，层级 fill > fillColor,
+  fillColor?:  Partial<IAttributeOption>; // 将fill中的color,单独提出，层级 fill > fillColor,
   label?: Partial<ILabelOption>; // 文字显示区域
   noneLabel?: boolean; // 不显示文字
   stroke?: string; // 描边颜色

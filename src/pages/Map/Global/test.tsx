@@ -171,7 +171,42 @@ const ProvinceData = [
   },
 ];
 
+const colorData = [
+  {
+    name: '不改变',
+    value: 0
+  },
+  {
+    name: '红色',
+    value: 'red'
+  },
+  {
+    name: '黄色',
+    value: 'yellow'
+  },
+  {
+    name: '绿色',
+    value: 'green'
+  },
+]
+
+const PdepthData = [
+  {
+    name: '省级',
+    value: 1,
+  },
+  {
+    name: '市级',
+    value: 2,
+  },
+  {
+    name: '区级',
+    value: 3,
+  },
+]
 
 export {
-  ProvinceData
+  ProvinceData,
+  colorData,
+  PdepthData
 }

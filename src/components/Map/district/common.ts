@@ -37,7 +37,10 @@ const onLoaded = (scene: any, {  status={}, config={}, getScene, getLayer, initM
 
     if(initMethod && initMethod.length !== 0){
       initMethod.map((item) => {
-        if(props.onClick || props.onDoubleClick) return
+        if(props.onClick && item.type === 'click') return
+        if(props.onDoubleClick && item.type === 'dblclick') return
+        if(props.unClick && item.type === 'unclick') return
+        if(props.unDoubleClick && item.type === 'undblclick') return
         Layer.on(item.type, (e:any) => {
           item.render(e)
         })
@@ -77,7 +80,6 @@ const updateInit = (init: any) => {
 // 卸载
 const unmount = (scene:any) => {
   scene.destroy()
-  Layer.destroy()
 }
 
 export {

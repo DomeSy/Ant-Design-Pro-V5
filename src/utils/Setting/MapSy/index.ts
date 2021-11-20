@@ -68,7 +68,7 @@ const MapSy: MapSyProps = {
       stroke: "#ffffff", // 描边颜色
       strokeWidth: 0.5, // 描边宽度
       strokeOpacity: 1, // 描边透明度
-      fillColor: ['rgb(227,147,131)', 'rgb(211,104,101)', 'rgb(181,78,76)', 'rgb(144,55,53)', 'rgb(106,33,29)'],
+      fillColor: [ '#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70' ],
       label: {
         field: 'NAME_CHN',
         textAllowOverlap: false,
