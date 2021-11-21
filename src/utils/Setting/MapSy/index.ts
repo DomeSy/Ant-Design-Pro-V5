@@ -59,7 +59,7 @@ const MapSy: MapSyProps = {
     },
     scene: {
       logoPosition: 'bottomleft',
-      logoVisible: false,
+      logoVisible: true,
       antialias: true,
       preserveDrawingBuffer: false
     },

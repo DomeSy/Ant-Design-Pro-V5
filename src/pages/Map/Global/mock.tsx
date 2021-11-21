@@ -13,7 +13,7 @@ const TextShow: React.FC<{text: string, title: string}> = ({text='', title='', c
 
 const Mock: React.FC<any> = () => {
   const [scene, setScene] = useState<any>()
-  const [ init, setInit ] = useState<number>(320000)
+  const [ init, setInit ] = useState<number>(620000)
   const [layer, setLayer] = useState<any>();
 
   const state = useReactive<any>({
@@ -54,6 +54,7 @@ const Mock: React.FC<any> = () => {
     fontInit: false,
     hiddenInit: false,
     strokeInit: false,
+    logoInit: false
   })
 
   return (
@@ -187,7 +188,7 @@ const Mock: React.FC<any> = () => {
           setTimeout(() => {state.show = true}, 500)
           state.fontInit = e
         }}/>
-        <span style={{marginLeft: 12, fontWeight: 'normal'}}>影藏文字：</span><Switch checked={state.hiddenInit} onChange={(e) => {
+        <span style={{marginLeft: 12, fontWeight: 'normal'}}>隐藏文字：</span><Switch checked={state.hiddenInit} onChange={(e) => {
           state.show = false;
           setTimeout(() => {state.show = true}, 500)
           state.hiddenInit = e
@@ -197,12 +198,20 @@ const Mock: React.FC<any> = () => {
           setTimeout(() => {state.show = true}, 500)
           state.strokeInit = e
         }}/>
+        <span style={{marginLeft: 12, fontWeight: 'normal'}}>隐藏Logo</span><Switch checked={state.logoInit} onChange={(e) => {
+          state.show = false;
+          setTimeout(() => {state.show = true}, 500)
+          state.logoInit = e
+        }}/>
       </TextShow>
     </div>
     <div style={{width: '100%', height: '600px'}}>
       {
         state.show && <Map.Province
         init={init}
+        scene={{
+          logoVisible: !state.logoInit
+        }}
         config={{
           depth: state.depth,
           fillColor: state.colorInit ? {
