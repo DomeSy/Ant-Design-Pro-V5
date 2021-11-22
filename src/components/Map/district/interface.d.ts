@@ -78,7 +78,7 @@ interface initMethodProps {
 interface addControlProps {
   position?: 'topright' | 'topleft' | 'bottomright' | 'bottomleft' | 'topcenter' | 'bottomcenter' | 'leftcenter' | 'rightcenter'; // 定位的位置，默认为 bottomright
   name?: string; // 类似于id
-  onAdd: () => string; // 增加函数的返回字段，返回的为字符串，需要将 React.ReactNode 转化为字符串，如：<span>示例</span>
+  onAdd: (Layer?:any) => string; // Layer实例 增加函数的返回字段，返回的为字符串，需要将 React.ReactNode 转化为字符串，如：<span>示例</span>
   [key: string]: any;
 }
 

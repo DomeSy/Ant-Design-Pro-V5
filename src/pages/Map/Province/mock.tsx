@@ -56,6 +56,9 @@ const Mock: React.FC<any> = () => {
     strokeInit: false,
     logoInit: false,
     showFontInit: true,
+    addControl: false,
+    explain: true,
+    extra: true
   })
 
   return (
@@ -177,7 +180,7 @@ const Mock: React.FC<any> = () => {
         }}/>
       </TextShow>
     </div>
-    <div style={{marginTop: 8, marginBottom: 8}}>
+    <div style={{marginTop: 8}}>
       <TextShow text={'初始化配置'} title="通过 config 进行详细配置" >
         <span style={{marginLeft: 12, fontWeight: 'normal'}}>改变地图颜色：</span><Switch checked={state.colorInit} onChange={(e) => {
           state.show = false;
@@ -211,6 +214,25 @@ const Mock: React.FC<any> = () => {
         }}/>
       </TextShow>
     </div>
+    <div style={{marginTop: 8, marginBottom: 8}}>
+      <TextShow text={'创建图例'} title="可通过 addControl 自定义实例，或者 configControl 修改已写好的实例" >
+        <span style={{marginLeft: 12, fontWeight: 'normal'}}>自定义实例：</span><Switch checked={state.addControl} onChange={(e) => {
+          state.show = false;
+          setTimeout(() => {state.show = true}, 500)
+          state.addControl = e
+        }}/>
+        <span style={{marginLeft: 12, fontWeight: 'normal'}}>额外信息栏：</span><Switch checked={state.extra} onChange={(e) => {
+          state.show = false;
+          setTimeout(() => {state.show = true}, 500)
+          state.extra = e
+        }}/>
+        <span style={{marginLeft: 12, fontWeight: 'normal'}}>颜色说明栏：</span><Switch checked={state.explain} onChange={(e) => {
+          state.show = false;
+          setTimeout(() => {state.show = true}, 500)
+          state.explain = e
+        }}/>
+      </TextShow>
+    </div>
     <div style={{width: '100%', height: '600px'}}>
       {
         state.show && <Map.Province
@@ -241,154 +263,76 @@ const Mock: React.FC<any> = () => {
         unClick={state.unclickInit ? (e) => {console.log(e, '初始化空白单击'); message.info('初始化空白单击,高于initMethod')} : undefined}
         unDoubleClick={state.undbclickInit ? (e) => {console.log(e, '初始化空白双击'); message.info('初始化空白双击,高于initMethod')} : undefined}
         getLayer={(layer) => { setLayer(layer) }}
-      />
-      }
-    </div>
-   </>
-  );
-};
-
-export const MockControl: React.FC<any> = () => {
-  const [scene, setScene] = useState<any>()
-  const [ init, setInit ] = useState<number>(320000)
-  const [layer, setLayer] = useState<any>();
-
-  const state = useReactive<any>({
-    show: true,
-    drag: false,
-    depth: 2,
-    color: 0,
-    zoom: false,
-    rotate: false,
-    dbZoom: false,
-    click: false,
-    dbclick: false,
-    unClick: false,
-    unDbclick: false,
-    hidden: false,
-    allMethod: true,
-    initMethod: [
-      {
-        type: 'click',
-        render: (e:any) => {
-          console.log(e, '初始化点击')
-          message.info('我是初始化点击的省份：' + e.feature.properties.NAME_CHN)
-        }
-      },
-      {
-        type: 'dblclick',
-        render: (e:any) => {
-          console.log(e, '初始化双击')
-          message.info('我是初始化双击击的省份：' + e.feature.properties.NAME_CHN)
-        }
-      }
-    ],
-    clickInit: false,
-    dbclickInit: false,
-    unclickInit: true,
-    undbclickInit: true,
-    colorInit: false,
-    fontInit: false,
-    hiddenInit: false,
-    strokeInit: false,
-    logoInit: false,
-    showFontInit: true,
-  })
-
-  return (
-   <>
-    <div>
-      <span style={{fontWeight: 500}} >切换省份：</span>
-      <Select value={init} style={{ width: 120,marginTop:8 }} onChange={(e) => { setInit(e) }}>
-        {ProvinceData.map((province, i) => <Option key={i} value={province.adcode}>
-          {province.NAME_CHN}
-        </Option>)}
-      </Select>
-    </div>
-    <div style={{marginTop: 8, marginBottom: 8}}>
-      <TextShow text={'初始化配置'} title="通过 config 进行详细配置" >
-        <span style={{marginLeft: 12, fontWeight: 'normal'}}>改变地图颜色：</span><Switch checked={state.colorInit} onChange={(e) => {
-          state.show = false;
-          setTimeout(() => {state.show = true}, 500)
-          state.colorInit = e
-        }}/>
-      </TextShow>
-    </div>
-    <div style={{width: '100%', height: '600px'}}>
-      {
-        state.show && <Map.Province
-          id="Province11"
-          init={init}
-          configControl={
-            [
-              {
-                method: 'explain',
-                explain: {
-                  title: '示例图层',
-                  color: [
-                    {
-                      name: '<50人',
-                      value: '#B8E1FF'
-                    },
-                    {
-                      name: '100-200人',
-                      value: '#7DAAFF'
-                    },
-                    {
-                      name: '200-500人',
-                      value: '#3D76DD'
-                    },
-                    {
-                      name: '500-1000人',
-                      value: '#0047A5'
-                    },
-                    {
-                      name: '1000人以上',
-                      value: '#001D70'
-                    }
-                  ]
-                }
-              },
-              {
-                method: 'extra',
-                extra: {
-                  bottomRender: (data:any) => {
-                    return `
-                      <p>级别： ${data?.properties.level}</p>
-                      <p>城市编码：${data?.properties.adcode}</p>
-                      <p>城市坐标：x: ${data?.properties.x} y: ${data?.properties.y}</p>
-                      <p>类型: ${data?.type}</p>
-                    `
+        addControl={state.addControl ? [
+          {
+            position: 'topright',
+            onAdd: () => {
+              return '<span style="color: #1890ff" >我是右上角的图例</span>'
+            }
+          },
+          {
+            position: 'topleft',
+            onAdd: () => {
+              return '<span style="color: #1890ff" >我是左上角的图例</span>'
+            }
+          },
+          {
+            onAdd: () => {
+              return '<span style="color: #1890ff" >我是右下角的图例</span>'
+            }
+          },
+        ] : undefined}
+        configControl={
+          [
+            state.explain && {
+              method: 'explain',
+              explain: {
+                title: '示例图层',
+                color: [
+                  {
+                    name: '<50人',
+                    value: '#B8E1FF'
                   },
-                  noneRender: () => {
-                    return `<div style="width: 240px; padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: rgba(255,255,255,0.9); box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;">
-                      鼠标移入看详情
-                    </div>`
+                  {
+                    name: '100-200人',
+                    value: '#7DAAFF'
+                  },
+                  {
+                    name: '200-500人',
+                    value: '#3D76DD'
+                  },
+                  {
+                    name: '500-1000人',
+                    value: '#0047A5'
+                  },
+                  {
+                    name: '1000人以上',
+                    value: '#001D70'
                   }
+                ]
+              }
+            },
+            state.extra &&{
+              method: 'extra',
+              extra: {
+                bottomRender: (data:any) => {
+                  return `
+                    <p>级别： ${data?.properties.level}</p>
+                    <p>城市编码：${data?.properties.adcode}</p>
+                    <p>城市坐标：x: ${data?.properties.x} y: ${data?.properties.y}</p>
+                    <p>类型: ${data?.type}</p>
+                  `
+                },
+                noneRender: () => {
+                  return `<div style="width: 240px; padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: rgba(255,255,255,0.9); box-shadow: 0 0 15px rgba(0,0,0,0.2);border-radius: 5px;">
+                    鼠标移入看详情
+                  </div>`
                 }
               }
-            ]
-          }
-          // addControl={[
-          //   {
-          //     position: 'topright',
-          //     onAdd: () => {
-          //       return '<span style="color: #1890ff" >我是右上角的图例</span>'
-          //     }
-          //   },
-          //   {
-          //     position: 'topleft',
-          //     onAdd: () => {
-          //       return '<span style="color: #1890ff" >我是左上角的图例</span>'
-          //     }
-          //   },
-          //   {
-          //     onAdd: () => {
-          //       return '<span style="color: #1890ff" >我是右下角的图例</span>'
-          //     }
-          //   },
-          // ]}
-        />
+            }
+          ]
+        }
+      />
       }
     </div>
    </>

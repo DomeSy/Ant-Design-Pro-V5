@@ -69,7 +69,7 @@ const onLoaded =  (scene: any, {  status={}, config={}, getScene, getLayer, init
       })
     }
     // 增加图层显示
-    getControl(scene, props)
+    getControl(scene, props, Layer)
   });
 
   scene.setMapStatus({ ...district.status, ...status})
@@ -79,7 +79,7 @@ const onLoaded =  (scene: any, {  status={}, config={}, getScene, getLayer, init
 }
 
 // 增加显示图层
-const getControl = (scene:any, { addControl, id, configControl }:any) => {
+const getControl = (scene:any, { addControl, id, configControl }:any, Layer:any) => {
 
   if(configControl && Array.isArray(configControl) && configControl.length !== 0){
     configControl.map((item:configControlProps) => {
@@ -102,7 +102,7 @@ const getControl = (scene:any, { addControl, id, configControl }:any) => {
 
       legend.onAdd = () => {
         const el = document.createElement('div')
-        el.innerHTML = onAdd()
+        el.innerHTML = onAdd(Layer)
         return el
       }
       scene.addControl(legend)
