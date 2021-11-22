@@ -40,7 +40,7 @@ const Index: React.FC<MapProvinceProps>  = ({ id='mapProvince', map={}, ...props
       ...district.scene,
       ...props.scene
     })
-    onLoaded(scene, props)   // 初始化方法
+    onLoaded(scene, {id, ...props})   // 初始化方法
     setScene(scene)
   }
 

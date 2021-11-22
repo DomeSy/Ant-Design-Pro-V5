@@ -8,6 +8,8 @@ interface MapDistrict {  // 省市区地图公共配置类
   data?: Array<{ [key: string]: any }>; // 匹配的数据源
   joinBy?: [string, string]; // 数据关联项，与 data 数据源做关联，即，如果data的code码与地图本身的code码相等，则进行匹配，在后续的操作中。 目前只支持  NAME_CHN 与 adcode， 默认: ['adcode', 'code']
   style?: React.CSSProperties; // 渲染图层的css
+  addControl?: addControlProps[]; // 增加额外区域显示样式
+  configControl?: configControlProps[]; // 配置示例图表层
   getScene?: (scene: any) => void; // 获取Map创的实例
   getLayer?: (layer: any) => void; // 获取图层渲染示例
   initMethod?: initMethodProps[]; // 初始化方法集合
@@ -71,4 +73,35 @@ interface configProps { // 这里只展示常用的一些api，详细的查看�
 interface initMethodProps {
   type: string;  // 事件类集合，如：click, doubleClick 等
   render: (e) => void //渲染事件的集合
+}
+
+interface addControlProps {
+  position?: 'topright' | 'topleft' | 'bottomright' | 'bottomleft' | 'topcenter' | 'bottomcenter' | 'leftcenter' | 'rightcenter'; // 定位的位置，默认为 bottomright
+  name?: string; // 类似于id
+  onAdd: () => string; // 增加函数的返回字段，返回的为字符串，需要将 React.ReactNode 转化为字符串，如：<span>示例</span>
+  [key: string]: any;
+}
+
+export interface configControlProps{
+  method: 'explain' | 'extra', // explain 地图颜色说明  extra //额外标注
+  explain?: {
+    class?: 'string'; // 设置class
+    position?: 'bottomright' | 'topright' | 'bottomleft' | 'topleft' | 'topcenter' | 'bottomcenter' | 'leftcenter' | 'rightcenter'; // 位置： 默认bottomright
+    title?: string; //标题
+    color: explainColor[]; //地图颜色
+    topRender?: () => string; //上方样式，返回字符串 `<span>示例</span>`
+    bottomRender?: () => string; //下方样式，返回字符串 `<span>示例</span>`
+  },
+  extra?: {
+    class?: 'string'; // 设置class
+    position?: 'bottomright' | 'topright' | 'bottomleft' | 'topleft' | 'topcenter' | 'bottomcenter' | 'leftcenter' | 'rightcenter'; // 位置： 默认topright
+    way?: string; // 什么条件触发，默认 mousemove（鼠标移入）
+    topRender?: (e) => string; //上方样式，替换原有的title
+    bottomRender?: (e) => string; //下方样式，返回字符串 `<span>示例</span>`
+    noneRender?: () => string; // 一开始的初始样式，默认为空
+  }
+}
+interface explainColor {
+  name: string, // 标记名称
+  value: string // 颜色
 }
