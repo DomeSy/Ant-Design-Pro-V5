@@ -3,7 +3,7 @@ import { Map } from '@/components'
 import { Switch, Tooltip, Select, message } from 'antd';
 import { ProvinceData, colorData, PdepthData } from './test'
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { useReactive } from 'ahooks';
+import { useReactive, useResponsive } from 'ahooks';
 
 const { Option } = Select;
 
@@ -15,6 +15,8 @@ const Mock: React.FC<any> = () => {
   const [scene, setScene] = useState<any>()
   const [ init, setInit ] = useState<number>(620000)
   const [layer, setLayer] = useState<any>();
+
+  const responsive = useResponsive();
 
   const state = useReactive<any>({
     show: true,
@@ -214,7 +216,8 @@ const Mock: React.FC<any> = () => {
         }}/>
       </TextShow>
     </div>
-    <div style={{marginTop: 8, marginBottom: 8}}>
+    {
+      responsive.sm && <div style={{marginTop: 8, marginBottom: 8}}>
       <TextShow text={'创建图例'} title="可通过 addControl 自定义实例，或者 configControl 修改已写好的实例" >
         <span style={{marginLeft: 12, fontWeight: 'normal'}}>自定义实例：</span><Switch checked={state.addControl} onChange={(e) => {
           state.show = false;
@@ -233,7 +236,8 @@ const Mock: React.FC<any> = () => {
         }}/>
       </TextShow>
     </div>
-    <div style={{width: '100%', height: '600px'}}>
+    }
+    <div style={responsive.sm ? {width: '100%', height: '600px'} : {width: '100%', height: '300px'}}>
       {
         state.show && <Map.Province
         init={init}
@@ -263,7 +267,7 @@ const Mock: React.FC<any> = () => {
         unClick={state.unclickInit ? (e) => {console.log(e, '初始化空白单击'); message.info('初始化空白单击,高于initMethod')} : undefined}
         unDoubleClick={state.undbclickInit ? (e) => {console.log(e, '初始化空白双击'); message.info('初始化空白双击,高于initMethod')} : undefined}
         getLayer={(layer) => { setLayer(layer) }}
-        addControl={state.addControl ? [
+        addControl={state.addControl && responsive.sm ? [
           {
             position: 'topright',
             onAdd: () => {
@@ -284,7 +288,7 @@ const Mock: React.FC<any> = () => {
         ] : undefined}
         configControl={
           [
-            state.explain && {
+            state.explain && responsive.sm && {
               method: 'explain',
               explain: {
                 title: '示例图层',
@@ -312,7 +316,7 @@ const Mock: React.FC<any> = () => {
                 ]
               }
             },
-            state.extra &&{
+            state.extra && responsive.sm &&{
               method: 'extra',
               extra: {
                 bottomRender: (data:any) => {
