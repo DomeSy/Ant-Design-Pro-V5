@@ -322,7 +322,7 @@ const Mock: React.FC<any> = () => {
               extra: {
                 bottomRender: (data:any) => {
                   return `
-                    <p>级别： ${data?.properties.level}</p>
+                    <p>区域名称：${data?.properties.REGION_NAME}</p>
                     <p>城市编码：${data?.properties.adcode}</p>
                     <p>城市坐标：x: ${data?.properties.x} y: ${data?.properties.y}</p>
                     <p>类型: ${data?.type}</p>

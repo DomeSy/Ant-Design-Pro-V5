@@ -506,6 +506,10 @@ export const LifeCycle:Props = {
       strong: true
     },
     {
+      render: '中国地图不需要init，省市区的init，也不太相同，其余的各个部分大致相同，属性也基本一样',
+      strong: true
+    },
+    {
       render: '我再此做的是将常用功能提取出来，这样更加的善于管理，我们可以依据示例，封装适配于自己的项目，另外，地图支持响应式，移动端也可一建适配😄',
       strong: true
     },
