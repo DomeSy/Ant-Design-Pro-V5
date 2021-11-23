@@ -41,9 +41,9 @@ export default [
     icon: 'BarChartOutlined',
     component: './Map',
     routes: [
-      { path: '/Map', redirect: '/Map/Global'},
+      { path: '/Map', redirect: '/Map/China'},
       // { path: '/Map/introduce', name: '介绍', component: './Map/Introduce' },
-      { path: '/Map/Global', name: '折线图', component: './Map/Global'},
+      { path: '/Map/China', name: '全国地图', component: './Map/China'},
       { path: '/Map/Province', name: '省级地图', component: './Map/Province'},
       { path: '/Map/City', name: '市级地图', component: './Map/City'},
       { path: '/Map/Area', name: '区级地图', component: './Map/Area'},

@@ -1,5 +1,5 @@
 import { Control } from '@antv/l7'
-import { ProvinceLayer, CityLayer, CountyLayer } from '@antv/l7-district';
+import { CountryLayer, ProvinceLayer, CityLayer, CountyLayer } from '@antv/l7-district';
 import { MapSy } from '@/utils/Setting';
 import type { MapProvinceProps, configControlProps } from './interface';
 import { message } from 'antd';
@@ -14,12 +14,15 @@ const onLoaded =  (scene: any, name:string, {  status={}, config={}, getScene, g
       data: props.data ? props.data : undefined,
       joinBy: props.joinBy || district.joinBy,
       visible: config?.visible,
-      adcode: props.init,
-      depth: config?.depth ? config.depth : name === 'Province' ? 2 : 3,
+      adcode: name === 'China' ?  undefined : props.init,
+      depth: config?.depth ? config.depth :  name === 'China' ? 1 : name === 'Province'  ? 2 : 3,
       stroke: config?.stroke || district.config.stroke,
       strokeWidth: config?.strokeWidth || district.config.strokeWidth,
       strokeOpacity: config?.strokeOpacity || district.config.strokeOpacity,
-      label: {
+      label: name === 'China' ? {
+        opacity: config.noneLabel ? 0 : district.config.noneLabel ? 0 : undefined,
+      } : {
+        field: 'NAME_CHN',
         opacity: config.noneLabel ? 0 : district.config.noneLabel ? 0 : undefined,
         ...district?.config?.label,
         ...config?.label
@@ -35,7 +38,8 @@ const onLoaded =  (scene: any, name:string, {  status={}, config={}, getScene, g
       bubble:{ ...config?.bubble },
       ...config?.extra
     }
-    Layer = name === 'Province' ?  new ProvinceLayer(scene, LayoutConfig) : name === 'City' ? new CityLayer(scene, LayoutConfig) : new CountyLayer(scene, LayoutConfig)
+
+    Layer = name === 'China' ? new CountryLayer(scene, LayoutConfig) :  name === 'Province' ?  new ProvinceLayer(scene, LayoutConfig) : name === 'City' ? new CityLayer(scene, LayoutConfig) : new CountyLayer(scene, LayoutConfig)
 
     if(getLayer) getLayer(Layer)
 
@@ -76,8 +80,6 @@ const onLoaded =  (scene: any, name:string, {  status={}, config={}, getScene, g
 
   scene.setMapStatus({ ...district.status, ...status})
   if(getScene) getScene(scene)
-
-
 }
 
 // 增加显示图层

@@ -19,6 +19,10 @@ interface MapDistrict {  // 省市区地图公共配置类
   unDoubleClick?: (layer:any) => void; // 双击空白处 此方法存在，initMethod 的undblclick将无效
 }
 
+export interface MapChinaProps extends MapDistrict { //全国地图
+  id?: string; // 用于区分渲染的图层，默认：mapProvince , 多次渲染的时候需要id不同
+}
+
 export interface MapProvinceProps extends MapDistrict { //省地图
   init: string[] | string | number | number[]; // 初始化省地图的编码
   id?: string; // 用于区分渲染的图层，默认：mapProvince , 多次渲染的时候需要id不同

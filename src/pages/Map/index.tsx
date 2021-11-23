@@ -20,7 +20,7 @@ const Hook: React.FC<any> = ({children, ...props}) => {
   const tab = [
     {
       tab: '全国地图',
-      key: 'Global',
+      key: 'China',
     },
     {
       tab: '省级地图',
