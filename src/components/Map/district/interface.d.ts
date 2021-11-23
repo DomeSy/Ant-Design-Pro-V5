@@ -24,6 +24,11 @@ export interface MapProvinceProps extends MapDistrict { //省地图
   id?: string; // 用于区分渲染的图层，默认：mapProvince , 多次渲染的时候需要id不同
 }
 
+export interface MapCityProps extends MapDistrict { //省地图
+  init: string[] | number[]; // 初始化省地图的编码
+  id?: string; // 用于区分渲染的图层，默认：mapProvince , 多次渲染的时候需要id不同
+}
+
 interface mapProps { // 其他配置，查看高德地图的Api https://lbs.amap.com/api/javascript-api/reference/map
   token?: string; // 地图密钥，需要平台申请
   style?: 'dark' | 'light' | 'normal' | 'blank';  // 提供默认四种样式，'light'

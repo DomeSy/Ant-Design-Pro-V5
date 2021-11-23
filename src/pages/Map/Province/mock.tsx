@@ -68,13 +68,13 @@ const Mock: React.FC<any> = () => {
    <>
     <div>
       <span style={{fontWeight: 500}} >切换省份：</span>
-      <Select value={init} style={{ width: 120,marginTop:8 }} onChange={(e) => { setInit(e) }}>
+      <Select value={init} style={{ width: 120,marginTop:8, }} onChange={(e) => { setInit(e) }}>
         {ProvinceData.map((province, i) => <Option key={i} value={province.adcode}>
           {province.NAME_CHN}
         </Option>)}
       </Select>
       <span style={{fontWeight: 500, marginLeft: 8}} >改变地图样式：</span>
-      <Select value={state.style} style={{ width: 120,marginLeft:8 }} onChange={(e) => {
+      <Select value={state.style} style={{ width: 120,marginLeft:8,marginTop:8 }} onChange={(e) => {
         state.show = false;
         setTimeout(() => {state.show = true}, 500)
         state.style = e
@@ -84,7 +84,7 @@ const Mock: React.FC<any> = () => {
         </Option>)}
       </Select>
       <span style={{fontWeight: 500, marginLeft: 8}} >改变绘制颜色：</span>
-      <Select value={state.color} style={{ width: 120,marginLeft:8 }} onChange={(e) => {
+      <Select value={state.color} style={{ width: 120,marginLeft:8,marginTop:8 }} onChange={(e) => {
         if(e !== 0){
           layer.updateLayerAttribute('fill', 'color', String(e));
         }else{
@@ -98,7 +98,7 @@ const Mock: React.FC<any> = () => {
         </Option>)}
       </Select>
       <span style={{fontWeight: 500, marginLeft: 8}} >改变层级：</span>
-      <Select value={state.depth} style={{ width: 120, marginLeft:8 }} onChange={(e) => {
+      <Select value={state.depth} style={{ width: 120, marginLeft:8,marginTop:8 }} onChange={(e) => {
         state.show = false;
         setTimeout(() => {state.show = true}, 500)
         state.depth = e

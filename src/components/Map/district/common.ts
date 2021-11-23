@@ -1,5 +1,5 @@
 import { Control } from '@antv/l7'
-import { ProvinceLayer } from '@antv/l7-district';
+import { ProvinceLayer, CityLayer } from '@antv/l7-district';
 import { MapSy } from '@/utils/Setting';
 import type { MapProvinceProps, configControlProps } from './interface';
 import { message } from 'antd';
@@ -8,14 +8,15 @@ let Layer:any
 const { district } = MapSy
 
 // 初始化方法
-const onLoaded =  (scene: any, {  status={}, config={}, getScene, getLayer, initMethod, ...props}:MapProvinceProps) => {
+const onLoaded =  (scene: any, name:string, {  status={}, config={}, getScene, getLayer, initMethod, ...props}:MapProvinceProps) => {
   scene.on('loaded', () => {
-    Layer = new ProvinceLayer(scene, {
+
+    const LayoutConfig = {
       data: props.data ? props.data : undefined,
       joinBy: props.joinBy || district.joinBy,
       visible: config?.visible,
       adcode: props.init,
-      depth: config?.depth || 2,
+      depth: config?.depth ? config.depth : name === 'Province' ? 2 : 3,
       stroke: config?.stroke || district.config.stroke,
       strokeWidth: config?.strokeWidth || district.config.strokeWidth,
       strokeOpacity: config?.strokeOpacity || district.config.strokeOpacity,
@@ -34,7 +35,9 @@ const onLoaded =  (scene: any, {  status={}, config={}, getScene, getLayer, init
       popup: { ...config?.popup },
       bubble:{ ...config?.bubble },
       ...config?.extra
-    });
+    }
+    Layer = name === 'Province' ?  new ProvinceLayer(scene, LayoutConfig) : name === 'City' ? new CityLayer(scene, LayoutConfig) : ''
+
     if(getLayer) getLayer(Layer)
 
     if(initMethod && initMethod.length !== 0){

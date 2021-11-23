@@ -33,8 +33,8 @@ const Index: React.FC<any> = (props) => {
               code: `
   import React, { useState } from 'react';
   import { Map } from '@/components'
-  import { Switch, Tooltip, Select, message } from 'antd';
-  import { ProvinceData, colorData, PdepthData, StyleData } from './test'
+  import { Switch, Tooltip, Select, message, Cascader } from 'antd';
+  import { CityData, colorData, PdepthData, StyleData } from './test'
   import { InfoCircleOutlined } from '@ant-design/icons';
   import { useReactive } from 'ahooks';
 
@@ -46,14 +46,14 @@ const Index: React.FC<any> = (props) => {
 
   const Mock: React.FC<any> = () => {
     const [scene, setScene] = useState<any>()
-    const [ init, setInit ] = useState<number>(620000)
+    const [ init, setInit ] = useState<any>(["620000", "620100"])
     const [layer, setLayer] = useState<any>();
 
     const state = useReactive<any>({
       show: true,
       drag: false,
       style: 'blank',
-      depth: 2,
+      depth: 3,
       color: 0,
       zoom: false,
       rotate: false,
@@ -99,11 +99,14 @@ const Index: React.FC<any> = (props) => {
       <>
       <div>
         <span style={{fontWeight: 500}} >切换省份：</span>
-        <Select value={init} style={{ width: 120,marginTop:8 }} onChange={(e) => { setInit(e) }}>
-          {ProvinceData.map((province, i) => <Option key={i} value={province.adcode}>
-            {province.NAME_CHN}
-          </Option>)}
-        </Select>
+        <Cascader
+          style={{
+            width: 200,
+          }}
+          options={CityData}
+          defaultValue={init}
+          onChange={(e) => {setInit(e)}}
+        />
         <span style={{fontWeight: 500, marginLeft: 8}} >改变地图样式：</span>
         <Select value={state.style} style={{ width: 120,marginLeft:8 }} onChange={(e) => {
           state.show = false;

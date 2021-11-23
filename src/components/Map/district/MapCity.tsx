@@ -5,7 +5,7 @@ import { Scene } from '@antv/l7';
 import { Mapbox } from '@antv/l7-maps';
 import { MapSy } from '@/utils/Setting';
 
-import type { MapProvinceProps } from './interface';
+import type { MapCityProps } from './interface';
 
 /**
  * @module Map.Province // 省级地图
@@ -13,7 +13,7 @@ import type { MapProvinceProps } from './interface';
  */
 const { district, key } = MapSy
 
-const Index: React.FC<MapProvinceProps>  = ({ id='mapProvince', map={}, ...props}) => {
+const Index: React.FC<MapCityProps>  = ({ id='mapProvince', map={}, ...props}) => {
   const [scene, setScene] = useState<any>(false)
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const Index: React.FC<MapProvinceProps>  = ({ id='mapProvince', map={}, ...props
       ...district.scene,
       ...props.scene
     })
-    onLoaded(scene, 'Province', {id, ...props})   // 初始化方法
+    onLoaded(scene, 'City', {id, ...props})   // 初始化方法
     setScene(scene)
   }
 
