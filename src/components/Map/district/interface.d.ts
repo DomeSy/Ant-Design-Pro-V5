@@ -24,9 +24,14 @@ export interface MapProvinceProps extends MapDistrict { //省地图
   id?: string; // 用于区分渲染的图层，默认：mapProvince , 多次渲染的时候需要id不同
 }
 
-export interface MapCityProps extends MapDistrict { //省地图
-  init: string[] | number[]; // 初始化省地图的编码
-  id?: string; // 用于区分渲染的图层，默认：mapProvince , 多次渲染的时候需要id不同
+export interface MapCityProps extends MapDistrict { //市级地图
+  init: string[] | number[]; // 初始化市级地图的编码
+  id?: string; // 用于区分渲染的图层，默认：mapCity 多次渲染的时候需要id不同
+}
+
+export interface MapAreaProps extends MapDistrict { //区级地图
+  init: string[] | number[]; // 初始化区级地图的编码
+  id?: string; // 用于区分渲染的图层，默认：mapArea, 多次渲染的时候需要id不同
 }
 
 interface mapProps { // 其他配置，查看高德地图的Api https://lbs.amap.com/api/javascript-api/reference/map

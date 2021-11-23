@@ -13,7 +13,7 @@ import type { MapCityProps } from './interface';
  */
 const { district, key } = MapSy
 
-const Index: React.FC<MapCityProps>  = ({ id='mapCity', map={}, ...props}) => {
+const Index: React.FC<MapCityProps>  = ({ id='mapArea', map={}, ...props}) => {
   const [scene, setScene] = useState<any>(false)
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const Index: React.FC<MapCityProps>  = ({ id='mapCity', map={}, ...props}) => {
       ...district.scene,
       ...props.scene
     })
-    onLoaded(scene, 'City', {id, ...props})   // 初始化方法
+    onLoaded(scene, 'Area', {id, ...props})   // 初始化方法
     setScene(scene)
   }
 

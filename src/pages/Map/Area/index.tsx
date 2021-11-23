@@ -283,7 +283,7 @@ const Index: React.FC<any> = (props) => {
       </div>
       <div style={{width: '100%', height: '600px'}}>
         {
-          state.show && <Map.City
+          state.show && <Map.Province
           init={init}
           map={{
             style: state.style

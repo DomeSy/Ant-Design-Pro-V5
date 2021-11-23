@@ -1,5 +1,5 @@
 import { Control } from '@antv/l7'
-import { ProvinceLayer, CityLayer } from '@antv/l7-district';
+import { ProvinceLayer, CityLayer, CountyLayer } from '@antv/l7-district';
 import { MapSy } from '@/utils/Setting';
 import type { MapProvinceProps, configControlProps } from './interface';
 import { message } from 'antd';
@@ -36,7 +36,7 @@ const onLoaded =  (scene: any, name:string, {  status={}, config={}, getScene, g
       bubble:{ ...config?.bubble },
       ...config?.extra
     }
-    Layer = name === 'Province' ?  new ProvinceLayer(scene, LayoutConfig) : name === 'City' ? new CityLayer(scene, LayoutConfig) : ''
+    Layer = name === 'Province' ?  new ProvinceLayer(scene, LayoutConfig) : name === 'City' ? new CityLayer(scene, LayoutConfig) : new CountyLayer(scene, LayoutConfig)
 
     if(getLayer) getLayer(Layer)
 
