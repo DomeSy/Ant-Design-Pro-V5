@@ -25,6 +25,14 @@ const Hook: React.FC<any> = ({children, ...props}) => {
     {
       tab: '省级地图',
       key: 'Province'
+    },
+    {
+      tab: '市级地图',
+      key: 'City'
+    },
+    {
+      tab: '区级地图',
+      key: 'Area'
     }
   ];
   if(children.props.location.pathname === '/charts/introduce') return children

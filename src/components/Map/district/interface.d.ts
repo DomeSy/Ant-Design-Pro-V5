@@ -1,4 +1,4 @@
-import { IFillOptions, IAttributeOption, ILabelOption, IPopupOptions } from '@antv/l7-district';
+import { IFillOptions, IAttributeOption, ILabelOption, IPopupOptions, IBubbleOption } from '@antv/l7-district';
 
 interface MapDistrict {  // 省市区地图公共配置类
   map?: mapProps; // 地图初始化模板
@@ -39,8 +39,8 @@ interface mapProps { // 其他配置，查看高德地图的Api https://lbs.amap
 
 interface sceneProps {
   logoPosition?: 'bottomright' | 'topright' | 'bottomleft' | 'topleft' | 'topcenter' | 'bottomcenter' | 'leftcenter' | 'rightcenter', //logo 的位置 bottomleft
-  logoVisible?: boolean, // 是否开启logo flase
-  antialias?: boolean, // 是否开启抗锯齿 false
+  logoVisible?: boolean, // 是否开启logo true
+  antialias?: boolean, // 是否开启抗锯齿 true
   preserveDrawingBuffer?: boolean, // 是否保留缓冲区数据 false
 }
 interface statusProps {

@@ -31,7 +31,10 @@ export const content = {
     Advanced: '高阶使用，主要包含：useCreation（结合 useMemo 或 useRef）、useEventEmitter（共享事件通知、useReactive（另一种useState），4个Api'
   },
   Map: {
-    Global: 'YYDS'
+    Global: 'L7 L: Location, 7: 世界七大洲，寓意为全球位置数据提供可是话能力',
+    Province: '省级地图，可自由实现地图的初始化，自定义地图颜色，展示名称，边界颜色，图层比例，并实现拖拽，缩放，旋转，点击，双击等功能（包括不限于此）。',
+    City: '市级地图，可自由实现地图的初始化，自定义地图颜色，展示名称，边界颜色，图层比例，并实现拖拽，缩放，旋转，点击，双击等功能（包括不限于此）。',
+    Area: '区级地图，可自由实现地图的初始化，自定义地图颜色，展示名称，边界颜色，图层比例，并实现拖拽，缩放，旋转，点击，双击等功能（包括不限于此）。',
   },
   file: {
     ossUploadShow: '图片、文件上传是最常见的表单项，而在原有的封装中，一些比较常用的功能并不是很全面，如裁剪功能不能制定区域的裁剪，OSS功能要自己写，所以这里采用并不是 ProFormUploadDragger, 但也是基于 Ant Design 的 upload 进行封装',

@@ -188,47 +188,371 @@ export const LifeCycle:Props = {
         },
       ]
     },
-
+    {
+      type: 'title',
+      id: 'Api2',
+      render: 'sceneProps属性',
+      effect: 4
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'logoPosition',
+          desc: 'logo 的位置 ',
+          status: "'bottomright' | 'topright' | 'bottomleft' | 'topleft' | 'topcenter' | 'bottomcenter' | 'leftcenter' | 'rightcenter'",
+          default: 'bottomright',
+          global: true
+        },
+        {
+          name: 'logoVisible',
+          desc: '是否开启logo',
+          status: "boolean",
+          default: 'true',
+          global: true
+        },
+        {
+          name: 'antialias',
+          desc: '是否开启抗锯齿',
+          status: "boolean",
+          default: 'true',
+          global: true
+        },
+        {
+          name: 'preserveDrawingBuffer',
+          desc: '是否保留缓冲区数据 ',
+          status: "boolean",
+          default: 'false',
+          global: true
+        },
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api3',
+      render: 'statusProps属性',
+      effect: 4
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'dragEnable',
+          desc: '是否允许地图拖拽',
+          status: "boolean",
+          default: 'false',
+          global: true
+        },
+        {
+          name: 'keyboardEnable',
+          desc: '是否允许形键盘事件',
+          status: "boolean",
+          default: 'false',
+          global: true
+        },
+        {
+          name: 'doubleClickZoom',
+          desc: '是否双击放大 ',
+          status: "boolean",
+          default: 'false',
+          global: true
+        },
+        {
+          name: 'zoomEnable',
+          desc: '是否滚动缩放',
+          status: "boolean",
+          default: 'false',
+          global: true
+        },
+        {
+          name: 'rotateEnable',
+          desc: '是否旋转',
+          status: "boolean",
+          default: 'false',
+          global: true
+        },
+        {
+          name: 'showIndoorMap',
+          desc: '是否展示室内场景',
+          status: "boolean",
+          default: 'false',
+        },
+        {
+          name: 'resizeEnable',
+          desc: '尺寸变动问题',
+          status: "boolean",
+          default: 'false',
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api4',
+      render: 'configProps属性',
+      effect: 4
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'depth',
+          desc: [
+            '数据显示的层级',
+            '0：国际级，1：省级，2：市级，3：县级，不同的Map组件显示的不同'
+          ],
+          status: "0 | 1 | 2 | 3",
+          default: 'bottomright',
+        },
+        {
+          name: 'visible',
+          desc: '地图是否可见',
+          status: "boolean",
+          default: 'true',
+        },
+        {
+          name: 'fill',
+          desc: [
+            '填充图样式',
+            'color 图层填充颜色，支持常量和数据映射, 分为 field （填充映射字段）、values（映射值，同color方法第二个参数数组，回调函数）',
+            'filter 图层过滤方法，支持常量和数据映射 同layer.filter方法 数据映射 - field 填充映射字段 - values 回调函数 false 返回值将会被过滤掉',
+            'style 同 polygonLayer的style方法',
+            'activeColor 鼠标滑过高亮颜色, string | boolean 如果设置为 false取消高亮'
+          ],
+          status: "Partial<IFillOptions>",
+        },
+        {
+          name: 'fillColor',
+          desc: [
+            '将 fill 中的 color 单独提出',
+            '层级 fill > fillColor,'
+          ],
+          status: " Partial<IAttributeOption>",
+          default: "[ '#B8E1FF', '#7DAAFF', '#3D76DD', '#0047A5', '#001D70' ]",
+          global: true
+        },
+        {
+          name: 'label',
+          desc: [
+            '文字显示区域',
+            'color 标注字体颜色、field 标注字段、size 标注大小 、stroke 文字描边颜色等文字的配置属性'
+          ],
+          status: "Partial<ILabelOption>",
+        },
+        {
+          name: 'noneLabel',
+          desc: '不显示文字',
+          status: "boolean",
+          default: 'false',
+          global: true
+        },
+        {
+          name: 'stroke',
+          desc: '描边颜色',
+          status: "string",
+          default: '#ffffff',
+          global: true
+        },
+        {
+          name: 'strokeWidth',
+          desc: '描边宽度',
+          status: "0.5",
+          default: '#ffffff',
+          global: true
+        },
+        {
+          name: 'strokeOpacity',
+          desc: '描边透明度',
+          status: "number",
+          default: '1',
+          global: true
+        },
+        {
+          name: 'popup',
+          desc: [
+            '信息窗口',
+            'enable: 是否开启 boolean',
+            "triggerEvent 触发事件 例如 'mousemove' | 'click'",
+            'Html popup html字符串，支持回调函数 (properties: any) => string;'
+          ],
+          status: "Partial<IPopupOptions>",
+        },
+        {
+          name: 'bubble',
+          desc: [
+            '气泡配置项',
+            'enable boolean 是否显示气泡 true',
+            'size: AttributeType; 气泡大小支持数据映射',
+            'shape: AttributeType; 气泡形状支持数据映射',
+            'color: AttributeType; 气泡颜色支持数据映射',
+            'scale: { // 数字度量 field: string; 度量字段 type: ScaleTypeName; 度量字段 };',
+            'style: { opacity: number; 透明度 stroke: string; 填充色 strokeWidth: number; 填充宽度'
+          ],
+          status: "string",
+          default: '#ffffff',
+        },
+        {
+          name: 'extra',
+          desc: '除上述属性外的其他属性,详细参考 高德地图官网',
+          status: "{[key: string]: any}",
+        },
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api5',
+      render: 'initMethodProps事件集合',
+      effect: 4
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'type',
+          desc: '事件类集合, 如：click, dblclick 等',
+          status: "string",
+        },
+        {
+          name: 'render',
+          desc: '渲染事件的集合, 接收当前的信息',
+          status: "(e) => void",
+        },
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api6',
+      render: 'addControlProps增加图例',
+      effect: 4
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'position',
+          desc: '图例的位置',
+          status: "'topright' | 'topleft' | 'bottomright' | 'bottomleft' | 'topcenter' | 'bottomcenter' | 'leftcenter' | 'rightcenter';",
+          default: 'bottomright',
+        },
+        {
+          name: 'name',
+          desc: '类似于id',
+          status: "string",
+        },
+        {
+          name: 'onAdd',
+          status: '(Layer?:any) => string;',
+          desc: "Layer实例 增加函数的返回字段，返回的为字符串，需要将 React.ReactNode 转化为字符串，如：<span>示例</span>",
+        },
+        {
+          name: '图例其他配置',
+          desc: '参照官网，可适配与其他属性',
+          status: "[key: string]",
+        },
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api7',
+      render: 'configControlProps图例示例',
+      effect: 4
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'method',
+          desc: 'explain 地图颜色说明  extra 额外标注',
+          status: "'explain' | 'extra'",
+        },
+        {
+          name: 'extra',
+          desc: [
+            '额外标注',
+            'class（string): 设置对应的class样式，一些属性需要 important',
+            "position('bottomright' | 'topright' | 'bottomleft' | 'topleft' | 'topcenter' | 'bottomcenter' | 'leftcenter' | 'rightcenter'): 位置, 默认： topright",
+            'way(string): 什么条件触发，默认 mousemove（鼠标移入）',
+            'topRender((e) => string;): 上方样式，替换原有的title',
+            'bottomRender((e) => string;): 下方样式，返回字符串 `<span>示例</span>`',
+            'noneRender((e) => string;): 一开始的初始样式，默认为空',
+          ],
+          status: "extraProps",
+        },
+        {
+          name: 'explain',
+          desc: [
+            '地图颜色说明',
+            'class（string): 设置对应的class样式，一些属性需要 important',
+            "position('bottomright' | 'topright' | 'bottomleft' | 'topleft' | 'topcenter' | 'bottomcenter' | 'leftcenter' | 'rightcenter'): 位置, 默认： topright",
+            'title(string): 标题',
+            'color({name: 标记名称，value：对应颜色}[]): 地图颜色',
+            'topRender((e) => string;): 上方样式，替换原有的title',
+            'bottomRender((e) => string;): 下方样式，返回字符串 `<span>示例</span>`',
+          ],
+          status: "explainProps",
+        },
+      ]
+    },
   ],
-  attention: {
-    children: [
-      {
-        render: '生命周期我认为是开发最重要的，它好比是开发的流程，如果连流程都无法了解，那怎样更好的工作呢？所以为了有更好的流程，ahook 帮我们把 class 的流程搬到了 hook， 使我们更好的开发',
-        strong: true
-      },
-      {
-        render: '这里只是做了比较重要的Api，更多Api，请看官网~',
-        href: 'https://ahooks.js.org/zh-CN/hooks/life-cycle/use-debounce-effect',
-        hrefTooltip: '去官网看看~',
-        blank: true
-      }
-    ]
-  }
+  explain: {
+    id: 'explain'
+  },
+  explainList: [
+    {
+      render: '如果本文对您有帮助，请点个至高无上的 Star，支持一下吧~',
+      strong: true
+    },
+    {
+      render: 'L7 是 AntV 所涉及的，这里主要对全国，省市区做封装，主要以省的为示例，是地理空间数据可视化的解决方案',
+      strong: true
+    },
+    {
+      render: '我再此做的是将常用功能提取出来，这样更加的善于管理，我们可以依据示例，封装适配于自己的项目，另外，地图支持响应式，移动端也可一建适配😄',
+      strong: true
+    },
+  ]
 }
 
 export const LifeCycleAnchorList:AnchorLinkProps[] = [
   {
-    title: '装载与卸载（useMount和useUnmount）',
-    href: 'code1'
+    title: '代码演示',
+    href: 'Code',
   },
   {
-    title: '更新（useUpdateEffect）',
-    href: 'code2'
+    title: 'Api',
+    href: 'Api',
+    children: [
+      {
+        title: 'mapProps属性',
+        href: 'Api1',
+      },
+      {
+        title: 'sceneProps属性',
+        href: 'Api2',
+      },
+      {
+        title: 'statusProps属性',
+        href: 'Api3',
+      },
+      {
+        title: 'configProps属性',
+        href: 'Api4',
+      },
+      {
+        title: 'initMethodProps事件集合',
+        href: 'Api5',
+      },
+      {
+        title: 'addControlProps增加图例',
+        href: 'Api6',
+      },
+      {
+        title: 'configControlProps图例示例',
+        href: 'Api7',
+      }
+    ]
   },
   {
-    title: '依赖改变（useTrackedEffect）',
-    href: 'code3'
-  },
-  {
-    title: '强制更新（useUpdateEffect）',
-    href: 'code4'
-  },
-  {
-    title: '防抖（useDebounceEffect）',
-    href: 'code5'
-  },
-  {
-    title: '节流（useThrottleEffect）',
-    href: 'code6'
-  },
+    title: '心得体会',
+    href: 'explain',
+  }
 ]

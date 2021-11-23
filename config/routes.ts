@@ -45,6 +45,7 @@ export default [
       // { path: '/Map/introduce', name: '介绍', component: './Map/Introduce' },
       { path: '/Map/Global', name: '折线图', component: './Map/Global'},
       { path: '/Map/Province', name: '省级地图', component: './Map/Province'},
+      { path: '/Map/City', name: '市级地图', component: './Map/City'},
 
     ],
   },
