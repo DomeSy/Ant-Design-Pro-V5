@@ -10,7 +10,6 @@ const { district } = MapSy
 // 初始化方法
 const onLoaded =  (scene: any, name:string, {  status={}, config={}, getScene, getLayer, initMethod, ...props}:MapProvinceProps) => {
   scene.on('loaded', () => {
-
     const LayoutConfig = {
       data: props.data ? props.data : undefined,
       joinBy: props.joinBy || district.joinBy,

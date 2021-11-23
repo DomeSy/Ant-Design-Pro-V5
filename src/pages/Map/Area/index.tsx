@@ -35,7 +35,7 @@ const Index: React.FC<any> = (props) => {
   import React, { useState } from 'react';
   import { Map } from '@/components'
   import { Switch, Tooltip, Select, message, Cascader } from 'antd';
-  import { CityData, colorData, PdepthData, StyleData } from './test'
+  import { AreaData, colorData, PdepthData, StyleData } from './test'
   import { InfoCircleOutlined } from '@ant-design/icons';
   import { useReactive } from 'ahooks';
 
@@ -54,7 +54,6 @@ const Index: React.FC<any> = (props) => {
       show: true,
       drag: false,
       style: 'blank',
-      depth: 3,
       color: 0,
       zoom: false,
       rotate: false,
@@ -104,7 +103,7 @@ const Index: React.FC<any> = (props) => {
           style={{
             width: 200,
           }}
-          options={CityData}
+          options={AreaData}
           defaultValue={init}
           onChange={(e) => {setInit(e)}}
         />
@@ -129,16 +128,6 @@ const Index: React.FC<any> = (props) => {
           state.color = e
         }}>
           {colorData.map((data, i) => <Option key={i} value={data.value}>
-            {data.name}
-          </Option>)}
-        </Select>
-        <span style={{fontWeight: 500, marginLeft: 8}} >改变层级：</span>
-        <Select value={state.depth} style={{ width: 120, marginLeft:8 }} onChange={(e) => {
-          state.show = false;
-          setTimeout(() => {state.show = true}, 500)
-          state.depth = e
-        }}>
-          {PdepthData.map((data, i) => <Option key={i} value={data.value}>
             {data.name}
           </Option>)}
         </Select>
@@ -283,7 +272,7 @@ const Index: React.FC<any> = (props) => {
       </div>
       <div style={{width: '100%', height: '600px'}}>
         {
-          state.show && <Map.Province
+          state.show && <Map.Area
           init={init}
           map={{
             style: state.style
@@ -292,7 +281,6 @@ const Index: React.FC<any> = (props) => {
             logoVisible: !state.logoInit
           }}
           config={{
-            depth: state.depth,
             fillColor: state.colorInit ? {
               values: ['rgb(106,33,29)','rgb(144,55,53)','rgb(181,78,76)','rgb(211,104,101)','rgb(227,147,131)','rgba(255,255,255,0.8)']
             } : undefined,

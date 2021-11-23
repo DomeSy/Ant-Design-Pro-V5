@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Map } from '@/components'
 import { Switch, Tooltip, Select, message, Cascader } from 'antd';
-import { CityData, colorData, PdepthData, StyleData } from './test'
+import { AreaData, colorData, PdepthData, StyleData } from './test'
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { useReactive, useResponsive } from 'ahooks';
 
@@ -13,7 +13,7 @@ const TextShow: React.FC<{text: string, title: string}> = ({text='', title='', c
 
 const Mock: React.FC<any> = () => {
   const [scene, setScene] = useState<any>()
-  const [ init, setInit ] = useState<any>(["620000", "620100"])
+  const [ init, setInit ] = useState<any>(["620000", "620100", "620103"])
   const [layer, setLayer] = useState<any>();
 
   const responsive = useResponsive();
@@ -22,7 +22,6 @@ const Mock: React.FC<any> = () => {
     show: true,
     drag: false,
     style: 'blank',
-    depth: 3,
     color: 0,
     zoom: false,
     rotate: false,
@@ -72,7 +71,7 @@ const Mock: React.FC<any> = () => {
         style={{
           width: 200,
         }}
-        options={CityData}
+        options={AreaData}
         defaultValue={init}
         onChange={(e) => {setInit(e)}}
       />
@@ -97,16 +96,6 @@ const Mock: React.FC<any> = () => {
         state.color = e
       }}>
         {colorData.map((data, i) => <Option key={i} value={data.value}>
-          {data.name}
-        </Option>)}
-      </Select>
-      <span style={{fontWeight: 500, marginLeft: 8}} >改变层级：</span>
-      <Select value={state.depth} style={{ width: 120, marginLeft:8, marginTop:8 }} onChange={(e) => {
-        state.show = false;
-        setTimeout(() => {state.show = true}, 500)
-        state.depth = e
-      }}>
-        {PdepthData.map((data, i) => <Option key={i} value={data.value}>
           {data.name}
         </Option>)}
       </Select>
@@ -253,7 +242,7 @@ const Mock: React.FC<any> = () => {
     }
     <div style={responsive.sm ? {width: '100%', height: '600px'} : {width: '100%', height: '300px'}}>
       {
-        state.show && <Map.City
+        state.show && <Map.Area
         init={init}
         map={{
           style: state.style
@@ -262,7 +251,6 @@ const Mock: React.FC<any> = () => {
           logoVisible: !state.logoInit
         }}
         config={{
-          depth: state.depth,
           fillColor: state.colorInit ? {
             values: ['rgb(106,33,29)','rgb(144,55,53)','rgb(181,78,76)','rgb(211,104,101)','rgb(227,147,131)','rgba(255,255,255,0.8)']
           } : undefined,
