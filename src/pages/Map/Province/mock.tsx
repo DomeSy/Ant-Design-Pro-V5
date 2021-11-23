@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Map } from '@/components'
 import { Switch, Tooltip, Select, message } from 'antd';
-import { ProvinceData, colorData, PdepthData } from './test'
+import { ProvinceData, colorData, PdepthData, StyleData } from './test'
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { useReactive, useResponsive } from 'ahooks';
 
@@ -21,6 +21,7 @@ const Mock: React.FC<any> = () => {
   const state = useReactive<any>({
     show: true,
     drag: false,
+    style: 'blank',
     depth: 2,
     color: 0,
     zoom: false,
@@ -70,6 +71,16 @@ const Mock: React.FC<any> = () => {
       <Select value={init} style={{ width: 120,marginTop:8 }} onChange={(e) => { setInit(e) }}>
         {ProvinceData.map((province, i) => <Option key={i} value={province.adcode}>
           {province.NAME_CHN}
+        </Option>)}
+      </Select>
+      <span style={{fontWeight: 500, marginLeft: 8}} >改变地图样式：</span>
+      <Select value={state.style} style={{ width: 120,marginLeft:8 }} onChange={(e) => {
+        state.show = false;
+        setTimeout(() => {state.show = true}, 500)
+        state.style = e
+      }}>
+        {StyleData.map((data, i) => <Option key={i} value={data.value}>
+          {data.name}
         </Option>)}
       </Select>
       <span style={{fontWeight: 500, marginLeft: 8}} >改变绘制颜色：</span>
@@ -241,6 +252,9 @@ const Mock: React.FC<any> = () => {
       {
         state.show && <Map.Province
         init={init}
+        map={{
+          style: state.style
+        }}
         scene={{
           logoVisible: !state.logoInit
         }}

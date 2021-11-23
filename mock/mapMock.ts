@@ -8,37 +8,183 @@ export const LifeCycle:Props = {
     href: 'https://l7.antv.vision/zh/docs/api/district/start',
   },
   apiList: [
-
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'init',
+          desc: '初始化省地图的编码',
+          status: 'string[] | string | number | number[]',
+        },
+        {
+          name: 'id',
+          desc: '用于区分渲染的图层， 多次渲染的时候需要id不同（以省为例）',
+          status: 'string',
+          default: 'mapProvince'
+        },
+        {
+          name: 'data',
+          desc: '匹配的数据源',
+          status: 'Array<{ [key: string]: any }>',
+        },
+        {
+          name: 'joinBy',
+          desc: [
+            '数据关联项，与 data 数据源做关联',
+            '如果data的code码与地图本身的code码相等，则进行匹配，在后续的操作中。',
+            '目前只支持  NAME_CHN 与 adcode'
+          ],
+          status: "[string, string]",
+          default: "['adcode', 'code']",
+          global: true
+        },
+        {
+          name: 'getScene',
+          desc: '获取Map创的实例',
+          status: '(scene: any) => void',
+        },
+        {
+          name: 'getLayer',
+          desc: '获取图层渲染示例',
+          status: '(layer: any) => void',
+        },
+        {
+          name: 'map',
+          desc: '地图初始化模板',
+          status: 'mapProps',
+          global: true
+        },
+        {
+          name: 'scene',
+          desc: '地图场景配置',
+          status: 'sceneProps',
+          global: true
+        },
+        {
+          name: 'status',
+          desc: '地图的状态',
+          status: 'statusProps',
+          global: true
+        },
+        {
+          name: 'config',
+          desc: '地图详细配置',
+          status: 'configProps',
+          global: true
+        },
+        {
+          name: 'initMethod',
+          desc: '初始化方法集合',
+          status: 'initMethodProps[]',
+        },
+        {
+          name: 'onClick',
+          desc: '点击省份方法，此方法存在，initMethod 的click将无效',
+          status: '(layer:any) => void',
+        },
+        {
+          name: 'onDoubleClick',
+          desc: '双击省份方法 此方法存在，initMethod 的dblclick将无效',
+          status: 'layer:any) => void',
+        },
+        {
+          name: 'unClick',
+          desc: '点击空白处，此方法存在，initMethod 的unclick将无效',
+          status: 'layer:any) => void',
+        },
+        {
+          name: 'unDoubleClick',
+          desc: ' 双击空白处 此方法存在，initMethod 的undblclick将无效',
+          status: 'layer:any) => void',
+        },
+        {
+          name: 'addControl',
+          desc: '增加额外区域显示样式',
+          status: 'addControlProps[]',
+        },
+        {
+          name: 'configControl',
+          desc: '配置示例图表层示例',
+          status: 'configControlProps[]',
+        },
+        {
+          name: 'style',
+          desc: '渲染图层的css',
+          status: 'React.CSSProperties',
+        },
+      ]
+    },
     {
       type: 'title',
-      id: 'ApiConfig',
-      render: 'configProps属性',
+      id: 'Api1',
+      render: 'mapProps属性',
       effect: 4
     },
     {
       type: 'table',
       tableList: [
         {
-          name: 'width',
-          desc: '集中控制表单的宽度',
-          status: 'string | number',
-          default: '40%',
+          name: 'token',
+          desc: '地图密钥，需要平台申请',
+          status: 'string ',
           global: true
         },
         {
-          name: 'noRest',
-          desc: '是否不要重置按钮',
-          status: 'boolean',
-          default: 'false'
+          name: 'style',
+          desc: '提供默认四种样式',
+          status: "'dark' | 'light' | 'normal' | 'blank'",
+          default: 'light',
+          global: true
         },
         {
-          name: 'back',
+          name: 'plugin',
           desc: [
-            '是否带返回按钮，可为对象，可为布尔，可为数字',
-            '为对象时继承按钮的所有属性，布尔：为true时，默认返回为-1，为number时可自己设置返回层数'
+            '高德地图API插件',
+            "使用示例 ['AMap.ToolBar','AMap.Driving']"
           ],
-          status: 'Object | boolean | number',
-          default: '1'
+          status: 'string[]',
+        },
+        {
+          name: 'center',
+          desc: '地图中心点 [经度，纬度]',
+          status: "[number, number]",
+          default: '[116.2825, 39.9]',
+          global: true
+        },
+        {
+          name: 'pitch',
+          desc: '地图倾角',
+          status: "number",
+          default: '0',
+          global: true
+        },
+        {
+          name: 'zoom',
+          desc: '地图缩放等级',
+          status: "number",
+          default: '3',
+          global: true
+        },
+        {
+          name: 'rotation',
+          desc: '地图旋转角',
+          status: "number",
+          default: '0'
+        },
+        {
+          name: 'maxZoom',
+          desc: '最大缩放等级',
+          status: "number",
+        },
+        {
+          name: 'minZoom',
+          desc: '最小缩放等级',
+          status: "number",
+        },
+        {
+          name: 'map其余属性',
+          desc: '其他配置，查看高德地图的Api https://lbs.amap.com/api/javascript-api/reference/map',
+          status: "[key: string]",
         },
       ]
     },

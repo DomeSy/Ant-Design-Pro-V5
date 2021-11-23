@@ -205,8 +205,28 @@ const PdepthData = [
   },
 ]
 
+const StyleData = [
+  {
+    name: 'dark',
+    value: 'dark'
+  },
+  {
+    name: 'light',
+    value: 'light'
+  },
+  {
+    name: 'normal',
+    value: 'normal'
+  },
+  {
+    name: 'blank',
+    value: 'blank'
+  }
+]
+
 export {
   ProvinceData,
   colorData,
-  PdepthData
+  PdepthData,
+  StyleData
 }
