@@ -1,6 +1,6 @@
 import { IFillOptions, IAttributeOption, ILabelOption, IPopupOptions, IBubbleOption } from '@antv/l7-district';
 
-interface MapDistrict {  // 省市区地图公共配置类
+export interface MapDistrict {  // 省市区地图公共配置类
   map?: mapProps; // 地图初始化模板
   scene?: sceneProps; // 地图场景配置
   status?: statusProps; // 地图的状态

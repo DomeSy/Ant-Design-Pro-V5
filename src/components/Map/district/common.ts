@@ -34,7 +34,12 @@ const onLoaded =  (scene: any, name:string, {  status={}, config={}, getScene, g
         },
         ...config?.fill
       },
-      popup: { ...config?.popup },
+      popup: {
+        Html: (data:any) => {
+          return data.NAME_CHN
+        },
+        ...config?.popup
+      },
       bubble:{ ...config?.bubble },
       ...config?.extra
     }

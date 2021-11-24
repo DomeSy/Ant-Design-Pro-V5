@@ -19,4 +19,5 @@ export type { default as FormPropsSy } from './Form/interface.d'
 export type { formProps, formLayoutProps, FormCommonProps, fieldValuesProps } from './Form/interface.d';
 export type { MaskFromProps } from './Mask/interface.d'
 export type { CardLayoutProps, CardLayoutListProps } from './Card/interface.d'
-export type { AnchorLinkProps } from './Anchor/interface'
+export type { AnchorLinkProps } from './Anchor/interface.d'
+export type { MapDistrict } from './Map/district/interface.d'

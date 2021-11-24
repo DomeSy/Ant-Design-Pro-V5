@@ -47,6 +47,7 @@ export default [
       { path: '/Map/Province', name: '省级地图', component: './Map/Province'},
       { path: '/Map/City', name: '市级地图', component: './Map/City'},
       { path: '/Map/Area', name: '区级地图', component: './Map/Area'},
+      { path: '/Map/Example', name: '案例', component: './Map/Example'},
     ],
   },
   {
