@@ -38,7 +38,7 @@ export default [
   {
     path: '/Map',
     name: '地图',
-    icon: 'BarChartOutlined',
+    icon: 'HeatMapOutlined',
     component: './Map',
     routes: [
       { path: '/Map', redirect: '/Map/China'},
