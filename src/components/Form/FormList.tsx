@@ -247,8 +247,8 @@ const FomList: React.FC<FormListProps> = ({ formList=[], layout = {}, method, _c
       if (type === 2) return current && current > moment().endOf('day');
 
       if (start || end) {
-        const startDate = new Date(start || Method.getDate());
-        const endDate = new Date(end || Method.getDate());
+        const startDate = new Date(start || Method.getDate({}));
+        const endDate = new Date(end || Method.getDate({}));
 
         if (type !== 3) {
           return (
@@ -279,6 +279,7 @@ const FomList: React.FC<FormListProps> = ({ formList=[], layout = {}, method, _c
           moment().subtract(methodSubtract === 'day' ? subtract + 1 : subtract, methodSubtract)
       );
     };
+
     return {
       disabledDate: (current: any) => dateRule(current),
       showTime:

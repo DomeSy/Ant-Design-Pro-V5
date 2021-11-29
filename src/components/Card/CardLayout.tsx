@@ -1,7 +1,6 @@
 import ProCard from '@ant-design/pro-card';
 import { CardSy } from '@/utils/Setting';
 import type { CardLayoutProps } from './interface';
-import './index'
 
 /**
  * @module CardLayOut 卡片布局
@@ -24,7 +23,6 @@ const CardLayout: React.FC<CardLayoutProps> = ({ list = [], type = 2, _config={}
         const { render, ...propsList } = item;
         return (
           <ProCard
-            className="CardLayoutChildrenSy"
             key={'WrapProCard' + index}
             {...CardSy.Layout}
             {..._config}

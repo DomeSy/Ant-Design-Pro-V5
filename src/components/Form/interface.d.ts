@@ -80,8 +80,8 @@ interface DateLimitProps {
   add?: number;
   subtract?: number;
   type?: number;
-  start?: 'string';
-  end?: 'string';
+  start?: string;
+  end?: string;
 }
 interface layoutProps {
   close?: boolean;

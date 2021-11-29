@@ -1,109 +1,93 @@
-import type { MapsProps } from './interface';
-import React, { useState, useEffect } from 'react';
-import { Scene } from '@antv/l7';
-import { ProvinceLayer } from '@antv/l7-district';
-import { Mapbox } from '@antv/l7-maps';
-import { useUnmount } from 'ahooks';
-// 市级地图
+import { AMapScene, Marker, PointLayer } from '@antv/l7-react';
+import * as React from 'react';
+import ReactDOM from 'react-dom';
 
-/**
- * @module Map // 地图
- *
- */
-
-let Layer:any
-
-const Index: React.FC<MapsProps>  = ({  ...props}) => {
-  const [scene, setScene] = useState<any>()
-
-  useEffect( () => {
-    initData()
-  }, [])
-
-  useUnmount(() => {
-    scene.destroy()
-  })
-
-  const initData = async () => {
-    const response = await fetch(
-      'https://gw.alipayobjects.com/os/bmw-prod/149b599d-21ef-4c24-812c-20deaee90e20.json',
-    );
-    const provinceData = await response.json();
-
-    const data = Object.keys(provinceData).map((key: string) => {
-      return {
-        code: key,
-        name: provinceData[key][0],
-        pop: provinceData[key][2] * 1,
-      };
-    });
-    const scene = new Scene({
-      id: 'map',
-      map: new Mapbox({
-        center: [116.2825, 39.9],
-        pitch: 0,
-        style: 'blank',
-        zoom: 3,
-        minZoom: 3,
-        maxZoom: 10,
-      }),
-    })
-    scene.on('loaded', () => {
-      Layer = new ProvinceLayer(scene, {
-        data,
-        joinBy: ['adcode', 'code'],
-        adcode: ['330000'],
-        depth: 3,
-        label: {
-          field: 'NAME_CHN',
-          textAllowOverlap: false,
-        },
-        fill: {
-          color: {
-            field: 'name',
-            values: [
-              'red',
-              'green',
-              'yellow',
-              'blue',
-              'orange',
-              'pink',
-            ],
-            // values: (res) => {
-            //   console.log(res, '--')
-            //   if(res === '拱墅区'){
-            //     return 'yellow'
-            //   }
-            //   return 'red'
-            // }
-          },
-        },
-        popup: {
-          enable: true,
-          Html: (props) => {
-            console.log(props)
-            return `<span>${props.NAME_CHN}:</span>`;
-          },
-        },
-      });
-
-      Layer.on('click', (e:any) => {
-        console.log(e,'---')
-      })
-    });
-    scene.setMapStatus({
-      dragEnable: false, // 是否允许地图拖拽
-      keyboardEnable: false, // 是否允许形键盘事件
-      doubleClickZoom: false, // 双击放大
-      zoomEnable: false, // 滚动缩放
-      rotateEnable: false // 旋转
-    })
-    setScene(scene)
-  }
-
-  return <>
-    <div id='map' style={{width: '100%', height: '100%',top: 0, left: 0, justifyContent: 'center', position: 'relative'}}></div>
-  </>;
+const MarkerPinImg = {
+  green:
+    'https://gw.alipayobjects.com/mdn/rms_855bab/afts/img/A*JhBbT4LvHpQAAAAAAAAAAAAAARQnAQ',
+  blue:
+    'https://gw.alipayobjects.com/mdn/rms_855bab/afts/img/A*n6cXTb8R7iUAAAAAAAAAAAAAARQnAQ',
+};
+const MarkerInfo = ({ title }:any) => {
+  return (
+    <div className="markerContent">
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          height: '32px',
+          padding: '0.05rem',
+          background: '#1677ff',
+          borderRadius: '44px',
+        }}
+      >
+        <div
+          style={{
+            color: '#fff',
+            fontSize: '12px',
+          }}
+        >
+          {title}
+        </div>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <img
+          style={{
+            width: '20px',
+            height: '30px',
+          }}
+          alt="marker"
+          src={MarkerPinImg.blue}
+        />
+      </div>
+    </div>
+  );
 };
 
-export default Index
+const World = React.memo(function Map() {
+  const [data, setData] = React.useState();
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        'https://gw.alipayobjects.com/os/basement_prod/893d1d5f-11d9-45f3-8322-ee9140d288ae.json',
+      );
+      const data = await response.json();
+      setData(data);
+    };
+    fetchData();
+  }, []);
+  return (
+    <AMapScene
+      map={{
+        center: [121.4316962, 31.26082325],
+        pitch: 0,
+        style: 'light',
+        zoom: 15,
+      }}
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+      }}
+    >
+      {data &&
+        // @ts-ignore
+        data.map((item: any) => {
+          return (
+            <Marker key={item.id} lnglat={[item.longitude, item.latitude]}>
+              <MarkerInfo title={item.name} />
+            </Marker>
+          );
+        })}
+    </AMapScene>
+  );
+});
+
+export default World
