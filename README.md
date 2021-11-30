@@ -2,7 +2,7 @@
 <h1 align="center">Ant Design Pro V5</h1>
 
 ## 前言
-以学习 Ant Design Pro V5 为目的，设置更简单的配置，更好用的组件，如果对大家有帮助，请不要吝惜你的 Star~
+以学习 Ant Design Pro V5 为目的，设置更简单的配置，更好用的组件，以项目为标准，创造属于自身项目的组件轮子，如果对大家有帮助，请不要吝惜你的 Star~
 ## 线上预览
 
 ![](http://mobile.domesy.cn/img/img1.png)
