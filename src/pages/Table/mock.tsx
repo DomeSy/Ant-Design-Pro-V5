@@ -18,6 +18,7 @@ const paginationInit = {
   size: true,
   pageSize: 10
 }
+
 const optionsInit = {
   reload: true,
   density: true,
