@@ -2,7 +2,7 @@ import type { ChartProps } from './interface';
 import React, { useState, useEffect } from 'react';
 import { Line, ColumnConfig } from '@ant-design/charts';
 /**
- * @module Charts // 为简化开发将Modal和Drawer
+ * @module Charts // 将常用图标作出总结
  *
  * 通用属性
  * @param data 数组（必填），数据里的值
