@@ -1,7 +1,7 @@
 import type { ChartProps } from './interface';
 import React, { useState, useEffect } from 'react';
 import { Column, ColumnConfig } from '@ant-design/charts';
-import { useUpdateEffect } from 'ahooks';
+import { useUpdateEffect, useReactive } from 'ahooks';
 import { calcData } from './components/tools';
 /**
  * @module Charts // 封装常用图表
@@ -9,6 +9,10 @@ import { calcData } from './components/tools';
  */
 
 const Charts: React.FC<ChartProps>  = ({ xField='time',...props }) => {
+
+  const state = useReactive<any>({
+    loading: true
+  });
 
   useEffect(() => {
     console.log(props, '===')
@@ -84,6 +88,11 @@ const Charts: React.FC<ChartProps>  = ({ xField='time',...props }) => {
       },
     },
   };
+
+  const Config = () => {
+
+  }
+
   return <>
     <Column {...config} />
   </>;
