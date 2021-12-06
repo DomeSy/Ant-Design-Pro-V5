@@ -35,9 +35,20 @@ export default [
       { path: '/ahook/Advanced', name: 'Advanced', component: './aHook/Advanced'},
     ],
   },
+    {
+    path: '/Charts',
+    name: '图表',
+    icon: 'HeatMapOutlined',
+    component: './Charts',
+    routes: [
+      { path: '/Charts', redirect: '/Charts/Line'},
+      // { path: '/Charts/introduce', name: '介绍', component: './Charts/Introduce' },
+      { path: '/Charts/Line', name: '折现图', component: './Charts/Line'},
+    ],
+  },
   {
     path: '/Map',
-    name: '地图',
+    name: '地图(L7)',
     icon: 'HeatMapOutlined',
     component: './Map',
     routes: [
