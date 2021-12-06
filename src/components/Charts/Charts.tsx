@@ -1,27 +1,92 @@
 import type { ChartProps } from './interface';
 import React, { useState, useEffect } from 'react';
-import { Line, ColumnConfig } from '@ant-design/charts';
+import { Column, ColumnConfig } from '@ant-design/charts';
+import { useUpdateEffect } from 'ahooks';
+import { calcData } from './components/tools';
 /**
- * @module Charts // 将常用图标作出总结
- *
- * 通用属性
- * @param data 数组（必填），数据里的值
- * @param xField string 横坐标对应的值
- * @param yField string 纵坐标对应的值
- * @param seriesField string 区分字段
- * @param width number 图标的宽度， 响应式变化 默认 400
- * @param height number 图标的高度 默认 400
- * @param autoFit boolean 图表是否自适应容器宽高 默认为true
- * @param color 控制颜色， 数组形式，每一个对应第几个的颜色
+ * @module Charts // 封装常用图表
  *
  */
 
-const Charts: React.FC<ChartProps>  = ({ setFiled = '',  ...props }) => {
+const Charts: React.FC<ChartProps>  = ({ xField='time',...props }) => {
 
-  return <Line
-    seriesField={setFiled}
-    {...props}
-  />;
+  useEffect(() => {
+    console.log(props, '===')
+  }, [])
+
+  useUpdateEffect(() => {
+    if(props.data){
+      const data = calcData(props.data, { xField, ...props })
+      console.log(data, '000')
+    }
+  }, [props.data])
+
+  const data = [
+    {
+      type: '家具家电',
+      sales: 38,
+    },
+    {
+      type: '粮油副食',
+      sales: 52,
+    },
+    {
+      type: '生鲜水果',
+      sales: 61,
+    },
+    {
+      type: '美容洗护',
+      sales: 145,
+    },
+    {
+      type: '母婴用品',
+      sales: 48,
+    },
+    {
+      type: '进口食品',
+      sales: 38,
+    },
+    {
+      type: '食品饮料',
+      sales: 38,
+    },
+    {
+      type: '家庭清洁',
+      sales: 38,
+    },
+  ];
+  const config = {
+    data,
+    xField: 'type',
+    yField: 'sales',
+    label: {
+      // 可手动配置 label 数据标签位置
+      position: 'middle',
+      // 'top', 'bottom', 'middle',
+      // 配置样式
+      style: {
+        fill: '#FFFFFF',
+        opacity: 0.6,
+      },
+    },
+    xAxis: {
+      label: {
+        autoHide: true,
+        autoRotate: false,
+      },
+    },
+    meta: {
+      type: {
+        alias: '类别',
+      },
+      sales: {
+        alias: '销售额',
+      },
+    },
+  };
+  return <>
+    <Column {...config} />
+  </>;
 };
 
 export default Charts
