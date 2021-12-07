@@ -8,93 +8,50 @@ import { calcData } from './components/tools';
  *
  */
 
-const Charts: React.FC<ChartProps>  = ({ xField='time',...props }) => {
+const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) => {
 
   const state = useReactive<any>({
+    data: [],
     loading: true
   });
 
   useEffect(() => {
+    if(onRequest){
+      getRequest()
+    }
     console.log(props, '===')
   }, [])
 
   useUpdateEffect(() => {
-    if(props.data){
+    if(props.data && !onRequest){
+      state.loading = true
       const data = calcData(props.data, { xField, ...props })
-      console.log(data, '000')
+      state.data = data
+      state.loading = false
     }
   }, [props.data])
 
-  const data = [
-    {
-      type: '家具家电',
-      sales: 38,
-    },
-    {
-      type: '粮油副食',
-      sales: 52,
-    },
-    {
-      type: '生鲜水果',
-      sales: 61,
-    },
-    {
-      type: '美容洗护',
-      sales: 145,
-    },
-    {
-      type: '母婴用品',
-      sales: 48,
-    },
-    {
-      type: '进口食品',
-      sales: 38,
-    },
-    {
-      type: '食品饮料',
-      sales: 38,
-    },
-    {
-      type: '家庭清洁',
-      sales: 38,
-    },
-  ];
-  const config = {
-    data,
-    xField: 'type',
-    yField: 'sales',
-    label: {
-      // 可手动配置 label 数据标签位置
-      position: 'middle',
-      // 'top', 'bottom', 'middle',
-      // 配置样式
-      style: {
-        fill: '#FFFFFF',
-        opacity: 0.6,
-      },
-    },
-    xAxis: {
-      label: {
-        autoHide: true,
-        autoRotate: false,
-      },
-    },
-    meta: {
-      type: {
-        alias: '类别',
-      },
-      sales: {
-        alias: '销售额',
-      },
-    },
-  };
+  // 请求接口
+  const getRequest = async () => {
+    state.loading = true
+    let payload = props.payload ? props.payload() : {}
+    const res = await onRequest(payload)
+    const data = calcData(props.calcData ? props.calcData(res) : res, { xField, ...props })
+    state.data = data
+    state.loading = false
+  }
 
-  const Config = () => {
-
+  // 公共配置类
+  const commonConfig = {
+    xField: 'time',
+    yField: 'value',
+    seriesField: 'label',
+    data: state.data,
+    loading: state.loading,
   }
 
   return <>
-    <Column {...config} />
+    <Column isGroup={true} {...commonConfig} />
   </>;
 };
 
