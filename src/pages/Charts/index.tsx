@@ -19,7 +19,11 @@ const Hook: React.FC<any> = ({children, ...props}) => {
 
   const tab = [
     {
-      tab: '图标',
+      tab: '图表展示',
+      key: 'All',
+    },
+    {
+      tab: '演示',
       key: 'Line',
     },
   ];

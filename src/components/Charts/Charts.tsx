@@ -1,12 +1,14 @@
-import type { ChartProps } from './interface';
+import type { ChartProps, ChartComponentProps } from './interface';
 import React, { useState, useEffect } from 'react';
 import { Column, ColumnConfig } from '@ant-design/charts';
 import { useUpdateEffect, useReactive } from 'ahooks';
 import { calcData } from './components/tools';
+import { ChartsSy } from '@/utils/Setting'
 /**
  * @module Charts // 封装常用图表
  *
  */
+const { legend, label } = ChartsSy
 
 const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) => {
 
@@ -19,8 +21,7 @@ const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) =
     if(onRequest){
       getRequest()
     }
-    console.log(props, '===')
-  }, [])
+  }, [onRequest])
 
   useUpdateEffect(() => {
     if(props.data && !onRequest){
@@ -50,8 +51,44 @@ const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) =
     loading: state.loading,
   }
 
+  const commonComponent = () => {
+
+    let selected:any = {}
+    if(props.legend && props.legend.noSelect){
+      props.legend.noSelect.map((item) => {
+        selected[item] = false
+      })
+    }
+
+    const result:ChartComponentProps = {
+      legend: props.legend === false ? false : {
+        selected,
+        ...legend,
+        ...props.legend
+      },
+      label: props.label === false ? false : {
+        ...label,
+        layout: [
+          {
+            type: 'interval-adjust-position',
+          },
+          {
+            type: 'interval-hide-overlap',
+          },
+          {
+            type: 'adjust-color',
+          },
+        ],
+        ...props.label
+      },
+    }
+
+    return result
+  }
+
+
   return <>
-    <Column isGroup={true} {...commonConfig} />
+    <Column isGroup={true}  {...commonConfig} {...commonComponent()} {...props.colum} />
   </>;
 };
 
