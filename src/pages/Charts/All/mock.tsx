@@ -25,7 +25,10 @@ const Mock: React.FC<any> = () => {
     labelPosition: 'middle',
     noSelect: false,
     label: true,
-    labelContent: false
+    labelContent: false,
+    color: false,
+    slider: true,
+    sliderValue: false
   })
 
   useEffect(() => {
@@ -77,7 +80,13 @@ const Mock: React.FC<any> = () => {
         { switchShow('是否展示', 'label') }
         { selectShow(positionLabel, '位置', 'labelPosition') }
         { switchShow('是否改变文字', 'labelContent') }
-        { switchShow('是否置灰', 'noSelect', true) }
+      </TextShow>
+    </div>
+    <div style={{marginTop: 4}}>
+      <TextShow text={'其他'} title="有关的表格其余属性都在 colum" >
+        { switchShow('改变颜色', 'color') }
+        { switchShow('是否启动缩略轴', 'slider') }
+        { switchShow('改变缩略的值', 'sliderValue') }
       </TextShow>
     </div>
     {
@@ -98,6 +107,13 @@ const Mock: React.FC<any> = () => {
             return data.name
           } : undefined
         } : false}
+        colum={{
+          color: state.color ? ['red', 'yellow'] : undefined,
+          slider: state.slider ? state.sliderValue ? {
+            start: 0.1,
+            end: 0.5
+          } : {} : undefined,
+        }}
       ></Charts>
     }
    </>

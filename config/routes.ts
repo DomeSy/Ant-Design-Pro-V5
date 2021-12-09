@@ -44,7 +44,7 @@ export default [
       { path: '/Charts', redirect: '/Charts/All'},
       // { path: '/Charts/introduce', name: '介绍', component: './Charts/Introduce' },
       { path: '/Charts/All', name: '展示图表', component: './Charts/All'},
-      { path: '/Charts/Line', name: '折现图', component: './Charts/Line'},
+      { path: '/Charts/Line', name: '折现图', component: './Charts/Line', hideInMenu: true},
     ],
   },
   {

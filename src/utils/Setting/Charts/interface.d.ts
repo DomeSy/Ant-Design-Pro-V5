@@ -8,6 +8,9 @@ interface ChartsProps {
   },
   label: { // 样例文字
     position: 'top' | 'bottom' | 'middle' | 'left' | 'right'; //定位方法
+  },
+  colum: {
+    isGroup: boolean; //是否开启分组柱状图
   }
 }
 

@@ -18,9 +18,17 @@ import {  LineConfig, ColumnConfig } from '@ant-design/charts';
  *
  * 回参： 包含三个参数(data(数据映射全量数据), mappingData（有关图表的对象）, index(索引)) 最终还是返回上面五个方向
  *
- * position 集中设置 'top' | 'bottom' | 'middle' | 'left' | 'right'， 共五个方向，如果需要设置的不一样，可通过函数的形式去传，（回参：）
+ * position 集中设置 'top' | 'bottom' | 'middle' | 'left' | 'right'， 共五个方向，如果需要设置的不一样，可通过函数的形式去传，（回参）
  * layout 布局,
  * content： 展示的内容。自定义需要 （回参）
+ */
+
+/**
+ * column: 有关条形图的其他属性，（层级最高）
+ *
+ * color：改变图标的颜色， 多个数据时，采用数组的形式传递，也可以采用函数的方式进行计算，此函数需要返回字符串，可通过传递的参数来区别不同的图表
+ *
+ * slider: 缩略轴，当数据过多时形成的区间，默认是全部展示，如果要修改缩略的一开的展示，可通过 start 和 end 进行修改，需要注意的是 start 和 end 的范围是 0~1
  */
 export interface ChartProps {
   type: 'column'; // 图表的类型， column（柱状图）
@@ -34,10 +42,12 @@ export interface ChartProps {
   payload?: () => {}; // 接口请求的数据，返回一个对象
   legend?: false | LegendProps; // 配置图例
   label?: false | LabelProps;
-  colum?: ColumnConfig;
+  colum?: ColumProps;
 }
 
-
+export interface ColumProps extends Partial<ColumnConfig> {
+  // method?: 'isGroup' | 'isStack' | 'isRange' | 'isPercent' ; //isGroup: 分组柱状  isStack: 堆积柱状图。 isRange: 区间柱状图 isPercent: 百分比柱状图
+}
 export interface ChartComponentProps {
   legend?: false | LegendProps; // 配置图例
   label?: false | LabelProps; // 文本标签

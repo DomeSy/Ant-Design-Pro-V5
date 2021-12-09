@@ -12,6 +12,9 @@ const ChartsSy: ChartsProps = {
   },
   label: {
     position: 'middle'
+  },
+  colum: {
+    isGroup: true
   }
 }
 

@@ -1,6 +1,6 @@
 import type { ChartProps, ChartComponentProps } from './interface';
 import React, { useState, useEffect } from 'react';
-import { Column, ColumnConfig } from '@ant-design/charts';
+import { Column } from '@ant-design/charts';
 import { useUpdateEffect, useReactive } from 'ahooks';
 import { calcData } from './components/tools';
 import { ChartsSy } from '@/utils/Setting'
@@ -88,7 +88,7 @@ const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) =
 
 
   return <>
-    <Column isGroup={true}  {...commonConfig} {...commonComponent()} {...props.colum} />
+    <Column isGroup={ChartsSy.colum.isGroup} {...commonConfig} {...commonComponent()} {...props.colum} />
   </>;
 };
 
