@@ -50,31 +50,6 @@ const positionData = [
   },
 ]
 
-
-const positionLabel = [
-  {
-    name: '上方',
-    value: 'top'
-  },
-  {
-    name: '下方',
-    value: 'bottom'
-  },
-  {
-    name: '中间',
-    value: 'middle'
-  },
-  {
-    name: '左方',
-    value: 'left'
-  },
-  {
-    name: '右方',
-    value: 'right'
-  },
-]
-
 export {
   positionData,
-  positionLabel
 }

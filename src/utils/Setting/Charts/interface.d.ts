@@ -12,6 +12,9 @@ interface ChartsProps {
   colum: {
     isGroup: boolean; //是否开启分组柱状图
   }
+  tooltip: {
+    position: 'top' | 'bottom' | 'left' | 'right'; //定位方法
+  }
 }
 
 export default ChartsProps;

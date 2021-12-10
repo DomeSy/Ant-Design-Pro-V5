@@ -19,7 +19,7 @@ const Index: React.FC<any> = (props) => {
       setDetail({
         // ...res.list,
         code:{
-          title: '代码演示（Map.Province）',
+          title: '代码演示Charts（type为column）',
           showCode: [
             {
               component: <Mock />,

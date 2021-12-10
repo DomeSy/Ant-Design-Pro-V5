@@ -15,6 +15,9 @@ const ChartsSy: ChartsProps = {
   },
   colum: {
     isGroup: true
+  },
+  tooltip: {
+    position: 'right'
   }
 }
 

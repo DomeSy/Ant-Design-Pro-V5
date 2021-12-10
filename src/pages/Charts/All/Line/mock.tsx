@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Charts } from '@/components';
-import { Switch, Tooltip, Select, message, Cascader } from 'antd';
+import { Switch, Tooltip, Select } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { queryData } from './services';
 
-import { positionData, positionLabel } from './test'
+import { positionData } from './test'
 import { useReactive } from 'ahooks';
 
 const TextShow: React.FC<{text: string, title: string}> = ({text='', title='', children}) => {
@@ -18,13 +18,13 @@ const Mock: React.FC<any> = () => {
   const state = useReactive<any>({
     show: true,
     data: [],
+    datas: true,
     isRequest: true,
     legend: true,
     layout: false,
     position: 'top-left',
-    labelPosition: 'middle',
     noSelect: false,
-    label: true,
+    label: false,
     labelContent: false,
     color: false,
     slider: true,
@@ -65,6 +65,7 @@ const Mock: React.FC<any> = () => {
     <div>
       <TextShow text={'数据请求onRequest'} title="是否直接传入接口获取数据" >
         <Switch checked={state.isRequest} onChange={(e) => {state.isRequest = e }}/>
+        { switchShow('多数据模式', 'datas', true) }
       </TextShow>
     </div>
     <div style={{marginTop: 4}}>
@@ -78,7 +79,6 @@ const Mock: React.FC<any> = () => {
     <div style={{marginTop: 4}}>
       <TextShow text={'文本标签'} title="label的属性" >
         { switchShow('是否展示', 'label') }
-        { selectShow(positionLabel, '位置', 'labelPosition') }
         { switchShow('是否改变文字', 'labelContent') }
       </TextShow>
     </div>
@@ -91,8 +91,8 @@ const Mock: React.FC<any> = () => {
     </div>
     {
       state.show && <Charts
-        fields={{ a: '北方人口', b: '南方人口'}}
-        type='column'
+        fields={state.datas ? { a: '北方人口', b: '南方人口'} : { a: '北方人口'}}
+        type='line'
         onRequest={state.isRequest ? queryData : undefined}
         payload={state.isRequest ? () => ({ detail: 'data' }) : undefined}
         data={state.isRequest ? undefined : state.data}
@@ -102,12 +102,11 @@ const Mock: React.FC<any> = () => {
           noSelect: state.noSelect ? ['北方人口'] : undefined,
         } : false}
         label={ state.label ? {
-          position: state.labelPosition,
           content: state.labelContent ? (data:any) => {
             return data.name
           } : undefined
         } : false}
-        colum={{
+        line={{
           color: state.color ? ['red', 'yellow'] : undefined,
           slider: state.slider ? state.sliderValue ? {
             start: 0.1,

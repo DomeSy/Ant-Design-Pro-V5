@@ -24,6 +24,13 @@ import {  LineConfig, ColumnConfig } from '@ant-design/charts';
  */
 
 /**
+ * tooltip 提示语的文字
+ *
+ * title: 设置title,默认为横坐标的值，字符串，注意一点， 如果值为数据源字段名，则会展示对应的数组，如果不是，直接展示
+ * customContent：自定义模板，接收两个参数（title: 横坐标的值，data：当前对应坐标的所有信息），需要注意一点，需要返回 字符串，也就是将所有 dom 转化为自定义
+ */
+
+/**
  * column: 有关条形图的其他属性，（层级最高）
  *
  * color：改变图标的颜色， 多个数据时，采用数组的形式传递，也可以采用函数的方式进行计算，此函数需要返回字符串，可通过传递的参数来区别不同的图表
@@ -31,7 +38,7 @@ import {  LineConfig, ColumnConfig } from '@ant-design/charts';
  * slider: 缩略轴，当数据过多时形成的区间，默认是全部展示，如果要修改缩略的一开的展示，可通过 start 和 end 进行修改，需要注意的是 start 和 end 的范围是 0~1
  */
 export interface ChartProps {
-  type: 'column'; // 图表的类型， column（柱状图）
+  type: 'column' | 'line'; // 图表的类型， column（柱状图） line(折线图)
   data?: Array<any>; // 数据源列表
   xField?: string; // 横坐标对应的值
   fields: { // 匹配接口返回字段
@@ -41,8 +48,10 @@ export interface ChartProps {
   calcData?: (result:any) => [] | {}; // 目前来说返回的一个对象或者一个数组
   payload?: () => {}; // 接口请求的数据，返回一个对象
   legend?: false | LegendProps; // 配置图例
+  tooltip?: false | (Types.TooltipCfg & TooltipMapping)
   label?: false | LabelProps;
   colum?: ColumProps;
+  line?: Partial<LineConfig>
 }
 
 export interface ColumProps extends Partial<ColumnConfig> {
@@ -51,6 +60,7 @@ export interface ColumProps extends Partial<ColumnConfig> {
 export interface ChartComponentProps {
   legend?: false | LegendProps; // 配置图例
   label?: false | LabelProps; // 文本标签
+  tooltip?: false | (Types.TooltipCfg & TooltipMapping)
 }
 
 interface LegendProps extends Types.LegendCfg {
