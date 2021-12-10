@@ -1,44 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { DetailSetting } from '@/commonPages'
-import { queryDetail } from './services'
-import Mock from './mock'
- import type { AnchorLinkProps } from '@/components'
-import { Tooltip } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
-import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
+import { PageLayout, Card } from '@/components';
+import type { CardLayoutListProps } from '@/components'
+import { SendOutlined } from '@ant-design/icons';
+import { useModel } from 'umi';
+import { Jump } from '@/utils';
 
-
-
-const Index: React.FC<any> = (props) => {
-  const [anchorList, setAnchorList] = useState<AnchorLinkProps[]>([])
-  const [detail, setDetail] = useState<DetailSettingListProps>({})
+const Hook: React.FC<any> = ({children, ...props}) => {
+  const { initialState } = useModel('@@initialState');
+  const [content, setContent] = useState<string>('');
+  const [key, setKey] = useState<string>('useMemo');
 
   useEffect(() => {
-    queryDetail({detail: 'District'}).then((res) => {
-      // setAnchorList(res.anchorList)
-      setDetail({
-        // ...res.list,
-        code:{
-          title: '代码演示（Map.Province）',
-          showCode: [
-            {
-              component: <Mock />,
-              title: '功能展示',
-              id: 'code1',
-              content: <div>
-                <p>可自由实现地图的初始化，自定义地图颜色，展示名称，边界颜色，图层比例，并实现拖拽，缩放，旋转，点击，双击等功能（包括不限于此）<Tooltip title="更加详细api，参考L7 官网"><InfoCircleOutlined /></Tooltip></p>
-              </div>,
-              code: ``
-            }
-          ]
-        },
-      })
-    })
-  }, []);
+    const { pathname } = props.location;
+    const res = pathname.split('/')
+    setKey(res[3])
+    // setContent(initialState.content[res[1]][res[2]])
+  }, [key, props.location.pathname]);
+
+  const tab = [
+    {
+      tab: '柱状图',
+      key: 'Column',
+    },
+    {
+      tab: '折线图',
+      key: 'Line',
+    },
+  ];
+  if(children.props.location.pathname === '/charts/introduce') return children
 
   return (
-    <DetailSetting {...detail} anchorList={anchorList}  />
+    <PageLayout
+      tab={tab}
+      tabActiveKey={key}
+      content={
+        content
+      }
+      onChange={(key) => {
+        const { url } = props.match
+        if(url !== '/'){
+          Jump.go(`${url}/${key}`)
+        }
+        setKey(String(key))
+      }}
+    >
+      {children}
+    </PageLayout>
   );
 };
 
-export default Index;
+
+export default Hook;

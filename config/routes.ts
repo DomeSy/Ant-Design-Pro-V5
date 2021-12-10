@@ -39,12 +39,15 @@ export default [
     path: '/Charts',
     name: '图表',
     icon: 'HeatMapOutlined',
-    component: './Charts',
     routes: [
       { path: '/Charts', redirect: '/Charts/All'},
       // { path: '/Charts/introduce', name: '介绍', component: './Charts/Introduce' },
-      { path: '/Charts/All', name: '展示图表', component: './Charts/All'},
-      { path: '/Charts/Line', name: '折现图', component: './Charts/Line', hideInMenu: true},
+      { path: '/Charts/All', name: '展示图表', component: './Charts/All', routes: [
+        { path: '/Charts/All', redirect: '/Charts/All/Column'},
+        { path: '/Charts/All/Column', name: '柱状图', component: './Charts/All/Column', hideInMenu: true},
+        { path: '/Charts/All/Line', name: '折现图', component: './Charts/All/Line', hideInMenu: true},
+      ]},
+      // { path: '/Charts/All/Line', name: '折现图', component: './Charts/Line', hideInMenu: true},
     ],
   },
   {

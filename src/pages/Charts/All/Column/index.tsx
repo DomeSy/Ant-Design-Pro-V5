@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { DetailSetting } from '@/commonPages'
 import { queryDetail } from './services'
 import Mock from './mock'
-import type { AnchorLinkProps } from '@/components'
+ import type { AnchorLinkProps } from '@/components'
 import { Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
+
+
 
 const Index: React.FC<any> = (props) => {
   const [anchorList, setAnchorList] = useState<AnchorLinkProps[]>([])
