@@ -4,7 +4,7 @@ import { Switch, Tooltip, Select } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { queryData } from './services';
 
-import { positionData } from './test'
+import { positionData, positionTooltip } from './test'
 import { useReactive } from 'ahooks';
 
 const TextShow: React.FC<{text: string, title: string}> = ({text='', title='', children}) => {
@@ -28,7 +28,10 @@ const Mock: React.FC<any> = () => {
     labelContent: false,
     color: false,
     slider: true,
-    sliderValue: false
+    sliderValue: false,
+    tooltipCustom: false,
+    tooltipTitle: false,
+    tooltipPosition: 'right',
   })
 
   useEffect(() => {
@@ -83,6 +86,13 @@ const Mock: React.FC<any> = () => {
       </TextShow>
     </div>
     <div style={{marginTop: 4}}>
+      <TextShow text={'提示语'} title="tooltip的属性" >
+        { switchShow('更改title', 'tooltipTitle') }
+        { selectShow(positionTooltip, '位置', 'tooltipPosition') }
+        { switchShow('是否自定义', 'tooltipCustom') }
+      </TextShow>
+    </div>
+    <div style={{marginTop: 4}}>
       <TextShow text={'其他'} title="有关的表格其余属性都在 colum" >
         { switchShow('改变颜色', 'color') }
         { switchShow('是否启动缩略轴', 'slider') }
@@ -106,6 +116,19 @@ const Mock: React.FC<any> = () => {
             return data.name
           } : undefined
         } : false}
+        tooltip={{
+          title: state.tooltipTitle ? 'address' : undefined,
+          position: state.tooltipPosition,
+          customContent: state.tooltipCustom ? (title:any, data:any) => {
+            return `<div style="padding: 8px 0px">
+              <div>${title}</div>
+              <div style="margin-top: 8px">
+                <p>${data[0]?.data?.label} : ${data[0]?.data?.name}</p>
+                <p>${data[1]?.data?.label} : ${data[1]?.data?.name}</p>
+              </div>
+            </div>`
+          } : undefined,
+        }}
         line={{
           color: state.color ? ['red', 'yellow'] : undefined,
           slider: state.slider ? state.sliderValue ? {
