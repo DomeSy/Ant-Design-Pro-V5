@@ -39,7 +39,7 @@ import {  LineConfig, ColumnConfig, DualAxesConfig, BarConfig } from '@ant-desig
  */
 
 /**
- * type 为 dualAxes 柱状折现混合图
+ * type 为 dualAxes 双轴图
  *
  * geometryOptions：指定了双轴各自对应的图形配置，默认第一个为柱状图，第二个为折线图，并且不用设置 、 seriesField（会自动处理），geometry 默认是[柱状图, 折线图]。如果不是可自行配置 其余的参数与配置一样
  */
@@ -50,13 +50,13 @@ import {  LineConfig, ColumnConfig, DualAxesConfig, BarConfig } from '@ant-desig
  *  需要注意的是，这里请求的数据 与其他格式相反的形式，xField 对应的是纵坐标的形式， fields对应的字段只能有一个对应的值
  */
 export interface ChartProps {
-  type: 'column' | 'line' | 'dualAxes' | 'bar'; // 图表的类型， column（柱状图） line(折线图) dualAxes(柱状折现混合图) bar(条形图)
+  type: 'column' | 'line' | 'dualAxes' | 'bar'; // 图表的类型， column（柱状图） line(折线图) dualAxes(双轴图) bar(条形图)
   data?: Array<any>; // 数据源列表
   xField?: string; // 横坐标对应的值
   fields: { // 匹配接口返回字段
     [key: string]: any;
   },
-  fieldsLine?: { // 匹配接口(柱状折现混合图-折现图操作)
+  fieldsLine?: { // 匹配接口(双轴图-折现图操作)
     [key: string]: any;
   },
   onRequest?: any; // 请求的接口，这里最好直接返回对应的格式，大多数为数组，环图为对象（如果返回的不是，需要使用calcData 来处理下，让其返回对应的的格式）
@@ -75,7 +75,7 @@ export interface ChartProps {
 export interface BarProps extends Partial<BarConfig>{
 }
 
-/** 柱状折现混合图 */
+/** 双轴图 */
 export interface DualAxesProps extends Partial<DualAxesConfig>{
   // geometryOptions?: DualAxesConfig['geometryOptions']
 }

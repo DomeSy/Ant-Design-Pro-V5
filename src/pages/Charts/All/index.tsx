@@ -27,7 +27,7 @@ const Hook: React.FC<any> = ({children, ...props}) => {
       key: 'Line',
     },
     {
-      tab: '柱状折现混合图',
+      tab: '双轴图',
       key: 'DualAxes',
     },
     {
