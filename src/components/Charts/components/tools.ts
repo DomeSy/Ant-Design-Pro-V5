@@ -100,7 +100,13 @@ export const calcBar = ({ type, ...props}:ChartProps) => {
   }
 }
 
-
+// 面积图
+export const calcArea = ({ type, ...props}:ChartProps) => {
+  return {
+    ...labelConfig(),
+    ...ComponentConfig({type, ...props})
+  }
+}
 
 // 返回的字段配置
 const labelConfig = () => {
