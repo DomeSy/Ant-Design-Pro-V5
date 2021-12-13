@@ -1,8 +1,8 @@
 import type { ChartProps, ChartComponentProps } from './interface';
 import React, { useState, useEffect } from 'react';
-import { Column, Line } from '@ant-design/charts';
+import { Column, Line, DualAxes } from '@ant-design/charts';
 import { useUpdateEffect, useReactive } from 'ahooks';
-import { calcData, calcPayload } from './components/tools';
+import { calcData, calcColumn, calcLine, calcDualAxes } from './components/tools';
 import { ChartsSy } from '@/utils/Setting'
 /**
  * @module Charts // 封装常用图表
@@ -11,7 +11,7 @@ import { ChartsSy } from '@/utils/Setting'
 const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) => {
 
   const state = useReactive<any>({
-    data: [],
+    data: props.type === 'dualAxes' ? [[], []] : [],
     loading: true
   });
 
@@ -48,10 +48,13 @@ const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) =
 
   return <>
     {
-      props.type === 'column' && <Column isGroup={ChartsSy.colum.isGroup} {...commonConfig} {...calcPayload(props)} {...props.colum} />
+      props.type === 'column' && <Column isGroup={ChartsSy.colum.isGroup} {...commonConfig}  {...props.colum} {...calcColumn(props)} />
     }
     {
-      props.type === 'line' && <Line  {...commonConfig} {...calcPayload(props)} {...props.line} />
+      props.type === 'line' && <Line {...commonConfig} {...props.line}  {...calcLine(props)} />
+    }
+    {
+      props.type === 'dualAxes' && <DualAxes {...commonConfig} {...props.dualAxes} {...calcDualAxes(props)} />
     }
   </>;
 };

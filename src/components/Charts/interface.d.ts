@@ -1,5 +1,5 @@
 import { Types } from '@antv/g2';
-import {  LineConfig, ColumnConfig } from '@ant-design/charts';
+import {  LineConfig, ColumnConfig, DualAxesConfig } from '@ant-design/charts';
 
 /**
  * 1> 获取数据有两种方式，一种是通过直接传data，一种是传接口请求，两者是相对的，其次如果选择接口，需要出入对应的参数 payload，如果不传，则默认为 {}
@@ -38,10 +38,13 @@ import {  LineConfig, ColumnConfig } from '@ant-design/charts';
  * slider: 缩略轴，当数据过多时形成的区间，默认是全部展示，如果要修改缩略的一开的展示，可通过 start 和 end 进行修改，需要注意的是 start 和 end 的范围是 0~1
  */
 export interface ChartProps {
-  type: 'column' | 'line'; // 图表的类型， column（柱状图） line(折线图)
+  type: 'column' | 'line' | 'dualAxes'; // 图表的类型， column（柱状图） line(折线图) dualAxes(柱状折现混合图)
   data?: Array<any>; // 数据源列表
   xField?: string; // 横坐标对应的值
   fields: { // 匹配接口返回字段
+    [key: string]: any;
+  },
+  fieldsLine?: { // 匹配接口(柱状折现混合图-折现图操作)
     [key: string]: any;
   },
   onRequest?: any; // 请求的接口，这里最好直接返回对应的格式，大多数为数组，环图为对象（如果返回的不是，需要使用calcData 来处理下，让其返回对应的的格式）
@@ -51,10 +54,16 @@ export interface ChartProps {
   tooltip?: false | (Types.TooltipCfg & TooltipMapping)
   label?: false | LabelProps;
   colum?: ColumProps;
-  line?: LineProps
+  line?: LineProps;
+  dualAxes?: DualAxesProps;
 }
 
-/**折现图 */
+/** 柱状折现混合图 */
+export interface DualAxesProps extends Partial<DualAxesConfig>{
+  // geometryOptions?: DualAxesConfig['geometryOptions']
+}
+
+/** 折现图 */
 export interface LineProps extends Partial<LineConfig> {
   stepType?: 'hv' | 'vh' | 'hvh' | 'vhv'
 }

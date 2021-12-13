@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { Data, LifeCycle, LifeCycleAnchorList, } from './chartsMock'
+import { Data, DualAxesData, LifeCycle, LifeCycleAnchorList, } from './chartsMock'
 
 
 export default {
@@ -53,6 +53,11 @@ export default {
     if(detail === 'data') {
       res.send( resData({
         data: Data()
+      }) )
+      return
+    }else if(detail === 'dualAxes') {
+      res.send( resData({
+        data: DualAxesData()
       }) )
       return
     }
