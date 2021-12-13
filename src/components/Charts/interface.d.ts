@@ -51,12 +51,20 @@ export interface ChartProps {
   tooltip?: false | (Types.TooltipCfg & TooltipMapping)
   label?: false | LabelProps;
   colum?: ColumProps;
-  line?: Partial<LineConfig>
+  line?: LineProps
 }
 
+/**折现图 */
+export interface LineProps extends Partial<LineConfig> {
+  stepType?: 'hv' | 'vh' | 'hvh' | 'vhv'
+}
+
+/** 柱状图 */
 export interface ColumProps extends Partial<ColumnConfig> {
   // method?: 'isGroup' | 'isStack' | 'isRange' | 'isPercent' ; //isGroup: 分组柱状  isStack: 堆积柱状图。 isRange: 区间柱状图 isPercent: 百分比柱状图
 }
+
+/**公共配置 */
 export interface ChartComponentProps {
   legend?: false | LegendProps; // 配置图例
   label?: false | LabelProps; // 文本标签

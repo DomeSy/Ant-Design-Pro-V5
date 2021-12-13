@@ -67,7 +67,32 @@ const positionTooltip = [
     value: 'right'
   },
 ]
+
+const stepData = [
+  {
+    name: '无阶梯',
+    value: '0'
+  },
+  {
+    name: 'hv',
+    value: 'hv'
+  },
+  {
+    name: 'vh',
+    value: 'vh'
+  },
+  {
+    name: 'hvh',
+    value: 'hvh'
+  },
+  {
+    name: 'vhv',
+    value: 'vhv'
+  }
+]
+
 export {
   positionData,
-  positionTooltip
+  positionTooltip,
+  stepData,
 }

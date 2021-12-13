@@ -4,7 +4,7 @@ import { Switch, Tooltip, Select } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { queryData } from './services';
 
-import { positionData, positionTooltip } from './test'
+import { positionData, positionTooltip, stepData } from './test'
 import { useReactive } from 'ahooks';
 
 const TextShow: React.FC<{text: string, title: string}> = ({text='', title='', children}) => {
@@ -32,6 +32,8 @@ const Mock: React.FC<any> = () => {
     tooltipCustom: false,
     tooltipTitle: false,
     tooltipPosition: 'right',
+    stepType: '0',
+    smooth: false
   })
 
   useEffect(() => {
@@ -97,6 +99,8 @@ const Mock: React.FC<any> = () => {
         { switchShow('改变颜色', 'color') }
         { switchShow('是否启动缩略轴', 'slider') }
         { switchShow('改变缩略的值', 'sliderValue') }
+        { selectShow(stepData, '切换图形', 'stepType') }
+        { switchShow('是否曲线', 'smooth') }
       </TextShow>
     </div>
     {
@@ -135,6 +139,8 @@ const Mock: React.FC<any> = () => {
             start: 0.1,
             end: 0.5
           } : {} : undefined,
+          stepType: state.stepType === '0' ? undefined : state.stepType,
+          smooth: state.smooth
         }}
       ></Charts>
     }
