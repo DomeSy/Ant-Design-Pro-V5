@@ -46,7 +46,7 @@ export const calcData = (list: Array<any>, { xField, fields, fieldsLine, type }:
 // 柱状图
 export const calcColumn = ({ type, ...props}:ChartProps) => {
   return {
-    ...labelConfig(type),
+    ...labelConfig(),
     ...ComponentConfig({type, ...props})
   }
 }
@@ -54,7 +54,7 @@ export const calcColumn = ({ type, ...props}:ChartProps) => {
 //折现图
 export const calcLine = ({ type, ...props}:ChartProps) => {
   return {
-    ...labelConfig(type),
+    ...labelConfig(),
     ...ComponentConfig({type, ...props})
   }
 }
@@ -90,9 +90,20 @@ export const calcDualAxes = ({ type, dualAxes, ...props}:ChartProps) => {
   }
 }
 
+// 条形图
+export const calcBar = ({ type, ...props}:ChartProps) => {
+  return {
+    xField: 'value',
+    yField: 'time',
+    seriesField: 'time',
+    ...ComponentConfig({type, ...props})
+  }
+}
+
+
 
 // 返回的字段配置
-const labelConfig = (type:ChartProps["type"]) => {
+const labelConfig = () => {
   return {
     xField: 'time',
     yField: 'value',

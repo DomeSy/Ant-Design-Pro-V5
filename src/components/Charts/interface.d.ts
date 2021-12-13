@@ -1,5 +1,5 @@
 import { Types } from '@antv/g2';
-import {  LineConfig, ColumnConfig, DualAxesConfig } from '@ant-design/charts';
+import {  LineConfig, ColumnConfig, DualAxesConfig, BarConfig } from '@ant-design/charts';
 
 /**
  * 1> 获取数据有两种方式，一种是通过直接传data，一种是传接口请求，两者是相对的，其次如果选择接口，需要出入对应的参数 payload，如果不传，则默认为 {}
@@ -43,8 +43,14 @@ import {  LineConfig, ColumnConfig, DualAxesConfig } from '@ant-design/charts';
  *
  * geometryOptions：指定了双轴各自对应的图形配置，默认第一个为柱状图，第二个为折线图，并且不用设置 、 seriesField（会自动处理），geometry 默认是[柱状图, 折线图]。如果不是可自行配置 其余的参数与配置一样
  */
+
+/**
+ * type 为 bar 条形图
+ *
+ *  需要注意的是，这里请求的数据 与其他格式相反的形式，xField 对应的是纵坐标的形式， fields对应的字段只能有一个对应的值
+ */
 export interface ChartProps {
-  type: 'column' | 'line' | 'dualAxes'; // 图表的类型， column（柱状图） line(折线图) dualAxes(柱状折现混合图)
+  type: 'column' | 'line' | 'dualAxes' | 'bar'; // 图表的类型， column（柱状图） line(折线图) dualAxes(柱状折现混合图) bar(条形图)
   data?: Array<any>; // 数据源列表
   xField?: string; // 横坐标对应的值
   fields: { // 匹配接口返回字段
@@ -62,6 +68,11 @@ export interface ChartProps {
   colum?: ColumProps;
   line?: LineProps;
   dualAxes?: DualAxesProps;
+  bar?: BarProps
+}
+
+/** 条形图 */
+export interface BarProps extends Partial<BarConfig>{
 }
 
 /** 柱状折现混合图 */

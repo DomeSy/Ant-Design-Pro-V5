@@ -1,8 +1,8 @@
-import type { ChartProps, ChartComponentProps } from './interface';
-import React, { useState, useEffect } from 'react';
-import { Column, Line, DualAxes } from '@ant-design/charts';
+import type { ChartProps } from './interface';
+import React, { useEffect } from 'react';
+import { Column, Line, DualAxes, Bar } from '@ant-design/charts';
 import { useUpdateEffect, useReactive } from 'ahooks';
-import { calcData, calcColumn, calcLine, calcDualAxes } from './components/tools';
+import { calcData, calcColumn, calcLine, calcDualAxes, calcBar } from './components/tools';
 import { ChartsSy } from '@/utils/Setting'
 /**
  * @module Charts // 封装常用图表
@@ -55,6 +55,9 @@ const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) =
     }
     {
       props.type === 'dualAxes' && <DualAxes {...commonConfig} {...props.dualAxes} {...calcDualAxes(props)} />
+    }
+    {
+      props.type === 'bar' && <Bar {...commonConfig}  {...props.colum} {...calcBar(props)} />
     }
   </>;
 };

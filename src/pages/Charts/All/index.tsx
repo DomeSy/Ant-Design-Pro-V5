@@ -30,6 +30,10 @@ const Hook: React.FC<any> = ({children, ...props}) => {
       tab: '柱状折现混合图',
       key: 'DualAxes',
     },
+    {
+      tab: '条形图',
+      key: 'Bar',
+    },
   ];
   if(children.props.location.pathname === '/charts/introduce') return children
 

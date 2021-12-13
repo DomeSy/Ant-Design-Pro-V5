@@ -47,7 +47,7 @@ export default [
         { path: '/Charts/All/Column', name: '柱状图', component: './Charts/All/Column', hideInMenu: true},
         { path: '/Charts/All/Line', name: '折现图', component: './Charts/All/Line', hideInMenu: true},
         { path: '/Charts/All/DualAxes', name: '柱状折现混合图', component: './Charts/All/DualAxes', hideInMenu: true},
-
+        { path: '/Charts/All/Bar', name: '条形图', component: './Charts/All/Bar', hideInMenu: true},
       ]},
       // { path: '/Charts/All/Line', name: '折现图', component: './Charts/Line', hideInMenu: true},
     ],
