@@ -23,7 +23,7 @@ export const calcData = (list: Array<any>, { xField, fields, fieldsLine, type }:
       })
       keys1.map((ele, index) => {
         if((item[ele] || item[ele] === 0) && xField){
-          res1 = [...res, { ...item, label: values1[index], value: item[ele], time: item[xField] || index }]
+          res1 = [...res1, { ...item, label: values1[index], value: item[ele], time: item[xField] || index }]
         }
       })
     })
@@ -84,6 +84,7 @@ export const calcDualAxes = ({ type, dualAxes, ...props}:ChartProps) => {
   return {
     xField: 'time',
     yField: ['value', 'value'],
+    padding: dualAxes?.slider ? [20, 20, 80, 30] : undefined,
     geometryOptions,
     ...ComponentConfig({type, ...props})
   }

@@ -50,30 +50,6 @@ const positionData = [
   },
 ]
 
-
-const positionLabel = [
-  {
-    name: '上方',
-    value: 'top'
-  },
-  {
-    name: '下方',
-    value: 'bottom'
-  },
-  {
-    name: '中间',
-    value: 'middle'
-  },
-  {
-    name: '左方',
-    value: 'left'
-  },
-  {
-    name: '右方',
-    value: 'right'
-  },
-]
-
 const positionTooltip = [
   {
     name: '上方',
@@ -93,8 +69,31 @@ const positionTooltip = [
   },
 ]
 
+const data = [
+  {
+    name: '全部',
+    value: 'all'
+  },
+  {
+    name: '一柱一折',
+    value: 'one'
+  },
+  {
+    name: '多柱一折',
+    value: 'two'
+  },
+  {
+    name: '一柱多折',
+    value: 'three'
+  },
+  {
+    name: '双折线',
+    value: 'four'
+  }
+]
+
 export {
+  data,
   positionData,
-  positionLabel,
   positionTooltip
 }

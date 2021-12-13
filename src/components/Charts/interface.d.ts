@@ -37,6 +37,12 @@ import {  LineConfig, ColumnConfig, DualAxesConfig } from '@ant-design/charts';
  *
  * slider: 缩略轴，当数据过多时形成的区间，默认是全部展示，如果要修改缩略的一开的展示，可通过 start 和 end 进行修改，需要注意的是 start 和 end 的范围是 0~1
  */
+
+/**
+ * type 为 dualAxes 柱状折现混合图
+ *
+ * geometryOptions：指定了双轴各自对应的图形配置，默认第一个为柱状图，第二个为折线图，并且不用设置 、 seriesField（会自动处理），geometry 默认是[柱状图, 折线图]。如果不是可自行配置 其余的参数与配置一样
+ */
 export interface ChartProps {
   type: 'column' | 'line' | 'dualAxes'; // 图表的类型， column（柱状图） line(折线图) dualAxes(柱状折现混合图)
   data?: Array<any>; // 数据源列表
