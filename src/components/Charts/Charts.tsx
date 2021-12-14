@@ -1,8 +1,8 @@
 import type { ChartProps } from './interface';
 import React, { useEffect } from 'react';
-import { Column, Line, DualAxes, Bar, Area } from '@ant-design/charts';
+import { Column, Line, DualAxes, Bar, Area, Pie } from '@ant-design/charts';
 import { useUpdateEffect, useReactive } from 'ahooks';
-import { calcData, calcColumn, calcLine, calcDualAxes, calcBar, calcArea } from './components/tools';
+import { calcData, calcColumn, calcLine, calcDualAxes, calcBar, calcArea, calcPie } from './components/tools';
 import { ChartsSy } from '@/utils/Setting'
 /**
  * @module Charts // 封装常用图表
@@ -46,6 +46,22 @@ const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) =
     loading: state.loading,
   }
 
+  const config = {
+    // appendPadding: 10,
+    data: state.data,
+    angleField: 'value',
+    colorField: 'label',
+    radius: 0.8,
+    label: {
+      type: 'outer',
+    },
+    // interactions: [
+    //   {
+    //     type: 'element-active',
+    //   },
+    // ],
+  };
+
   return <>
     {
       props.type === 'column' && <Column isGroup={ChartsSy.colum.isGroup} {...commonConfig}  {...props.colum} {...calcColumn(props)} />
@@ -59,9 +75,16 @@ const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) =
     {
       props.type === 'bar' && <Bar {...commonConfig}  {...props.bar} {...calcBar(props)} />
     }
-     {
+    {
       props.type === 'area' && <Area {...commonConfig}  {...props.area} {...calcArea(props)} />
     }
+    {
+      props.type === 'pie' && <Pie {...commonConfig}  {...props.pie} {...calcPie(props)} />
+    }
+     {
+      // props.type === 'pie' && <Pie {...config} />
+    }
+
   </>;
 };
 

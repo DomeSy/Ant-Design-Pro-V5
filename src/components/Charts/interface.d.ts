@@ -1,5 +1,5 @@
 import { Types } from '@antv/g2';
-import {  LineConfig, ColumnConfig, DualAxesConfig, BarConfig, AreaConfig } from '@ant-design/charts';
+import {  LineConfig, ColumnConfig, DualAxesConfig, BarConfig, AreaConfig, PieConfig } from '@ant-design/charts';
 
 /**
  * 1> 获取数据有两种方式，一种是通过直接传data，一种是传接口请求，两者是相对的，其次如果选择接口，需要出入对应的参数 payload，如果不传，则默认为 {}
@@ -50,7 +50,7 @@ import {  LineConfig, ColumnConfig, DualAxesConfig, BarConfig, AreaConfig } from
  *  需要注意的是，这里请求的数据 与其他格式相反的形式，xField 对应的是纵坐标的形式， fields对应的字段只能有一个对应的值
  */
 export interface ChartProps {
-  type: 'column' | 'line' | 'dualAxes' | 'bar' | 'area'; // 图表的类型， column（柱状图） line(折线图) dualAxes(双轴图) bar(条形图) area(面积图)
+  type: 'column' | 'line' | 'dualAxes' | 'bar' | 'area' | 'pie'; // 图表的类型， column（柱状图） line(折线图) dualAxes(双轴图) bar(条形图) area(面积图)
   data?: Array<any>; // 数据源列表
   xField?: string; // 横坐标对应的值
   fields: { // 匹配接口返回字段
@@ -69,7 +69,13 @@ export interface ChartProps {
   line?: LineProps;
   dualAxes?: DualAxesProps;
   bar?: BarProps;
-  area?: AreaProps
+  area?: AreaProps;
+  pie?: PieProps;
+}
+
+
+/** 饼图 */
+export interface PieProps extends Partial<PieConfig>{
 }
 
 /** 面积图 */

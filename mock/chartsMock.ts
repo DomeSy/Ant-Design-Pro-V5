@@ -41,6 +41,21 @@ export const DualAxesData:any = () => {
   return data
 }
 
+export const PieData:any = () => {
+  const mock = Mock.mock({
+    'a|1-200': 100,
+    'b|1-200': 100,
+    'c|1-100': 100,
+    'd|1-100': 100,
+    'e|1-100': 100,
+  })
+  return {
+    ...mock,
+    name: Mock.mock('@cname'),
+    address: Mock.mock('@county(true)'),
+    time: Mock.mock(`@date('yyyy-MM-dd')`),
+  }
+}
 
 export const LifeCycle:Props = {
   api: {

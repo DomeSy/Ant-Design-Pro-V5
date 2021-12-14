@@ -38,6 +38,10 @@ const Hook: React.FC<any> = ({children, ...props}) => {
       tab: '面积图',
       key: 'Area',
     },
+    {
+      tab: '饼图',
+      key: 'Pie',
+    },
   ];
   if(children.props.location.pathname === '/charts/introduce') return children
 

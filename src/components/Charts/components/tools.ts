@@ -3,7 +3,8 @@ import { ChartsSy } from '@/utils/Setting'
 import { message } from 'antd';
 
 // 处理数据模块
-export const calcData = (list: Array<any>, { xField, fields, fieldsLine, type }: ChartProps) => {
+export const calcData = (listAll: Object, { xField, fields, fieldsLine, type }: ChartProps) => {
+  const list = Array.isArray(listAll) ? listAll : [listAll]
   if(type === 'dualAxes'){
     if(!fieldsLine){
       message.error('请传入对应的折线图数据')
@@ -108,6 +109,21 @@ export const calcArea = ({ type, ...props}:ChartProps) => {
   }
 }
 
+// 饼图
+export const calcPie = ({ type, ...props}:ChartProps) => {
+  return {
+    angleField: 'value',
+    colorField: 'label',
+    appendPadding: 10,
+    interactions: [
+      {
+        type: 'element-active',
+      },
+    ],
+    ...ComponentConfig({type, ...props})
+  }
+}
+
 // 返回的字段配置
 const labelConfig = () => {
   return {
@@ -132,7 +148,10 @@ const ComponentConfig = ({ type, legend, tooltip, label }:ChartProps) => {
       ...ChartsSy.legend,
       ...legend
     },
-    label: label === false ? false : {
+    label: label === false ? false : type === 'pie' ? {
+      type: 'outer',
+      ...label
+    } : {
       ...ChartsSy.label,
       layout: type === 'column' ? [
         {

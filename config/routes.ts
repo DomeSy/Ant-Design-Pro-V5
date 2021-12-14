@@ -35,7 +35,7 @@ export default [
       { path: '/ahook/Advanced', name: 'Advanced', component: './aHook/Advanced'},
     ],
   },
-    {
+  {
     path: '/Charts',
     name: '图表',
     icon: 'HeatMapOutlined',
@@ -49,6 +49,7 @@ export default [
         { path: '/Charts/All/DualAxes', name: '双轴图', component: './Charts/All/DualAxes', hideInMenu: true},
         { path: '/Charts/All/Bar', name: '条形图', component: './Charts/All/Bar', hideInMenu: true},
         { path: '/Charts/All/Area', name: '面积图', component: './Charts/All/Area', hideInMenu: true},
+        { path: '/Charts/All/Pie', name: '饼图', component: './Charts/All/Pie', hideInMenu: true},
       ]},
       // { path: '/Charts/All/Line', name: '折现图', component: './Charts/Line', hideInMenu: true},
     ],
