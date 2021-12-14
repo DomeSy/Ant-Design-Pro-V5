@@ -46,22 +46,6 @@ const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) =
     loading: state.loading,
   }
 
-  const config = {
-    // appendPadding: 10,
-    data: state.data,
-    angleField: 'value',
-    colorField: 'label',
-    radius: 0.8,
-    label: {
-      type: 'outer',
-    },
-    // interactions: [
-    //   {
-    //     type: 'element-active',
-    //   },
-    // ],
-  };
-
   return <>
     {
       props.type === 'column' && <Column isGroup={ChartsSy.colum.isGroup} {...commonConfig}  {...props.colum} {...calcColumn(props)} />

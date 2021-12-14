@@ -5,7 +5,17 @@ import { message } from 'antd';
 // 处理数据模块
 export const calcData = (listAll: Object, { xField, fields, fieldsLine, type }: ChartProps) => {
   const list = Array.isArray(listAll) ? listAll : [listAll]
-  if(type === 'dualAxes'){
+  if(type === 'pie' && Array.isArray(fields)){
+    if(fields.length !== 2){
+      message.error('请输入对应的名称和值')
+      return []
+    }
+    let res:any = [];
+    list.map((item) => {
+      res = [...res, { ...item, label: item[fields[0] || ''], value: item[fields[1] || 0]}]
+    })
+    return res
+  } else if(type === 'dualAxes'){
     if(!fieldsLine){
       message.error('请传入对应的折线图数据')
       return [[], []]
@@ -36,7 +46,7 @@ export const calcData = (listAll: Object, { xField, fields, fieldsLine, type }: 
     list.map((item) => {
       keys.map((ele, index) => {
         if((item[ele] || item[ele] === 0) && xField){
-          res = [...res, { ...item, label: values[index], value: item[ele], time: item[xField] || index }]
+          res = [...res, { ...item, label: values[index], value: item[ele], time: type ==='pie' ? undefined : item[xField] || index }]
         }
       })
     })

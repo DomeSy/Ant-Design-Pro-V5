@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { Data, DualAxesData, PieData, LifeCycle, LifeCycleAnchorList, } from './chartsMock'
+import { Data, DualAxesData, PieData, PieData1, LifeCycle, LifeCycleAnchorList, } from './chartsMock'
 
 
 export default {
@@ -63,6 +63,11 @@ export default {
     }else if(detail === 'pie') {
       res.send( resData({
         data: PieData()
+      }) )
+      return
+    }else if(detail === 'pie1') {
+      res.send( resData({
+        data: PieData1()
       }) )
       return
     }

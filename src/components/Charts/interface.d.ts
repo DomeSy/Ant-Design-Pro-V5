@@ -49,13 +49,19 @@ import {  LineConfig, ColumnConfig, DualAxesConfig, BarConfig, AreaConfig, PieCo
  *
  *  需要注意的是，这里请求的数据 与其他格式相反的形式，xField 对应的是纵坐标的形式， fields对应的字段只能有一个对应的值
  */
+
+/**
+ * type 为 pie 饼图
+ *
+ * 饼图与其他图有些不同，饼图的数据源有可能会变，也就是接口字段不确定行，为此提供两种方式，一种是固定的，只需要传对象即可（这种方式不能返回多个数组），另一种是通过接口字段自动生成
+ */
 export interface ChartProps {
   type: 'column' | 'line' | 'dualAxes' | 'bar' | 'area' | 'pie'; // 图表的类型， column（柱状图） line(折线图) dualAxes(双轴图) bar(条形图) area(面积图)
   data?: Array<any>; // 数据源列表
   xField?: string; // 横坐标对应的值
-  fields: { // 匹配接口返回字段
+  fields: { // 匹配接口返回字段, 为数组时，目前只支持 b
     [key: string]: any;
-  },
+  } | [string, string],
   fieldsLine?: { // 匹配接口(双轴图-折现图操作)
     [key: string]: any;
   },

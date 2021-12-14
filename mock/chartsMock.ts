@@ -57,6 +57,23 @@ export const PieData:any = () => {
   }
 }
 
+export const PieData1:any = () => {
+  let data:any = []
+  for(let i = 0; i < 5; i++){
+    const mock = Mock.mock({
+      'a|1-200': 100,
+    })
+
+    data = [...data, {
+      ...mock,
+      name: Mock.mock('@cname'),
+      address: Mock.mock('@county(true)'),
+      time: Mock.mock(`@date('yyyy-MM-dd')`),
+    }]
+  }
+  return data
+}
+
 export const LifeCycle:Props = {
   api: {
     id: 'Api',

@@ -19,6 +19,7 @@ const Mock: React.FC<any> = () => {
     show: true,
     data: [],
     isRequest: true,
+    monthRequest: false,
     legend: true,
     layout: false,
     position: 'top-left',
@@ -36,15 +37,15 @@ const Mock: React.FC<any> = () => {
 
   useEffect(() => {
     if(!state.isRequest){
-      queryData({detail: 'pie'}).then((res) => {
-        state.data = [...res]
+      queryData({detail: state.monthRequest ? 'pie1' : 'pie'}).then((res) => {
+        state.data = Array.isArray(res) ? [...res] : [res]
       })
     }
   }, [state.isRequest])
 
-  const switchShow = (label:string, name:string, flag?: boolean) => {
+  const switchShow = (label:string, name:string, flag?: boolean, tooltip?: string) => {
     return <>
-      <span style={{marginLeft: 12, fontWeight: 'normal'}}>{label}：</span>
+      <span style={{marginLeft: 12, fontWeight: 'normal'}}>{label}{tooltip && <Tooltip title={tooltip}><InfoCircleOutlined /></Tooltip>}：</span>
       <Switch checked={state[name]} onChange={(e) => { if(flag){
         state.show = false;
         setTimeout(() => {state.show = true}, 200)
@@ -68,6 +69,7 @@ const Mock: React.FC<any> = () => {
     <div>
       <TextShow text={'数据请求onRequest'} title="是否直接传入接口获取数据" >
         <Switch checked={state.isRequest} onChange={(e) => {state.isRequest = e }}/>
+        { switchShow('是否匹配接口', 'monthRequest', false, '需要依靠数据请求onRequest的开关看效果') }
       </TextShow>
     </div>
     <div style={{marginTop: 4}}>
@@ -101,22 +103,16 @@ const Mock: React.FC<any> = () => {
     </div>
     {
       state.show && <Charts
-        fields={{ a: '北方人口', b: '南方人口', c: '北京人口', d: '上海人口', e: '南京人口', }}
+        fields={state.monthRequest ? ['name', 'a'] : { a: '北方人口', b: '南方人口', c: '北京人口', d: '上海人口', e: '南京人口', }}
         type='pie'
         onRequest={state.isRequest ? queryData : undefined}
-        payload={state.isRequest ? () => ({ detail: 'pie' }) : undefined}
+        payload={state.isRequest ? () => ({ detail: state.monthRequest ? 'pie1' : 'pie' }) : undefined}
         data={state.isRequest ? undefined : state.data}
         legend={ state.legend ? {
           layout: state.layout ? 'vertical' : 'horizontal',
           position: state.position,
           noSelect: state.noSelect ? ['北方人口'] : undefined,
         } : false}
-        // label={ state.label ? {
-        //   position: state.labelPosition,
-        //   content: state.labelContent ? (data:any) => {
-        //     return data.name
-        //   } : undefined
-        // } : false}
         tooltip={{
           title: state.tooltipTitle ? 'address' : undefined,
           position: state.tooltipPosition,
