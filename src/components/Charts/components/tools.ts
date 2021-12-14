@@ -3,7 +3,7 @@ import { ChartsSy } from '@/utils/Setting'
 import { message } from 'antd';
 
 // 处理数据模块
-export const calcData = (listAll: Object, { xField, fields, fieldsLine, type }: ChartProps) => {
+export const calcData = (listAll: Object, { xField, fields, fieldsLine, type, ...props}: ChartProps) => {
   const list = Array.isArray(listAll) ? listAll : [listAll]
   if(type === 'pie' && Array.isArray(fields)){
     if(fields.length !== 2){
@@ -12,8 +12,11 @@ export const calcData = (listAll: Object, { xField, fields, fieldsLine, type }: 
     }
     let res:any = [];
     list.map((item) => {
-      res = [...res, { ...item, label: item[fields[0] || ''], value: item[fields[1] || 0]}]
+      res = [...res, { ...item, label: item[fields[0]], value: item[fields[1]]}]
     })
+    if(props?.pie?.zero){
+      res =  res.filter((item:any) => item.value !== 0)
+    }
     return res
   } else if(type === 'dualAxes'){
     if(!fieldsLine){
@@ -50,6 +53,9 @@ export const calcData = (listAll: Object, { xField, fields, fieldsLine, type }: 
         }
       })
     })
+    if(props?.pie?.zero){
+      res =  res.filter((item:any) => item.value !== 0)
+    }
     return  res
   }
 }
@@ -120,11 +126,12 @@ export const calcArea = ({ type, ...props}:ChartProps) => {
 }
 
 // 饼图
-export const calcPie = ({ type, ...props}:ChartProps) => {
+export const calcPie = ({ type, pie, ...props}:ChartProps) => {
   return {
     angleField: 'value',
     colorField: 'label',
     appendPadding: 10,
+    innerRadius: pie?.innerRadius ?  pie.innerRadius : pie?.ring ? 0.6 : undefined,
     interactions: [
       {
         type: 'element-active',

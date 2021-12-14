@@ -19,14 +19,13 @@ const Mock: React.FC<any> = () => {
     show: true,
     data: [],
     isRequest: true,
+    ring: true,
+    zero: false,
     monthRequest: false,
     legend: true,
     layout: false,
     position: 'top-left',
-    labelPosition: 'middle',
     noSelect: false,
-    label: true,
-    labelContent: false,
     color: false,
     slider: true,
     sliderValue: false,
@@ -70,6 +69,8 @@ const Mock: React.FC<any> = () => {
       <TextShow text={'数据请求onRequest'} title="是否直接传入接口获取数据" >
         <Switch checked={state.isRequest} onChange={(e) => {state.isRequest = e }}/>
         { switchShow('是否匹配接口', 'monthRequest', false, '需要依靠数据请求onRequest的开关看效果') }
+        { switchShow('是否为环图', 'ring') }
+        { switchShow('清除0的数据', 'zero', false, '需要依靠数据请求onRequest的开关看效果') }
       </TextShow>
     </div>
     <div style={{marginTop: 4}}>
@@ -82,9 +83,6 @@ const Mock: React.FC<any> = () => {
     </div>
     <div style={{marginTop: 4}}>
       <TextShow text={'文本标签'} title="label的属性" >
-        { switchShow('是否展示', 'label') }
-        { selectShow(positionLabel, '位置', 'labelPosition') }
-        { switchShow('是否改变文字', 'labelContent') }
       </TextShow>
     </div>
     <div style={{marginTop: 4}}>
@@ -103,7 +101,7 @@ const Mock: React.FC<any> = () => {
     </div>
     {
       state.show && <Charts
-        fields={state.monthRequest ? ['name', 'a'] : { a: '北方人口', b: '南方人口', c: '北京人口', d: '上海人口', e: '南京人口', }}
+        fields={state.monthRequest ? ['name', 'a'] : { a: '北方人口', b: '南方人口', c: '北京人口', d: '上海人口', e: '南京人口', f: '江苏人口' }}
         type='pie'
         onRequest={state.isRequest ? queryData : undefined}
         payload={state.isRequest ? () => ({ detail: state.monthRequest ? 'pie1' : 'pie' }) : undefined}
@@ -126,12 +124,9 @@ const Mock: React.FC<any> = () => {
             </div>`
           } : undefined,
         }}
-        colum={{
-          color: state.color ? ['red', 'yellow'] : undefined,
-          slider: state.slider ? state.sliderValue ? {
-            start: 0.1,
-            end: 0.5
-          } : {} : undefined,
+        pie={{
+          ring: state.ring,
+          zero: state.zero
         }}
       ></Charts>
     }

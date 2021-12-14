@@ -69,8 +69,8 @@ export interface ChartProps {
   calcData?: (result:any) => [] | {}; // 目前来说返回的一个对象或者一个数组
   payload?: () => {}; // 接口请求的数据，返回一个对象
   legend?: false | LegendProps; // 配置图例
-  tooltip?: false | (Types.TooltipCfg & TooltipMapping)
-  label?: false | LabelProps;
+  tooltip?: false | (Types.TooltipCfg & TooltipMapping) // 提示语
+  label?: false | LabelProps; // 文本标签
   colum?: ColumProps;
   line?: LineProps;
   dualAxes?: DualAxesProps;
@@ -82,6 +82,8 @@ export interface ChartProps {
 
 /** 饼图 */
 export interface PieProps extends Partial<PieConfig>{
+  ring?: boolean; // 是否为环图， 默认 0.6
+  zero?: boolean; // 去除含0的数据，可全局配置
 }
 
 /** 面积图 */

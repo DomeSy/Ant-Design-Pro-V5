@@ -51,6 +51,7 @@ export const PieData:any = () => {
   })
   return {
     ...mock,
+    f: 0,
     name: Mock.mock('@cname'),
     address: Mock.mock('@county(true)'),
     time: Mock.mock(`@date('yyyy-MM-dd')`),
@@ -71,6 +72,12 @@ export const PieData1:any = () => {
       time: Mock.mock(`@date('yyyy-MM-dd')`),
     }]
   }
+  data = [...data, {
+    a: 0,
+    name: Mock.mock('@cname'),
+    address: Mock.mock('@county(true)'),
+    time: Mock.mock(`@date('yyyy-MM-dd')`),
+  }]
   return data
 }
 
