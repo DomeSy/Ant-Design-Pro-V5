@@ -1,19 +1,19 @@
 
 import Charts from './Charts';
-import MaskFrom from './MaskFrom';
+import ChartsCard from './ChartsCard/ChartsCard';
 
 
 /**
  * @module 图标类
  */
 type ChartsType = typeof Charts;
-type MaskFromType = typeof MaskFrom;
+type ChartsCardType = typeof ChartsCard;
 
 export interface RenderWay extends ChartsType {
-  Form: MaskFromType;
+  Card: ChartsCardType;
 }
 
 const Index = Charts as RenderWay
-Index.Form = MaskFrom;
+Index.Card = ChartsCard;
 
 export default Index;
