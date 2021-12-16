@@ -20,13 +20,13 @@ const Mock: React.FC<any> = () => {
 
   })
 
-  useEffect(() => {
-    if(!state.isRequest){
-      queryData({detail: 'data'}).then((res) => {
-        state.data = [...res]
-      })
-    }
-  }, [state.isRequest])
+  // useEffect(() => {
+  //   if(!state.isRequest){
+  //     queryData({detail: 'data'}).then((res) => {
+  //       state.data = [...res]
+  //     })
+  //   }
+  // }, [state.isRequest])
 
   const switchShow = (label:string, name:string, flag?: boolean) => {
     return <>
@@ -51,17 +51,20 @@ const Mock: React.FC<any> = () => {
 
   return (
    <>
-    <div>
+    {/* <div>
       <TextShow text={'数据请求onRequest'} title="是否直接传入接口获取数据" >
         <Switch checked={state.isRequest} onChange={(e) => {state.isRequest = e }}/>
       </TextShow>
-    </div>
+    </div> */}
     {
       state.show && <Charts.Card
         fields={{ a: '北方人口', b: '南方人口'}}
         type='column'
         onRequest={queryData}
         payload={() => ({ detail: 'data' })}
+        condition={[{
+          type: 'date'
+        }]}
       ></Charts.Card>
     }
    </>

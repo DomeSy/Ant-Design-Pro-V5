@@ -37,7 +37,8 @@ const Index: React.FC<any> = (props) => {
   }, []);
 
   return (
-    <DetailSetting {...detail} anchorList={anchorList}  />
+    <Mock />
+    // <DetailSetting {...detail} anchorList={anchorList}  />
   );
 };
 
