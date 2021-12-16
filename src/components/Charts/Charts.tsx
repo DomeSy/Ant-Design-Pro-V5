@@ -65,10 +65,6 @@ const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) =
     {
       props.type === 'pie' && <Pie {...commonConfig}  {...props.pie} {...calcPie(props)} />
     }
-     {
-      // props.type === 'pie' && <Pie {...config} />
-    }
-
   </>;
 };
 

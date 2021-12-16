@@ -76,7 +76,7 @@ export const calcLine = ({ type, ...props}:ChartProps) => {
   }
 }
 
-//柱状折线图
+//双轴图
 export const calcDualAxes = ({ type, dualAxes, ...props}:ChartProps) => {
 
   let geometryOptions = [

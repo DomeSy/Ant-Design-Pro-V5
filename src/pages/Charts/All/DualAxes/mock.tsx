@@ -130,6 +130,12 @@ const Mock: React.FC<any> = () => {
           },
           {
             color: state.color ? ['blue', 'green', 'pink'] : undefined,
+            label: {
+              content: (data)=>{
+                console.log(JSON.parse(JSON.stringify(data)))
+                return data.value
+              }
+            }
           }],
           slider: state.slider ?  state.sliderValue ? {
             start: 0.1,
