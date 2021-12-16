@@ -4,7 +4,7 @@ import { Switch, Tooltip, Select } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { queryData } from './services';
 
-import { positionData, positionLabel, positionTooltip } from './test'
+import { positionData, typeLabel, positionTooltip } from './test'
 import { useReactive } from 'ahooks';
 
 const TextShow: React.FC<{text: string, title: string}> = ({text='', title='', children}) => {
@@ -22,13 +22,12 @@ const Mock: React.FC<any> = () => {
     ring: true,
     zero: false,
     monthRequest: false,
+    labelType: 'inner',
     legend: true,
     layout: false,
     position: 'top-left',
     noSelect: false,
     color: false,
-    slider: true,
-    sliderValue: false,
     tooltipCustom: false,
     tooltipTitle: false,
     tooltipPosition: 'right',
@@ -52,10 +51,16 @@ const Mock: React.FC<any> = () => {
     </>
   }
 
-  const selectShow = (list: Array<any>, label:string, name:string) => {
+  const selectShow = (list: Array<any>, label:string, name:string, flag?: boolean) => {
     return <>
       <span style={{  marginLeft: 8}} >{label}：</span>
-      <Select value={state[name]} style={{ width: 120,marginLeft:8, marginTop:8 }} onChange={(e) => { state[name] = e }}>
+      <Select value={state[name]} style={{ width: 120,marginLeft:8, marginTop:8 }} onChange={(e) => {
+        if(flag){
+          state.show = false;
+          setTimeout(() => {state.show = true}, 200)
+        }
+        state[name] = e
+      }}>
         {list.map((data, i) => <Option key={i} value={data.value}>
           {data.name}
         </Option>)}
@@ -83,6 +88,7 @@ const Mock: React.FC<any> = () => {
     </div>
     <div style={{marginTop: 4}}>
       <TextShow text={'文本标签'} title="label的属性" >
+        { selectShow(typeLabel, '位置', 'labelType') }
       </TextShow>
     </div>
     <div style={{marginTop: 4}}>
@@ -95,8 +101,6 @@ const Mock: React.FC<any> = () => {
     <div style={{marginTop: 4}}>
       <TextShow text={'其他'} title="有关的表格其余属性都在 colum" >
         { switchShow('改变颜色', 'color') }
-        { switchShow('是否启动缩略轴', 'slider') }
-        { switchShow('改变缩略的值', 'sliderValue') }
       </TextShow>
     </div>
     {
@@ -126,7 +130,9 @@ const Mock: React.FC<any> = () => {
         }}
         pie={{
           ring: state.ring,
-          zero: state.zero
+          zero: state.zero,
+          labelType: state.labelType,
+          color: state.color ? ['#d62728', '#2ca02c', '#000000', 'yellow', 'blue', 'pink'] : undefined,
         }}
       ></Charts>
     }

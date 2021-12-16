@@ -137,7 +137,7 @@ export const calcPie = ({ type, pie, ...props}:ChartProps) => {
         type: 'element-active',
       },
     ],
-    ...ComponentConfig({type, ...props})
+    ...ComponentConfig({type, pie, ...props})
   }
 }
 
@@ -151,7 +151,7 @@ const labelConfig = () => {
 }
 
 //  方法类集中配置
-const ComponentConfig = ({ type, legend, tooltip, label }:ChartProps) => {
+const ComponentConfig = ({ type, legend, tooltip, label, ...props }:ChartProps) => {
   let selected:any = {}
   if(legend && legend.noSelect){
     legend.noSelect.map((item) => {
@@ -166,7 +166,7 @@ const ComponentConfig = ({ type, legend, tooltip, label }:ChartProps) => {
       ...legend
     },
     label: label === false ? false : type === 'pie' ? {
-      type: 'outer',
+      type: props?.pie?.labelType ||  'outer',
       ...label
     } : {
       ...ChartsSy.label,

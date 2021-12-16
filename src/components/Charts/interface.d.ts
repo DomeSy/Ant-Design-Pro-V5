@@ -84,6 +84,7 @@ export interface ChartProps {
 export interface PieProps extends Partial<PieConfig>{
   ring?: boolean; // 是否为环图， 默认 0.6
   zero?: boolean; // 去除含0的数据，可全局配置
+  labelType?: 'inner' | 'outer' | 'spider' //对应三种不同的文字
 }
 
 /** 面积图 */

@@ -51,27 +51,20 @@ const positionData = [
 ]
 
 
-const positionLabel = [
+const typeLabel = [
   {
-    name: '上方',
-    value: 'top'
+    name: '内嵌',
+    value: 'inner'
   },
   {
     name: '下方',
-    value: 'bottom'
+    value: 'outer'
   },
   {
     name: '中间',
-    value: 'middle'
+    value: 'spider'
   },
-  {
-    name: '左方',
-    value: 'left'
-  },
-  {
-    name: '右方',
-    value: 'right'
-  },
+
 ]
 
 const positionTooltip = [
@@ -95,6 +88,6 @@ const positionTooltip = [
 
 export {
   positionData,
-  positionLabel,
+  typeLabel,
   positionTooltip
 }
