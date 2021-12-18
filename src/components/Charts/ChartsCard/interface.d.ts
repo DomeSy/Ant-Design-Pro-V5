@@ -8,10 +8,17 @@ export interface ChartsCardProps extends ChartProps {
   card?: ProCardProps; // 有关卡片的其余属性
 }
 
-interface conditionProps {
+export interface conditionProps {
   type?: 'date', // 筛选条件，默认为日期， date(日期),
-  default?: string | number; // 默认传入的日期对应的值
+  default?: any; // 默认传入的日期对应的值
   date?: DateProps; // 日期对应相关的属性
+  dateLimit?: {
+    methodAdd?: 'day' | 'month' | 'week' | 'year';
+    methodSubtract?: 'day' | 'month' | 'week' | 'year';
+    add?: number;
+    subtract?: number;
+    type?: number;
+  }
 }
 
 // 日期额外属性
