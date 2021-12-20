@@ -5,6 +5,7 @@ import { useReactive, useUpdateEffect } from 'ahooks';
 import { DatePicker, Button } from 'antd';
 import { Method } from '@/utils';
 import { ChartsSy } from '@/utils/Setting';
+import { calcData } from '../components/tools';
 import moment from 'moment';
 import Charts from '../Charts'
 
@@ -15,18 +16,44 @@ import Charts from '../Charts'
 
 const { Card } = ChartsSy
 
-const ChartsCard: React.FC<ChartsCardProps>  = ({  condition, card, ...props }) => {
+const ChartsCard: React.FC<ChartsCardProps>  = ({ payload, onRequest, condition, card, ...props }) => {
   const state = useReactive<any>({
+    data: props.type === 'dualAxes' ? [[], []] : [],
     dateInit: false,
     loading: true
   })
 
   useEffect(() => {
+    // console.log(JSON.parse(JSON.stringify(state.dateInit)), '998')
+    const res = setInit()
+    console.log(res, '00')
+    getRequest(res)
   }, [])
+
+  const setInit = () => {
+    if(!condition) return {}
+    let result:any = {}
+    condition.map((item) => {
+      if(item.type === 'date'){
+        const dateInit = item?.default ? item.default : typeof Card.date.default === 'string' ?  Card.date.default : Card.date.default === true ? Method.getDate({subscribe: 1}) : false;
+        state.dateInit = dateInit
+        result['dateInit'] = dateInit ? dateInit : undefined
+      }
+    })
+    return result
+  }
+
+  const getRequest = async (params:any) =>  {
+    const payloads = await payload({ ...params })
+    const res = await onRequest(payloads)
+    const data = calcData(props.calcData ? props.calcData(res) : res, { xField: props.xField || Card.xField , ...props })
+    state.data = data
+  }
 
   // 初始化条件
   const initCondition = () => {
     if(!condition || condition?.length === 0) return
+
     return <div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
       {                      
         condition.map((item, index) => <div style={{marginRight: 8}} key={index}>
@@ -35,7 +62,11 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({  condition, card, ...props }) 
           }
         </div>)
       }
-      <Button type='primary' {...props.button} onClick={() => {console.log('1')} } >查询</Button>
+      <Button type='primary' {...props.button} onClick={() => {
+        getRequest({
+          dateInit: state.dateInit ? state.dateInit : undefined,
+        })
+      }} >查询</Button>
     </div>
   }
 
@@ -86,7 +117,7 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({  condition, card, ...props }) 
     {...card}
     extra={initCondition()}
   >
-    <Charts {...props}  />
+    <Charts {...props} data={state.data} />
   </ProCard>;
 };
 

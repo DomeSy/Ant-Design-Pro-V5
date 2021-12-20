@@ -18,6 +18,8 @@ const Charts: React.FC<ChartProps>  = ({ xField=ChartsSy.xField, onRequest, ...p
   useEffect(() => {
     if(onRequest){
       getRequest()
+    }else{
+      state.loading = false
     }
   }, [onRequest])
 
