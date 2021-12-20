@@ -3,6 +3,8 @@ import ProCard from '@ant-design/pro-card';
 import React, { useEffect, useMemo, useCallback } from 'react';
 import { useReactive, useUpdateEffect } from 'ahooks';
 import { DatePicker, Button } from 'antd';
+import { Method } from '@/utils';
+import { ChartsSy } from '@/utils/Setting';
 import moment from 'moment';
 import Charts from '../Charts'
 
@@ -10,30 +12,30 @@ import Charts from '../Charts'
  * @module ChartsCard // 表单与卡片得1
  *
  */
-const ChartsCard: React.FC<ChartsCardProps>  = ({ condition, card, ...props }) => {
+
+const { Card } = ChartsSy
+
+const ChartsCard: React.FC<ChartsCardProps>  = ({  condition, card, ...props }) => {
   const state = useReactive<any>({
     dateInit: false,
     loading: true
   })
 
   useEffect(() => {
-  }, [ ])
+  }, [])
 
   // 初始化条件
   const initCondition = () => {
     if(!condition || condition?.length === 0) return
-
     return <div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
       {                      
         condition.map((item, index) => <div style={{marginRight: 8}} key={index}>
           {
-            item.type === 'date' && <DatePicker
-              {...dateRules(item)}
-            />
+            item.type === 'date' && <DatePicker {...dateRules(item)} {...Card.date.config} {...item.date} />
           }
         </div>)
       }
-      <Button type='primary' onClick={() => {console.log('1')}} >查询</Button>
+      <Button type='primary' {...props.button} onClick={() => {console.log('1')} } >查询</Button>
     </div>
   }
 
@@ -59,9 +61,17 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ condition, card, ...props }) =
       );
     }
 
+    const defaultRule = () => {
+      if(props?.default) return moment(props.default, 'YYYY-MM-DD')
+      if(typeof Card.date.default === 'string' ) return moment(Card.date.default, 'YYYY-MM-DD')
+      if(Card.date.default === true) return moment(Method.getDate({subscribe: 1}), 'YYYY-MM-DD')
+      return undefined
+    }
+
     return {
+      allowClear: Card.date.allowClear,
       disabledDate: (current: any) => dateRule(current),
-      // defaultValue: default ? default : undefined,
+      defaultValue:  defaultRule(),
       onChange:(val:any) => {
         state.dateInit = val?.format('YYYY-MM-DD')
       }

@@ -61,9 +61,17 @@ const Mock: React.FC<any> = () => {
         fields={{ a: '北方人口', b: '南方人口'}}
         type='column'
         onRequest={queryData}
-        payload={() => ({ detail: 'data' })}
+        payload={(data) => {
+           return { detail: 'data', ...data }
+        }}
         condition={[{
-          type: 'date'
+          type: 'date',
+          // default: '2021-12-17',
+          dateLimit:{
+            // subtract: 0,
+            // add: 3,
+            // type: 2
+          }
         }]}
       ></Charts.Card>
     }

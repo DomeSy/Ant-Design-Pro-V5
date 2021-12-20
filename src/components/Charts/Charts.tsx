@@ -8,7 +8,7 @@ import { ChartsSy } from '@/utils/Setting'
  * @module Charts // 封装常用图表
  *
  */
-const Charts: React.FC<ChartProps>  = ({ xField='time', onRequest, ...props }) => {
+const Charts: React.FC<ChartProps>  = ({ xField=ChartsSy.xField, onRequest, ...props }) => {
 
   const state = useReactive<any>({
     data: props.type === 'dualAxes' ? [[], []] : [],

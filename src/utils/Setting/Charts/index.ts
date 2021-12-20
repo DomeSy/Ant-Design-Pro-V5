@@ -1,4 +1,5 @@
 import ChartsProps from './interface'
+import { Method } from '@/utils';
 
 /**
  * @module 图标模块
@@ -6,6 +7,7 @@ import ChartsProps from './interface'
  */
 
 const ChartsSy: ChartsProps = {
+  xField: 'time',
   legend: {
     layout: 'horizontal',
     position: 'top-left'
@@ -18,6 +20,14 @@ const ChartsSy: ChartsProps = {
   },
   tooltip: {
     position: 'right'
+  },
+  Card: {
+    xField: 'time',
+    date: {
+      default: Method.getDate({subscribe: 1}), // 自定义默认时间，为 true 则是当天
+      allowClear: false,
+      config:{}
+    }
   }
 }
 
