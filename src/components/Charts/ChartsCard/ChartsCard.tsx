@@ -20,6 +20,7 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
   const state = useReactive<any>({
     data: props.type === 'dualAxes' ? [[], []] : [],
     dateInit: false,
+    dateRangeInit: false,
     loading: true
   })
 
@@ -38,6 +39,9 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
         const dateInit = item?.default ? item.default : typeof Card.date.default === 'string' ?  Card.date.default : Card.date.default === true ? Method.getDate({subscribe: 1}) : false;
         state.dateInit = dateInit
         result['dateInit'] = dateInit ? dateInit : undefined
+      }else if(item.type === 'dateRang') {
+        const dateRangeInit = [Method.getDate({subscribe: 7}), Method.getDate({subscribe: 1})];
+        state.dateRangeInit = dateRangeInit
       }
     })
     return result
@@ -60,6 +64,10 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
           {
             item.type === 'date' && <DatePicker {...dateRules(item)} {...Card.date.config} {...item.date} />
           }
+          {
+                // @ts-ignore
+            item.type === 'dateRang' && <DatePicker.RangePicker {...dateRangRules(item)}  {...item.date} />
+          }
         </div>)
       }
       <Button type='primary' {...props.button} onClick={() => {
@@ -70,19 +78,20 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
     </div>
   }
 
+
   // 日期规则
   const dateRules = ({ ...props}: conditionProps) => {
     const { dateLimit } = props
     const dateRule = (current: any) => {
       if (!dateLimit || Object.keys(dateLimit).length === 0) return undefined;
-      const {
+      let { add = 0, subtract = 0, methodAdd =  'day', methodSubtract = 'day', type } = dateLimit;
+
+      if(type == 0){
         add = Card.date.dateLimit ? Card.date.dateLimit?.add || 0 : 0,
         subtract = Card.date.dateLimit ? Card.date.dateLimit?.subtract || 0 : 0,
         methodAdd =  Card.date.dateLimit ? Card.date.dateLimit?.methodAdd || 'day' : 'day',
-        methodSubtract = Card.date.dateLimit ? Card.date.dateLimit?.methodSubtract || 'day' : 'day',
-        type = 0,
-      } = dateLimit;
-
+        methodSubtract = Card.date.dateLimit ? Card.date.dateLimit?.methodSubtract || 'day' : 'day'
+      }
       if (type === 1) return current && current < moment().endOf('day');
       if (type === 2) return current && current > moment().endOf('day');
 
@@ -104,6 +113,41 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
       allowClear: Card.date.allowClear,
       disabledDate: (current: any) => dateRule(current),
       defaultValue:  defaultRule(),
+      onChange:(val:any) => {
+        state.dateInit = val?.format('YYYY-MM-DD')
+      }
+    }
+  }
+
+  // 日期时间段规则
+  const dateRangRules = ({ ...props}: conditionProps) => {
+    const testRang = (props.default && Array.isArray(props.default) && props.default.length ===2) ? [moment(props.default[0], 'YYYY-MM-DD'), moment(props.default[1], 'YYYY-MM-DD')] : Array.isArray(Card.dateRang.default) ? [moment(Card.dateRang.default[0], 'YYYY-MM-DD'), moment(Card.dateRang.default[1], 'YYYY-MM-DD')] : false;
+
+    const { dateLimit } = props
+    const dateRule = (current: any) => {
+      if (!dateLimit || Object.keys(dateLimit).length === 0) return undefined;
+      let { add = 0, subtract = 0, methodAdd =  'day', methodSubtract = 'day', type } = dateLimit;
+
+      if(type == 0){
+        add = Card.dateRang.dateLimit ? Card.dateRang.dateLimit?.add || 0 : 0,
+        subtract = Card.dateRang.dateLimit ? Card.dateRang.dateLimit?.subtract || 0 : 0,
+        methodAdd =  Card.dateRang.dateLimit ? Card.dateRang.dateLimit?.methodAdd || 'day' : 'day',
+        methodSubtract = Card.dateRang.dateLimit ? Card.dateRang.dateLimit?.methodSubtract || 'day' : 'day'
+      }
+      if (type === 1) return current && current < moment().endOf('day');
+      if (type === 2) return current && current > moment().endOf('day');
+
+      return (
+        current > moment().add(add, methodAdd) ||
+        current <
+          moment().subtract(methodSubtract === 'day' ? subtract + 1 : subtract, methodSubtract)
+      );
+    }
+
+    return {
+      defaultValue: testRang ? [...testRang] : undefined,
+      allowClear: Card.date.allowClear,
+      disabledDate: (current: any) => dateRule(current),
       onChange:(val:any) => {
         state.dateInit = val?.format('YYYY-MM-DD')
       }

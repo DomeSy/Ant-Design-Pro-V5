@@ -33,6 +33,14 @@ const ChartsSy: ChartsProps = {
         add: 1,
         subtract: 2
       }
+    },
+    dateRang:{
+      config:{},
+      default: [Method.getDate({subscribe: 7}), Method.getDate({subscribe: 1})],
+      dateLimit: {
+        methodSubtract: 'month',
+        subtract: 1
+      }
     }
   }
 }

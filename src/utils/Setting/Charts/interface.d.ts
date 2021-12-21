@@ -33,6 +33,16 @@ interface CardProps {
       add?: number; // 后几天，
       subtract?: number; // 前几天，包含当天，如果只要当天的，只需要设置为0就行
     }
+  },
+  dateRang: { //日期选择器
+    config: Partial<DatePickerProps>; // 其余属性
+    default: boolean | [string, string];
+    dateLimit: false | {
+      methodAdd?: 'day' | 'month' | 'week' | 'year'; // 后几天的模式，默认为 day
+      methodSubtract?: 'day' | 'month' | 'week' | 'year'; // 前几天的模式，默认为 day
+      add?: number; // 后几天，
+      subtract?: number; // 前几天，包含当天，如果只要当天的，只需要设置为0就行
+    }
   }
 }
 

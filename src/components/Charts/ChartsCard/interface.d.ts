@@ -1,7 +1,7 @@
 import { Types } from '@antv/g2';
 import { ChartProps } from '../interface'
 import { ProCardProps } from '@ant-design/pro-card';
-import { DatePickerProps, ButtonProps } from 'antd';
+import { DatePickerProps } from 'antd';
 
 export interface ChartsCardProps extends ChartProps {
   title?: React.ReactNode; // 卡片标题
