@@ -27,6 +27,12 @@ interface CardProps {
     default: boolean | string; // 默认值，为true时，日期选中为当天，为false时不选中，为字符串默认为当天的日期
     allowClear: boolean; // 是否有自动清除按钮
     config: Partial<DatePickerProps>; // 其余属性
+    dateLimit: false | {
+      methodAdd?: 'day' | 'month' | 'week' | 'year'; // 后几天的模式，默认为 day
+      methodSubtract?: 'day' | 'month' | 'week' | 'year'; // 前几天的模式，默认为 day
+      add?: number; // 后几天，
+      subtract?: number; // 前几天，包含当天，如果只要当天的，只需要设置为0就行
+    }
   }
 }
 

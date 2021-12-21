@@ -77,7 +77,7 @@ const Mock: React.FC<any> = () => {
         condition={[{
           type: 'date',
           default: state.dateDefault ? Method.getDate({add: 1}) : undefined,
-          dateLimit: state.dateLimit === 1 ? { type: 1 } : state.dateLimit === 2 ? { type: 2 } : state.dateLimit === 3 ? { add: 5, subtract: 3 } : state.dateLimit === 4 ? { add: 1, subtract: 1, methodSubtract: 'month', methodAdd: 'month' } : undefined
+          dateLimit: state.dateLimit === 1 ? { type: 0} : state.dateLimit === 2 ? { type: 1 } : state.dateLimit === 3 ? { type: 2 } : state.dateLimit === 4 ? { add: 5, subtract: 3 } : state.dateLimit === 5 ? { add: 1, subtract: 1, methodSubtract: 'month', methodAdd: 'month' } : undefined
         }]}
       ></Charts.Card>
     }

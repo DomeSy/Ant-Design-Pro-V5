@@ -28,7 +28,11 @@ const ChartsSy: ChartsProps = {
     date: {
       default: Method.getDate({subscribe: 1}), // 自定义默认时间，为 true 则是当天
       allowClear: false,
-      config:{}
+      config:{},
+      dateLimit: {
+        add: 1,
+        subtract: 2
+      }
     }
   }
 }

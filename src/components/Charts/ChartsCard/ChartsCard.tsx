@@ -76,10 +76,10 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
     const dateRule = (current: any) => {
       if (!dateLimit || Object.keys(dateLimit).length === 0) return undefined;
       const {
-        add = 0,
-        subtract = 0,
-        methodAdd = 'day',
-        methodSubtract = 'day',
+        add = Card.date.dateLimit ? Card.date.dateLimit?.add || 0 : 0,
+        subtract = Card.date.dateLimit ? Card.date.dateLimit?.subtract || 0 : 0,
+        methodAdd =  Card.date.dateLimit ? Card.date.dateLimit?.methodAdd || 'day' : 'day',
+        methodSubtract = Card.date.dateLimit ? Card.date.dateLimit?.methodSubtract || 'day' : 'day',
         type = 0,
       } = dateLimit;
 
