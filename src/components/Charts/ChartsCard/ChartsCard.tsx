@@ -10,13 +10,13 @@ import moment from 'moment';
 import Charts from '../Charts'
 
 /**
- * @module ChartsCard // 表单与卡片得1
+ * @module ChartsCard // 表单与卡片
  *
  */
 
 const { Card } = ChartsSy
 
-const ChartsCard: React.FC<ChartsCardProps>  = ({ payload, onRequest, condition, buttonText, card, ...props }) => {
+const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.headerBordered, tooltipCard, payload, onRequest, condition, buttonText, card, ...props }) => {
   const state = useReactive<any>({
     data: props.type === 'dualAxes' ? [[], []] : [],
     dateInit: false,
@@ -70,6 +70,7 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ payload, onRequest, condition,
     </div>
   }
 
+  // 日期规则
   const dateRules = ({ ...props}: conditionProps) => {
     const { dateLimit } = props
     const dateRule = (current: any) => {
@@ -110,10 +111,10 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ payload, onRequest, condition,
   }
 
   return <ProCard
-    // title="标题"
+    title={title}
     // loading={state.loading}
     headerBordered
-    // tooltip="这是提示"
+    tooltip={tooltipCard}
     {...card}
     extra={initCondition()}
   >

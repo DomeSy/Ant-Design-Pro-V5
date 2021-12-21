@@ -1,100 +1,28 @@
 
-const positionData = [
+const dateLimitData = [
   {
-    name: '上',
-    value: 'top'
+    name: '无限制',
+    value: 0
   },
   {
-    name: '左上',
-    value: 'top-left'
+    name: 'type为1',
+    value: 1
   },
   {
-    name: '右上',
-    value: 'top-right'
+    name: 'type为2',
+    value: 2
   },
   {
-    name: '右',
-    value: 'right'
+    name: '前3后5',
+    value: 3
   },
   {
-    name: '右上',
-    value: 'right-top'
-  },
-  {
-    name: '右下',
-    value: 'right-bottom'
-  },
-  {
-    name: '左',
-    value: 'left'
-  },
-  {
-    name: '左上',
-    value: 'left-top'
-  },
-  {
-    name: '左下',
-    value: 'left-bottom'
-  },
-  {
-    name: '下',
-    value: 'bottom'
-  },
-  {
-    name: '下左',
-    value: 'bottom-left'
-  },
-  {
-    name: '下右',
-    value: 'bottom-right'
+    name: '前一个月后一个月',
+    value: 4
   },
 ]
 
-
-const positionLabel = [
-  {
-    name: '上方',
-    value: 'top'
-  },
-  {
-    name: '下方',
-    value: 'bottom'
-  },
-  {
-    name: '中间',
-    value: 'middle'
-  },
-  {
-    name: '左方',
-    value: 'left'
-  },
-  {
-    name: '右方',
-    value: 'right'
-  },
-]
-
-const positionTooltip = [
-  {
-    name: '上方',
-    value: 'top'
-  },
-  {
-    name: '下方',
-    value: 'bottom'
-  },
-  {
-    name: '左方',
-    value: 'left'
-  },
-  {
-    name: '右方',
-    value: 'right'
-  },
-]
 
 export {
-  positionData,
-  positionLabel,
-  positionTooltip
+  dateLimitData,
 }

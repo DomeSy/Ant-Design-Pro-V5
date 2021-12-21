@@ -3,8 +3,8 @@ import { Charts } from '@/components';
 import { Switch, Tooltip, Select } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { queryData } from './services';
-
-import { positionData, positionLabel, positionTooltip } from './test'
+import { Method } from '@/utils';
+import { dateLimitData } from './test'
 import { useReactive } from 'ahooks';
 
 const TextShow: React.FC<{text: string, title: string}> = ({text='', title='', children}) => {
@@ -17,7 +17,8 @@ const Mock: React.FC<any> = () => {
 
   const state = useReactive<any>({
     show: true,
-
+    dateDefault: false,
+    dateLimit: 0
   })
 
   // useEffect(() => {
@@ -56,8 +57,17 @@ const Mock: React.FC<any> = () => {
         <Switch checked={state.isRequest} onChange={(e) => {state.isRequest = e }}/>
       </TextShow>
     </div> */}
+     <div style={{marginTop: 4}}>
+      <TextShow text={'时间规则'} title="type为date" >
+        { switchShow('增加默认值', 'dateDefault', true ) }
+        {/* { switchShow('是否垂直', 'layout') } */}
+        { selectShow(dateLimitData, '限制', 'dateLimit') }
+      </TextShow>
+    </div>
     {
       state.show && <Charts.Card
+        title="卡片柱状图"
+        tooltipCard='只支持接口传参的形式，注意 condition 为添加条件，fields 为接口匹配字段，payload 为接口传参'
         fields={{ a: '北方人口', b: '南方人口'}}
         type='column'
         onRequest={queryData}
@@ -66,12 +76,8 @@ const Mock: React.FC<any> = () => {
         }}
         condition={[{
           type: 'date',
-          // default: '2021-12-17',
-          dateLimit:{
-            // subtract: 0,
-            // add: 3,
-            // type: 2
-          }
+          default: state.dateDefault ? Method.getDate({add: 1}) : undefined,
+          dateLimit: state.dateLimit === 1 ? { type: 1 } : state.dateLimit === 2 ? { type: 2 } : state.dateLimit === 3 ? { add: 5, subtract: 3 } : state.dateLimit === 4 ? { add: 1, subtract: 1, methodSubtract: 'month', methodAdd: 'month' } : undefined
         }]}
       ></Charts.Card>
     }
