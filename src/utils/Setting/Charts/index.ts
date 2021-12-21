@@ -23,6 +23,7 @@ const ChartsSy: ChartsProps = {
   },
   Card: {
     xField: 'time',
+    buttonText: '查询',
     date: {
       default: Method.getDate({subscribe: 1}), // 自定义默认时间，为 true 则是当天
       allowClear: false,

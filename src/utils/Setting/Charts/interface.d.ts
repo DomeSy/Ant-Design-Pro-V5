@@ -21,6 +21,7 @@ interface ChartsProps {
 
 interface CardProps {
   xField: string, // 横坐标默认值
+  buttonText: buttonText, // 横坐标按钮
   date: { // 日期
     default: boolean | string; // 默认值，为true时，日期选中为当天，为false时不选中，为字符串默认为当天的日期
     allowClear: boolean; // 是否有自动清除按钮

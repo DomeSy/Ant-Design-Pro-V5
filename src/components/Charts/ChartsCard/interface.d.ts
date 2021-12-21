@@ -7,7 +7,8 @@ export interface ChartsCardProps extends ChartProps {
   payload: (data:any) => {}; //必须存在，包含条件
   condition?: conditionProps[]; // 有关条件的数据
   card?: ProCardProps; // 有关卡片的其余属性
-  button?: ButtonProps;
+  button?: ButtonProps; // 按钮相关的属性
+  buttonText?: React.ReactNode; // 默认的查询文字
 }
 
 export interface conditionProps {

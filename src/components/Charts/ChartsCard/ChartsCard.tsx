@@ -16,7 +16,7 @@ import Charts from '../Charts'
 
 const { Card } = ChartsSy
 
-const ChartsCard: React.FC<ChartsCardProps>  = ({ payload, onRequest, condition, card, ...props }) => {
+const ChartsCard: React.FC<ChartsCardProps>  = ({ payload, onRequest, condition, buttonText, card, ...props }) => {
   const state = useReactive<any>({
     data: props.type === 'dualAxes' ? [[], []] : [],
     dateInit: false,
@@ -66,7 +66,7 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ payload, onRequest, condition,
         getRequest({
           dateInit: state.dateInit ? state.dateInit : undefined,
         })
-      }} >查询</Button>
+      }} >{ buttonText || Card.buttonText}</Button>
     </div>
   }
 
