@@ -101,6 +101,7 @@ export default [
       { path: '/form/introduce', name: '介绍', component: './Form/Introduce' },
       { path: '/form/input', name: '输入框', component: './Form/Input'},
       { path: '/form/password', name: '密码', component: './Form/Password'},
+      { path: '/form/date', name: '日期', component: './Form/Date'},
       { path: '/form/select', name: '选择框', component: './Form/Select'},
       { path: '/form/checkbox', name: '多选', component: './Form/Checkbox'},
       { path: '/form/radio', name: '单选', component: './Form/Radio'},

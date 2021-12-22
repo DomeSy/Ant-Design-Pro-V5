@@ -1,15 +1,6 @@
 import { Request, Response } from 'express';
 import { resData } from './data';
-import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList, select, selectAnchorList, checkbox, checkboxAnchorList, radio, radioAnchorList, switchMock, switchAnchorList, textArea, textAreaAnchorList, rate, rateAnchorList, slider, sliderAnchorList, digit, digitAnchorList, field, fieldAnchorList } from './formMock'
-
-// 延时时间
-const waitTime = (time: number = 100) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(true);
-    }, time);
-  });
-};
+import { introduce, introduceAnchorList, input, inputAnchorList, password, passwordAnchorList, select, selectAnchorList, date, dateAnchorList, checkbox, checkboxAnchorList, radio, radioAnchorList, switchMock, switchAnchorList, textArea, textAreaAnchorList, rate, rateAnchorList, slider, sliderAnchorList, digit, digitAnchorList, field, fieldAnchorList } from './formMock'
 
 export default {
   'GET /api/form/queryDetail': async (req: Request, res: Response) => {
@@ -35,7 +26,14 @@ export default {
           anchorList: passwordAnchorList
         }
       ))
-    } else if(detail === 'select'){
+    } else if(detail === 'date'){
+      res.send(
+        resData({
+          list: date,
+          anchorList: dateAnchorList
+        }
+      ))
+    } else if(detail === 'date'){
       res.send(
         resData({
           list: select,

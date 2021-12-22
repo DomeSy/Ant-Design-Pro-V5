@@ -323,29 +323,6 @@ const list: any = [
   // },
   // {
   //   name: 'date2',
-  //   label: '日期',
-  //   type: 'date',
-  // },
-  // {
-  //   name: 'date3',
-  //   label: '前五天',
-  //   tooltip: `dateLimit: { subtract: 5 }`,
-  //   type: 'date',
-  //   dateLimit: {
-  //     subtract: 5,
-  //   },
-  // },
-  // {
-  //   name: 'date4',
-  //   label: '后五天',
-  //   tooltip: `dateLimit: { add: 5 }`,
-  //   type: 'date',
-  //   dateLimit: {
-  //     add: 5,
-  //   },
-  // },
-  // {
-  //   name: 'date5',
   //   label: '前五天，后五天',
   //   tooltip: `dateLimit: { add: 5, subtract: 5 }`,
   //   type: 'date',
@@ -355,107 +332,111 @@ const list: any = [
   //   },
   // },
   // {
-  //   name: 'date6',
-  //   label: '前1个月',
-  //   tooltip: `dateLimit: { subtract: 1, method: 'months' }`,
+  //   name: 'date3',
+  //   label: '前后1个月',
+  //   tooltip: `dateLimit: { add: 1, subtract: 1,  methodAdd: 'month',  methodSubtract: 'month' }`,
   //   type: 'date',
   //   dateLimit: {
+  //     add: 1,
   //     subtract: 1,
-  //     method: 'months'
+  //     methodAdd: 'month',
+  //     methodSubtract: 'month'
+  //   },
+  // },
+  // {
+  //   name: 'date4',
+  //   label: '禁用时间段',
+  //   tooltip: `dateLimit: { end: ${Method.getDate({add: 3})}, start: ${Method.getDate({})} }`,
+  //   type: 'date',
+  //   dateLimit: {
+  //     start: Method.getDate({}),
+  //     end: Method.getDate({add: 3}),
+  //   },
+  // },
+  // {
+  //   name: 'date5',
+  //   label: '只能选择今天之后的日期',
+  //   tooltip: `dateLimit: { type: 1 }`,
+  //   type: 'date',
+  //   dateLimit: {
+  //     type: 1
+  //   },
+  // },
+  // {
+  //   name: 'date6',
+  //   label: '只能选择今天之前的日期（包含当天）',
+  //   tooltip: `dateLimit: { type: 2 }`,
+  //   type: 'date',
+  //   dateLimit: {
+  //     type: 2
   //   },
   // },
   // {
   //   name: 'date7',
-  //   label: '后1个月',
-  //   tooltip: `dateLimit: { add: 1, method: 'months' }`,
+  //   label: '只选择时间段',
+  //   tooltip: `dateLimit: { type: 3, end: ${Method.getDate({add: 3})}, start: ${Method.getDate({})} }`,
   //   type: 'date',
   //   dateLimit: {
-  //     add: 1,
-  //     method: 'months'
+  //     type: 3,
+  //     start: Method.getDate({}),
+  //     end: Method.getDate({add: 3}),
   //   },
   // },
   // {
   //   name: 'date8',
-  //   label: '前后1个月',
-  //   tooltip: `dateLimit: { add: 1, subtract: 1, method: 'months' }`,
+  //   label: '日期时间段',
+  //   method: 'dateRange',
+  //   tooltip: `method: dateRange`,
   //   type: 'date',
-  //   dateLimit: {
-  //     add: 1,
-  //     subtract: 1,
-  //     method: 'months'
-  //   },
   // },
   // {
   //   name: 'date9',
-  //   label: '禁用时间段',
-  //   tooltip: `dateLimit: { start: '2021-06-07' ,end: '2021-06-12'}`,
-  //   type: 'date',
-  //   dateLimit: {
-  //     start: '2021-06-07',
-  //     end: '2021-06-12',
-  //   },
-  // },
-  // {
-  //   name: 'date10',
-  //   label: '只能选择今天之后的日期',
-  //   tooltip: `dateLimit: { type: 1, method: 'months' }`,
-  //   type: 'date',
-  //   dateLimit: {
-  //     type: 1,
-  //     method: 'months',
-  //   },
-  // },
-  // {
-  //   name: 'date11',
-  //   label: '只能选择今天之前的日期（包含当天）',
-  //   tooltip: `dateLimit: { type: 2, method: 'months' }`,
-  //   type: 'date',
-  //   dateLimit: {
-  //     type: 2,
-  //     method: 'months',
-  //   },
-  // },
-  // {
-  //   name: 'date12',
-  //   label: '只选择时间段',
+  //   label: '时间段为7天',
+  //   method: 'dateRange',
   //   tooltip: `dateLimit: { type: 3, start: '2021-06-07', end: '2021-06-12' }`,
   //   type: 'date',
   //   dateLimit: {
   //     type: 3,
-  //     start: '2021-06-07',
-  //     end: '2021-06-12',
+  //     start: Method.getDate({subscribe: 7}),
+  //     end: Method.getDate({add: 7}),
   //   },
   // },
   // {
-  //   name: 'date13',
+  //   name: 'date10',
+  //   label: '限制前7后7',
+  //   method: 'dateRange',
+  //   tooltip: `dateLimit: { type: 3, start: '2021-06-07', end: '2021-06-12' }`,
+  //   type: 'date',
+  //   dateLimit: {
+  //     type: 3,
+  //     start: Method.getDate({subscribe: 7}),
+  //     end: Method.getDate({add: 7}),
+  //   },
+  // },
+  // {
+  //   name: 'date11',
   //   label: '时间',
   //   method: 'time',
   //   tooltip: `method: 'time'`,
   //   type: 'date',
   // },
   // {
-  //   name: 'date14',
+  //   name: 'date12',
   //   label: '日期+时间',
   //   method: 'dateTime',
   //   tooltip: `method: 'dateTime',`,
   //   type: 'date',
   // },
+
   // {
-  //   name: 'date15',
-  //   label: '日期时间段',
-  //   method: 'dateRange',
-  //   tooltip: `dateLimit: { type: 3, start: '2021-06-07', end: '2021-06-12' }`,
-  //   type: 'date',
-  // },
-  // {
-  //   name: 'date16',
+  //   name: 'date13',
   //   label: '时间+时间段',
   //   method: 'timeRange',
   //   tooltip: `dateLimit: { type: 3, start: '2021-06-07', end: '2021-06-12' }`,
   //   type: 'date',
   // },
   // {
-  //   name: 'date17',
+  //   name: 'date14',
   //   label: '日期时间+日期时间段',
   //   method: 'dateTimeRange',
   //   tooltip: `dateLimit: { type: 3, start: '2021-06-07', end: '2021-06-12' }`,

@@ -31,6 +31,10 @@ const Hook: React.FC<any> = ({children, ...props}) => {
       key: 'password',
     },
     {
+      tab: '日期',
+      key: 'date',
+    },
+    {
       tab: '选择框',
       key: 'select',
     },

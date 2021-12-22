@@ -79,7 +79,7 @@ interface DateLimitProps {
   methodSubtract?: 'day' | 'month' | 'week' | 'year';
   add?: number;
   subtract?: number;
-  type?: number;
+  type?: 1 | 2 | 3;
   start?: string;
   end?: string;
 }
@@ -134,7 +134,9 @@ export interface formProps extends GroupProps {
   openText?: React.ReactNode;
   closeText?: React.ReactNode;
   loading?: boolean;
-  ranges?: Object;
+  ranges?: {
+    [key: any]: any;
+  };
   default?: any;
   max?: number;
   min?: number;

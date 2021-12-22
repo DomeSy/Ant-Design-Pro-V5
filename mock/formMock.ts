@@ -1270,6 +1270,152 @@ export const passwordAnchorList:AnchorLinkProps[] = [
   }
 ]
 
+export const date:Props = {
+  use: {
+    title: '使用说明',
+    tooltip: 'type: "date" ',
+    id: 'use'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装并继承于 ProFormDatePicker等`
+        },
+        {
+          render: `通过 method 状态 'date'（默认） | 'time' | 'dateTime' | 'dateRange' | 'timeRange' | 'dateTimeRange';`
+        },
+        {
+          render: '所有的限制可通过dateLimit来设置'
+        },
+        {
+          render: '通过 methodAdd methodSubtract 选择方式， add， subtract来设置时间状态，type为特殊模式，可自由增加'
+        },
+      ]
+    },
+  ],
+  api: {
+    id: 'Api',
+    hrefTooltip: '更多Api，去官网',
+    href: 'https://procomponents.ant.design/components/field-set#proformdatepicker',
+  },
+  apiList: [
+    ...tableCommonList,
+    {
+      type: 'title',
+      id: 'selectApi',
+      render: 'type为date的私有属性',
+      effect: 4,
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'method',
+          desc: `选择器的方式  `,
+          status: "'date' | 'time' | 'dateTime' | 'dateRange' | 'timeRange' | 'dateTimeRange'",
+          default: 'date'
+        },
+        {
+          name: 'ranges',
+          desc: `预设状态（需要借助moment）`,
+          status: "{ [key: any]: any }",
+        },
+        {
+          name: 'dateLimit',
+          desc: `设置限制的属性（下面全是DateLimitProps的属性）`,
+          status: "DateLimitProps 属性",
+        },
+        {
+          name: 'add',
+          desc: `后几天`,
+          status: "number",
+        },
+        {
+          name: 'subtract',
+          desc: `前几天`,
+          status: "number",
+        },
+        {
+          name: 'methodAdd',
+          desc: `前几天的格式`,
+          status: "'day' | 'month' | 'week' | 'year'",
+        },
+        {
+          name: 'methodSubtract',
+          desc: `后几天的格式`,
+          status: "'day' | 'month' | 'week' | 'year'",
+        },
+        {
+          name: 'type',
+          desc: `特殊的类型（1为只能选择今天之后，2为今天之前，3位配合， start 和 end，为只选）`,
+          status: "1 | 2 | 3",
+        },
+        {
+          name: 'start',
+          desc: `禁用的开始时间`,
+          status: "string",
+        },
+        {
+          name: 'end',
+          desc: `禁用的结束时间`,
+          status: "string",
+        },
+      ]
+    },
+  ],
+  explain: {
+    id: 'explain',
+    hrefTooltip: '封装不易，给个Star吧！',
+    href: 'https://github.com/DomeSy/Ant-Design-Pro-V5/tree/master/src/components/Form'
+  },
+  explainList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `封装原有的 ProComponent 的 ProFormDatePicker Api 并不是最全面的，所以要是有其他的属性，可以参考官网 Api`,
+          strong: true
+        },
+        {
+          render: '注意时间限制，可以自己预设值，更好的适配项目',
+          strong: true
+        }
+      ]
+    },
+  ]
+}
+
+export const dateAnchorList:AnchorLinkProps[] = [
+  {
+    title: '使用说明',
+    href: 'use'
+  },
+  {
+    title: '代码演示',
+    href: 'Code',
+  },
+  {
+    title: 'Api',
+    href: 'Api',
+    children: [
+      {
+        title: 'formList（公共属性）',
+        href: 'formListProps',
+      },
+      {
+        title: 'select属性',
+        href: 'selectApi',
+      },
+    ]
+  },
+  {
+    title: '心得体会',
+    href: 'explain',
+  }
+]
+
 export const select:Props = {
   use: {
     title: '使用说明',
