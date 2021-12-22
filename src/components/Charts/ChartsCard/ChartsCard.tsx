@@ -41,8 +41,9 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
         state.dateInit = dateInit
         result['dateInit'] = dateInit ? dateInit : undefined
       }else if(item.type === 'dateRang') {
-        const dateRangeInit = [Method.getDate({subscribe: 7}), Method.getDate({subscribe: 1})];
+        const dateRangeInit = (item.default && Array.isArray(item.default) && item.default.length ===2) ? item.default : Array.isArray(Card.dateRang.default) ? Card.dateRang.default : false
         state.dateRangeInit = dateRangeInit
+        result['dateRangeInit'] = dateRangeInit ? dateRangeInit : undefined
       }
     })
     return result
@@ -66,14 +67,19 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
             item.type === 'date' && <DatePicker {...dateRules(item)} {...Card.date.config} {...item.date} />
           }
           {
-                // @ts-ignore
-            item.type === 'dateRang' && <DatePicker.RangePicker {...dateRangRules(item)}  {...item.date} />
+            item.type === 'dateRang' &&
+            <DatePicker.RangePicker
+              defaultValue={(item.default && Array.isArray(item.default) && item.default.length ===2) ? [moment(item.default[0], 'YYYY-MM-DD'), moment(item.default[1], 'YYYY-MM-DD')] : Array.isArray(Card.dateRang.default) ? [moment(Card.dateRang.default[0], 'YYYY-MM-DD'), moment(Card.dateRang.default[1], 'YYYY-MM-DD')] : undefined}
+              {...dateRangRules(item)}
+              {...item.date}
+            />
           }
         </div>)
       }
       <Button type='primary' {...props.button} onClick={() => {
         getRequest({
           dateInit: state.dateInit ? state.dateInit : undefined,
+          dateRangeInit: state.dateRangeInit ? state.dateRangeInit : undefined,
         })
       }} >{ buttonText || Card.buttonText}</Button>
     </div>
@@ -122,7 +128,6 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
 
   // 日期时间段规则
   const dateRangRules = ({ ...props}: conditionProps) => {
-    const testRang = (props.default && Array.isArray(props.default) && props.default.length ===2) ? [moment(props.default[0], 'YYYY-MM-DD'), moment(props.default[1], 'YYYY-MM-DD')] : Array.isArray(Card.dateRang.default) ? [moment(Card.dateRang.default[0], 'YYYY-MM-DD'), moment(Card.dateRang.default[1], 'YYYY-MM-DD')] : false;
 
     const { dateLimit } = props
     const dateRule = (current: any) => {
@@ -146,11 +151,10 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
     }
 
     return {
-      defaultValue: testRang ? [...testRang] : undefined,
-      allowClear: Card.date.allowClear,
+      allowClear: Card.dateRang.allowClear,
       disabledDate: (current: any) => dateRule(current),
       onChange:(val:any) => {
-        state.dateInit = val?.format('YYYY-MM-DD')
+        state.dateRangeInit = [val[0]?.format('YYYY-MM-DD'), val[1]?.format('YYYY-MM-DD')]
       }
     }
   }

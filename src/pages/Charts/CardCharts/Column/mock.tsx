@@ -72,7 +72,7 @@ const Mock: React.FC<any> = () => {
         type='column'
         onRequest={queryData}
         payload={(data) => {
-           return { detail: 'data', ...data }
+          return { detail: 'data', dateInit: data?.dateInit, startTime: data?.dateRangeInit[0], endTime:  data?.dateRangeInit[1] }
         }}
         condition={[
         {

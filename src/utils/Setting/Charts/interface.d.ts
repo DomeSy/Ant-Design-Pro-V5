@@ -37,6 +37,7 @@ interface CardProps {
   dateRang: { //日期选择器
     config: Partial<DatePickerProps>; // 其余属性
     default: boolean | [string, string];
+    allowClear: boolean; // 是否有自动清除按钮
     dateLimit: false | {
       methodAdd?: 'day' | 'month' | 'week' | 'year'; // 后几天的模式，默认为 day
       methodSubtract?: 'day' | 'month' | 'week' | 'year'; // 前几天的模式，默认为 day
