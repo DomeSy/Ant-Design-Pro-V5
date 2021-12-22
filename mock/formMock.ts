@@ -1304,7 +1304,7 @@ export const date:Props = {
     ...tableCommonList,
     {
       type: 'title',
-      id: 'selectApi',
+      id: 'dateApi',
       render: 'type为date的私有属性',
       effect: 4,
     },
@@ -1405,8 +1405,8 @@ export const dateAnchorList:AnchorLinkProps[] = [
         href: 'formListProps',
       },
       {
-        title: 'select属性',
-        href: 'selectApi',
+        title: 'date属性',
+        href: 'dateApi',
       },
     ]
   },
