@@ -48,7 +48,7 @@ export const dateRangRules = ({ ...props}: conditionProps) => {
   const { dateLimit } = props
   const dateRule = (current: any) => {
     if (!dateLimit || Object.keys(dateLimit).length === 0) return undefined;
-    let { add = 0, subtract = 0, methodAdd =  'day', methodSubtract = 'day', type } = dateLimit;
+    let { add = 0, subtract = 0, methodAdd =  'month', methodSubtract = 'month', type } = dateLimit;
 
     if(type == 0){
       add = Card.dateRang.dateLimit ? Card.dateRang.dateLimit?.add || 0 : 0,

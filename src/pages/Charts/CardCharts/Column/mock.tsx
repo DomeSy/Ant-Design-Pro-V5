@@ -4,7 +4,7 @@ import { Switch, Tooltip, Select } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { queryData } from './services';
 import { Method } from '@/utils';
-import { dateLimitData } from './test'
+import { dateLimitData, dateRangLimitData } from './test'
 import { useReactive } from 'ahooks';
 
 const TextShow: React.FC<{text: string, title: string}> = ({text='', title='', children}) => {
@@ -18,7 +18,9 @@ const Mock: React.FC<any> = () => {
   const state = useReactive<any>({
     show: true,
     dateDefault: false,
-    dateLimit: 0
+    dateLimit: 0,
+    dateRangDefault: false,
+    dateRangLimit: 0
   })
 
   // useEffect(() => {
@@ -57,11 +59,16 @@ const Mock: React.FC<any> = () => {
         <Switch checked={state.isRequest} onChange={(e) => {state.isRequest = e }}/>
       </TextShow>
     </div> */}
-     <div style={{marginTop: 4}}>
-      <TextShow text={'时间规则'} title="type为date" >
-        { switchShow('增加默认值', 'dateDefault', true ) }
-        {/* { switchShow('是否垂直', 'layout') } */}
+    <div style={{marginTop: 4}}>
+      <TextShow text={'时间规则'} title="type为dateRang" >
+        { switchShow('增加默认值', 'dateDefault ', true ) }
         { selectShow(dateLimitData, '限制', 'dateLimit') }
+      </TextShow>
+    </div>
+    <div style={{marginTop: 4}}>
+      <TextShow text={'日期规则'} title="type为date" >
+        { switchShow('增加默认值', 'dateRangDefault', true ) }
+        { selectShow(dateRangLimitData, '限制', 'dateRangLimit') }
       </TextShow>
     </div>
     {
@@ -81,7 +88,9 @@ const Mock: React.FC<any> = () => {
           dateLimit: state.dateLimit === 1 ? { type: 0} : state.dateLimit === 2 ? { type: 1 } : state.dateLimit === 3 ? { type: 2 } : state.dateLimit === 4 ? { add: 5, subtract: 3 } : state.dateLimit === 5 ? { add: 1, subtract: 1, methodSubtract: 'month', methodAdd: 'month' } : undefined
         },
         {
-          type: 'dateRang'
+          type: 'dateRang',
+          default: state.dateRangDefault ?[Method.getDate({subscribe: 0}), Method.getDate({add: 3})] : undefined,
+           dateLimit: state.dateRangLimit === 1 ? { type: 0} : state.dateLimit === 2 ? { type: 1 } : state.dateLimit === 3 ? { type: 2 } : state.dateLimit === 4 ? { add: 2, methodAdd: 'month', subtract: 2, methodSubtract: 'month' }  : undefined
         }
       ]}
       ></Charts.Card>
