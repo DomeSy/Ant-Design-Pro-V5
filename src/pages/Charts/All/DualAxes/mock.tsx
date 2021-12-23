@@ -131,7 +131,7 @@ const Mock: React.FC<any> = () => {
           {
             color: state.color ? ['blue', 'green', 'pink'] : undefined,
             label: {
-              content: (data)=>{
+              content: (data:any)=>{
                 return data.value
               }
             }

@@ -19,6 +19,10 @@ const Hook: React.FC<any> = ({children, ...props}) => {
 
   const tab = [
     {
+      tab: '介绍',
+      key: 'Introduce',
+    },
+    {
       tab: '柱状图',
       key: 'Column',
     },

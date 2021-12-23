@@ -56,10 +56,10 @@ import {  LineConfig, ColumnConfig, DualAxesConfig, BarConfig, AreaConfig, PieCo
  * 饼图与其他图有些不同，饼图的数据源有可能会变，也就是接口字段不确定行，为此提供两种方式，一种是固定的，只需要传对象即可（这种方式不能返回多个数组），另一种是通过接口字段自动生成
  */
 export interface ChartProps {
-  type: 'column' | 'line' | 'dualAxes' | 'bar' | 'area' | 'pie'; // 图表的类型， column（柱状图） line(折线图) dualAxes(双轴图) bar(条形图) area(面积图)
+  type: 'column' | 'line' | 'dualAxes' | 'bar' | 'area' | 'pie'; // 图表的类型， column（柱状图） line(折线图) dualAxes(双轴图) bar(条形图) area(面积图) pie(饼图)
   data?: Array<any>; // 数据源列表
   xField?: string; // 横坐标对应的值
-  fields: { // 匹配接口返回字段, 为数组时，目前只支持 b
+  fields: { // 匹配接口返回字段, 为数组时，目前只支持
     [key: string]: any;
   } | [string, string],
   fieldsLine?: { // 匹配接口(双轴图-折现图操作)
@@ -69,7 +69,7 @@ export interface ChartProps {
   calcData?: (result:any) => [] | {}; // 目前来说返回的一个对象或者一个数组
   payload?: () => {}; // 接口请求的数据，返回一个对象
   legend?: false | LegendProps; // 配置图例
-  tooltip?: false | (Types.TooltipCfg & TooltipMapping) // 提示语
+  tooltip?: false | (Types.TooltipCfg) // 提示语
   label?: false | LabelProps; // 文本标签
   colum?: ColumProps;
   line?: LineProps;
@@ -114,7 +114,7 @@ export interface ColumProps extends Partial<ColumnConfig> {
 export interface ChartComponentProps {
   legend?: false | LegendProps; // 配置图例
   label?: false | LabelProps; // 文本标签
-  tooltip?: false | (Types.TooltipCfg & TooltipMapping)
+  tooltip?: false | (Types.TooltipCfg)
 }
 
 interface LegendProps extends Types.LegendCfg {

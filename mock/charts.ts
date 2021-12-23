@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { Data, DualAxesData, PieData, PieData1, LifeCycle, LifeCycleAnchorList, } from './chartsMock'
+import { Data, DualAxesData, PieData, PieData1, Charts, ChartsAnchorList, } from './chartsMock'
 
 
 export default {
@@ -37,10 +37,15 @@ export default {
     const { detail } = req.query
     if(detail === 'data') {
       res.send( resData({
-        list: LifeCycle,
-        anchorList: LifeCycleAnchorList
+        list: Charts,
+        anchorList: ChartsAnchorList
       }) )
       return
+    }else if(detail === 'introduce'){
+      res.send( resData({
+        list: Charts,
+        anchorList: ChartsAnchorList
+      }) )
     }
     res.send({
       code: 400,

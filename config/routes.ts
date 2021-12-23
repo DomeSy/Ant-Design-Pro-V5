@@ -43,7 +43,8 @@ export default [
       { path: '/Charts', redirect: '/Charts/All'},
       // { path: '/Charts/introduce', name: '介绍', component: './Charts/Introduce' },
       { path: '/Charts/All', name: '展示图表', component: './Charts/All', routes: [
-        { path: '/Charts/All', redirect: '/Charts/All/Column'},
+        { path: '/Charts/All', redirect: '/Charts/All/Introduce'},
+        { path: '/Charts/All/Introduce', name: '介绍', component: './Charts/All/Introduce', hideInMenu: true },
         { path: '/Charts/All/Column', name: '柱状图', component: './Charts/All/Column', hideInMenu: true},
         { path: '/Charts/All/Line', name: '折现图', component: './Charts/All/Line', hideInMenu: true},
         { path: '/Charts/All/DualAxes', name: '双轴图', component: './Charts/All/DualAxes', hideInMenu: true},
