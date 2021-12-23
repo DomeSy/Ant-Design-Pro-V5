@@ -190,6 +190,10 @@ export const Charts:Props = {
       render: 'payload：接口参数，请求接口时所带的参数',
       strong: true
     },
+    {
+      render: '此外，还需要注意 legend tooltip label 三个参数，分别对应 配置图例 提示语 文本标签 三个字段',
+      strong: true
+    },
   ],
   api: {
     id: 'Api',
