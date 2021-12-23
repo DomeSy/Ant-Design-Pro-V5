@@ -1,8 +1,8 @@
-import type { ChartsCardProps, conditionProps } from './interface';
+import type { ChartsCardProps } from './interface';
 import ProCard from '@ant-design/pro-card';
 import React, { useEffect } from 'react';
 import { useReactive } from 'ahooks';
-import { DatePicker, Button, Radio, RadioGroupProps,  } from 'antd';
+import { DatePicker, Button, Radio,  } from 'antd';
 import { Method } from '@/utils';
 import { ChartsSy } from '@/utils/Setting';
 import { calcData } from '../components/tools';
@@ -111,13 +111,11 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
           })
         }} >{ buttonText || Card.buttonText }</Button>
       }
-
     </div>
   }
 
   return <ProCard
     title={title}
-    // loading={state.loading}
     headerBordered
     tooltip={tooltipCard}
     {...card}

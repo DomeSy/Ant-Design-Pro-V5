@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Charts } from '@/components';
-import { Switch, Tooltip, Select, Checkbox } from 'antd';
+import { Switch, Tooltip, Select } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { queryData } from './services';
 import { Method } from '@/utils';
