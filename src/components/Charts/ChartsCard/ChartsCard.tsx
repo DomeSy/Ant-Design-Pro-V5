@@ -2,7 +2,7 @@ import type { ChartsCardProps, conditionProps } from './interface';
 import ProCard from '@ant-design/pro-card';
 import React, { useEffect } from 'react';
 import { useReactive } from 'ahooks';
-import { DatePicker, Button } from 'antd';
+import { DatePicker, Button, Radio, RadioGroupProps,  } from 'antd';
 import { Method } from '@/utils';
 import { ChartsSy } from '@/utils/Setting';
 import { calcData } from '../components/tools';
@@ -23,13 +23,12 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
     data: props.type === 'dualAxes' ? [[], []] : [],
     dateInit: false,
     dateRangeInit: false,
+    radioInit: false,
     loading: true
   })
 
   useEffect(() => {
-    // console.log(JSON.parse(JSON.stringify(state.dateInit)), '998')
     const res = setInit()
-    console.log(res, '00')
     getRequest(res)
   }, [])
 
@@ -45,6 +44,10 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
         const dateRangeInit = (item.default && Array.isArray(item.default) && item.default.length ===2) ? item.default : Array.isArray(Card.dateRang.default) ? Card.dateRang.default : false
         state.dateRangeInit = dateRangeInit
         result['dateRangeInit'] = dateRangeInit ? dateRangeInit : undefined
+      }else if(item.type === 'radio' && item.radioList && item.radioList.length !== 0) {
+        const radioInit = item.default ? item.default : item.radioList[0].value;
+        state.radioInit = radioInit
+        result['radioInit'] = radioInit
       }
     })
     return result
@@ -79,12 +82,31 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
               {...item.date}
             />
           }
+          {
+            item.type === 'radio' && item.radioList && item.radioList.length !== 0 &&
+            <Radio.Group defaultValue={item.default || item.radioList[0].value} buttonStyle="solid" {...item.radio} onChange={(e) => {
+              state.radioInit = e.target.value;
+              getRequest({
+                dateInit: state.dateInit ? state.dateInit : undefined,
+                dateRangeInit: state.dateRangeInit ? state.dateRangeInit : undefined,
+                radioInit: e.target.value
+              })
+            }}>
+              {
+                item.radioList.map((item, index) => (
+                  <Radio.Button value={item.value} key={index} disabled={item?.disabled}>{item.label}</Radio.Button>
+                ))
+              }
+            </Radio.Group>
+          }
         </div>)
       }
       <Button type='primary' {...props.button} onClick={() => {
+        console.log(state.radioInit, '00')
         getRequest({
           dateInit: state.dateInit ? state.dateInit : undefined,
           dateRangeInit: state.dateRangeInit ? state.dateRangeInit : undefined,
+          radioInit: (state.radioInit || state.radioInit === 0) ? state.radioInit : undefined
         })
       }} >{ buttonText || Card.buttonText}</Button>
     </div>

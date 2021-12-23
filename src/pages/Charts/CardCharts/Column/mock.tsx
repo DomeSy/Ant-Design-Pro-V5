@@ -20,7 +20,9 @@ const Mock: React.FC<any> = () => {
     dateDefault: false,
     dateLimit: 0,
     dateRangDefault: false,
-    dateRangLimit: 0
+    dateRangLimit: 0,
+    radioDefault: false,
+    radioDisabled: false
   })
 
   // useEffect(() => {
@@ -71,6 +73,12 @@ const Mock: React.FC<any> = () => {
         { selectShow(dateRangLimitData, '限制', 'dateRangLimit') }
       </TextShow>
     </div>
+    <div style={{marginTop: 4, marginBottom: 4}}>
+      <TextShow text={'按钮规则'} title="type为radio，radio不能为空" >
+        { switchShow('更改默认值', 'radioDefault', true) }
+        { switchShow('是否禁用', 'radioDisabled' ) }
+      </TextShow>
+    </div>
     {
       state.show && <Charts.Card
         title="卡片柱状图"
@@ -79,7 +87,7 @@ const Mock: React.FC<any> = () => {
         type='column'
         onRequest={queryData}
         payload={(data) => {
-          return { detail: 'data', dateInit: data?.dateInit, startTime: data?.dateRangeInit[0], endTime:  data?.dateRangeInit[1] }
+          return { detail: 'data', dateInit: data?.dateInit, startTime: data?.dateRangeInit[0], endTime:  data?.dateRangeInit[1], radio: data?.radioInit }
         }}
         condition={[
         {
@@ -91,6 +99,25 @@ const Mock: React.FC<any> = () => {
           type: 'dateRang',
           default: state.dateRangDefault ?[Method.getDate({subscribe: 0}), Method.getDate({add: 3})] : undefined,
            dateLimit: state.dateRangLimit === 1 ? { type: 0} : state.dateLimit === 2 ? { type: 1 } : state.dateLimit === 3 ? { type: 2 } : state.dateLimit === 4 ? { add: 2, methodAdd: 'month', subtract: 2, methodSubtract: 'month' }  : undefined
+        },
+        {
+          type: 'radio',
+          default: state.radioDefault ? 2 : undefined,
+          radioList: [
+            {
+              label: '状态1',
+              value: 0,
+            },
+            {
+              label: '状态2',
+              value: 1,
+              disabled: state.radioDisabled
+            },
+            {
+              label: '状态3',
+              value: 2,
+            }
+          ]
         }
       ]}
       ></Charts.Card>
