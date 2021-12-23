@@ -22,7 +22,7 @@ export default [
   },
   {
     path: '/ahook',
-    name: 'aHook',
+    name: 'aHooks',
     icon: 'BulbOutlined',
     component: './aHook',
     routes: [
