@@ -101,14 +101,17 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
           }
         </div>)
       }
-      <Button type='primary' {...props.button} onClick={() => {
-        console.log(state.radioInit, '00')
-        getRequest({
-          dateInit: state.dateInit ? state.dateInit : undefined,
-          dateRangeInit: state.dateRangeInit ? state.dateRangeInit : undefined,
-          radioInit: (state.radioInit || state.radioInit === 0) ? state.radioInit : undefined
-        })
-      }} >{ buttonText || Card.buttonText}</Button>
+      {
+        ( condition.length !== 1 || condition[0].type !== 'radio' ) &&
+        <Button type='primary' {...props.button} onClick={() => {
+          getRequest({
+            dateInit: state.dateInit ? state.dateInit : undefined,
+            dateRangeInit: state.dateRangeInit ? state.dateRangeInit : undefined,
+            radioInit: (state.radioInit || state.radioInit === 0) ? state.radioInit : undefined
+          })
+        }} >{ buttonText || Card.buttonText }</Button>
+      }
+
     </div>
   }
 
