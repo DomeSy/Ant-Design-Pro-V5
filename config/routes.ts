@@ -41,7 +41,6 @@ export default [
     icon: 'HeatMapOutlined',
     routes: [
       { path: '/Charts', redirect: '/Charts/All'},
-      // { path: '/Charts/introduce', name: '介绍', component: './Charts/Introduce' },
       { path: '/Charts/All', name: '展示图表', component: './Charts/All', routes: [
         { path: '/Charts/All', redirect: '/Charts/All/Introduce'},
         { path: '/Charts/All/Introduce', name: '介绍', component: './Charts/All/Introduce', hideInMenu: true },
@@ -53,15 +52,10 @@ export default [
         { path: '/Charts/All/Pie', name: '饼图', component: './Charts/All/Pie', hideInMenu: true},
       ]},
       { path: '/Charts/CardCharts', name: '卡片图表', component: './Charts/CardCharts', routes: [
-        { path: '/Charts/CardCharts', redirect: '/Charts/CardCharts/Column'},
-        { path: '/Charts/CardCharts/Column', name: '卡片柱状图', component: './Charts/CardCharts/Column', hideInMenu: true},
-        { path: '/Charts/CardCharts/Line', name: '卡片折现图', component: './Charts/CardCharts/Line', hideInMenu: true},
-        { path: '/Charts/CardCharts/DualAxes', name: '卡片双轴图', component: './Charts/CardCharts/DualAxes', hideInMenu: true},
-        { path: '/Charts/CardCharts/Bar', name: '卡片条形图', component: './Charts/CardCharts/Bar', hideInMenu: true},
-        { path: '/Charts/CardCharts/Area', name: '卡片面积图', component: './Charts/CardCharts/Area', hideInMenu: true},
-        { path: '/Charts/CardCharts/Pie', name: '卡片饼图', component: './Charts/CardCharts/Pie', hideInMenu: true},
+        { path: '/Charts/CardCharts', redirect: '/Charts/CardCharts/Introduce'},
+        { path: '/Charts/CardCharts/Introduce', name: '介绍', component: './Charts/CardCharts/Introduce', hideInMenu: true },
+        { path: '/Charts/CardCharts/Column', name: '卡片柱状图', component: './Charts/CardCharts/Column', hideInMenu: true}
       ]},
-      // { path: '/Charts/All/Line', name: '折现图', component: './Charts/Line', hideInMenu: true},
     ],
   },
   {

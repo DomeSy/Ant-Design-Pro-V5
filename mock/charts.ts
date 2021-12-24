@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { content, resData } from './data';
-import { Data, DualAxesData, PieData, PieData1, Charts, ChartsAnchorList, } from './chartsMock'
+import { Data, DualAxesData, PieData, PieData1, Charts, ChartsAnchorList, ChartsCard, ChartsCardAnchorList } from './chartsMock'
 
 
 export default {
@@ -45,6 +45,11 @@ export default {
       res.send( resData({
         list: Charts,
         anchorList: ChartsAnchorList
+      }) )
+    }else if(detail === 'introduceCard'){
+      res.send( resData({
+        list: ChartsCard,
+        anchorList: ChartsCardAnchorList
       }) )
     }
     res.send({

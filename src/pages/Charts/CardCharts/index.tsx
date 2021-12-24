@@ -19,28 +19,12 @@ const Hook: React.FC<any> = ({children, ...props}) => {
 
   const tab = [
     {
+      tab: '介绍',
+      key: 'Introduce',
+    },
+    {
       tab: '卡片柱状图',
       key: 'Column',
-    },
-    {
-      tab: '卡片折线图',
-      key: 'Line',
-    },
-    {
-      tab: '卡片双轴图',
-      key: 'DualAxes',
-    },
-    {
-      tab: '卡片条形图',
-      key: 'Bar',
-    },
-    {
-      tab: '卡片面积图',
-      key: 'Area',
-    },
-    {
-      tab: '卡片饼图',
-      key: 'Pie',
     },
   ];
   if(children.props.location.pathname === '/charts/introduce') return children

@@ -10,7 +10,6 @@ import { dateRules, dateRangRules } from './tools'
 import moment from 'moment';
 import Charts from '../Charts'
 
-
 /**
  * @module ChartsCard // 表单与卡片
  *
@@ -18,7 +17,7 @@ import Charts from '../Charts'
 
 const { Card } = ChartsSy
 
-const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.headerBordered, tooltipCard, payload, onRequest, condition, buttonText, card, ...props }) => {
+const ChartsCard: React.FC<ChartsCardProps>  = ({ title, hoverable =false, headerBordered = Card.headerBordered, tooltipCard, payload, onRequest, condition, buttonText, card, ...props }) => {
   const state = useReactive<any>({
     data: props.type === 'dualAxes' ? [[], []] : [],
     dateInit: false,
@@ -117,6 +116,7 @@ const ChartsCard: React.FC<ChartsCardProps>  = ({ title, headerBordered = Card.h
   return <ProCard
     title={title}
     headerBordered
+    hoverable
     tooltip={tooltipCard}
     {...card}
     extra={initCondition()}

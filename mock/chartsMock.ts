@@ -83,7 +83,7 @@ export const PieData1:any = () => {
 
 export const Charts:Props = {
   use: {
-    title: '开始学习',
+    title: '开始学习（Charts）',
     id: 'start'
   },
   useList: [
@@ -356,6 +356,192 @@ export const ChartsAnchorList:AnchorLinkProps[] = [
     children: [
       {
         title: 'PieProps属性',
+        href: 'Api1',
+      },
+    ]
+  }
+]
+
+export const ChartsCard:Props = {
+  use: {
+    title: '前言（Charts.Card）',
+    id: 'start'
+  },
+  useList: [
+    {
+      render: '通常而言，数据看板需要看不同维度，时间段的统计，为了简便起来，我们将结合 Charts、ProCard 做成卡片图标，并结合 DatePicker, DatePicker.RangePicker, Radio 形成限定条件',
+      strong: true
+    },
+    {
+      render: '我们先说说需要注意的几点：'
+    },
+    {
+      type: 'list',
+      list: [
+        {
+          render: `首先全部包含 Charts、ProCard的属性，并支持全局自定义配置`,
+        },
+        {
+          render: '目前卡片图表只接受 onRequest（接口） 的方式，传输数据，不能通过 data 直接渲染'
+        },
+        {
+          render: `特别注意 condition， 目前设置三种查询状态，日期、日期时间段、单选按钮 三个查询以供图表查询`,
+        },
+        {
+          render: '其次 要注意 payload 参数，它也 Charts 不同，他会返回一个查询条件的集合，方便作为接口参数'
+        },
+        {
+          render: '有什么好的建议，欢迎讨论，感谢~~',
+        },
+      ]
+    },
+    {
+      render: '注意事项',
+      id: 'start1',
+      type: 'title'
+    },
+    {
+      type: 'list',
+      list: [
+        {
+          render: `本组件相当于融合了 ProCard 、Charts、 Radio、 DatePicker、 DatePicker 以及 Button 的属性`,
+        },
+        {
+          render: '这里只那柱状图做展示，有关 Charts 的属性看 展示图表 的内容即可'
+        }
+      ]
+    },
+
+  ],
+  api: {
+    id: 'Api',
+  },
+  apiList: [
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'payload',
+          desc: '必须存在，包含条件，作为接口参数',
+          status: " (data:any) => {};",
+        },
+        {
+          name: 'condition',
+          desc: '有关条件的数据列表',
+          status: 'conditionProps[]',
+        },
+        {
+          name: 'title',
+          desc: '卡片标题',
+          status: 'React.ReactNode',
+        },
+        {
+          name: 'tooltipCard',
+          desc: '卡片提示语',
+          status: "string",
+        },
+        {
+          name: 'headerBordered',
+          desc:'是否增加横杠',
+          status: "boolean",
+        },
+        {
+          name: 'hoverable',
+          desc: '是否加入浮动效果',
+          status: 'boolean',
+        },
+        {
+          name: 'card',
+          desc: '有关卡片的其余属性',
+          status: 'ProCardProps',
+        },
+        {
+          name: 'button',
+          desc: '按钮相关的属性',
+          status: 'ButtonProps',
+        },
+        {
+          name: 'buttonText',
+          desc: '默认的查询文字',
+          status: 'React.ReactNode',
+        }
+      ]
+    },
+    {
+      type: 'title',
+      id: 'Api1',
+      render: 'conditionProps属性',
+      effect: 4
+    },
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'type',
+          desc: '筛选条件，默认为日期， date(日期), radio(单选按钮)',
+          status: "'date' | 'dateRang' | 'radio'",
+        },
+        {
+          name: 'default',
+          desc: '默认传入的日期对应的值',
+          status: "any",
+        },
+        {
+          name: 'dateLimit',
+          desc: '日期限制（下方参数为 dateLimit ）',
+          status: "dateLimitProps",
+        },
+        {
+          name: 'methodAdd',
+          desc: '后几天的模式，默认为 day',
+          status: " 'day' | 'month' | 'week' | 'year'",
+        },
+        {
+          name: 'methodSubtract',
+          desc: '前几天的模式，默认为 day',
+          status: " 'day' | 'month' | 'week' | 'year'",
+        },
+        {
+          name: 'add',
+          desc: '后几天',
+          status: "number",
+        },
+        {
+          name: 'subtract',
+          desc: '前几天，包含当天，如果只要当天的，只需要设置为0就行',
+          status: "number",
+        },
+        {
+          name: 'dateLimit.type',
+          desc: [
+            "特殊类型",
+            '为0时则走Setting Charts所设置公共的部分',
+            '为 1 时，不包括当天的时间',
+            '为2时，包括今天的之前日期'
+          ],
+          status: '0 | 1 | 2 ',
+          global: true
+        },
+      ]
+    },
+  ],
+}
+
+export const ChartsCardAnchorList:AnchorLinkProps[] = [
+  {
+    title: '开始学习',
+    href: 'start',
+  },
+  {
+    title: '注意事项',
+    href: 'start1',
+  },
+  {
+    title: 'Api',
+    href: 'Api',
+    children: [
+      {
+        title: 'conditionProps属性',
         href: 'Api1',
       },
     ]

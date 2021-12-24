@@ -7,6 +7,7 @@ export interface ChartsCardProps extends ChartProps {
   title?: React.ReactNode; // 卡片标题
   tooltipCard?: string; // 卡片提示语
   headerBordered?: boolean; //是否增加横杠
+  hoverable?: boolean; //是否加入浮动效果
   payload: (data:any) => {}; //必须存在，包含条件
   condition?: conditionProps[]; // 有关条件的数据
   card?: ProCardProps; // 有关卡片的其余属性
