@@ -108,7 +108,7 @@ const Mock: React.FC<any> = () => {
         legend={ state.legend ? {
           layout: state.layout ? 'vertical' : 'horizontal',
           position: state.position,
-          noSelect: state.noSelect ? ['北方人口'] : undefined,
+          noSelect: state.noSelect ? ['北方人口', '上海人口'] : undefined,
         } : false}
         tooltip={{
           title: state.tooltipTitle ? 'address' : undefined,
