@@ -46,7 +46,7 @@ export default {
       code: 200,
       data: {
         name: 'Domesy',
-        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+        avatar: 'https://cdn.nlark.com/yuque/0/2021/png/310196/1634175304186-avatar/d719f37f-d74c-41b1-bf1e-8e353659ff37.png',
         userid: '00000001',
         email: 'antdesign@alipay.com',
         signature: '海纳百川，有容乃大',

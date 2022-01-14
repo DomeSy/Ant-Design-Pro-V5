@@ -15,8 +15,6 @@ const Hook: React.FC<any> = ({children, ...props}) => {
   const [anchorList, setAnchorList] = useState<AnchorLinkProps[]>([])
 
   useEffect(() => {
-    console.log(domeSy)
-
     getDetail()
     getAnchorList()
   }, []);
