@@ -484,6 +484,75 @@ export const ossUploadAnchorList:AnchorLinkProps[] = [
   }
 ]
 
+export const darg:Props = {
+  use: {
+    title: 'Darg',
+    id: 'use'
+  },
+  useList: [
+    {
+      type: 'list',
+      list: [
+        {
+          render: `此组件封装与 react-draggable-tags`,
+        },
+        {
+          render: `当你使用拖拽功能时，如拖拽排序的时候可以用此组件`,
+        },
+      ]
+    },
+    {
+
+    }
+  ],
+  api: {
+    id: 'Api',
+    hrefTooltip: '更多Api，去官网',
+    href: 'https://ygyooo.github.io/react-draggable-tags',
+  },
+  apiList: [
+    {
+      type: 'table',
+      tableList: [
+        {
+          name: 'list',
+          desc: [
+            '匹配的数据列表',
+            '必须有一个字段用于区分',
+          ],
+          status: "Array<any>",
+        },
+        {
+          name: 'id',
+          desc: '列表需要唯一字段，用于匹配，默认',
+          status: "string",
+          default: 'id'
+        },
+        {
+          name: 'render',
+          desc: [
+            '用以渲染子列表',
+            'data，当行的数据',
+            'index：索引'
+          ],
+          status: "(data:any, index:number) => React.ReactNode",
+        },
+        {
+          name: 'onChange',
+          desc: '改变后的数据',
+          status: "(tags: Array<any>) => void",
+        },
+        {
+          name: 'block',
+          desc: '子元素是否是块状',
+          status: "boolean",
+          default: 'false'
+        },
+      ]
+    },
+  ]
+}
+
 export const maskFrom:Props = {
   use: {
     title: 'Mask.From',

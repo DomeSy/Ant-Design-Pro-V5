@@ -10,10 +10,10 @@ const Index: React.FC<any> = (props) => {
   const [detail, setDetail] = useState<DetailSettingListProps>({})
 
   useEffect(() => {
-    queryDetail({detail: 'ossUpload'}).then((res) => {
+    queryDetail({detail: 'darg'}).then((res) => {
       // setAnchorList(res.anchorList)
       setDetail({
-        // ...res.list,
+        ...res.list,
         code:{
           wrap: true,
           showCode: [
