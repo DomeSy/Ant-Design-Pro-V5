@@ -13,6 +13,7 @@ export { default as Anchor } from './Anchor';
 export { default as Typography } from './Typography';
 export { default as Charts } from './Charts';
 export { default as Map } from './Map';
+export { default as Drag } from './Drag';
 
 export type { tableListProps } from './Table/interface.d';
 export type { default as FormPropsSy } from './Form/interface.d'

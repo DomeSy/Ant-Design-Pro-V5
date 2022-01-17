@@ -84,6 +84,7 @@ export default [
       { path: '/file/ossUploadShow', name: '图片文件上传', component: './File/OssUploadShow' },
       { path: '/file/maskFrom', name: '弹出表单', component: './File/MaskFrom' },
       { path: '/file/excel', name: 'Excel数据', component: './File/Excel' },
+      { path: '/file/drag', name: '文本拖拽', component: './File/Drag' },
     ]
   },
   {

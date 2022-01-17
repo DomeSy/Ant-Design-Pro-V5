@@ -10750,7 +10750,7 @@ immer@^7.0.5:
   resolved "https://registry.nlark.com/immer/download/immer-7.0.15.tgz?cache=0&sync_timestamp=1625499692644&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fimmer%2Fdownload%2Fimmer-7.0.15.tgz#dc3bc6db87401659d2e737c67a21b227c484a4ad"
   integrity sha1-3DvG24dAFlnS5zfGeiGyJ8SEpK0=
 
-immutable@^3.8.1, immutable@^3.x.x:
+immutable@^3.8.1, immutable@^3.8.2, immutable@^3.x.x:
   version "3.8.2"
   resolved "https://registry.nlark.com/immutable/download/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
   integrity sha1-wkOZUUVbs5kT2vKBN28VMOEErfM=
@@ -16230,6 +16230,13 @@ react-dom@^17.0.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
+
+react-draggable-tags@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmmirror.com/react-draggable-tags/download/react-draggable-tags-1.0.6.tgz#1681e604b2d3d334eb0b643960188f87d80d1b7a"
+  integrity sha512-8Sl6UnLRCotqkaPih5D9L2DoKX858fV/zIf/ZkvcCht3Y58hkOLWO5V1M4XgdcZ0NMKh2ttcI55MCZqKO17DCg==
+  dependencies:
+    immutable "^3.8.2"
 
 react-easy-crop@^3.5.2:
   version "3.5.2"
