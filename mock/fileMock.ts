@@ -1,6 +1,5 @@
 import type { Props } from '@/commonPages/DetailSetting'
 import type { AnchorLinkProps } from '@/components'
-import { tableCommonList } from './data'
 
 export const ossUpload:Props = {
   use: {
