@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useRequest } from 'umi';
-import { Button, Spin } from 'antd';
+import { Button, Input, Spin, message } from 'antd';
 
 const Mock: React.FC<any> = () => {
   const [count,  setCount ] = useState<number>(0)
 
   const { data, loading , run } = useRequest({
-    url: '/api/hook/useRequest/test',
+    url: 'hook/useRequest/test',
     method: 'POST',
     data: {
       param: '11'
@@ -14,7 +14,7 @@ const Mock: React.FC<any> = () => {
   },{
     manual: true,
     initialData: '未请求',
-    onSuccess: (result:any, params) => {
+    onSuccess: (result:any, params:any) => {
       if (result) {
         setCount(count + params[0]);
       }
@@ -30,11 +30,44 @@ const Mock: React.FC<any> = () => {
   );
 };
 
+export const MockLifeCycle: React.FC<any> = () => {
+  const [ value,  setValue ] = useState<string>('')
+
+  const { loading , run } = useRequest({
+    url: 'hook/useRequest/test',
+    method: 'POST',
+    data: {
+      param: '11'
+    }
+  },{
+    // manual: true,
+    manual: true,
+
+    // onSuccess: (result, params) => {
+    //   setValue('');
+    //   message.success(`The username was changed to "${params[0]}" !`);
+    // },
+    // onError: (error) => {
+    //   message.error(error.message);
+    // },
+    // onFinally: (params, result, error) => {
+    //   message.info(`Request finish`);
+    // },
+  })
+
+  return (
+    <div>
+      <Input style={{width: 200, marginRight: 12}} value={value} onChange={(e) => setValue(e.target.value)} />
+      <Button loading={loading} type='primary' onClick={() => run(value)}>{loading ? 'Loading' : '执行'}</Button>
+    </div>
+  );
+};
+
 export const MockCache: React.FC<any> = () => {
 
   const [show, setShow] = useState<boolean>(false)
 
-  const { data, run, loading } = useRequest('/api/hook/useRequest/cache', {
+  const { data, run, loading } = useRequest('hook/useRequest/cache', {
     manual: true,
     cacheKey: 'article'
   })
@@ -53,7 +86,7 @@ export const MockCache: React.FC<any> = () => {
 
 export const MockPooling: React.FC<any> = () => {
 
-  const { data, loading, run, cancel } = useRequest('/api/hook/useRequest/pooling', {
+  const { data, loading, run, cancel } = useRequest('hook/useRequest/pooling', {
     manual: true,
     pollingInterval: 1000,
     pollingWhenHidden: false

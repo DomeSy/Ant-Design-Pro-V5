@@ -20,16 +20,14 @@ const Test: React.FC<any> = () => {
 
 const Mock: React.FC<any> = () => {
   const [count, setCount] = useState(0);
-  const [interval, setInterval] = useState<number | null>(1000);
+  const [interval, setInterval] = useState<number>(1000);
 
-  useInterval(
-    () => {
-      setCount(count + 1);
-    },
-    interval,
-    { immediate: true },
+  useInterval(() => {
+    setCount(count + 1);
+  },
+  interval,
+  { immediate: true }
   );
-
 
   return (
     <>
@@ -42,7 +40,7 @@ const Mock: React.FC<any> = () => {
           if(typeof interval === 'number') setInterval(interval + 1000)
         }}>加1s</Button>
         <Button type='primary' style={{marginRight: 16}} onClick={() => setInterval(1000)}>重置</Button>
-        <Button type='primary' style={{marginRight: 16}} onClick={() => setInterval(null)}>清除</Button>
+        <Button type='primary' style={{marginRight: 16}} onClick={() => setInterval(0)}>清除</Button>
       </div>
     </>
   );
