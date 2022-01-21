@@ -31,7 +31,6 @@ const Index: React.FC<any> = (props) => {
   import React from 'react';
   import { Button } from 'antd';
   import { useBoolean } from 'ahooks';
-import Method from '../../../utils/Method/index';
 
   const Mock: React.FC<any> = () => {
     const [state, { toggle, setTrue, setFalse }] = useBoolean(true);
@@ -61,7 +60,7 @@ import Method from '../../../utils/Method/index';
               component: <MockToggle />,
               title: '两种状态之间的切换',
               id: 'code2',
-              content: 'useToggle: 普通用法月 useBoolean 的用法一致，高级用法，可支持两种状态之间的切换',
+              content: 'useToggle: 普通用法与 useBoolean 的用法一致，高级用法，可支持两种状态之间的切换',
               code: `
   import React from 'react';
   import { Button } from 'antd';
