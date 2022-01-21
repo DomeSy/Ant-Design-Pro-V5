@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DetailSetting } from '@/commonPages'
 import { queryDetail } from './services'
-import Mock, { MockPooling, MockCache, MockLifeCycle } from './mock'
+import Mock, { MockPooling, MockCache, MockDepth } from './mock'
 import type { Props as DetailSettingListProps } from '@/commonPages/DetailSetting'
 import type { AnchorLinkProps } from '@/components'
 const Index: React.FC<any> = (props) => {
@@ -20,46 +20,6 @@ const Index: React.FC<any> = (props) => {
             {
               component: <Mock />,
               title: '基本使用 + 手动请求',
-              content: '手动请求，可设置初始值，配置请求接口的参数，并且能根据请求成功做对应的东西，设置初始请求值，loading状态等',
-              code: `
-  import React, { useState } from 'react';
-  import { useRequest } from 'umi';
-  import { Button } from 'antd';
-
-  const Mock: React.FC<any> = () => {
-    const [count,  setCount ] = useState<number>(0)
-
-    const { data, loading , run } = useRequest({
-      url: '/api/hook/useRequest/test',
-      method: 'POST',
-      data: {
-        param: '11'
-      }
-    },{
-      manual: true,
-      initialData: '未请求',
-      onSuccess: (result:any, params) => {
-        if (result) {
-          setCount(count + params[0]);
-        }
-      }
-    })
-
-    return (
-      <div>
-        <div style={{marginBottom: 20}}>count: {count}</div>
-        <div style={{marginBottom: 20}}>count: {data.message ? data.message : data}</div>
-        <Button loading={loading} type='primary' onClick={() => run(count + 1)}>手动请求</Button>
-      </div>
-    );
-  };
-
-  export default Mock;
-              `
-            },
-            {
-              component: <MockLifeCycle />,
-              title: '生命周期',
               content: '手动请求，可设置初始值，配置请求接口的参数，并且能根据请求成功做对应的东西，设置初始请求值，loading状态等',
               code: `
   import React, { useState } from 'react';
@@ -157,7 +117,46 @@ import { Mock } from 'mockjs';
 
   export default MockCache;
               `
-            }
+            },
+            {
+              component: <MockDepth />,
+              title: '依赖刷新',
+              content: '手动请求，可设置初始值，配置请求接口的参数，并且能根据请求成功做对应的东西，设置初始请求值，loading状态等',
+              code: `
+  import React, { useState } from 'react';
+  import { useRequest } from 'umi';
+  import { Select } from 'antd';
+
+  const Mock: React.FC<any> = () => {
+    const [id,  setId] = useState<string>('1')
+
+    const { data, loading } = useRequest({
+      url: 'hook/useRequest/test',
+      method: 'POST',
+      data: {
+        param: '11'
+      }
+    }, {
+      refreshDeps: [id],
+    });
+
+    return (
+      <>
+       <div>
+        <Select value={id} style={{ width: 120 }} onChange={(e) => setId(e)}>
+            <Select.Option value="1">依赖1</Select.Option>
+            <Select.Option value="2">依赖2</Select.Option>
+            <Select.Option value="3">依赖3</Select.Option>
+          </Select>
+       </div>
+        <div>当前依赖项：{loading ? 'loading' : data.message: 依赖id改变}</div>
+      </>
+    );
+  };
+
+  export default Mock;
+              `
+            },
           ]
         },
       })

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRequest } from 'umi';
-import { Button, Input, Spin, message } from 'antd';
+import { Button, Spin, Select } from 'antd';
 
 const Mock: React.FC<any> = () => {
   const [count,  setCount ] = useState<number>(0)
@@ -26,39 +26,6 @@ const Mock: React.FC<any> = () => {
       <div style={{marginBottom: 20}}>count: {count}</div>
       <div style={{marginBottom: 20}}>count: {data.message ? data.message : data}</div>
       <Button loading={loading} type='primary' onClick={() => run(count + 1)}>手动请求</Button>
-    </div>
-  );
-};
-
-export const MockLifeCycle: React.FC<any> = () => {
-  const [ value,  setValue ] = useState<string>('')
-
-  const { loading , run } = useRequest({
-    url: 'hook/useRequest/test',
-    method: 'POST',
-    data: {
-      param: '11'
-    }
-  },{
-    // manual: true,
-    manual: true,
-
-    // onSuccess: (result, params) => {
-    //   setValue('');
-    //   message.success(`The username was changed to "${params[0]}" !`);
-    // },
-    // onError: (error) => {
-    //   message.error(error.message);
-    // },
-    // onFinally: (params, result, error) => {
-    //   message.info(`Request finish`);
-    // },
-  })
-
-  return (
-    <div>
-      <Input style={{width: 200, marginRight: 12}} value={value} onChange={(e) => setValue(e.target.value)} />
-      <Button loading={loading} type='primary' onClick={() => run(value)}>{loading ? 'Loading' : '执行'}</Button>
     </div>
   );
 };
@@ -101,5 +68,31 @@ export const MockPooling: React.FC<any> = () => {
   </>
 }
 
+export const MockDepth: React.FC<any> = () => {
+  const [id,  setId] = useState<string>('1')
+
+  const { data, loading } = useRequest({
+    url: 'hook/useRequest/test',
+    method: 'POST',
+    data: {
+      param: '11'
+    }
+  }, {
+    refreshDeps: [id],
+  });
+
+  return (
+    <>
+     <div>
+      <Select value={id} style={{ width: 120 }} onChange={(e) => setId(e)}>
+          <Select.Option value="1">依赖1</Select.Option>
+          <Select.Option value="2">依赖2</Select.Option>
+          <Select.Option value="3">依赖3</Select.Option>
+        </Select>
+     </div>
+      <div>当前依赖项：{loading ? 'loading' : `${data.message}: 依赖${id}改变`}</div>
+    </>
+  );
+};
 
 export default Mock;
