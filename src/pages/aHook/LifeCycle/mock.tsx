@@ -65,7 +65,7 @@ export const MockTrackedEffect: React.FC<any> = () => {
     setDepActiveList(res)
   }
 
-  useTrackedEffect((changes:[], previousDeps:[], currentDeps:[])=>{
+  useTrackedEffect((changes, previousDeps, currentDeps)=>{
     setText(`第几个依赖项改变：: ` + changes);
     setText1(`当前的值：: ` + previousDeps);
     setText2(`改变后的值：: ` + currentDeps);

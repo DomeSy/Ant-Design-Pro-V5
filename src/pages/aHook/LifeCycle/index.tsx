@@ -126,7 +126,7 @@ const Index: React.FC<any> = (props) => {
       setDepActiveList(res)
     }
 
-    useTrackedEffect((changes:[], previousDeps:[], currentDeps:[])=>{
+    useTrackedEffect((changes, previousDeps, currentDeps)=>{
       setText('第几个依赖项改变：: ' + changes);
       setText1('当前的值：: ' + previousDeps);
       setText2('改变后的值：: ' + currentDeps);
@@ -169,7 +169,7 @@ const Index: React.FC<any> = (props) => {
               component: <MockUpdate />,
               title: '强制更新',
               id: 'code4',
-              content: 'useUpdateEffect 在使用的时候与 useEffect 一致，不同时是 忽略了首次渲染',
+              content: 'useUpdate 可以使组件强制渲染',
               code: `
   import React from 'react';
   import { Button } from 'antd';
