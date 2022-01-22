@@ -146,7 +146,7 @@ import { Mock } from 'mockjs';
         <Select value={id} style={{ width: 120 }} onChange={(e) => setId(e)}>
             <Select.Option value="1">依赖1</Select.Option>
             <Select.Option value="2">依赖2</Select.Option>
-            <Select.Option value="3">依赖3</Select.Option>
+              <Select.Option value="3">依赖3</Select.Option>
           </Select>
        </div>
         <div>当前依赖项：{loading ? 'loading' : data.message: 依赖id改变}</div>
