@@ -30,7 +30,7 @@ const Index: React.FC<any> = (props) => {
     const [count,  setCount ] = useState<number>(0)
 
     const { data, loading , run } = useRequest({
-      url: '/api/hook/useRequest/test',
+      url: 'hook/useRequest/test',
       method: 'POST',
       data: {
         param: '11'
@@ -67,7 +67,7 @@ const Index: React.FC<any> = (props) => {
   import { Button, Spin } from 'antd';
 
   const MockPooling: React.FC<any> = () => {
-    const { data, loading, run, cancel } = useRequest('/api/hook/useRequest/pooling', {
+    const { data, loading, run, cancel } = useRequest('hook/useRequest/pooling', {
       manual: true,
       pollingInterval: 1000,
       pollingWhenHidden: false
@@ -98,7 +98,7 @@ import { Mock } from 'mockjs';
   const MockCache: React.FC<any> = () => {
     const [show, setShow] = useState<boolean>(false)
 
-    const { data, run, loading } = useRequest('/api/hook/useRequest/cache', {
+    const { data, run, loading } = useRequest('hook/useRequest/cache', {
       manual: true,
       cacheKey: 'article'
     })
@@ -121,7 +121,7 @@ import { Mock } from 'mockjs';
             {
               component: <MockDepth />,
               title: '依赖刷新',
-              content: '手动请求，可设置初始值，配置请求接口的参数，并且能根据请求成功做对应的东西，设置初始请求值，loading状态等',
+              content: '通过某个状态自动请求数据，其 refreshDeps 的用法与 useEffect 使用的方法相同',
               code: `
   import React, { useState } from 'react';
   import { useRequest } from 'umi';
