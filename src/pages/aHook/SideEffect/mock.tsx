@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import { useInterval, useTimeout, useDebounce, useDebounceFn, useThrottle, useThrottleFn } from 'ahooks';
-import { Method } from '@/utils'
 
 const Test: React.FC<any> = () => {
   const [count, setCount] = useState(0);

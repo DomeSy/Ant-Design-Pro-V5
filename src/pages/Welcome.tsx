@@ -12,6 +12,8 @@ const Welcome: React.FC<any> = (props) => {
   const [anchorList, setAnchorList] = useState<AnchorLinkProps[]>([])
 
   useEffect(() => {
+    // let { a: b = 2 } = { a: 1 };
+
     queryDetail({detail: 'welcome'}).then((res) => {
       setAnchorList(res.anchorList)
       setDetail({
