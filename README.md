@@ -19,6 +19,14 @@ $ yarn run start // 运行
 $ yarn run build //打包（测试）
 $ yarn run build:pre //打包（正式）
 ```
+
+## cli 安装
+```bash
+$ npm install domesy -g
+
+// 在任意模板中使用 domesy 命令即可
+```
+![](http://mobile.domesy.cn/img/img3.png)
 ## 推荐模板
 
 ```
