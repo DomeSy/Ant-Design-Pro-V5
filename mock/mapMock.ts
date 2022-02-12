@@ -1,5 +1,5 @@
-import type { Props } from '@/commonPages/DetailSetting'
-import type { AnchorLinkProps } from '@/components'
+import type { Props } from '../src/commonPages/DetailSetting'
+import type { AnchorLinkProps } from '../src/components'
 
 export const LifeCycle:Props = {
   api: {

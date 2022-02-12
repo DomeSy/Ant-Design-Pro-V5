@@ -1,6 +1,5 @@
-import type { Props } from '@/commonPages/DetailSetting'
-import type { AnchorLinkProps } from '@/components'
-import { tableCommonList } from './data'
+import type { Props } from '../src/commonPages/DetailSetting'
+import type { AnchorLinkProps } from '../src/components'
 import Mock from 'mockjs';
 
 export const table:Props = {
