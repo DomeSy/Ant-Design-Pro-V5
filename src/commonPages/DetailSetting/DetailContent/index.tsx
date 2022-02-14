@@ -4,8 +4,7 @@ import { Table } from '@/components';
 import type { formProps, tableListProps } from '@/components'
 import { InfoCircleOutlined, QuestionCircleOutlined, EditOutlined, SendOutlined } from '@ant-design/icons';
 import { Link } from 'umi';
-import type { DetailListProps } from './interface.d'
-import Props from './interface'
+import Props, { DetailListProps } from './interface.d'
 import './index.less'
 import { Jump } from '@/utils';
 
