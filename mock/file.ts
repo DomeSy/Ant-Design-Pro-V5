@@ -42,6 +42,8 @@ export default {
       detail,
       message: '请输入参数'
     })
+    return
+
   },
 
 }

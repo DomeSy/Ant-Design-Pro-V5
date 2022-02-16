@@ -19,6 +19,8 @@ export default {
       detail,
       message: '请输入参数'
     })
+    return
+
   },
   'POST /api/table/queryTable': async (req: Request, res: Response) => {
     const { key } = req.query

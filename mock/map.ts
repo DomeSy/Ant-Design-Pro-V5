@@ -32,6 +32,7 @@ export default {
         ]
       }
     ))
+    return
   },
   'POST /api/map/queryDetail': async (req: Request, res: Response) => {
     const { detail } = req.query

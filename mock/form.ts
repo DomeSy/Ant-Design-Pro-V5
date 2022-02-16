@@ -12,6 +12,7 @@ export default {
           anchorList: introduceAnchorList
         }
       ))
+      return
     } else if(detail === 'input'){
       res.send(
         resData({
@@ -19,6 +20,7 @@ export default {
           anchorList: inputAnchorList
         }
       ))
+      return
     } else if(detail === 'password'){
       res.send(
         resData({
@@ -26,6 +28,7 @@ export default {
           anchorList: passwordAnchorList
         }
       ))
+      return
     } else if(detail === 'date'){
       res.send(
         resData({
@@ -33,6 +36,7 @@ export default {
           anchorList: dateAnchorList
         }
       ))
+      return
     } else if(detail === 'date'){
       res.send(
         resData({
@@ -40,6 +44,7 @@ export default {
           anchorList: selectAnchorList
         }
       ))
+      return
     } else if(detail === 'checkbox'){
       res.send(
         resData({
@@ -47,6 +52,7 @@ export default {
           anchorList: checkboxAnchorList
         }
       ))
+      return
     } else if(detail === 'radio'){
       res.send(
         resData({
@@ -54,6 +60,7 @@ export default {
           anchorList: radioAnchorList
         }
       ))
+      return
     } else if(detail === 'switch'){
       res.send(
         resData({
@@ -61,6 +68,7 @@ export default {
           anchorList: switchAnchorList
         }
       ))
+      return
     } else if(detail === 'textArea'){
       res.send(
         resData({
@@ -68,6 +76,7 @@ export default {
           anchorList: textAreaAnchorList
         }
       ))
+      return
     } else if(detail === 'rate'){
       res.send(
         resData({
@@ -75,6 +84,7 @@ export default {
           anchorList: rateAnchorList
         }
       ))
+      return
     } else if(detail === 'slider'){
       res.send(
         resData({
@@ -82,6 +92,7 @@ export default {
           anchorList: sliderAnchorList
         }
       ))
+      return
     } else if(detail === 'digit'){
       res.send(
         resData({
@@ -89,6 +100,7 @@ export default {
           anchorList: digitAnchorList
         }
       ))
+      return
     }else if(detail === 'field'){
       res.send(
         resData({
@@ -102,6 +114,7 @@ export default {
       detail,
       message: '请输入参数'
     })
+    return
   },
 
 }

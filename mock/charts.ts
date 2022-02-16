@@ -32,6 +32,7 @@ export default {
         ]
       }
     ))
+    return
   },
   'POST /api/charts/queryDetail': async (req: Request, res: Response) => {
     const { detail } = req.query
@@ -86,5 +87,6 @@ export default {
       detail,
       message: '请输入参数'
     })
+    return
   },
 }

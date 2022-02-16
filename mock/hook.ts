@@ -61,6 +61,7 @@ export default {
         ]
       }
     ))
+    return
   },
   'POST /api/hook/queryDetail': async (req: Request, res: Response) => {
     const { detail } = req.query
@@ -101,6 +102,7 @@ export default {
       detail,
       message: '请输入参数'
     })
+    return
   },
   'POST /api/hook/useRequest/test': async (req: Request, res: Response) => {
     await waitTime(2000);
@@ -109,6 +111,7 @@ export default {
         message: '请求成功'
       }
     ))
+    return
   },
   'GET /api/hook/useRequest/pooling': async (req: Request, res: Response) => {
     await waitTime(1000);
@@ -126,5 +129,6 @@ export default {
         time: new Date().getTime()
       }
     ))
+    return
   },
 }

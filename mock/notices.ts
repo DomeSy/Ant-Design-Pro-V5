@@ -100,6 +100,7 @@ const getNotices = (req: Request, res: Response) => {
       },
     ],
   });
+  return
 };
 
 export default {
